@@ -1,0 +1,1 @@
+python "Z:\Project Python\Auto Clicker\make_file_tiny_url.py" 10
