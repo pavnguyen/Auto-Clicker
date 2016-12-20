@@ -7,7 +7,7 @@ PARAMS = {
     'WIDTH': 1716,
     'HEIGHT': 927,
     'PATH_VMX': 'E:\Virtual Machine\\',
-    'PureVPN': 0,
+    'PureVPN': 1,
     'OpenVPN': 1
 }
 

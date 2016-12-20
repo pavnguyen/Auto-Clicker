@@ -1,1 +1,1 @@
-python "Z:\Project Python\Auto Clicker\Auto_Browser_AVU.py" 9
+python "Z:\Project Python\Auto Clicker\Auto_Clicker_AVU.py" 9

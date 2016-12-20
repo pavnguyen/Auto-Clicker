@@ -35,6 +35,7 @@ from config import USER_PASS
 from config import VPN_NAME
 from list_timezone import LIST_TIME_ZONE
 from screen_resolution import ScreenRes
+import subprocess
 
 init()
 
@@ -51,15 +52,12 @@ def get_random_vpn():
     return server
 
 
-def connect_vpn(refresh, number_machine):
-    if get_params('PureVPN') == 1:
-        if refresh is True:
-            rasdial.disconnect()
-            sleep(2)
+def connect_vpn(number_machine):
+    if get_params('PureVPN') == 1 and number_machine <= 10:
         while rasdial.is_connected() is False:
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
             rasdial.disconnect()
-            sleep(3)
+            sleep(1)
             server = get_random_vpn()
             # value = random.randint(1, 2)
 
@@ -70,21 +68,38 @@ def connect_vpn(refresh, number_machine):
             user = USER_PASS.get(value)[0]
             password = USER_PASS.get(value)[1]
             rasdial.connect(server, user, password)  # connect to a vpn
-            sleep(3)
-    elif get_params('OpenVPN') == 1:
-        ip = tuple(open('ressources\config_ip.txt', 'r'))
-        cmd = 'C:\Program Files\OpenVPN\\bin\openvpn.exe'
-        params = '--remote ' + ip[number_machine] + ' --status C:\status.log --log C:\logChangeIP.txt ' \
-                                                    '--tls-client --client --dev tun --proto udp ' \
-                                                    '--port 1197 --lport 53 --persist-key ' \
-                                                    '--persist-tun --ca data\ca.crt --comp-lzo --mute 3 ' \
-                                                    '--tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt ' \
-                                                    '--reneg-sec 0 --keepalive 10 120 --route-method exe ' \
-                                                    '--route-delay 2 --verb 3 --auth-nocache ' \
-                                                    '--crl-verify data\crl.pem --remote-cert-tls server ' \
-                                                    '--block-outside-dns --cipher aes-256-cbc --auth sha256'
-        cmd = cmd + params
-        check_output(cmd, shell=True)
+            sleep(1)
+
+    if get_params('OpenVPN') == 1 and number_machine > 10:
+        connect_openvpn()
+        # while is_connected_openvpn() is False:
+        #     connect_openvpn()
+
+
+def is_connected_openvpn():
+    status_openvpn = tuple(open('C:\status.log', 'r'))
+    result = False
+    for line in range(len(status_openvpn)):
+        if 'TAP-WIN32' in status_openvpn[line]:
+            result = False
+        else:
+            result = True
+    print('Status OpenVPN: ' + str(result) + '\n')
+    return result
+
+
+def connect_openvpn():
+    config_ip = tuple(open('ressources\config_ip.txt', 'r'))
+    cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
+    random_value = random.randint(0, len(config_ip) - 1)
+    random_value = 10
+    print('IP: ' + config_ip[random_value])
+    params = ' --status C:\status.log --log C:\logChangeIP.txt --tls-client --client --dev tun --remote ' + config_ip[random_value] + ' --proto udp --port 1197 --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3 --tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt --reneg-sec 0 --keepalive 10 120 --route-method exe --route-delay 2 --verb 3 --auth-nocache --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns --cipher aes-256-cbc --auth sha256'
+    cmd += params
+    print(cmd)
+    result = subprocess.Popen(cmd, shell=True)
+    print(result)
+
 
 def get_random_resolution():
     value = random.randint(1, len(SCREEN_RESOLUTION))
@@ -400,7 +415,7 @@ def countdown(timing):
 # Resize Screen and set Always on TOP
 set_screen_resolution()
 
-print('' + Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 80 + Style.RESET_ALL)
+print( Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 80 + Style.RESET_ALL)
 print(' ' * 22 + 'Auto Browser SUPER VIP - AVU')
 print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 80)
 
@@ -414,7 +429,7 @@ nbr_channel = get_params('TOTAL_CHANNEL')
 print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + "Number Machine: " + str(number_machine) + '' + Style.RESET_ALL)
 
 # PureVPN
-connect_vpn(True, number_machine)
+connect_vpn(number_machine)
 
 set_zone()  # Synchro Time Zone with VPN server IP , country, zone, etc...
 
@@ -427,12 +442,10 @@ counter_total_click_ads_bottom = 0
 for z in range(get_params('BOUCLE_SUPER_VIP')):
 
     if z != 0:
-        connect_vpn(True, number_machine)
+        connect_vpn(number_machine)
+        set_zone()
 
     for i in range(number_machine, nbr_channel + number_machine):
-
-        # Pure VPN
-        connect_vpn(False, number_machine)
 
         print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 47 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
               + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
