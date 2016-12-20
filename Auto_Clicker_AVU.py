@@ -76,7 +76,7 @@ def connect_openvpn():
         config_ip = tuple(open('ressources\config_ip.txt', 'r'))
         cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
         value = random.randint(0, len(config_ip))
-        print('IP: ' + config_ip[value])
+        print('Random IP: ' + config_ip[value])
         params = ' --tls-client --client --dev tun ' \
                  '--remote ' + config_ip[value].strip() + \
                  ' --proto udp --port 1197 ' \
@@ -97,7 +97,10 @@ def connect_openvpn():
                  '--cipher aes-256-cbc ' \
                  '--auth sha256'
         cmd += params
-        return subprocess.Popen(cmd, shell=True)
+        result = subprocess.Popen(cmd, shell=True)
+        print('Please wait 5s to connect to OpenVPN...')
+        sleep(5)
+        return result
 
 
 def is_connected_openvpn():
@@ -147,7 +150,7 @@ def set_screen_resolution():
         windowList = []
         win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
                              windowList)
-        cmdWindow = [i for i in windowList if "auto" in i[0].lower()]
+        cmdWindow = [i for i in windowList if "auto clicker" in i[0].lower()]
 
         win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 360, 0, 670, 120, 0)
     except:
@@ -421,7 +424,7 @@ def countdown(timing):
 # argv[1]: number_machine                                                                                              #
 #                                                                                                                      #
 ########################################################################################################################
-
+global process_openvpn
 # Resize Screen and set Always on TOP
 set_screen_resolution()
 
@@ -447,11 +450,12 @@ counter_tours = 0
 counter_total_click_ads_bottom = 0
 for z in range(get_params('BOUCLE_SUPER_VIP')):
     try:
-        p.kill()
+        process_openvpn.kill()
+        sleep(3)
     except:
         pass
     connect_pure_vpn(number_machine)  # PureVPN
-    p = connect_openvpn()   # OpenVPN
+    process_openvpn = connect_openvpn()   # OpenVPN
     set_zone()
 
     for i in range(number_machine, nbr_channel + number_machine):
@@ -555,9 +559,17 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
                         Style.RESET_ALL + Fore.LIGHTGREEN_EX + Back.BLACK +
                         str(counter_total_click_ads_bottom) + Style.RESET_ALL)
             except:
+                try:
+                    browser.quit()
+                except:
+                    pass
                 continue
 
         if ads_bottom is False:
+            try:
+                browser.quit()
+            except:
+                pass
             continue
 
         counter_tours += 1
