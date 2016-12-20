@@ -583,6 +583,13 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
         if ads_bottom is True:
             replay_clip()  # Click and replay clip
 
+            # Try to close Ads bottom
+            random_sleep()
+            x_screen_set, y_screen_set = pyautogui.size()
+            x, y = get_recalcul_xy(845, 568, x_screen_set, y_screen_set)
+            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+            pyautogui.click(x, y)
+
         ###################
         # Click Ads RIGHT #
         ###################
