@@ -57,7 +57,7 @@ def connect_vpn(number_machine):
         while rasdial.is_connected() is False:
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
             rasdial.disconnect()
-            sleep(1)
+            sleep(2)
             server = get_random_vpn()
             # value = random.randint(1, 2)
 
@@ -68,22 +68,22 @@ def connect_vpn(number_machine):
             user = USER_PASS.get(value)[0]
             password = USER_PASS.get(value)[1]
             rasdial.connect(server, user, password)  # connect to a vpn
-            sleep(1)
+            sleep(2)
 
     if get_params('OpenVPN') == 1 and number_machine > 10:
         connect_openvpn(number_machine)
         # while is_connected_openvpn() is False:
-        #     connect_openvpn()
+        #     connect_openvpn(number_machine)
 
 
 def is_connected_openvpn():
-    status_openvpn = tuple(open('C:\status.log', 'r'))
+    status_openvpn = tuple(open('c:\\\stat.db', 'r'))
     result = False
     for line in range(len(status_openvpn)):
-        if 'TAP-WIN32' in status_openvpn[line]:
-            result = False
-        else:
+        if 'TAP-WIN32 driver status,"(null)"' in status_openvpn[line]:
             result = True
+        else:
+            result = False
     print('Status OpenVPN: ' + str(result) + '\n')
     return result
 
@@ -91,14 +91,29 @@ def is_connected_openvpn():
 def connect_openvpn(number_machine):
     config_ip = tuple(open('ressources\config_ip.txt', 'r'))
     cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
-    random_value = random.randint(0, len(config_ip) - 1)
-    value =  number_machine % get_params('TOTAL_CHANNEL')
-    print('IP: ' + config_ip[random_value])
-    params = ' --status C:\status.log --log C:\logChangeIP.txt --tls-client --client --dev tun --remote ' + config_ip[value] + ' --proto udp --port 1197 --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3 --tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt --reneg-sec 0 --keepalive 10 120 --route-method exe --route-delay 2 --verb 3 --auth-nocache --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns --cipher aes-256-cbc --auth sha256'
+    value = random.randint(0, len(config_ip))
+    # value = number_machine % get_params('TOTAL_CHANNEL')
+    print('IP: ' + config_ip[value])
+    params = ' --tls-client --client --dev tun --remote ' + config_ip[value].strip() + ' --proto udp --port 1197 ' \
+                                                                                 '--lport 53 --persist-key ' \
+                                                                                 '--persist-tun ' \
+                                                                                 '--ca data\ca.crt ' \
+                                                                                 '--comp-lzo --mute 3 ' \
+                                                                                 '--tun-mtu 1500 ' \
+                                                                                 '--auth-user-pass data\\auth.txt ' \
+                                                                                 '--reneg-sec 0 --keepalive 10 120 ' \
+                                                                                 '--route-method exe --route-delay 2 ' \
+                                                                                 '--verb 3 --log c:\\log.txt ' \
+                                                                                 '--status c:\\stat.db 1 ' \
+                                                                                 '--auth-nocache ' \
+                                                                                 '--crl-verify data\crl.pem ' \
+                                                                                 '--remote-cert-tls server ' \
+                                                                                 '--block-outside-dns ' \
+                                                                                 '--cipher aes-256-cbc ' \
+                                                                                 '--auth sha256'
     cmd += params
-    print(cmd)
-    result = subprocess.Popen(cmd, shell=True)
-    print(result)
+    # print(cmd)
+    subprocess.Popen(cmd, shell=True)
 
 
 def get_random_resolution():
