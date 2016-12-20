@@ -55,7 +55,7 @@ for i in range(1, nbr_channel + 1):
         sleep(1)
         soup = bs4.BeautifulSoup(res.text, 'html.parser')
         linkElems = soup.select('.r a')
-
+        sleep(1)
         # Find out correct link <-> Youtube
         for index in range(5):
             if (name_clip + ' - YouTube' == linkElems[index].getText()) or \
@@ -68,5 +68,4 @@ for i in range(1, nbr_channel + 1):
                 sleep(1)
                 break
         f.write(link_tinyurl + '\n')
-        sleep(1)
     f.close()
