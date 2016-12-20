@@ -614,7 +614,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
 
             if current_url is not None:
                 try:
-                    wait_time = get_info_length_youtube(current_url) - random.randint(40, 50)
+                    wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
                 except:
                     wait_time = random.randint(150, 180)
                 countdown(wait_time)  # Wait n minutes to view
