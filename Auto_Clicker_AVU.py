@@ -71,7 +71,7 @@ def connect_vpn(number_machine):
             sleep(1)
 
     if get_params('OpenVPN') == 1 and number_machine > 10:
-        connect_openvpn()
+        connect_openvpn(number_machine)
         # while is_connected_openvpn() is False:
         #     connect_openvpn()
 
@@ -88,13 +88,13 @@ def is_connected_openvpn():
     return result
 
 
-def connect_openvpn():
+def connect_openvpn(number_machine):
     config_ip = tuple(open('ressources\config_ip.txt', 'r'))
     cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
     random_value = random.randint(0, len(config_ip) - 1)
-    random_value = 10
+    value =  number_machine % get_params('TOTAL_CHANNEL')
     print('IP: ' + config_ip[random_value])
-    params = ' --status C:\status.log --log C:\logChangeIP.txt --tls-client --client --dev tun --remote ' + config_ip[random_value] + ' --proto udp --port 1197 --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3 --tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt --reneg-sec 0 --keepalive 10 120 --route-method exe --route-delay 2 --verb 3 --auth-nocache --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns --cipher aes-256-cbc --auth sha256'
+    params = ' --status C:\status.log --log C:\logChangeIP.txt --tls-client --client --dev tun --remote ' + config_ip[value] + ' --proto udp --port 1197 --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3 --tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt --reneg-sec 0 --keepalive 10 120 --route-method exe --route-delay 2 --verb 3 --auth-nocache --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns --cipher aes-256-cbc --auth sha256'
     cmd += params
     print(cmd)
     result = subprocess.Popen(cmd, shell=True)
