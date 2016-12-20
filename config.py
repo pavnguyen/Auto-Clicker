@@ -7,8 +7,8 @@ PARAMS = {
     'WIDTH': 1716,
     'HEIGHT': 927,
     'PATH_VMX': 'E:\Virtual Machine\\',
-    'PureVPN': 1,
-    'OpenVPN': 0
+    'PureVPN': 0,
+    'OpenVPN': 1
 }
 
 SCREEN_RESOLUTION = {
