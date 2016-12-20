@@ -52,7 +52,7 @@ def get_random_vpn():
     return server
 
 
-def connect_vpn(number_machine):
+def connect_pure_vpn(number_machine):
     if get_params('PureVPN') == 1 and number_machine <= 10:
         while rasdial.is_connected() is False:
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
@@ -70,10 +70,34 @@ def connect_vpn(number_machine):
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(2)
 
+
+def connect_openvpn():
     if get_params('OpenVPN') == 1 and number_machine > 10:
-        connect_openvpn(number_machine)
-        # while is_connected_openvpn() is False:
-        #     connect_openvpn(number_machine)
+        config_ip = tuple(open('ressources\config_ip.txt', 'r'))
+        cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
+        value = random.randint(0, len(config_ip))
+        print('IP: ' + config_ip[value])
+        params = ' --tls-client --client --dev tun ' \
+                 '--remote ' + config_ip[value].strip() + \
+                 ' --proto udp --port 1197 ' \
+                 '--lport 53 --persist-key ' \
+                 '--persist-tun ' \
+                 '--ca data\ca.crt ' \
+                 '--comp-lzo --mute 3 ' \
+                 '--tun-mtu 1500 ' \
+                 '--auth-user-pass data\\auth.txt ' \
+                 '--reneg-sec 0 --keepalive 10 120 ' \
+                 '--route-method exe --route-delay 2 ' \
+                 '--verb 3 --log c:\\log.txt ' \
+                 '--status c:\\stat.db 1 ' \
+                 '--auth-nocache ' \
+                 '--crl-verify data\crl.pem ' \
+                 '--remote-cert-tls server ' \
+                 '--block-outside-dns ' \
+                 '--cipher aes-256-cbc ' \
+                 '--auth sha256'
+        cmd += params
+        return subprocess.Popen(cmd, shell=True)
 
 
 def is_connected_openvpn():
@@ -86,34 +110,6 @@ def is_connected_openvpn():
             result = False
     print('Status OpenVPN: ' + str(result) + '\n')
     return result
-
-
-def connect_openvpn(number_machine):
-    config_ip = tuple(open('ressources\config_ip.txt', 'r'))
-    cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
-    value = random.randint(0, len(config_ip))
-    # value = number_machine % get_params('TOTAL_CHANNEL')
-    print('IP: ' + config_ip[value])
-    params = ' --tls-client --client --dev tun --remote ' + config_ip[value].strip() + ' --proto udp --port 1197 ' \
-                                                                                 '--lport 53 --persist-key ' \
-                                                                                 '--persist-tun ' \
-                                                                                 '--ca data\ca.crt ' \
-                                                                                 '--comp-lzo --mute 3 ' \
-                                                                                 '--tun-mtu 1500 ' \
-                                                                                 '--auth-user-pass data\\auth.txt ' \
-                                                                                 '--reneg-sec 0 --keepalive 10 120 ' \
-                                                                                 '--route-method exe --route-delay 2 ' \
-                                                                                 '--verb 3 --log c:\\log.txt ' \
-                                                                                 '--status c:\\stat.db 1 ' \
-                                                                                 '--auth-nocache ' \
-                                                                                 '--crl-verify data\crl.pem ' \
-                                                                                 '--remote-cert-tls server ' \
-                                                                                 '--block-outside-dns ' \
-                                                                                 '--cipher aes-256-cbc ' \
-                                                                                 '--auth sha256'
-    cmd += params
-    # print(cmd)
-    subprocess.Popen(cmd, shell=True)
 
 
 def get_random_resolution():
@@ -426,7 +422,6 @@ def countdown(timing):
 #                                                                                                                      #
 ########################################################################################################################
 
-
 # Resize Screen and set Always on TOP
 set_screen_resolution()
 
@@ -443,10 +438,6 @@ nbr_channel = get_params('TOTAL_CHANNEL')
 
 print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + "Number Machine: " + str(number_machine) + '' + Style.RESET_ALL)
 
-# PureVPN
-connect_vpn(number_machine)
-
-set_zone()  # Synchro Time Zone with VPN server IP , country, zone, etc...
 
 # Firefox Parameters
 path_profil = get_path_profile_firefox()
@@ -455,10 +446,13 @@ binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 counter_tours = 0
 counter_total_click_ads_bottom = 0
 for z in range(get_params('BOUCLE_SUPER_VIP')):
-
-    if z != 0:
-        connect_vpn(number_machine)
-        set_zone()
+    try:
+        p.kill()
+    except:
+        pass
+    connect_pure_vpn(number_machine)  # PureVPN
+    p = connect_openvpn()   # OpenVPN
+    set_zone()
 
     for i in range(number_machine, nbr_channel + number_machine):
 
