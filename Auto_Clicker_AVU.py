@@ -586,7 +586,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
             # Try to close Ads bottom
             random_sleep()
             x_screen_set, y_screen_set = pyautogui.size()
-            x, y = get_recalcul_xy(845, 568, x_screen_set, y_screen_set)
+            x, y = get_recalcul_xy(845, 552, x_screen_set, y_screen_set)
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
             pyautogui.click(x, y)
 
