@@ -49,6 +49,7 @@ for i in range(1, nbr_channel + 1):
         print('Clip: ' + url + '\n')
         sleep(1)
         res = requests.get(url)
+        sleep(1)
         print('Please wait 3s to get request...\n')
         sleep(3)
         res.raise_for_status()
