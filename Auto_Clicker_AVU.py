@@ -389,21 +389,28 @@ def set_zone():
             count += 1
             print('Set Zone: ' + str(count))
             link = 'http://freegeoip.net/json/'
+            sleep(1)
             latitude = load(urlopen(link))['latitude']
+            sleep(1)
             longitude = load(urlopen(link))['longitude']
+            sleep(1)
             timestamp = str(time.time())
 
             # Public IP & DateTime
             ip = urlopen('http://ip.42.pl/raw').read()
+            sleep(1)
             region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
+            sleep(1)
             city = load(urlopen('http://freegeoip.net/json/'))['city']
+            sleep(1)
             time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
+            sleep(1)
 
             # Google API service
             link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + str(longitude) \
                    + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'  # GOOGLE API from vu.nomos
             timeZoneId = load(urlopen(link))['timeZoneId']
-
+            sleep(1)
             zone_to_set = get_zone(timeZoneId)
             check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
