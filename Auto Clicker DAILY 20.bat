@@ -1,1 +1,2 @@
-python "Z:\Project Python\Auto Clicker\Auto_Clicker_AVU.py" 20
+@echo off
+python Auto_Clicker_AVU.py 20

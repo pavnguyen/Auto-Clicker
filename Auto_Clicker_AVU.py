@@ -52,26 +52,27 @@ def get_random_vpn():
 
 
 def connect_pure_vpn(number_machine):
-    if get_params('PureVPN') == 1 and number_machine <= 10:
+    if get_params('PureVPN') == 1 and number_machine <= get_params('TOTAL_CHANNEL'):
+        rasdial.disconnect()
+        print('Current VPN: ' + str(rasdial.get_current_vpn()))
         while rasdial.is_connected() is False:
-            print('Current VPN: ' + str(rasdial.get_current_vpn()))
             rasdial.disconnect()
-            sleep(2)
+            sleep(1)
             server = get_random_vpn()
             # value = random.randint(1, 2)
 
-            if number_machine <= 5:
+            if number_machine <= 6:
                 value = 1
-            elif 5 < number_machine <= 10:
+            elif 6 < number_machine <= get_params('TOTAL_CHANNEL'):
                 value = 2
             user = USER_PASS.get(value)[0]
             password = USER_PASS.get(value)[1]
             rasdial.connect(server, user, password)  # connect to a vpn
-            sleep(2)
+            sleep(1)
 
 
 def connect_openvpn():
-    if get_params('OpenVPN') == 1 and number_machine > 10:
+    if get_params('OpenVPN') == 1 and number_machine > get_params('TOTAL_CHANNEL'):
         config_ip = tuple(open('ressources\config_ip.txt', 'r'))
         cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
         value = random.randint(0, len(config_ip))
@@ -151,7 +152,8 @@ def set_screen_resolution():
                              windowList)
         cmdWindow = [i for i in windowList if "auto clicker" in i[0].lower()]
 
-        win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 360, 0, 670, 120, 0)
+        # win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1050, 0, 670, 160, 0)
+        win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
     except:
         pass
 
@@ -397,18 +399,22 @@ def set_zone():
             time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
             sleep(1)
 
-            # Google API service
-            link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + str(longitude) \
-                   + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'  # GOOGLE API from vu.nomos
+            # Google API service form Vu.nomos
+            link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
+                   str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
             timeZoneId = load(urlopen(link))['timeZoneId']
             sleep(1)
             zone_to_set = get_zone(timeZoneId)
             check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+            sleep(1)
+
+            load = True
+
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
             print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
             print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
-            load = True
+
         except:
             pass
 
@@ -433,9 +439,9 @@ global process_openvpn
 # Resize Screen and set Always on TOP
 set_screen_resolution()
 
-print(Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 80 + Style.RESET_ALL)
-print(' ' * 22 + 'Auto Browser SUPER VIP - AVU')
-print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 80)
+print(Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
+print(' ' * 4 + 'Auto Clicker SUPER VIP - AVU')
+print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 37)
 
 if len(sys.argv) > 1:
     number_machine = int(sys.argv[1])
@@ -464,7 +470,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
 
     for i in range(number_machine, nbr_channel + number_machine):
 
-        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 47 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
+        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
               + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
 
         start_time = time.time()
@@ -523,7 +529,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
         #####################
         switch_main_window(browser, main_window)
 
-        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 47 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
+        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
               + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
 
         file_channel = i
@@ -559,7 +565,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
                           Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
                           '[FOUNDED & CLICKED]' + Style.RESET_ALL)
                     print(
-                        Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 47 + '[Counter Click Ads Bottom] => ' +
+                        Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' +
                         Style.RESET_ALL + Fore.LIGHTGREEN_EX + Back.BLACK +
                         str(counter_total_click_ads_bottom) + Style.RESET_ALL)
             except:
@@ -588,13 +594,13 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
             replay_clip()  # Click and replay clip
 
             # Random / Try to close Ads bottom
-            random_close = random.randint(0, 1)
-            if random_close == 0:
-                random_sleep()
-                x_screen_set, y_screen_set = pyautogui.size()
-                x, y = get_recalcul_xy(845, 552, x_screen_set, y_screen_set)
-                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                pyautogui.click(x, y)
+            # random_close = random.randint(0, 1)
+            # if random_close == 0:
+            #     random_sleep()
+            #     x_screen_set, y_screen_set = pyautogui.size()
+            #     x, y = get_recalcul_xy(845, 552, x_screen_set, y_screen_set)
+            #     pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+            #     pyautogui.click(x, y)
 
         ###################
         # Click Ads RIGHT #
@@ -607,14 +613,14 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
         print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + '[Duration to click ads]' + Style.RESET_ALL +
               Back.BLACK + Fore.LIGHTWHITE_EX + ' ' +
               str(datetime.timedelta(seconds=time.time() - start_time)) + '' + Style.RESET_ALL)
-        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 47 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
+        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
               + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL)
 
-        print(Fore.LIGHTMAGENTA_EX + '*' * 80 + Style.RESET_ALL)
-        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 30 + 'FINISH -> Tours -> ' +
+        print(Fore.LIGHTMAGENTA_EX + '*' * 37 + Style.RESET_ALL)
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 8 + 'FINISH -> Tours -> ' +
               Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(counter_tours) + '' +
               Style.RESET_ALL)
-        print(Fore.LIGHTMAGENTA_EX + '*' * 80 + Style.RESET_ALL)
+        print(Fore.LIGHTMAGENTA_EX + '*' * 37 + Style.RESET_ALL)
 
         if ads_bottom is True:
             try:
@@ -634,7 +640,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
 
         print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
               str(datetime.timedelta(seconds=time.time() - start_time)) + '')
-        print(Fore.LIGHTMAGENTA_EX + '*' * 80 + Style.RESET_ALL)
+        print(Fore.LIGHTMAGENTA_EX + '*' * 37 + Style.RESET_ALL)
 
         try:
             browser.delete_all_cookies()
@@ -648,7 +654,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
     except:
         pass
 
-print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 47 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
+print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
       + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
 print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + 'Press ENTER to close...' + '')
 raw_input()
