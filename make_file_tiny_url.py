@@ -7,12 +7,14 @@
 # [4] Check result at the directory ressources\LinksTinyURL\
 ######################################################################
 
+import sys
+from time import sleep
+
 import bs4
 import requests
 import tinyurl
-import sys
+
 from config import PARAMS
-from time import sleep
 
 try:
     # For Python 3.0 and later

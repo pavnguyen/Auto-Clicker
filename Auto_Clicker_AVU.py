@@ -6,7 +6,6 @@ import os
 import random
 import sys
 import time
-from json import load
 from subprocess import check_output
 from time import sleep
 
@@ -434,7 +433,7 @@ global process_openvpn
 # Resize Screen and set Always on TOP
 set_screen_resolution()
 
-print( Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 80 + Style.RESET_ALL)
+print(Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 80 + Style.RESET_ALL)
 print(' ' * 22 + 'Auto Browser SUPER VIP - AVU')
 print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 80)
 
@@ -446,7 +445,6 @@ else:
 nbr_channel = get_params('TOTAL_CHANNEL')
 
 print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + "Number Machine: " + str(number_machine) + '' + Style.RESET_ALL)
-
 
 # Firefox Parameters
 path_profil = get_path_profile_firefox()
@@ -461,7 +459,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
     except:
         pass
     connect_pure_vpn(number_machine)  # PureVPN
-    process_openvpn = connect_openvpn()   # OpenVPN
+    process_openvpn = connect_openvpn()  # OpenVPN
     set_zone()
 
     for i in range(number_machine, nbr_channel + number_machine):
