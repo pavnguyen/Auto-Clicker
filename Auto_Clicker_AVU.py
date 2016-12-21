@@ -365,14 +365,6 @@ def get_key_search():
     return keywords[random_int].strip('')
 
 
-def get_name_clip(channel):
-    channel = tuple(open('ressources\LinksYoutube\\' + str(channel) + '.txt', 'r'))
-    random_int = random.randint(1, 10)
-    print(Fore.LIGHTGREEN_EX + Back.BLACK + '[Clip] => ' + Style.RESET_ALL + Fore.LIGHTGREEN_EX +
-          Back.BLACK + channel[random_int] + Style.RESET_ALL)
-    return channel[random_int]
-
-
 def get_zone(timeZoneId):
     for key in LIST_TIME_ZONE:
         if timeZoneId in key:

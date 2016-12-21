@@ -2,7 +2,7 @@
 # HOW TO USE
 # [1] Use this function in console Chrome to get all clips
 # for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
-# [2] Save this content to ressources\LinksYoutube\{your_channel_number}.txt like 1.txt, 2.txt, 3.txt,...
+# [2] Save this content to ressources\TitlesYoutube\{your_channel_number}.txt like 1.txt, 2.txt, 3.txt,...
 # [3] Config file config.py with Params['TOTAL_CHANNEL]
 # [4] Check result at the directory ressources\LinksTinyURL\
 ######################################################################
@@ -38,7 +38,7 @@ else:
 
 for i in range(1, nbr_channel + 1):
     f = open('ressources\LinksTinyURL\\' + str(i) + '.txt', 'w+')
-    list_name_youtube_channel = tuple(open('ressources\LinksYoutube\\' + str(i) + '.txt', 'r'))
+    list_name_youtube_channel = tuple(open('ressources\TitlesYoutube\\' + str(i) + '.txt', 'r'))
     print('Get file...')
     sleep(1)
     for j in range(1, len(list_name_youtube_channel)):
