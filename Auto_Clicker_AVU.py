@@ -382,30 +382,37 @@ def get_zone(timeZoneId):
 def set_zone():
     print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
     print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
+    load = False
+    count = 0
+    while load is False and count < 3:
+        try:
+            count += 1
+            print('Set Zone: ' + str(count))
+            link = 'http://freegeoip.net/json/'
+            latitude = load(urlopen(link))['latitude']
+            longitude = load(urlopen(link))['longitude']
+            timestamp = str(time.time())
 
-    link = 'http://freegeoip.net/json/'
-    latitude = load(urlopen(link))['latitude']
-    longitude = load(urlopen(link))['longitude']
-    timestamp = str(time.time())
+            # Public IP & DateTime
+            ip = urlopen('http://ip.42.pl/raw').read()
+            region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
+            city = load(urlopen('http://freegeoip.net/json/'))['city']
+            time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
 
-    # Public IP & DateTime
-    ip = urlopen('http://ip.42.pl/raw').read()
-    region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
-    city = load(urlopen('http://freegeoip.net/json/'))['city']
-    time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
+            # Google API service
+            link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + str(longitude) \
+                   + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'  # GOOGLE API from vu.nomos
+            timeZoneId = load(urlopen(link))['timeZoneId']
 
-    # Google API service
-    link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + str(longitude) \
-           + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'  # GOOGLE API from vu.nomos
-    timeZoneId = load(urlopen(link))['timeZoneId']
-
-    zone_to_set = get_zone(timeZoneId)
-    check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
-
-    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
-    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
-    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
-    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+            zone_to_set = get_zone(timeZoneId)
+            check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+            load = True
+        except:
+            pass
 
 
 def countdown(timing):
@@ -583,12 +590,14 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
         if ads_bottom is True:
             replay_clip()  # Click and replay clip
 
-            # Try to close Ads bottom
-            random_sleep()
-            x_screen_set, y_screen_set = pyautogui.size()
-            x, y = get_recalcul_xy(845, 552, x_screen_set, y_screen_set)
-            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-            pyautogui.click(x, y)
+            # Random / Try to close Ads bottom
+            random_close = random.randint(0, 1)
+            if random_close == 0:
+                random_sleep()
+                x_screen_set, y_screen_set = pyautogui.size()
+                x, y = get_recalcul_xy(845, 552, x_screen_set, y_screen_set)
+                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                pyautogui.click(x, y)
 
         ###################
         # Click Ads RIGHT #
