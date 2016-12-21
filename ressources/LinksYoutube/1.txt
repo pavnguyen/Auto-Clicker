@@ -1,0 +1,11 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[MCC] What is Mining digital Crypto Currencies? 2049MC
+[MCC] What is blockchain 2049MC
+[MCC] Steemit 2049MC
+[MCC] Blockchain Health Teaser 2049MC
+[MCC] Evolving layered technologies 2049MC
+[MCC] Does Ethereum compete against Bitcoin 2049MC
+[MCC] Bitcoin mining operation 2049MC
+[MCC] Bitcoin mining operation 2049MC
+[MCC] Blockchain Wallet 2049MC
+[MCC] Blockchain Wallet 2049MC

@@ -1,0 +1,11 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[TRO] What is Mining digital Crypto Currencies 2049TR
+[TRO] What is blockchain 2049TR
+[TRO] Steemit 2049TR
+[TRO] Evolving layered technologies in cryptocurrency 2049TR
+[TRO] Does Ethereum compete against Bitcoin 2049TR
+[TRO] Cost control for mining hardware 2049TR
+[TRO] Blockchain Wallet 2049TR
+[TRO] Blockchain Health Teaser 2049TR
+[TRO] Bitcoin mining operation 2049TR
+[TRO] Bitcoin mining operation 2049TR

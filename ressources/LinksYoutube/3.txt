@@ -1,0 +1,11 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[HAR] What is Mining digital Crypto Currencies 2049HA
+[HAR] What is blockchain 2049HA
+[HAR] Steemit 2049HA
+[HAR] Evolving layered technologies in cryptocurrency 2049HA
+[HAR] Does Ethereum compete against Bitcoin 2049HA
+[HAR] Cost control for mining hardware 2049HA
+[HAR] Blockchain Wallet 2049HA
+[HAR] Blockchain Health Teaser 2049HA
+[HAR] Bitcoin mining operation 2049HA
+[HAR] Bitcoin mining operation 2049HA

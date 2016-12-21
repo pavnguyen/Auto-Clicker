@@ -1,0 +1,11 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[ELI] Evolving layered technologies in cryptocurrency 2049EL
+[ELIZ] Donate to Revolution 2013lm
+[ELIZA]Donate Fines To Charity 2016ka
+[ELIZ]Donate a Car 2016lm
+[ELIZ]Burma Muslim Massacre  DONATE NOW
+[ELIZ]How to donate breast milk to the Calgary Mothers' Milk Bank
+[ELIZ] What is the Treatment for Back Pain?
+[ELIZ] Auto Insurance Mortgage 2015LA
+[ELIZ] Student Loans Debt Worth 2015
+[ELIZ] Effect of Air Pollutants on Health
