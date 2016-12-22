@@ -309,7 +309,7 @@ def replay_clip():
 
 
 def random_sleep():
-    r = random.randint(5, 9)
+    r = random.randint(4, 8)
     sleep(r)
 
 
@@ -573,7 +573,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
             if random_close == 0:
                 random_sleep()
                 x_screen_set, y_screen_set = pyautogui.size()
-                x, y = get_recalcul_xy(845, 552, x_screen_set, y_screen_set)
+                x, y = get_recalcul_xy(845, 551, x_screen_set, y_screen_set)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
                 pyautogui.click(x, y)
 
