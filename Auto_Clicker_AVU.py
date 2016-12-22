@@ -420,7 +420,7 @@ set_screen_resolution()
 
 print(Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 print(' ' * 4 + 'Auto Clicker SUPER VIP - AVU')
-print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 37)
+print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
 if len(sys.argv) > 1:
     number_machine = int(sys.argv[1])
@@ -539,9 +539,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
             try:
                 counter_boucle += 1
                 print("Test Ads Bottom: " + str(counter_boucle))
-                switch_main_window()
                 ads_bottom = detect_and_click_ads_bottom(url, timing_ads)
-
                 if ads_bottom is True:
                     counter_total_click_ads_bottom += 1
                     print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Ads Bottom] => ' +
@@ -652,7 +650,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
 
         print(Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
         print(' ' * 4 + 'Auto Clicker SUPER VIP - AVU')
-        print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 37)
+        print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
         try:
             browser.delete_all_cookies()
