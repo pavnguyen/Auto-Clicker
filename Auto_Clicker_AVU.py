@@ -43,7 +43,11 @@ init()
 def get_tinyurl_clip(channel):
     link = tuple(open('ressources\LinksTinyURL\\' + str(channel) + '.txt', 'r'))
     random_int = random.randint(0, 9)
-    return link[random_int]
+    if 'http' in link[random_int].strip():
+        result = link[random_int].strip()
+    else:
+        result = link[random_int + 1].strip()
+    return result
 
 
 def get_random_vpn():
@@ -227,11 +231,7 @@ def search_google():
 
 
 def detect_and_click_ads_bottom(url, timing_ads):
-    global bool_addisplay
-    global bool_adsense
     load_url = False
-    bool_addisplay = False
-    bool_adsense = False
     try:
         browser.get(url)
         sleep(3)
@@ -250,7 +250,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
             random_sleep()
             random_mouse_scroll()
             random_mouse_move()
-            bool_addisplay = True
             load_url = True
         except:
             print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
@@ -269,7 +268,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 random_sleep()
                 random_mouse_scroll()
                 random_mouse_move()
-                bool_adsense = False
                 load_url = True
             except:
                 print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
@@ -363,8 +361,8 @@ def get_position_mouse():
 def get_key_search():
     keywords = tuple(open('ressources\keyword.txt', 'r'))
     random_int = random.randint(1, 5500)
-    print(Fore.LIGHTYELLOW_EX + Back.BLACK + '>> Keywords >> ' + Style.RESET_ALL + Fore.LIGHTGREEN_EX +
-          Back.BLACK + keywords[random_int] + Style.RESET_ALL)
+    print(Fore.LIGHTYELLOW_EX + Back.BLACK + 'Keywords >> ' + Style.RESET_ALL + Fore.LIGHTGREEN_EX +
+          Back.BLACK + keywords[random_int].strip() + Style.RESET_ALL)
     return keywords[random_int].strip('')
 
 
@@ -400,8 +398,8 @@ def countdown(timing):
     while timing:
         mins, secs = divmod(timing, 60)
         timeformat = '{:02d}:{:02d}'.format(mins, secs)
-        print(Fore.LIGHTCYAN_EX + Back.BLACK + Style.BRIGHT + 'Please wait ... ' + timeformat +
-              ' to finish this JOB!!!' + Style.RESET_ALL, end='\r')
+        print(Fore.LIGHTCYAN_EX + Back.BLACK + Style.BRIGHT + 'Please wait...' + timeformat +
+              ' to finish!!!' + Style.RESET_ALL, end='\r')
         time.sleep(1)
         timing -= 1
 
@@ -418,9 +416,9 @@ global main_window
 # Resize Screen and set Always on TOP
 set_screen_resolution()
 
-print(Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
-print(' ' * 4 + 'Auto Clicker SUPER VIP - AVU')
-print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
+print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
+print(Fore.LIGHTWHITE_EX + ' ' * 10 + 'Auto Clicker [AVU]' + Style.RESET_ALL)
+print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
 if len(sys.argv) > 1:
     number_machine = int(sys.argv[1])
@@ -480,7 +478,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
                 except:
                     pass
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
-                  Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
+                  Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
 
             browser.delete_all_cookies()
 
@@ -526,9 +524,8 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
             file_channel = nbr_channel
 
         url = get_tinyurl_clip(str(file_channel))
-        url = url.strip('\n')
 
-        print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '>> URL >> ' + Style.RESET_ALL +
+        print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL >> ' + Style.RESET_ALL +
               Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
 
         # Check Ads Bottom
@@ -573,37 +570,35 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
 
         if ads_bottom is True:
             replay_clip()  # Click and replay clip
+            try:
+                sleep(1)
+                current_url = browser.current_url
+                print('Current url:' + current_url)
+            except:
+                print('Current Url is not found!')
+                pass
 
-            # Random / Try to close Ads bottom
-            # id="yt-lang-alert-container" =>  +80 px
-            # class yt-alert-content => +3
-            # Adsense => 845 con lai la 991
-            # 537 thay vi 551 589
+            if current_url is not None:
+                try:
+                    wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
+                    if wait_time < 0 or wait_time > 240:
+                        wait_time = random.randint(150, 180)
+                except:
+                    wait_time = random.randint(150, 180)
+
+            # Try to close Ads
             random_close = random.randint(0, 1)
             if random_close == 0:
-                if bool_adsense is True:
-                    x_force = 991
-                elif bool_addisplay is True:
-                    x_force = 845
-                print('Try to close AdsBottom')
                 try:
-                    first_result = ui.WebDriverWait(browser, 3).until \
-                        (lambda browser: browser.find_element_by_id('yt-lang-alert-container'))
-                    random_sleep()
                     x_screen_set, y_screen_set = pyautogui.size()
-                    x, y = get_recalcul_xy(x_force, 631, x_screen_set, y_screen_set)
+                    x, y = get_recalcul_xy(845, 551, x_screen_set, y_screen_set)
+                    print('Try to close Ads: X->' + str(x) + ' Y->' + str(y))
                     pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                    sleep(0.25)
                     pyautogui.click(x, y)
                 except:
-                    try:
-                        first_result = ui.WebDriverWait(browser, 3).until \
-                            (lambda browser: browser.find_element_by_class_name('yt-alert-content'))
-                        x_screen_set, y_screen_set = pyautogui.size()
-                        x, y = get_recalcul_xy(x_force, 551, x_screen_set, y_screen_set)
-                        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                        pyautogui.click(x, y)
-                    except:
-                        pass
+                    pass
+
         random_mouse_move()
         ###################
         # Click Ads RIGHT #
@@ -626,31 +621,15 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
         print(Fore.LIGHTMAGENTA_EX + '*' * 37 + Style.RESET_ALL)
 
         if ads_bottom is True:
-            try:
-                sleep(1)
-                current_url = browser.current_url
-                print('Current url:' + current_url)
-            except:
-                print('Current Url is not found!')
-                pass
-
-            if current_url is not None:
-                try:
-                    wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
-                    if wait_time < 0 or wait_time > 240:
-                        wait_time = random.randint(150, 180)
-                except:
-                    wait_time = random.randint(150, 180)
-
-                countdown(wait_time)  # Wait n minutes to view
+            countdown(wait_time)  # Wait n minutes to view
 
         print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
               str(datetime.timedelta(seconds=time.time() - start_time)) + '')
         print(Fore.LIGHTMAGENTA_EX + '*' * 37 + Style.RESET_ALL)
 
-        print(Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
-        print(' ' * 4 + 'Auto Clicker SUPER VIP - AVU')
-        print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
+        print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
+        print(Fore.LIGHTWHITE_EX + ' ' * 10 + 'Auto Clicker [AVU]' + Style.RESET_ALL)
+        print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
         try:
             browser.delete_all_cookies()

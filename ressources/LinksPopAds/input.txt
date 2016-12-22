@@ -1,11 +1,6 @@
-https://www.youtube.com/watch?v=4-ETku7D-7U
-https://www.youtube.com/watch?v=hGg71jRj5Bc
-https://www.youtube.com/watch?v=6bh45vlCrDo
-https://www.youtube.com/watch?v=FyAuOTHwQns
-https://www.youtube.com/watch?v=0SOcQ7ZOSU0
-https://www.youtube.com/watch?v=Dvc8WkMs4Gk
-https://www.youtube.com/watch?v=qNJWggJ68FE
-https://www.youtube.com/watch?v=E6boE4boNeQ
+for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].href)}
+https://www.youtube.com/watch?v=ZeDs9CUIcXQ
+https://www.youtube.com/watch?v=J7rIkuuBm4E
 https://www.youtube.com/watch?v=5gu-VjWKzJc
 https://www.youtube.com/watch?v=L10DpcS3pUA
 https://www.youtube.com/watch?v=mLo1Q5JvFqY
@@ -14,3 +9,4 @@ https://www.youtube.com/watch?v=dkosmPYKhkU
 https://www.youtube.com/watch?v=B7HXnEIe5k0
 https://www.youtube.com/watch?v=BTQWwGM7uGw
 https://www.youtube.com/watch?v=g1Wpumfq2Fw
+
