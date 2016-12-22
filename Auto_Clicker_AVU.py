@@ -417,7 +417,11 @@ print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 37)
 if len(sys.argv) > 1:
     number_machine = int(sys.argv[1])
 else:
-    number_machine = 1
+    print(Back.BLACK + Fore.LIGHTWHITE_EX + ' ' * 3 + '[ Please enter the Machine Number: ]' +
+          Back.LIGHTRED_EX + Fore.LIGHTWHITE_EX)
+    print(Style.RESET_ALL)
+
+    number_machine = str(raw_input())
 
 nbr_channel = PARAMS.get('TOTAL_CHANNEL')
 
