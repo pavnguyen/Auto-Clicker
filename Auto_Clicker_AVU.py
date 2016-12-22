@@ -207,7 +207,7 @@ def search_google():
                       Style.RESET_ALL)
                 try:
                     first_result = ui.WebDriverWait(browser, 3).until(lambda browser:
-                                                                       browser.find_element_by_class_name('ads-ad'))
+                                                                      browser.find_element_by_class_name('ads-ad'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
                     result_search = True
@@ -256,7 +256,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
             print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
             try:
                 first_result = ui.WebDriverWait(browser, 3).until(lambda browser:
-                                                                           browser.find_element_by_id('AdSense'))
+                                                                  browser.find_element_by_id('AdSense'))
                 first_link = first_result.find_element_by_tag_name('a')
                 first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
@@ -325,7 +325,6 @@ def random_small_sleep():
 
 
 def random_mouse_move():
-
     for i in range(random.randrange(0, 5)):
         x = random.randint(5, 1024)
         y = random.randint(8, 768)
@@ -415,7 +414,6 @@ def countdown(timing):
 ########################################################################################################################
 global browser
 global main_window
-
 
 # Resize Screen and set Always on TOP
 set_screen_resolution()
@@ -591,7 +589,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
                     x_force = 845
                 print('Try to close AdsBottom')
                 try:
-                    first_result = ui.WebDriverWait(browser, 3).until\
+                    first_result = ui.WebDriverWait(browser, 3).until \
                         (lambda browser: browser.find_element_by_id('yt-lang-alert-container'))
                     random_sleep()
                     x_screen_set, y_screen_set = pyautogui.size()
@@ -600,7 +598,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
                     pyautogui.click(x, y)
                 except:
                     try:
-                        first_result = ui.WebDriverWait(browser, 3).until\
+                        first_result = ui.WebDriverWait(browser, 3).until \
                             (lambda browser: browser.find_element_by_class_name('yt-alert-content'))
                         x_screen_set, y_screen_set = pyautogui.size()
                         x, y = get_recalcul_xy(x_force, 551, x_screen_set, y_screen_set)

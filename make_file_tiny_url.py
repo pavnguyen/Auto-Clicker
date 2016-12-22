@@ -23,7 +23,6 @@ except ImportError:
     # Fall back to Python 2's urllib2
     from urllib2 import urlopen
 
-
 # Search clip in Google
 link_search_google = 'https://encrypted.google.com/search?q='
 
