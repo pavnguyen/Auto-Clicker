@@ -74,6 +74,7 @@ def connect_pure_vpn(number_machine):
 
 
 def connect_openvpn():
+    global process_openvpn
     if PARAMS.get('OpenVPN') == 1 and number_machine > PARAMS.get('TOTAL_CHANNEL'):
         config_ip = tuple(open('ressources\config_ip.txt', 'r'))
         cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
@@ -99,10 +100,10 @@ def connect_openvpn():
                  '--cipher aes-256-cbc ' \
                  '--auth sha256'
         cmd += params
-        result = subprocess.Popen(cmd, shell=True)
+        process_openvpn = subprocess.Popen(cmd, shell=True)
         print('Please wait 5s to connect to OpenVPN...')
         sleep(5)
-        return result
+        return process_openvpn
 
 
 def is_connected_openvpn():
@@ -160,7 +161,7 @@ def set_screen_resolution():
         pass
 
 
-def switch_main_window(browser, main_window):
+def switch_main_window():
     try:
         browser.switch_to.window(main_window)
     except:
@@ -169,7 +170,7 @@ def switch_main_window(browser, main_window):
         pass
 
 
-def switch_tab(browser):
+def switch_tab():
     # Switch tab to the new tab, which we will assume is the next one on the right
     try:
         browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.TAB)
@@ -182,7 +183,7 @@ def switch_tab(browser):
         pass
 
 
-def search_google(browser, main_window):
+def search_google():
     result_search = False
     count_search = 0
     while result_search is False and count_search < 3:
@@ -218,15 +219,19 @@ def search_google(browser, main_window):
         except:
             pass
     # Switch tab to the new tab, which we will assume is the next one on the right
-    switch_tab(browser)
+    switch_tab()
     random_small_sleep()
     # Take hand the window opener
-    switch_main_window(browser, main_window)
+    switch_main_window()
     return result_search
 
 
-def detect_and_click_ads_bottom(browser, url, timing_ads):
+def detect_and_click_ads_bottom(url, timing_ads):
+    global bool_addisplay
+    global bool_adsense
     load_url = False
+    bool_addisplay = False
+    bool_adsense = False
     try:
         browser.get(url)
         sleep(3)
@@ -240,12 +245,12 @@ def detect_and_click_ads_bottom(browser, url, timing_ads):
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
 
             # Switch tab to the new tab, which we will assume is the next one on the right
-            switch_tab(browser)
+            switch_tab()
 
             random_sleep()
             random_mouse_scroll()
             random_mouse_move()
-
+            bool_addisplay = True
             load_url = True
         except:
             print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
@@ -259,11 +264,12 @@ def detect_and_click_ads_bottom(browser, url, timing_ads):
                       Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
 
                 # Switch tab to the new tab, which we will assume is the next one on the right
-                switch_tab(browser)
+                switch_tab()
 
                 random_sleep()
                 random_mouse_scroll()
                 random_mouse_move()
+                bool_adsense = False
                 load_url = True
             except:
                 print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
@@ -319,7 +325,8 @@ def random_small_sleep():
 
 
 def random_mouse_move():
-    for i in range(0, 5):
+
+    for i in range(random.randrange(0, 5)):
         x = random.randint(5, 1024)
         y = random.randint(8, 768)
         pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
@@ -328,7 +335,7 @@ def random_mouse_move():
 
 
 def random_mouse_scroll():
-    for i in range(0, 2):
+    for i in range(random.randrange(0, 2)):
         r = random.randint(-5000, 5000)
         pyautogui.scroll(r)
         random_small_sleep()
@@ -406,7 +413,10 @@ def countdown(timing):
 # argv[1]: number_machine                                                                                              #
 #                                                                                                                      #
 ########################################################################################################################
-global process_openvpn
+global browser
+global main_window
+
+
 # Resize Screen and set Always on TOP
 set_screen_resolution()
 
@@ -489,7 +499,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
         try:
             total_key = random.randint(1, 3)
             for j in range(total_key):
-                loaded_google = search_google(browser, main_window)  # Search Google with keywords
+                loaded_google = search_google()  # Search Google with keywords
 
                 print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Search Key] => ' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[ OK ]' + Style.RESET_ALL)
@@ -502,7 +512,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
         #####################
         # Detect Ads Bottom #
         #####################
-        switch_main_window(browser, main_window)
+        switch_main_window()
 
         print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
               + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
@@ -531,8 +541,8 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
             try:
                 counter_boucle += 1
                 print("Test Ads Bottom: " + str(counter_boucle))
-                switch_main_window(browser, main_window)
-                ads_bottom = detect_and_click_ads_bottom(browser, url, timing_ads)
+                switch_main_window()
+                ads_bottom = detect_and_click_ads_bottom(url, timing_ads)
 
                 if ads_bottom is True:
                     counter_total_click_ads_bottom += 1
@@ -563,20 +573,42 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
         # Back to the video #
         #####################
 
-        switch_main_window(browser, main_window)
+        switch_main_window()
 
         if ads_bottom is True:
             replay_clip()  # Click and replay clip
 
             # Random / Try to close Ads bottom
+            # id="yt-lang-alert-container" =>  +80 px
+            # class yt-alert-content => +3
+            # Adsense => 845 con lai la 991
+            # 537 thay vi 551 589
             random_close = random.randint(0, 1)
             if random_close == 0:
-                random_sleep()
-                x_screen_set, y_screen_set = pyautogui.size()
-                x, y = get_recalcul_xy(845, 551, x_screen_set, y_screen_set)
-                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                pyautogui.click(x, y)
-
+                if bool_adsense is True:
+                    x_force = 991
+                elif bool_addisplay is True:
+                    x_force = 845
+                print('Try to close AdsBottom')
+                try:
+                    first_result = ui.WebDriverWait(browser, 3).until\
+                        (lambda browser: browser.find_element_by_id('yt-lang-alert-container'))
+                    random_sleep()
+                    x_screen_set, y_screen_set = pyautogui.size()
+                    x, y = get_recalcul_xy(x_force, 631, x_screen_set, y_screen_set)
+                    pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                    pyautogui.click(x, y)
+                except:
+                    try:
+                        first_result = ui.WebDriverWait(browser, 3).until\
+                            (lambda browser: browser.find_element_by_class_name('yt-alert-content'))
+                        x_screen_set, y_screen_set = pyautogui.size()
+                        x, y = get_recalcul_xy(x_force, 551, x_screen_set, y_screen_set)
+                        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                        pyautogui.click(x, y)
+                    except:
+                        pass
+        random_mouse_move()
         ###################
         # Click Ads RIGHT #
         ###################
@@ -609,14 +641,20 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
             if current_url is not None:
                 try:
                     wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
+                    if wait_time < 0 or wait_time > 240:
+                        wait_time = random.randint(150, 180)
                 except:
                     wait_time = random.randint(150, 180)
-                if wait_time > 0:
-                    countdown(wait_time)  # Wait n minutes to view
+
+                countdown(wait_time)  # Wait n minutes to view
 
         print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
               str(datetime.timedelta(seconds=time.time() - start_time)) + '')
         print(Fore.LIGHTMAGENTA_EX + '*' * 37 + Style.RESET_ALL)
+
+        print(Back.BLACK + Fore.BLUE + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
+        print(' ' * 4 + 'Auto Clicker SUPER VIP - AVU')
+        print(Back.BLACK + Fore.RED + Style.NORMAL + '=' * 37)
 
         try:
             browser.delete_all_cookies()
