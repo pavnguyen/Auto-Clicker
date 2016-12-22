@@ -205,7 +205,7 @@ def search_google(browser, main_window):
                 print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"rc\" => Load \"ads-ad\" ' +
                       Style.RESET_ALL)
                 try:
-                    first_result = ui.WebDriverWait(browser, 15).until(lambda browser:
+                    first_result = ui.WebDriverWait(browser, 3).until(lambda browser:
                                                                        browser.find_element_by_class_name('ads-ad'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
