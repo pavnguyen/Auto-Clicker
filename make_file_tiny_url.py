@@ -24,51 +24,51 @@ except ImportError:
     from urllib2 import urlopen
 
 
-def get_params(param):  # param = 'TOTAL_CHANNEL'
-    for key in PARAMS:
-        if param in key:
-            return PARAMS[key]
-
-
 # Search clip in Google
 link_search_google = 'https://encrypted.google.com/search?q='
 
 if len(sys.argv) > 1:
     nbr_channel = int(sys.argv[1])
 else:
-    nbr_channel = get_params('TOTAL_CHANNEL')
+    nbr_channel = PARAMS.get('TOTAL_CHANNEL')
 
 for i in range(1, nbr_channel + 1):
-    f = open('ressources\LinksTinyURL\\' + str(i) + '.txt', 'w+')
-    list_name_youtube_channel = tuple(open('ressources\TitlesYoutube\\' + str(i) + '.txt', 'r'))
-    print('Get file...')
-    sleep(1)
-    for j in range(1, len(list_name_youtube_channel)):
-        # Get clip to search with Google
-        name_clip = list_name_youtube_channel[j]
-        name_clip = name_clip.strip('\n')
-        url = link_search_google + name_clip
-        print('Clip: ' + url + '\n')
+    try:
+        f = open('ressources\LinksTinyURL\\' + str(i) + '.txt', 'w+')
+        list_name_youtube_channel = tuple(open('ressources\TitlesYoutube\\' + str(i) + '.txt', 'r'))
+        print('Get file...')
         sleep(1)
-        res = requests.get(url)
-        sleep(1)
-        print('Please wait 3s to get request...\n')
-        sleep(3)
-        res.raise_for_status()
-        sleep(1)
-        soup = bs4.BeautifulSoup(res.text, 'html.parser')
-        linkElems = soup.select('.r a')
-        sleep(1)
-        # Find out correct link <-> Youtube
-        for index in range(5):
-            if (name_clip + ' - YouTube' == linkElems[index].getText()) or \
-                    (name_clip[:67] + ' ...' == linkElems[index].getText() + ' ...'):
-                url_ytb = 'https://www.google.com' + linkElems[index].get('href')
-                print('Youtube: ' + url_ytb + '\n')
+        for j in range(1, len(list_name_youtube_channel)):
+            try:
+                # Get clip to search with Google
+                name_clip = list_name_youtube_channel[j]
+                name_clip = name_clip.strip('\n')
+                url = link_search_google + name_clip
+                print('Clip: ' + url + '\n')
                 sleep(1)
-                link_tinyurl = tinyurl.create_one(url_ytb)
-                print('Content TinyURL: ' + link_tinyurl + '\n')
+                res = requests.get(url)
                 sleep(1)
-                break
-        f.write(link_tinyurl + '\n')
+                print('Please wait 3s to get request...\n')
+                sleep(3)
+                res.raise_for_status()
+                sleep(1)
+                soup = bs4.BeautifulSoup(res.text, 'html.parser')
+                linkElems = soup.select('.r a')
+                sleep(1)
+                # Find out correct link <-> Youtube
+                for index in range(5):
+                    if (name_clip + ' - YouTube' == linkElems[index].getText()) or \
+                            (name_clip[:67] + ' ...' == linkElems[index].getText() + ' ...'):
+                        url_ytb = 'https://www.google.com' + linkElems[index].get('href')
+                        print('Youtube: ' + url_ytb + '\n')
+                        sleep(1)
+                        link_tinyurl = tinyurl.create_one(url_ytb)
+                        print('Content TinyURL: ' + link_tinyurl + '\n')
+                        sleep(1)
+                        break
+                f.write(link_tinyurl + '\n')
+            except:
+                continue
+    except:
+        continue
     f.close()

@@ -6,6 +6,7 @@ import os
 import random
 import sys
 import time
+from json import load
 from subprocess import check_output
 from time import sleep
 
@@ -28,11 +29,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 import rasdial
+from list_timezone import LIST_TIME_ZONE
 from config import PARAMS
 from config import SCREEN_RESOLUTION  # config.py
 from config import USER_PASS
 from config import VPN_NAME
-from list_timezone import LIST_TIME_ZONE
 from screen_resolution import ScreenRes
 import subprocess
 
@@ -52,7 +53,7 @@ def get_random_vpn():
 
 
 def connect_pure_vpn(number_machine):
-    if get_params('PureVPN') == 1 and number_machine <= get_params('TOTAL_CHANNEL'):
+    if PARAMS.get('PureVPN') == 1 and number_machine <= PARAMS.get('TOTAL_CHANNEL'):
         rasdial.disconnect()
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
         while rasdial.is_connected() is False:
@@ -63,16 +64,17 @@ def connect_pure_vpn(number_machine):
 
             if number_machine <= 6:
                 value = 1
-            elif 6 < number_machine <= get_params('TOTAL_CHANNEL'):
+            elif 6 < number_machine <= PARAMS.get('TOTAL_CHANNEL'):
                 value = 2
             user = USER_PASS.get(value)[0]
             password = USER_PASS.get(value)[1]
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
+            print('Current VPN: ' + str(rasdial.get_current_vpn()))
 
 
 def connect_openvpn():
-    if get_params('OpenVPN') == 1 and number_machine > get_params('TOTAL_CHANNEL'):
+    if PARAMS.get('OpenVPN') == 1 and number_machine > PARAMS.get('TOTAL_CHANNEL'):
         config_ip = tuple(open('ressources\config_ip.txt', 'r'))
         cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
         value = random.randint(0, len(config_ip))
@@ -123,8 +125,8 @@ def get_random_resolution():
 
 
 def get_recalcul_xy(x, y, x_screen_set, y_screen_set):
-    x_screen = get_params('WIDTH')
-    y_screen = get_params('HEIGHT')
+    x_screen = PARAMS.get('WIDTH')
+    y_screen = PARAMS.get('HEIGHT')
 
     x_new = x * x_screen_set / x_screen
     y_new = y * y_screen_set / y_screen
@@ -158,12 +160,6 @@ def set_screen_resolution():
         pass
 
 
-def get_params(param):  # param = 'TOTAL_CHANNEL'
-    for key in PARAMS:
-        if param in key:
-            return PARAMS[key]
-
-
 def switch_main_window(browser, main_window):
     try:
         browser.switch_to.window(main_window)
@@ -193,7 +189,7 @@ def search_google(browser, main_window):
         count_search += 1
         try:
             key_search = get_key_search()
-            sleep(3)
+            sleep(1)
             browser.get('https://encrypted.google.com/#q=' + key_search)
             sleep(3)
 
@@ -279,7 +275,7 @@ def detect_and_click_ads_bottom(browser, url, timing_ads):
 
 
 def click_ads_right():
-    if get_params('ADS_RIGHT') == 1:
+    if PARAMS.get('ADS_RIGHT') == 1:
         try:
             x_screen_set, y_screen_set = pyautogui.size()
             x, y = get_recalcul_xy(1330, 270, x_screen_set, y_screen_set)
@@ -303,7 +299,7 @@ def click_ads_right():
 def replay_clip():
     print('-> Mouse move to Clip')
     x_screen_set, y_screen_set = pyautogui.size()
-    x, y = get_recalcul_xy(540, 300, x_screen_set, y_screen_set)
+    x, y = get_recalcul_xy(540, 450, x_screen_set, y_screen_set)
     pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
     get_position_mouse()
     sleep(0.25)
@@ -366,57 +362,32 @@ def get_key_search():
     return keywords[random_int].strip('')
 
 
-def get_zone(timeZoneId):
-    for key in LIST_TIME_ZONE:
-        if timeZoneId in key:
-            return LIST_TIME_ZONE[key]
-
-
 def set_zone():
     print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
     print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
-    load = False
-    count = 0
-    while load is False and count < 3:
-        try:
-            count += 1
-            print('Set Zone: ' + str(count))
-            link = 'http://freegeoip.net/json/'
-            sleep(1)
-            latitude = load(urlopen(link))['latitude']
-            sleep(1)
-            longitude = load(urlopen(link))['longitude']
-            sleep(1)
-            timestamp = str(time.time())
 
-            # Public IP & DateTime
-            ip = urlopen('http://ip.42.pl/raw').read()
-            sleep(1)
-            region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
-            sleep(1)
-            city = load(urlopen('http://freegeoip.net/json/'))['city']
-            sleep(1)
-            time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
-            sleep(1)
+    link = 'http://freegeoip.net/json/'
+    latitude = load(urlopen(link))['latitude']
+    longitude = load(urlopen(link))['longitude']
+    timestamp = str(time.time())
 
-            # Google API service form Vu.nomos
-            link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
-                   str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
-            timeZoneId = load(urlopen(link))['timeZoneId']
-            sleep(1)
-            zone_to_set = get_zone(timeZoneId)
-            check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
-            sleep(1)
+    # Public IP & DateTime
+    ip = urlopen('http://ip.42.pl/raw').read()
+    region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
+    city = load(urlopen('http://freegeoip.net/json/'))['city']
+    time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
 
-            load = True
+    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
+    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
-
-        except:
-            pass
+    # Google API service form Vu.nomos
+    link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
+           str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
+    timeZoneId = load(urlopen(link))['timeZoneId']
+    zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
+    check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
 
 
 def countdown(timing):
@@ -448,7 +419,7 @@ if len(sys.argv) > 1:
 else:
     number_machine = 1
 
-nbr_channel = get_params('TOTAL_CHANNEL')
+nbr_channel = PARAMS.get('TOTAL_CHANNEL')
 
 print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + "Number Machine: " + str(number_machine) + '' + Style.RESET_ALL)
 
@@ -458,7 +429,7 @@ binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
 counter_tours = 0
 counter_total_click_ads_bottom = 0
-for z in range(get_params('BOUCLE_SUPER_VIP')):
+for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
     try:
         process_openvpn.kill()
         sleep(3)
@@ -563,7 +534,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
                     counter_total_click_ads_bottom += 1
                     print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Ads Bottom] => ' +
                           Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
-                          '[FOUNDED & CLICKED]' + Style.RESET_ALL)
+                          '[FOUND & CLICKED]' + Style.RESET_ALL)
                     print(
                         Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' +
                         Style.RESET_ALL + Fore.LIGHTGREEN_EX + Back.BLACK +
@@ -594,13 +565,13 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
             replay_clip()  # Click and replay clip
 
             # Random / Try to close Ads bottom
-            # random_close = random.randint(0, 1)
-            # if random_close == 0:
-            #     random_sleep()
-            #     x_screen_set, y_screen_set = pyautogui.size()
-            #     x, y = get_recalcul_xy(845, 552, x_screen_set, y_screen_set)
-            #     pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-            #     pyautogui.click(x, y)
+            random_close = random.randint(0, 1)
+            if random_close == 0:
+                random_sleep()
+                x_screen_set, y_screen_set = pyautogui.size()
+                x, y = get_recalcul_xy(845, 552, x_screen_set, y_screen_set)
+                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                pyautogui.click(x, y)
 
         ###################
         # Click Ads RIGHT #
@@ -628,7 +599,7 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
                 current_url = browser.current_url
                 print('Current url:' + current_url)
             except:
-                print('Current Url is didn\'t found!')
+                print('Current Url is not found!')
                 pass
 
             if current_url is not None:
@@ -636,7 +607,8 @@ for z in range(get_params('BOUCLE_SUPER_VIP')):
                     wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
                 except:
                     wait_time = random.randint(150, 180)
-                countdown(wait_time)  # Wait n minutes to view
+                if wait_time > 0:
+                    countdown(wait_time)  # Wait n minutes to view
 
         print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
               str(datetime.timedelta(seconds=time.time() - start_time)) + '')
