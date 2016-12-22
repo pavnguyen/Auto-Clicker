@@ -250,7 +250,7 @@ def detect_and_click_ads_bottom(browser, url, timing_ads):
         except:
             print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
             try:
-                first_result = ui.WebDriverWait(browser, timing_ads).until(lambda browser:
+                first_result = ui.WebDriverWait(browser, 3).until(lambda browser:
                                                                            browser.find_element_by_id('AdSense'))
                 first_link = first_result.find_element_by_tag_name('a')
                 first_link.send_keys(Keys.CONTROL + Keys.RETURN)
