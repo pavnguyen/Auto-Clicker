@@ -1,7 +1,7 @@
 import random
 import sys
 import uuid
-
+from config import PARAMS
 
 def randomMAC():
     return [0x00, 0x16, 0x3e,
@@ -46,20 +46,20 @@ def replace_uuid(path):
 
 
 def change_uuid_mac_for(nbr_machine):
-    path = 'E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx'
+    path = PARAMS['PATH_VMX'] + 'May Ao Chuan\Windows 7 x64.vmx'
     replace_uuid(path)
 
     for i in range(nbr_machine):
         number_machine = i + 1
-        path = 'E:\Virtual Machine\\' + str(number_machine) + '\\' + str(number_machine) + '.vmx'
+        path = PARAMS['PATH_VMX'] + str(number_machine) + '\\' + str(number_machine) + '.vmx'
         replace_uuid(path)
-
 
 # Change UUID for nbr_machine
 if len(sys.argv) > 1:
     nbr_machine = int(sys.argv[1])
     print('Total machine: ' + str(nbr_machine))
 else:
-    print('Please put an argument!!!')
+    print('Please put total machine:')
+    nbr_machine = int(raw_input())
 
 change_uuid_mac_for(nbr_machine)

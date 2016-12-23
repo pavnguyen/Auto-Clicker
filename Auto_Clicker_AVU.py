@@ -642,18 +642,20 @@ for z in range(BOUCLE_SUPER_VIP):
             print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                   + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL)
 
-        print(Fore.LIGHTMAGENTA_EX + '_' * 37 + Style.RESET_ALL)
+        print(Fore.LIGHTMAGENTA_EX + '.' * 37 + Style.RESET_ALL)
         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 8 + 'FINISH -> Tours -> ' +
               Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(COUNTER_TOURS) + '' +
               Style.RESET_ALL)
-        print(Fore.LIGHTMAGENTA_EX + '-' * 37 + Style.RESET_ALL)
+        print(Fore.LIGHTMAGENTA_EX + '.' * 37 + Style.RESET_ALL)
 
-        if found_ads_bottom is True or ADS_BOTTOM == 0:
+        if found_ads_bottom is True:
             countdown(wait_time)  # Wait n minutes to view
+        elif ADS_BOTTOM == 0:
+            countdown(random.randint(21, 34))
 
         print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
               str(datetime.timedelta(seconds=time.time() - start_time)) + '')
-        print(Fore.LIGHTMAGENTA_EX + '_' * 37 + Style.RESET_ALL)
+        print(Fore.LIGHTMAGENTA_EX + '.' * 37 + Style.RESET_ALL)
 
         print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
         print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'Auto Clicker [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
