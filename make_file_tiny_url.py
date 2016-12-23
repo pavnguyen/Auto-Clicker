@@ -26,12 +26,11 @@ except ImportError:
 # Search clip in Google
 link_search_google = 'https://encrypted.google.com/search?q='
 
-if len(sys.argv) > 1:
-    nbr_channel = int(sys.argv[1])
-else:
-    nbr_channel = PARAMS.get('TOTAL_CHANNEL')
+if len(sys.argv) > 2:
+    debut = int(sys.argv[1])
+    fin = int(sys.argv[2])
 
-for i in range(1, nbr_channel + 1):
+for i in range(debut, fin + 1):
     try:
         f = open('ressources\LinksTinyURL\\' + str(i) + '.txt', 'w+')
         list_name_youtube_channel = tuple(open('ressources\TitlesYoutube\\' + str(i) + '.txt', 'r'))

@@ -57,7 +57,7 @@ def get_random_vpn():
 
 
 def connect_pure_vpn(number_machine):
-    if PARAMS.get('PureVPN') == 1 and number_machine <= PARAMS.get('TOTAL_CHANNEL'):
+    if PARAMS.get('PureVPN') == 1 and PARAMS.get('ADS_BOTTOM') == 1 and number_machine <= PARAMS.get('TOTAL_CHANNEL'):
         rasdial.disconnect()
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
         while rasdial.is_connected() is False:
@@ -79,7 +79,8 @@ def connect_pure_vpn(number_machine):
 
 def connect_openvpn():
     global process_openvpn
-    if PARAMS.get('OpenVPN') == 1 and number_machine > PARAMS.get('TOTAL_CHANNEL'):
+    if (PARAMS.get('OpenVPN') == 1 and number_machine > PARAMS.get('TOTAL_CHANNEL')) or PARAMS.get('ADS_BOTTOM') == 0:
+        print('Connect OpenVPN')
         config_ip = tuple(open('ressources\config_ip.txt', 'r'))
         cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
         value = random.randint(0, len(config_ip))
@@ -450,16 +451,17 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
     set_zone()
 
     for i in range(number_machine, nbr_channel + number_machine):
-
-        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
-              + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
+        if PARAMS.get('ADS_BOTTOM') == 1:
+            print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
+                  + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
 
         start_time = time.time()
 
         # Open Firefox with default profile
-        fp = webdriver.FirefoxProfile(path_profil)
-        browser = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
-        browser.maximize_window()
+        if i == number_machine or PARAMS.get('ADS_BOTTOM') == 1:
+            fp = webdriver.FirefoxProfile(path_profil)
+            browser = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
+            browser.maximize_window()
 
         # Check Whoer once!!!
         if i == number_machine:
@@ -492,25 +494,26 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
         #################
         # Google Search #
         #################
-        try:
-            total_key = random.randint(1, 3)
-            for j in range(total_key):
-                loaded_google = search_google()  # Search Google with keywords
+        if PARAMS.get('ADS_BOTTOM') == 1:
+            try:
+                total_key = random.randint(1, 3)
+                for j in range(total_key):
+                    loaded_google = search_google()  # Search Google with keywords
 
+                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Search Key] => ' + Style.RESET_ALL +
+                          Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[ OK ]' + Style.RESET_ALL)
+                    random_small_sleep()
+            except:
                 print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Search Key] => ' + Style.RESET_ALL +
-                      Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[ OK ]' + Style.RESET_ALL)
-                random_small_sleep()
-        except:
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Search Key] => ' + Style.RESET_ALL +
-                  Back.LIGHTRED_EX + Fore.BLACK + Style.BRIGHT + 'FAILED!!!' + Style.RESET_ALL)
-            pass
+                      Back.LIGHTRED_EX + Fore.BLACK + Style.BRIGHT + 'FAILED!!!' + Style.RESET_ALL)
+                pass
 
         #####################
         # Detect Ads Bottom #
         #####################
         switch_main_window()
 
-        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
+        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
               + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
 
         file_channel = i
@@ -530,35 +533,44 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
 
         # Check Ads Bottom
         ads_bottom = False
-        counter_boucle = 0
-        timing_ads = random.randint(25, 39)
-        while ads_bottom is False and counter_boucle < 3:
-            try:
-                counter_boucle += 1
-                print("Test Ads Bottom: " + str(counter_boucle))
-                ads_bottom = detect_and_click_ads_bottom(url, timing_ads)
-                if ads_bottom is True:
-                    counter_total_click_ads_bottom += 1
-                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Ads Bottom] => ' +
-                          Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
-                          '[FOUND & CLICKED]' + Style.RESET_ALL)
-                    print(
-                        Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' +
-                        Style.RESET_ALL + Fore.LIGHTGREEN_EX + Back.BLACK +
-                        str(counter_total_click_ads_bottom) + Style.RESET_ALL)
-            except:
+        if PARAMS.get('ADS_BOTTOM') == 1:
+            counter_boucle = 0
+            timing_ads = random.randint(25, 39)
+            while ads_bottom is False and counter_boucle < 3:
+                try:
+                    counter_boucle += 1
+                    print("Test Ads Bottom: " + str(counter_boucle))
+                    ads_bottom = detect_and_click_ads_bottom(url, timing_ads)
+                    if ads_bottom is True:
+                        counter_total_click_ads_bottom += 1
+                        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Ads Bottom] => ' +
+                              Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
+                              '[FOUND & CLICKED]' + Style.RESET_ALL)
+                        print(
+                            Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' +
+                            Style.RESET_ALL + Fore.LIGHTGREEN_EX + Back.BLACK +
+                            str(counter_total_click_ads_bottom) + Style.RESET_ALL)
+                except:
+                    try:
+                        browser.quit()
+                    except:
+                        pass
+                    continue
+
+            if ads_bottom is False:
                 try:
                     browser.quit()
                 except:
                     pass
                 continue
-
-        if ads_bottom is False:
+        else:
+            print(Back.BLACK + Fore.LIGHTBLUE_EX+ Style.BRIGHT + '..........[MODE] VIEW ONLY..........' +
+                  Style.RESET_ALL)
             try:
-                browser.quit()
+                browser.get(url)
+                sleep(2)
             except:
                 pass
-            continue
 
         counter_tours += 1
 
@@ -568,23 +580,24 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
 
         switch_main_window()
 
+        try:
+            sleep(1)
+            current_url = browser.current_url
+            print('Current url:' + current_url)
+        except:
+            print('Current Url is not found!')
+            pass
+
+        if current_url is not None:
+            try:
+                wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
+                if wait_time < 0 or wait_time > 240:
+                    wait_time = random.randint(150, 180)
+            except:
+                wait_time = random.randint(150, 180)
+
         if ads_bottom is True:
             replay_clip()  # Click and replay clip
-            try:
-                sleep(1)
-                current_url = browser.current_url
-                print('Current url:' + current_url)
-            except:
-                print('Current Url is not found!')
-                pass
-
-            if current_url is not None:
-                try:
-                    wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
-                    if wait_time < 0 or wait_time > 240:
-                        wait_time = random.randint(150, 180)
-                except:
-                    wait_time = random.randint(150, 180)
 
             # Try to close Ads
             random_close = random.randint(0, 1)
@@ -606,13 +619,14 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
 
         click_ads_right()
 
-        print(Fore.LIGHTYELLOW_EX + Back.BLACK + '[Search key] => ' + Style.RESET_ALL
-              + Fore.LIGHTGREEN_EX + Back.BLACK + str(total_key) + Style.RESET_ALL)
-        print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + '[Duration to click ads]' + Style.RESET_ALL +
-              Back.BLACK + Fore.LIGHTWHITE_EX + ' ' +
-              str(datetime.timedelta(seconds=time.time() - start_time)) + '' + Style.RESET_ALL)
-        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
-              + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL)
+        if PARAMS.get('ADS_BOTTOM') == 1:
+            print(Fore.LIGHTYELLOW_EX + Back.BLACK + '[Search key] => ' + Style.RESET_ALL
+                  + Fore.LIGHTGREEN_EX + Back.BLACK + str(total_key) + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + '[Duration to click ads]' + Style.RESET_ALL +
+                  Back.BLACK + Fore.LIGHTWHITE_EX + ' ' +
+                  str(datetime.timedelta(seconds=time.time() - start_time)) + '' + Style.RESET_ALL)
+            print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
+                  + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL)
 
         print(Fore.LIGHTMAGENTA_EX + '*' * 37 + Style.RESET_ALL)
         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 8 + 'FINISH -> Tours -> ' +
@@ -620,7 +634,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
               Style.RESET_ALL)
         print(Fore.LIGHTMAGENTA_EX + '*' * 37 + Style.RESET_ALL)
 
-        if ads_bottom is True:
+        if ads_bottom is True or PARAMS['ADS_BOTTOM'] == 0:
             countdown(wait_time)  # Wait n minutes to view
 
         print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
@@ -631,11 +645,12 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
         print(Fore.LIGHTWHITE_EX + ' ' * 10 + 'Auto Clicker [AVU]' + Style.RESET_ALL)
         print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
-        try:
-            browser.delete_all_cookies()
-            browser.quit()
-        except:
-            pass
+        if PARAMS['ADS_BOTTOM'] == 1:
+            try:
+                browser.delete_all_cookies()
+                browser.quit()
+            except:
+                pass
 
     try:
         browser.delete_all_cookies()
@@ -643,7 +658,8 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
     except:
         pass
 
-print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 4 + '[Counter Click Ads Bottom] => ' + Style.RESET_ALL
-      + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
-print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + 'Press ENTER to close...' + '')
+if PARAMS.get('ADS_BOTTOM') == 1:
+    print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
+          + Fore.LIGHTGREEN_EX + Back.BLACK + str(counter_total_click_ads_bottom) + Style.RESET_ALL + '')
+    print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + 'Press ENTER to close...' + '')
 raw_input()

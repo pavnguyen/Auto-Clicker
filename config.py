@@ -1,7 +1,8 @@
 PARAMS = {
-    'TOTAL_CHANNEL': 10
+    'TOTAL_CHANNEL': 12
     , 'LINKS_PER_CHANNEL': 3
     , 'ADS_RIGHT': 0
+    , 'ADS_BOTTOM': 0
     , 'BOUCLE_SUPER_VIP': 300
     , 'SCHEDULE': 1
     , 'WIDTH': 1716
