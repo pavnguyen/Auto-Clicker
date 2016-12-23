@@ -29,6 +29,11 @@ link_search_google = 'https://encrypted.google.com/search?q='
 if len(sys.argv) > 2:
     debut = int(sys.argv[1])
     fin = int(sys.argv[2])
+else:
+    print('Please put the First Machine: ')
+    debut = int(raw_input())
+    print('Please put the Last Machine: ')
+    fin = int(raw_input())
 
 for i in range(debut, fin + 1):
     try:

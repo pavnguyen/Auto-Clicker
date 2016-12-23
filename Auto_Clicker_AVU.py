@@ -41,11 +41,14 @@ init()
 
 
 def get_tinyurl_clip(channel):
-    link = tuple(open('ressources\LinksTinyURL\\' + str(channel) + '.txt', 'r'))
-    random_int = random.randint(0, 9)
-    if 'http' in link[random_int].strip():
-        result = link[random_int].strip()
-    else:
+    try:
+        link = tuple(open('ressources\LinksTinyURL\\' + str(channel) + '.txt', 'r'))
+        random_int = random.randint(0, len(link))
+        if 'http' in link[random_int].strip():
+            result = link[random_int].strip()
+        else:
+            result = link[random_int + 1].strip()
+    except:
         result = link[random_int + 1].strip()
     return result
 
@@ -106,8 +109,8 @@ def connect_openvpn():
                  '--auth sha256'
         cmd += params
         process_openvpn = subprocess.Popen(cmd, shell=True)
-        print('Please wait 5s to connect to OpenVPN...')
-        sleep(5)
+        print('Please wait to connect to OpenVPN...')
+        countdown(10)
         return process_openvpn
 
 
@@ -197,7 +200,7 @@ def search_google():
             key_search = get_key_search()
             sleep(1)
             browser.get('https://encrypted.google.com/#q=' + key_search)
-            sleep(3)
+            countdown(3)
 
             try:
                 first_result = ui.WebDriverWait(browser, 15).until(lambda browser:
@@ -235,7 +238,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
     load_url = False
     try:
         browser.get(url)
-        sleep(3)
+        countdown(3)
         try:
             first_result = ui.WebDriverWait(browser, timing_ads).until(lambda browser:
                                                                        browser.find_element_by_class_name('adDisplay'))
@@ -368,39 +371,40 @@ def get_key_search():
 
 
 def set_zone():
-    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
-    print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
+    try:
+        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
+        print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
 
-    link = 'http://freegeoip.net/json/'
-    latitude = load(urlopen(link))['latitude']
-    longitude = load(urlopen(link))['longitude']
-    timestamp = str(time.time())
+        link = 'http://freegeoip.net/json/'
+        latitude = load(urlopen(link))['latitude']
+        longitude = load(urlopen(link))['longitude']
+        timestamp = str(time.time())
 
-    # Public IP & DateTime
-    ip = urlopen('http://ip.42.pl/raw').read()
-    region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
-    city = load(urlopen('http://freegeoip.net/json/'))['city']
-    time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
+        # Public IP & DateTime
+        ip = urlopen('http://ip.42.pl/raw').read()
+        region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
+        city = load(urlopen('http://freegeoip.net/json/'))['city']
+        time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
 
-    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
-    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
-    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
-    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
+        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
-    # Google API service form Vu.nomos
-    link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
-           str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
-    timeZoneId = load(urlopen(link))['timeZoneId']
-    zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
-    check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
-
+        # Google API service form Vu.nomos
+        link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
+               str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
+        timeZoneId = load(urlopen(link))['timeZoneId']
+        zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
+        check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+    except:
+        pass
 
 def countdown(timing):
     while timing:
         mins, secs = divmod(timing, 60)
         timeformat = '{:02d}:{:02d}'.format(mins, secs)
-        print(Fore.LIGHTCYAN_EX + Back.BLACK + Style.BRIGHT + 'Please wait...' + timeformat +
-              ' to finish!!!' + Style.RESET_ALL, end='\r')
+        print(Fore.LIGHTCYAN_EX + Back.BLACK + Style.BRIGHT + 'Please wait...' + timeformat + Style.RESET_ALL, end='\r')
         time.sleep(1)
         timing -= 1
 
@@ -443,7 +447,7 @@ counter_total_click_ads_bottom = 0
 for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
     try:
         process_openvpn.kill()
-        sleep(3)
+        countdown(3)
     except:
         pass
     connect_pure_vpn(number_machine)  # PureVPN
@@ -473,7 +477,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
                     print('Check Whoer INPUT')
                     browser.get('https://whoer.net/')
                     print('Check Whoer OUTPUT')
-                    sleep(3)
+                    countdown(3)
                     ui.WebDriverWait(browser, 15).until(lambda browser: browser.find_element_by_id('anonym_level'))
                     id_level = browser.find_element_by_id('anonym_level').text
                     w_load = True
@@ -568,7 +572,7 @@ for z in range(PARAMS.get('BOUCLE_SUPER_VIP')):
                   Style.RESET_ALL)
             try:
                 browser.get(url)
-                sleep(2)
+                countdown(2)
             except:
                 pass
 

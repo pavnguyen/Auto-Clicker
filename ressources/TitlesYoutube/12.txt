@@ -9,4 +9,3 @@ for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-
 [JOP] Cost control for mining hardware 2099JP
 [JOP] Blockchain Health Teaser 2099JP
 [JOP] Bitcoin mining operation 2099JP
-
