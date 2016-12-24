@@ -42,14 +42,14 @@ init()
 
 
 def get_tinyurl_clip(channel):
-    load = False
-    while load is False:
+    load_result = False
+    while load_result is False:
         try:
             links_tinyurl = tuple(open('ressources\LinksTinyURL\\' + str(channel) + '.txt', 'r'))
             random_int = random.randint(0, len(links_tinyurl))
             if 'http' in links_tinyurl[random_int].strip():
                 result = links_tinyurl[random_int].strip()
-            load = True
+            load_result = True
         except:
             pass
     return result
@@ -199,9 +199,9 @@ def switch_tab():
 
 
 def search_google():
-    load = False
+    load_result = False
     counter = 0
-    while load is False and counter < 3:
+    while load_result is False and counter < 3:
         counter += 1
         try:
             key_search = get_key_search()
@@ -215,7 +215,7 @@ def search_google():
                 # Open the link in a new tab by sending key strokes on the element
                 # Use: Keys.CONTROL + Keys.SHIFT + Keys.RETURN to open tab on top of the stack
                 first_link.send_keys(Keys.CONTROL + Keys.RETURN)
-                load = True
+                load_result = True
             except:
                 print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"rc\" => Load \"ads-ad\" ' +
                       Style.RESET_ALL)
@@ -224,7 +224,7 @@ def search_google():
                                                                       BROWSER.find_element_by_class_name('ads-ad'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
-                    load = True
+                    load_result = True
                 except:
                     print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"ads-ad\" => Reload... ' +
                           Style.RESET_ALL)
@@ -237,11 +237,11 @@ def search_google():
     random_small_sleep()
     # Take hand the window opener
     switch_main_window()
-    return load
+    return load_result
 
 
 def detect_and_click_ads_bottom(url, timing_ads):
-    load = False
+    load_result = False
     try:
         BROWSER.get(url)
         countdown(3)
@@ -253,7 +253,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
 
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-            load = True
+            load_result = True
         except:
             try:
                 first_result = ui.WebDriverWait(BROWSER, 3).until \
@@ -264,7 +264,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
 
-                load = True
+                load_result = True
 
                 print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
             except:
@@ -276,7 +276,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
 
                     print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
                           Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-                    load = True
+                    load_result = True
                 except:
                     print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
                     pass
@@ -288,7 +288,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
     random_sleep()
     random_mouse_scroll()
     random_mouse_move()
-    return load
+    return load_result
 
 
 def click_ads_right():
@@ -380,36 +380,36 @@ def get_key_search():
 
 
 def set_zone():
-    try:
-        print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
+    print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
 
-        link = 'http://freegeoip.net/json/'
-        latitude = load(urlopen(link))['latitude']
-        longitude = load(urlopen(link))['longitude']
-        timestamp = str(time.time())
+    link = 'http://freegeoip.net/json/'
+    latitude = load(urlopen(link))['latitude']
+    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Latitude] => ' + str(latitude) + Style.RESET_ALL)
+    longitude = load(urlopen(link))['longitude']
+    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Longitude] => ' + str(longitude) + Style.RESET_ALL)
+    timestamp = str(time.time())
 
-        # Public IP & DateTime
-        ip = urlopen('http://ip.42.pl/raw').read()
-        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
+    # Public IP & DateTime
+    ip = urlopen('http://ip.42.pl/raw').read()
+    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
 
-        region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
-        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+    region_name = load(urlopen(link))['region_name']
+    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
 
-        city = load(urlopen('http://freegeoip.net/json/'))['city']
-        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+    city = load(urlopen(link))['city']
+    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
 
-        time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
-        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+    time_zone = load(urlopen(link))['time_zone']
+    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
-        # Google API service form Vu.nomos
-        link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
-               str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
-        timeZoneId = load(urlopen(link))['timeZoneId']
-        zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
-        check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
-        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
-    except:
-        pass
+    # Google API service form Vu.nomos
+    link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
+           str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
+    timeZoneId = load(urlopen(link))['timeZoneId']
+    zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
+    check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
+    load_result = True
 
 
 def countdown(timing):
@@ -501,15 +501,15 @@ for z in range(BOUCLE_SUPER_VIP):
         if i == NUMBER_MACHINE:
             print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Please wait to check Whoer.net... '
                   + Style.RESET_ALL)
-            load = False
-            while load is False:
+            load_result = False
+            while load_result is False:
                 try:
                     print('Check Whoer...')
                     BROWSER.get('https://whoer.net/')
                     countdown(3)
                     ui.WebDriverWait(BROWSER, 10).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
                     id_level = BROWSER.find_element_by_id('anonym_level').text
-                    load = True
+                    load_result = True
                 except:
                     pass
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
