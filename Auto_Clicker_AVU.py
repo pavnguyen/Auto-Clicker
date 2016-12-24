@@ -611,38 +611,38 @@ for z in range(BOUCLE_SUPER_VIP):
         # Back to the video #
         #####################
 
-        switch_main_window()
-
-        try:
-            sleep(1)
-            current_url = BROWSER.current_url
-            print('Current url:' + current_url)
-        except:
-            print('Current Url is not found!')
-            pass
-
-        if current_url is not None:
+        if ADS_BOTTOM == 1:
+            switch_main_window()
             try:
-                wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
-                if wait_time < 0 or wait_time > 240:
-                    wait_time = random.randint(150, 180)
+                sleep(1)
+                current_url = BROWSER.current_url
+                print('Current url:' + current_url)
             except:
-                wait_time = random.randint(150, 180)
+                print('Current Url is not found!')
+                pass
 
-        if found_ads_bottom is True:
-            replay_clip()  # Click and replay clip
-
-            # Try to close Ads
-            random_close = random.randint(0, 1)
-            if random_close == 0:
+            if current_url is not None:
                 try:
-                    x, y = get_recalcul_xy(845, 551)
-                    print('Try to close Ads: X->' + str(x) + ' Y->' + str(y))
-                    pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                    sleep(0.25)
-                    pyautogui.click(x, y)
+                    wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
+                    if wait_time < 0 or wait_time > 240:
+                        wait_time = random.randint(150, 180)
                 except:
-                    pass
+                    wait_time = random.randint(150, 180)
+
+            if found_ads_bottom is True:
+                replay_clip()  # Click and replay clip
+
+                # Try to close Ads
+                random_close = random.randint(0, 1)
+                if random_close == 0:
+                    try:
+                        x, y = get_recalcul_xy(845, 551)
+                        print('Try to close Ads: X->' + str(x) + ' Y->' + str(y))
+                        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                        sleep(0.25)
+                        pyautogui.click(x, y)
+                    except:
+                        pass
 
         random_mouse_move()
         ###################
@@ -669,7 +669,7 @@ for z in range(BOUCLE_SUPER_VIP):
         if found_ads_bottom is True:
             countdown(wait_time)  # Wait n minutes to view
         elif ADS_BOTTOM == 0:
-            countdown(random.randint(21, 34))
+            countdown(random.randint(21, 60))
 
         print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
               str(datetime.timedelta(seconds=time.time() - start_time)) + '')
