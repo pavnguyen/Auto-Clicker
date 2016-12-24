@@ -65,7 +65,7 @@ def connect_pure_vpn():
     if PARAMS.get('PureVPN') == 1 and 'ADS_BOTTOM' == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
         rasdial.disconnect()
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
-        while rasdial.is_connected() is False:
+        while rasdial.is_connected() is False or ping_is_ok() is False:
             rasdial.disconnect()
             sleep(1)
             server = get_random_vpn()
@@ -83,37 +83,54 @@ def connect_pure_vpn():
 
 
 def connect_openvpn():
-    global PROCESS_VPN
-    if (PARAMS.get('OpenVPN') == 1 and NUMBER_MACHINE > TOTAL_CHANNEL) or ADS_BOTTOM == 0:
-        print('Connect OpenVPN')
-        cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
-        value = random.randint(0, len(CONFIG_IP))
-        print('Random IP: ' + CONFIG_IP[value].strip())
-        parameters = ' --tls-client --client --dev tun ' \
-                     '--remote ' + CONFIG_IP[value].strip() + \
-                     ' --proto udp --port 1197 ' \
-                     '--lport 53 --persist-key ' \
-                     '--persist-tun ' \
-                     '--ca data\ca.crt ' \
-                     '--comp-lzo --mute 3 ' \
-                     '--tun-mtu 1400 --mssfix 1360 ' \
-                     '--auth-user-pass data\\auth.txt ' \
-                     '--reneg-sec 0 --keepalive 10 120 ' \
-                     '--route-method exe --route-delay 2 ' \
-                     '--verb 3 --log c:\\log.txt ' \
-                     '--status c:\\stat.db 1 ' \
-                     '--auth-nocache ' \
-                     '--crl-verify data\crl.pem ' \
-                     '--remote-cert-tls server ' \
-                     '--block-outside-dns ' \
-                     '--cipher aes-256-cbc ' \
-                     '--auth sha256'
-        cmd += parameters
-        PROCESS_OPENVPN = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        print('Please wait to connect to OpenVPN...')
-        countdown(10)
-        return PROCESS_OPENVPN
+    result = False
+    while result is False:
+        if (PARAMS.get('OpenVPN') == 1 and NUMBER_MACHINE > TOTAL_CHANNEL) or ADS_BOTTOM == 0:
+            try:
+                print('Try to Disconnect OpenVPN')
+                check_output("taskkill /im openvpn.exe /F", shell=True)
+            except:
+                pass
 
+            print('Connect OpenVPN')
+            cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
+            value = random.randint(0, len(CONFIG_IP))
+            print('Random IP: ' + CONFIG_IP[value].strip())
+            parameters = ' --tls-client --client --dev tun ' \
+                         '--remote ' + CONFIG_IP[value].strip() + \
+                         ' --proto udp --port 1197 ' \
+                         '--lport 53 --persist-key ' \
+                         '--persist-tun ' \
+                         '--ca data\ca.crt ' \
+                         '--comp-lzo --mute 3 ' \
+                         '--tun-mtu 1400 --mssfix 1360 ' \
+                         '--auth-user-pass data\\auth.txt ' \
+                         '--reneg-sec 0 --keepalive 10 120 ' \
+                         '--route-method exe --route-delay 2 ' \
+                         '--verb 3 --log c:\\log.txt ' \
+                         '--status c:\\stat.db 1 ' \
+                         '--auth-nocache ' \
+                         '--crl-verify data\crl.pem ' \
+                         '--remote-cert-tls server ' \
+                         '--block-outside-dns ' \
+                         '--cipher aes-256-cbc ' \
+                         '--auth sha256'
+            cmd += parameters
+            subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+            print('Please wait to connect to OpenVPN...')
+            countdown(10)
+            if ping_is_ok() is True:
+                result = True
+
+
+def ping_is_ok():
+    print('Check PING...')
+    hostname = "whoer.net"
+    response = os.system("ping -n 1 " + hostname)
+    if response == 0:
+        return True
+    else:
+        return False
 
 def get_random_resolution():
     value = random.randint(1, len(SCREEN_RESOLUTION))
@@ -456,14 +473,9 @@ path_profil = get_path_profile_firefox()
 binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
 for z in range(BOUCLE_SUPER_VIP):
-    try:
-        sleep(0.5)
-        check_output("taskkill /im openvpn.exe /F", shell=True)
-        countdown(3)
-    except:
-        pass
+
     connect_pure_vpn()  # PureVPN
-    PROCESS_OPENVPN = connect_openvpn()  # OpenVPN
+    connect_openvpn()  # OpenVPN
     set_zone()
 
     for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
