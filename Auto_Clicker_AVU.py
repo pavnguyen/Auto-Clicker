@@ -381,7 +381,6 @@ def get_key_search():
 
 def set_zone():
     try:
-        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
         print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
 
         link = 'http://freegeoip.net/json/'
@@ -408,6 +407,7 @@ def set_zone():
         timeZoneId = load(urlopen(link))['timeZoneId']
         zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
         check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
     except:
         pass
 
