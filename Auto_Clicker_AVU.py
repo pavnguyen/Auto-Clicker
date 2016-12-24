@@ -606,7 +606,7 @@ for z in range(BOUCLE_SUPER_VIP):
                   Style.RESET_ALL)
             try:
                 BROWSER.get(url)
-                countdown(2)
+                countdown(3)
             except:
                 pass
 
