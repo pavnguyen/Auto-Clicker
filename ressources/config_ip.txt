@@ -18,3 +18,14 @@ uk-london.privateinternetaccess.com
 uk-southampton.privateinternetaccess.com
 aus-melbourne.privateinternetaccess.com
 aus.privateinternetaccess.com
+turkey.privateinternetaccess.com
+brazil.privateinternetaccess.com
+fi.privateinternetaccess.com
+hk.privateinternetaccess.com
+ireland.privateinternetaccess.com
+israel.privateinternetaccess.com
+italy.privateinternetaccess.com
+japan.privateinternetaccess.com
+nl.privateinternetaccess.com
+no.privateinternetaccess.com
+sg.privateinternetaccess.com
