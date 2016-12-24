@@ -62,7 +62,7 @@ def get_random_vpn():
 
 
 def connect_pure_vpn():
-    if PARAMS.get('PureVPN') == 1 and 'ADS_BOTTOM' == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
+    if PARAMS.get('PureVPN') == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
         rasdial.disconnect()
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
         while rasdial.is_connected() is False or ping_is_ok() is False:
@@ -88,6 +88,7 @@ def connect_openvpn():
         if (PARAMS.get('OpenVPN') == 1 and NUMBER_MACHINE > TOTAL_CHANNEL) or ADS_BOTTOM == 0:
             try:
                 print('Try to Disconnect OpenVPN')
+                rasdial.disconnect()  # Disconnect PureVPN first
                 check_output("taskkill /im openvpn.exe /F", shell=True)
             except:
                 pass
@@ -387,13 +388,15 @@ def set_zone():
 
         # Public IP & DateTime
         ip = urlopen('http://ip.42.pl/raw').read()
-        region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
-        city = load(urlopen('http://freegeoip.net/json/'))['city']
-        time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
-
         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
+
+        region_name = load(urlopen('http://freegeoip.net/json/'))['region_name']
         print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+
+        city = load(urlopen('http://freegeoip.net/json/'))['city']
         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+
+        time_zone = load(urlopen('http://freegeoip.net/json/'))['time_zone']
         print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
         # Google API service form Vu.nomos
