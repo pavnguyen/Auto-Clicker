@@ -380,36 +380,41 @@ def get_key_search():
 
 
 def set_zone():
-    print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
+    load_result = False
+    while load_result is False:
+        try:
+            print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
 
-    link = 'http://freegeoip.net/json/'
-    latitude = load(urlopen(link))['latitude']
-    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Latitude] => ' + str(latitude) + Style.RESET_ALL)
-    longitude = load(urlopen(link))['longitude']
-    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Longitude] => ' + str(longitude) + Style.RESET_ALL)
-    timestamp = str(time.time())
+            link = 'http://freegeoip.net/json/'
+            latitude = load(urlopen(link))['latitude']
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Latitude] => ' + str(latitude) + Style.RESET_ALL)
+            longitude = load(urlopen(link))['longitude']
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Longitude] => ' + str(longitude) + Style.RESET_ALL)
+            timestamp = str(time.time())
 
-    # Public IP & DateTime
-    ip = urlopen('http://ip.42.pl/raw').read()
-    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
+            # Public IP & DateTime
+            ip = urlopen('http://ip.42.pl/raw').read()
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
 
-    region_name = load(urlopen(link))['region_name']
-    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+            region_name = load(urlopen(link))['region_name']
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
 
-    city = load(urlopen(link))['city']
-    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+            city = load(urlopen(link))['city']
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
 
-    time_zone = load(urlopen(link))['time_zone']
-    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+            time_zone = load(urlopen(link))['time_zone']
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
-    # Google API service form Vu.nomos
-    link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
-           str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
-    timeZoneId = load(urlopen(link))['timeZoneId']
-    zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
-    check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
-    print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
-    load_result = True
+            # Google API service form Vu.nomos
+            link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
+                   str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
+            timeZoneId = load(urlopen(link))['timeZoneId']
+            zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
+            check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
+            load_result = True
+        except:
+            pass
 
 
 def countdown(timing):
