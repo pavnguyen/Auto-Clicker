@@ -518,11 +518,11 @@ for z in range(BOUCLE_SUPER_VIP):
                 try:
                     print('Check Whoer...')
                     BROWSER.get('https://whoer.net/')
-                    countdown(3)
                     ui.WebDriverWait(BROWSER, 10).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
                     id_level = BROWSER.find_element_by_id('anonym_level').text
                     load_result = True
                 except:
+                    connect_openvpn()  # OpenVPN
                     pass
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
