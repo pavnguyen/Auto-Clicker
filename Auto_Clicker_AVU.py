@@ -300,6 +300,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
             random_sleep()
             random_mouse_move()
             random_mouse_scroll()
+            random_small_sleep()
     except:
         pass
 
@@ -355,7 +356,7 @@ def random_small_sleep():
 
 
 def random_mouse_move():
-    for i in range(random.randrange(1, 5)):
+    for i in range(random.randrange(3, 5)):
         print('Mouse Move')
         x = random.randint(5, 1024)
         y = random.randint(8, 768)
@@ -365,7 +366,7 @@ def random_mouse_move():
 
 
 def random_mouse_scroll():
-    for i in range(random.randrange(1, 3)):
+    for i in range(random.randrange(2, 4)):
         print('Mouse Scroll')
         r = random.randint(-5000, 5000)
         pyautogui.scroll(r)
