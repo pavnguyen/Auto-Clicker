@@ -105,7 +105,7 @@ def connect_openvpn():
                          '--cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server ' \
                          '--auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0 --keepalive 10 120  ' \
                          '--crl-verify data\crl.rsa.2048.pem ' \
-                         '--auth-nocache ' \
+                         '--auth-nocache --tun-mtu 1492 ' \
                          '--block-outside-dns ' \
                          '--ca data\ca.rsa.2048.crt '
 
@@ -230,7 +230,7 @@ def search_google():
                 print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"rc\" => Load \"ads-ad\" ' +
                       Style.RESET_ALL)
                 try:
-                    first_result = ui.WebDriverWait(BROWSER, 3).until(lambda BROWSER:
+                    first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
                                                                       BROWSER.find_element_by_class_name('ads-ad'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
@@ -238,6 +238,7 @@ def search_google():
                 except:
                     print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"ads-ad\" => Reload... ' +
                           Style.RESET_ALL)
+                    switch_main_window()
                     pass
             pass
         except:
@@ -266,7 +267,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
             load_result = True
         except:
             try:
-                first_result = ui.WebDriverWait(BROWSER, 3).until \
+                first_result = ui.WebDriverWait(BROWSER, 5).until \
                     (lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
                 first_link = first_result.find_element_by_tag_name('a')
                 first_link.send_keys(Keys.CONTROL + Keys.RETURN)
@@ -279,7 +280,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
             except:
                 try:
-                    first_result = ui.WebDriverWait(BROWSER, 3).until(lambda BROWSER:
+                    first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
                                                                       BROWSER.find_element_by_id('AdSense'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
@@ -329,7 +330,10 @@ def replay_clip():
         pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
         get_position_mouse()
         sleep(0.25)
-        pyautogui.click(x, y)
+        try:
+            pyautogui.click(x, y)
+        except:
+            pass
         print('-> Mouse click to REPLAY')
         random_mouse_move()
     except:
@@ -695,9 +699,9 @@ for z in range(BOUCLE_SUPER_VIP):
         print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'Auto Clicker [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
         print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
+        BROWSER.delete_all_cookies()
         if ADS_BOTTOM == 1:
             try:
-                BROWSER.delete_all_cookies()
                 BROWSER.quit()
             except:
                 pass
