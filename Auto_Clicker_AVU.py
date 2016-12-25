@@ -65,15 +65,16 @@ def connect_pure_vpn():
     if PARAMS.get('PureVPN') == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
         load_result = False
         rasdial.disconnect()
+        division = TOTAL_CHANNEL / 2
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
         while load_result is False:
             rasdial.disconnect()
             sleep(1)
             server = get_random_vpn()
 
-            if NUMBER_MACHINE <= 6:
+            if NUMBER_MACHINE <= division:
                 value = 1
-            elif 6 < NUMBER_MACHINE <= TOTAL_CHANNEL:
+            elif division < NUMBER_MACHINE <= TOTAL_CHANNEL:
                 value = 2
             user = USER_PASS.get(value)[0]
             password = USER_PASS.get(value)[1]
@@ -625,9 +626,8 @@ for z in range(BOUCLE_SUPER_VIP):
         #####################
         # Back to the video #
         #####################
-
+        switch_main_window()
         if ADS_BOTTOM == 1:
-            switch_main_window()
             try:
                 sleep(1)
                 current_url = BROWSER.current_url
