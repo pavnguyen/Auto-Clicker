@@ -253,6 +253,7 @@ def search_google():
 
 def detect_and_click_ads_bottom(url, timing_ads):
     load_result = False
+    switch_main_window()
     try:
         BROWSER.get(url)
         countdown(3)
@@ -267,38 +268,41 @@ def detect_and_click_ads_bottom(url, timing_ads):
             load_result = True
         except:
             try:
-                first_result = ui.WebDriverWait(BROWSER, 5).until \
-                    (lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
+                first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                                                                  BROWSER.find_element_by_id('AdSense'))
                 first_link = first_result.find_element_by_tag_name('a')
                 first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
+                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-
                 load_result = True
 
                 print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
             except:
                 try:
-                    first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
-                                                                      BROWSER.find_element_by_id('AdSense'))
+                    first_result = ui.WebDriverWait(BROWSER, 5).until \
+                        (lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
+                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
                           Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+
                     load_result = True
+
                 except:
                     print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
                     pass
                 pass
+        # Switch tab to the new tab, which we will assume is the next one on the right
+        if load_result is True:
+            switch_tab()
+            random_sleep()
+            random_mouse_scroll()
+            random_mouse_move()
     except:
         pass
-    # Switch tab to the new tab, which we will assume is the next one on the right
-    switch_tab()
-    random_sleep()
-    random_mouse_scroll()
-    random_mouse_move()
+
     return load_result
 
 
