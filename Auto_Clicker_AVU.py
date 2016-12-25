@@ -298,8 +298,8 @@ def detect_and_click_ads_bottom(url, timing_ads):
         if load_result is True:
             switch_tab()
             random_sleep()
-            random_mouse_scroll()
             random_mouse_move()
+            random_mouse_scroll()
     except:
         pass
 
@@ -355,7 +355,8 @@ def random_small_sleep():
 
 
 def random_mouse_move():
-    for i in range(random.randrange(0, 5)):
+    for i in range(random.randrange(1, 5)):
+        print('Mouse Move')
         x = random.randint(5, 1024)
         y = random.randint(8, 768)
         pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
@@ -364,7 +365,8 @@ def random_mouse_move():
 
 
 def random_mouse_scroll():
-    for i in range(random.randrange(0, 2)):
+    for i in range(random.randrange(1, 3)):
+        print('Mouse Scroll')
         r = random.randint(-5000, 5000)
         pyautogui.scroll(r)
         random_small_sleep()
