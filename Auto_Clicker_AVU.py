@@ -103,9 +103,11 @@ def connect_openvpn():
             parameters = ' --client --dev tun --proto udp --remote ' + CONFIG_IP[value].strip() + \
                          ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun ' \
                          '--cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server ' \
-                         '--auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0 ' \
+                         '--auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0 --keepalive 10 120  ' \
                          '--crl-verify data\crl.rsa.2048.pem ' \
-                         '--ca data\ca.rsa.2048.crt --disable-occ'
+                         '--auth-nocache ' \
+                         '--block-outside-dns ' \
+                         '--ca data\ca.rsa.2048.crt '
 
             # parameters = ' --tls-client --client --dev tun ' \
             #              '--remote ' + CONFIG_IP[value].strip() + \
@@ -136,12 +138,13 @@ def connect_openvpn():
 
 def ping_is_ok():
     print('Check PING...')
-    hostname = "whoer.net"
+    hostname = "bing.com"
     response = os.system("ping -n 1 " + hostname)
     if response == 0:
         return True
     else:
         return False
+
 
 def get_random_resolution():
     value = random.randint(1, len(SCREEN_RESOLUTION))
@@ -390,8 +393,6 @@ def set_zone():
     load_result = False
     while load_result is False:
         try:
-            print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
-
             link = 'http://freegeoip.net/json/'
             latitude = load(urlopen(link))['latitude']
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Latitude] => ' + str(latitude) + Style.RESET_ALL)
@@ -417,6 +418,7 @@ def set_zone():
                    str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
             timeZoneId = load(urlopen(link))['timeZoneId']
             zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
+            print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
             check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
             load_result = True
@@ -443,6 +445,7 @@ global BROWSER
 global MAIN_WINDOW
 global ADS_BOTTOM
 global ADS_RIGHT
+global CLOSE_ADS_BOTTOM
 global TOTAL_CHANNEL
 global X_SCREEN_SET
 global Y_SCREEN_SET
@@ -456,6 +459,7 @@ global TOTAL_CLICKS_ADS_BOTTOM
 
 ADS_BOTTOM = PARAMS.get('ADS_BOTTOM')
 ADS_RIGHT = PARAMS.get('ADS_RIGHT')
+CLOSE_ADS_BOTTOM = PARAMS.get('CLOSE_ADS_BOTTOM')
 TOTAL_CHANNEL = PARAMS.get('TOTAL_CHANNEL')
 BOUCLE_SUPER_VIP = PARAMS.get('BOUCLE_SUPER_VIP')
 X_SCREEN = PARAMS.get('WIDTH')
@@ -518,7 +522,7 @@ for z in range(BOUCLE_SUPER_VIP):
                 try:
                     print('Check Whoer...')
                     BROWSER.get('https://whoer.net/')
-                    ui.WebDriverWait(BROWSER, 10).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
+                    ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
                     id_level = BROWSER.find_element_by_id('anonym_level').text
                     load_result = True
                 except:
@@ -613,7 +617,6 @@ for z in range(BOUCLE_SUPER_VIP):
                   Style.RESET_ALL)
             try:
                 BROWSER.get(url)
-                countdown(3)
             except:
                 pass
 
@@ -645,16 +648,17 @@ for z in range(BOUCLE_SUPER_VIP):
                 replay_clip()  # Click and replay clip
 
                 # Try to close Ads
-                random_close = random.randint(0, 1)
-                if random_close == 0:
-                    try:
-                        x, y = get_recalcul_xy(845, 551)
-                        print('Try to close Ads: X->' + str(x) + ' Y->' + str(y))
-                        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                        sleep(0.25)
-                        pyautogui.click(x, y)
-                    except:
-                        pass
+                if CLOSE_ADS_BOTTOM == 1:
+                    random_close = random.randint(0, 1)
+                    if random_close == 0:
+                        try:
+                            x, y = get_recalcul_xy(845, 551)
+                            print('Try to close Ads: X->' + str(x) + ' Y->' + str(y))
+                            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                            sleep(0.25)
+                            pyautogui.click(x, y)
+                        except:
+                            pass
 
         random_mouse_move()
         ###################
