@@ -14,8 +14,6 @@ import bs4
 import requests
 import tinyurl
 
-from config import PARAMS
-
 try:
     # For Python 3.0 and later
     from urllib.request import urlopen

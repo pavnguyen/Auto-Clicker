@@ -46,13 +46,13 @@ def get_tinyurl_clip(channel):
     while load_result is False:
         try:
             links_tinyurl = tuple(open('ressources\LinksTinyURL\\' + str(channel) + '.txt', 'r'))
-            random_int = random.randint(0, len(links_tinyurl))
+            random_int = random.randint(0, len(links_tinyurl) - 1)
             if 'http' in links_tinyurl[random_int].strip():
-                result = links_tinyurl[random_int].strip()
-            load_result = True
+                yt_tinyurl = links_tinyurl[random_int].strip()
+                load_result = True
         except:
             pass
-    return result
+    return yt_tinyurl
 
 
 def get_random_vpn():
@@ -63,10 +63,10 @@ def get_random_vpn():
 
 def connect_pure_vpn():
     if PARAMS.get('PureVPN') == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
-        result = False
+        load_result = False
         rasdial.disconnect()
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
-        while result is False:
+        while load_result is False:
             rasdial.disconnect()
             sleep(1)
             server = get_random_vpn()
@@ -80,15 +80,14 @@ def connect_pure_vpn():
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
             if ping_is_ok() is True:
-                result = True
+                load_result = True
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
 
 
 def connect_openvpn():
-
     if (PARAMS.get('OpenVPN') == 1 and NUMBER_MACHINE > TOTAL_CHANNEL) or ADS_BOTTOM == 0:
-        result = False
-        while result is False:
+        load_result = False
+        while load_result is False:
             try:
                 print('Try to Disconnect OpenVPN')
                 rasdial.disconnect()  # Disconnect PureVPN first
@@ -98,7 +97,7 @@ def connect_openvpn():
 
             print('Connect OpenVPN')
             cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
-            value = random.randint(0, len(CONFIG_IP))
+            value = random.randint(0, len(CONFIG_IP) - 1)
             print('Random Server: ' + CONFIG_IP[value].strip())
             parameters = ' --client --dev tun --proto udp --remote ' + CONFIG_IP[value].strip() + \
                          ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun ' \
@@ -133,7 +132,7 @@ def connect_openvpn():
             print('Please wait to connect to OpenVPN...')
             countdown(10)
             if ping_is_ok() is True:
-                result = True
+                load_result = True
 
 
 def ping_is_ok():

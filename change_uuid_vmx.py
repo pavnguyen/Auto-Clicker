@@ -1,7 +1,9 @@
 import random
 import sys
 import uuid
+
 from config import PARAMS
+
 
 def randomMAC():
     return [0x00, 0x16, 0x3e,
@@ -53,6 +55,7 @@ def change_uuid_mac_for(nbr_machine):
         number_machine = i + 1
         path = PARAMS['PATH_VMX'] + str(number_machine) + '\\' + str(number_machine) + '.vmx'
         replace_uuid(path)
+
 
 # Change UUID for nbr_machine
 if len(sys.argv) > 1:
