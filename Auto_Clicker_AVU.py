@@ -420,6 +420,7 @@ def set_zone():
             zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
             print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
             check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+            sleep(3)
             print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
             load_result = True
         except:
@@ -432,7 +433,7 @@ def countdown(timing):
         timeformat = '{:02d}:{:02d}'.format(mins, secs)
         time.sleep(1)
         timing -= 1
-        print(Fore.LIGHTCYAN_EX + Back.BLACK + Style.BRIGHT + 'Please wait...' + timeformat + Style.RESET_ALL, end='\r')
+        print(Fore.LIGHTCYAN_EX + Back.BLACK + 'Please wait...' + timeformat + Style.RESET_ALL, end='\r')
 
 
 ########################################################################################################################
