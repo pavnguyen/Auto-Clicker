@@ -44,3 +44,7 @@
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\18\18.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\19\19.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\20\20.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\21\21.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\22\22.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\23\23.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\24\24.vmx"

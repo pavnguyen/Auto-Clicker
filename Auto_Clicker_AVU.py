@@ -501,6 +501,9 @@ else:
 print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + "Number Machine: " + str(NUMBER_MACHINE) + '' + Style.RESET_ALL)
 print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + "Total Channel: " +
       str(TOTAL_CHANNEL) + '' + Style.RESET_ALL)
+if ADS_BOTTOM == 0:
+    print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + '-----------[MODE] VIEW ONLY----------' +
+          Style.RESET_ALL)
 
 # Firefox Parameters
 path_profil = get_path_profile_firefox()
