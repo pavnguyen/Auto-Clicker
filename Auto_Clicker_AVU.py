@@ -300,7 +300,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
             random_sleep()
             random_mouse_move()
             random_mouse_scroll()
-            random_small_sleep()
     except:
         pass
 
@@ -376,6 +375,7 @@ def random_mouse_scroll():
         random_small_sleep()
     r = random.randint(-5000, 5000)
     pyautogui.scroll(r)
+    random_small_sleep()
 
 
 def get_path_profile_firefox():
