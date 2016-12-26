@@ -31,12 +31,12 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 import rasdial
 from list_timezone import LIST_TIME_ZONE
-from config import PARAMS
 from config import SCREEN_RESOLUTION  # config.py
 from config import USER_PASS
 from config import VPN_NAME
 from screen_resolution import ScreenRes
 import subprocess
+import configparser
 
 init()
 
@@ -61,8 +61,8 @@ def get_random_vpn():
     return server
 
 
-def connect_pure_vpn():
-    if PARAMS.get('PureVPN') == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
+def connect_purevpn():
+    if PUREVPN == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
         load_result = False
         rasdial.disconnect()
         division = TOTAL_CHANNEL / 2
@@ -86,7 +86,7 @@ def connect_pure_vpn():
 
 
 def connect_openvpn():
-    if (PARAMS.get('OpenVPN') == 1 and NUMBER_MACHINE > TOTAL_CHANNEL) or ADS_BOTTOM == 0:
+    if (OPENVPN == 1 and NUMBER_MACHINE > TOTAL_CHANNEL) or ADS_BOTTOM == 0:
         load_result = False
         while load_result is False:
             try:
@@ -446,6 +446,11 @@ def countdown(timing):
         print(Fore.LIGHTCYAN_EX + Back.BLACK + 'Please wait...' + timeformat + Style.RESET_ALL, end='\r')
 
 
+def get_params(param):
+    config = configparser.ConfigParser()
+    config.read('config_auto_clicker.ini')
+    return config['DEFAULT'][param]
+
 ########################################################################################################################
 #                                                Main Program                                                          #
 # Arguments:                                                                                                           #
@@ -458,6 +463,8 @@ global ADS_BOTTOM
 global ADS_RIGHT
 global CLOSE_ADS_BOTTOM
 global TOTAL_CHANNEL
+global PUREVPN
+global OPENVPN
 global X_SCREEN_SET
 global Y_SCREEN_SET
 global NUMBER_MACHINE
@@ -468,13 +475,15 @@ global CONFIG_IP
 global COUNTER_TOURS
 global TOTAL_CLICKS_ADS_BOTTOM
 
-ADS_BOTTOM = PARAMS.get('ADS_BOTTOM')
-ADS_RIGHT = PARAMS.get('ADS_RIGHT')
-CLOSE_ADS_BOTTOM = PARAMS.get('CLOSE_ADS_BOTTOM')
-TOTAL_CHANNEL = PARAMS.get('TOTAL_CHANNEL')
-BOUCLE_SUPER_VIP = PARAMS.get('BOUCLE_SUPER_VIP')
-X_SCREEN = PARAMS.get('WIDTH')
-Y_SCREEN = PARAMS.get('HEIGHT')
+ADS_BOTTOM = int(get_params('ADS_BOTTOM'))
+ADS_RIGHT = int(get_params('ADS_RIGHT'))
+CLOSE_ADS_BOTTOM = int(get_params('CLOSE_ADS_BOTTOM'))
+TOTAL_CHANNEL = int(get_params('TOTAL_CHANNEL'))
+BOUCLE_SUPER_VIP = int(get_params('BOUCLE_SUPER_VIP'))
+PUREVPN = int(get_params('PureVPN'))
+OPENVPN = int(get_params('OpenVPN'))
+X_SCREEN = int(get_params('WIDTH'))
+Y_SCREEN = int(get_params('HEIGHT'))
 X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
 CONFIG_IP = tuple(open('ressources\config_ip.txt', 'r'))
 KEYWORDS = tuple(open('ressources\keyword.txt', 'r'))
@@ -510,7 +519,7 @@ binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
 for z in range(BOUCLE_SUPER_VIP):
 
-    connect_pure_vpn()  # PureVPN
+    connect_purevpn()  # PureVPN
     connect_openvpn()  # OpenVPN
     set_zone()
 
