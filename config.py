@@ -1,16 +1,3 @@
-PARAMS = {
-    'TOTAL_CHANNEL': 12
-    , 'ADS_RIGHT': 0
-    , 'ADS_BOTTOM': 0
-    , 'CLOSE_ADS_BOTTOM': 0
-    , 'BOUCLE_SUPER_VIP': 2000
-    , 'WIDTH': 1716
-    , 'HEIGHT': 927
-    , 'PATH_VMX': 'E:\Virtual Machine\\'
-    , 'PureVPN': 1
-    , 'OpenVPN': 1
-}
-
 SCREEN_RESOLUTION = {
     1: (1716, 927)
     # 1: (1366, 768)
