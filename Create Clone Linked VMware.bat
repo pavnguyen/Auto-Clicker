@@ -48,3 +48,5 @@
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\22\22.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\23\23.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\24\24.vmx"
+
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" deleteVM "E:\Virtual Machine\30\30.vmx"

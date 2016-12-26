@@ -131,7 +131,7 @@ def connect_openvpn():
             cmd += parameters
             subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
             print('Please wait to connect to OpenVPN...')
-            countdown(10)
+            countdown(8)
             if ping_is_ok() is True:
                 load_result = True
 
@@ -429,10 +429,9 @@ def set_zone():
                    str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
             timeZoneId = load(urlopen(link))['timeZoneId']
             zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
-            print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Synchronize Time Zone ...' + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set
+                  + Style.RESET_ALL)
             check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
-            sleep(3)
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + time.ctime() + Style.RESET_ALL)
             load_result = True
         except:
             pass
@@ -516,11 +515,10 @@ for z in range(BOUCLE_SUPER_VIP):
     set_zone()
 
     for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
+        start_time = time.time()
         if ADS_BOTTOM == 1:
             print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                   + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
-
-        start_time = time.time()
 
         # Open Firefox with default profile
         if i == NUMBER_MACHINE or ADS_BOTTOM == 1:
@@ -530,12 +528,12 @@ for z in range(BOUCLE_SUPER_VIP):
 
         # Check Whoer once!!!
         if i == NUMBER_MACHINE:
-            print(Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + 'Please wait to check Whoer.net... '
+            print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Please wait to check Whoer.net... '
                   + Style.RESET_ALL)
             load_result = False
             while load_result is False:
                 try:
-                    print('Check Whoer...')
+                    print('...Check Whoer...')
                     BROWSER.get('https://whoer.net/')
                     ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
                     id_level = BROWSER.find_element_by_id('anonym_level').text
@@ -690,11 +688,11 @@ for z in range(BOUCLE_SUPER_VIP):
             print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                   + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL)
 
-        print(Fore.LIGHTMAGENTA_EX + '.' * 37 + Style.RESET_ALL)
-        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 8 + 'FINISH -> Tours -> ' +
+        print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 9 + 'FINISH -> Tours -> ' +
               Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(COUNTER_TOURS) + '' +
               Style.RESET_ALL)
-        print(Fore.LIGHTMAGENTA_EX + '.' * 37 + Style.RESET_ALL)
+        print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
         if found_ads_bottom is True:
             countdown(wait_time)  # Wait n minutes to view
@@ -703,7 +701,7 @@ for z in range(BOUCLE_SUPER_VIP):
 
         print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
               str(datetime.timedelta(seconds=time.time() - start_time)) + '')
-        print(Fore.LIGHTMAGENTA_EX + '.' * 37 + Style.RESET_ALL)
+        print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
         print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
         print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'Auto Clicker [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
