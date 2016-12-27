@@ -546,7 +546,9 @@ for z in range(BOUCLE_SUPER_VIP):
     connect_openvpn()  # OpenVPN
 
     for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
-        check_ping_is_ok()
+        if i != NUMBER_MACHINE:
+            check_ping_is_ok()
+
         start_time = time.time()
         if ADS_BOTTOM == 1:
             print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
