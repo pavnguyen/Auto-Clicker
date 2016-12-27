@@ -61,14 +61,15 @@ def get_random_vpn():
     return server
 
 
-def ping_is_ok():
+def check_ping_is_ok():
     print('Check PING...')
     hostname = "bing.com"
     response = os.system("ping -n 1 " + hostname)
     if response == 0:
         return True
     else:
-        return False
+        connect_openvpn()
+        connect_openvpn()
 
 
 def check_country_is_ok():
@@ -99,7 +100,7 @@ def connect_purevpn():
             password = USER_PASS.get(value)[1]
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
-            if ping_is_ok() is True and check_country_is_ok() is True:
+            if check_ping_is_ok() is True and check_country_is_ok() is True:
                 load_result = True
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
 
@@ -151,7 +152,7 @@ def connect_openvpn():
             subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
             print('Please wait to connect to OpenVPN...')
             countdown(8)
-            if ping_is_ok() is True and check_country_is_ok():
+            if check_ping_is_ok() is True and check_country_is_ok() is True:
                 load_result = True
 
 
@@ -354,12 +355,12 @@ def replay_clip():
 
 
 def random_sleep():
-    r = random.randint(4, 8)
+    r = random.randint(4, 7)
     sleep(r)
 
 
 def random_small_sleep():
-    r = random.randint(1, 3)
+    r = random.randint(1, 2)
     sleep(r)
 
 
@@ -533,6 +534,7 @@ for z in range(BOUCLE_SUPER_VIP):
     set_zone()
 
     for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
+        check_ping_is_ok()
         start_time = time.time()
         if ADS_BOTTOM == 1:
             print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
