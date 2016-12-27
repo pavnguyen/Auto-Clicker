@@ -445,7 +445,7 @@ def set_zone():
         print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
         if zone_to_set.strip() != '':
             check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
-        return True
+            return True
     except:
         return False
         pass
