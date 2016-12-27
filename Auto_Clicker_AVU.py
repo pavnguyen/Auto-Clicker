@@ -106,8 +106,8 @@ def connect_purevpn():
             sleep(1)
             if check_ping_is_ok() is True:
                 if check_country_is_ok() is True:
-                    set_zone()
-                    load_result = True
+                    if set_zone() is True:
+                        load_result = True
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
 
 
@@ -156,8 +156,8 @@ def connect_openvpn():
 
             if check_ping_is_ok() is True:
                 if check_country_is_ok() is True:
-                    set_zone()
-                    load_result = True
+                    if set_zone() is True:
+                        load_result = True
 
 
 def get_random_resolution():
@@ -436,8 +436,6 @@ def set_zone():
         time_zone = load(urlopen(link))['time_zone']
         print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
-        load_result = True
-
         # Google API service form Vu.nomos
         link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
                str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
@@ -447,7 +445,9 @@ def set_zone():
         print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
         if zone_to_set.strip() != '':
             check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+        return True
     except:
+        return False
         pass
 
 
