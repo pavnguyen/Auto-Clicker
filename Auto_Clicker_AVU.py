@@ -74,7 +74,10 @@ def check_ping_is_ok():
 
 def check_country_is_ok():
     link = 'http://freegeoip.net/json/'
-    country_name = load(urlopen(link))['country_name']
+    try:
+        country_name = load(urlopen(link))['country_name']
+    except:
+        return False
     if 'Vietnam' in country_name:
         return False
     else:
@@ -100,8 +103,9 @@ def connect_purevpn():
             password = USER_PASS.get(value)[1]
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
-            if check_ping_is_ok() is True and check_country_is_ok() is True:
-                load_result = True
+            if check_ping_is_ok() is True:
+                if check_country_is_ok() is True:
+                    load_result = True
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
 
 
@@ -128,32 +132,38 @@ def connect_openvpn():
                          '--auth-nocache --tun-mtu 1492 ' \
                          '--block-outside-dns ' \
                          '--ca data\ca.rsa.2048.crt '
-
-            # parameters = ' --tls-client --client --dev tun ' \
-            #              '--remote ' + CONFIG_IP[value].strip() + \
-            #              ' --proto udp --port 1197 ' \
-            #              '--lport 53 --persist-key ' \
-            #              '--persist-tun ' \
-            #              '--ca data\ca.crt ' \
-            #              '--comp-lzo --mute 3 ' \
-            #              '--tun-mtu 1400 --mssfix 1360 ' \
-            #              '--auth-user-pass data\\auth.txt ' \
-            #              '--reneg-sec 0 --keepalive 10 120 ' \
-            #              '--route-method exe --route-delay 2 ' \
-            #              '--verb 3 --log c:\\log.txt ' \
-            #              '--status c:\\stat.db 1 ' \
-            #              '--auth-nocache ' \
-            #              '--crl-verify data\crl.pem ' \
-            #              '--remote-cert-tls server ' \
-            #              '--block-outside-dns ' \
-            #              '--cipher aes-256-cbc ' \
-            #              '--auth sha256'
             cmd += parameters
-            subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-            print('Please wait to connect to OpenVPN...')
-            countdown(8)
-            if check_ping_is_ok() is True and check_country_is_ok() is True:
-                load_result = True
+            try:
+                subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+                print('Please wait to connect to OpenVPN...')
+                countdown(8)
+            except:
+                pass
+
+            if check_ping_is_ok() is True:
+                if check_country_is_ok() is True:
+                    load_result = True
+
+
+# parameters = ' --tls-client --client --dev tun ' \
+#              '--remote ' + CONFIG_IP[value].strip() + \
+#              ' --proto udp --port 1197 ' \
+#              '--lport 53 --persist-key ' \
+#              '--persist-tun ' \
+#              '--ca data\ca.crt ' \
+#              '--comp-lzo --mute 3 ' \
+#              '--tun-mtu 1400 --mssfix 1360 ' \
+#              '--auth-user-pass data\\auth.txt ' \
+#              '--reneg-sec 0 --keepalive 10 120 ' \
+#              '--route-method exe --route-delay 2 ' \
+#              '--verb 3 --log c:\\log.txt ' \
+#              '--status c:\\stat.db 1 ' \
+#              '--auth-nocache ' \
+#              '--crl-verify data\crl.pem ' \
+#              '--remote-cert-tls server ' \
+#              '--block-outside-dns ' \
+#              '--cipher aes-256-cbc ' \
+#              '--auth sha256'
 
 
 def get_random_resolution():
