@@ -137,13 +137,14 @@ def connect_openvpn():
                              '--ca data\ca.rsa.2048.crt '
             else:
                 parameters = ' --tls-client --client --dev tun ' \
-                             '--remote ' + CONFIG_IP[value].strip() + ' --proto udp --port 1197 ' \
-                                                                      '--lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3 ' \
-                                                                      '--tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt ' \
-                                                                      '--reneg-sec 0 --keepalive 10 120 --route-method exe --route-delay 2 ' \
-                                                                      '--verb 3 --log c:\\log.txt --status c:\\stat.db 1 --auth-nocache ' \
-                                                                      '--crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns ' \
-                                                                      '--cipher aes-256-cbc --auth sha256'
+                             '--remote ' + CONFIG_IP[value].strip() + \
+                             ' --proto udp --port 1197 ' \
+                             '--lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3 ' \
+                             '--tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt ' \
+                             '--reneg-sec 0 --keepalive 10 120 --route-method exe --route-delay 2 ' \
+                             '--verb 3 --log c:\\log.txt --status c:\\stat.db 1 --auth-nocache ' \
+                             '--crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns ' \
+                             '--cipher aes-256-cbc --auth sha256'
 
             cmd += parameters
             try:
@@ -463,6 +464,7 @@ def get_params(param):
     config = configparser.ConfigParser()
     config.read('config_auto_clicker.ini')
     return config['DEFAULT'][param]
+
 
 ########################################################################################################################
 #                                                Main Program                                                          #
