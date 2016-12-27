@@ -107,6 +107,7 @@ def connect_purevpn():
             if check_ping_is_ok() is True:
                 if check_country_is_ok() is True:
                     load_result = True
+                    set_zone()
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
 
 
@@ -144,6 +145,7 @@ def connect_openvpn():
             if check_ping_is_ok() is True:
                 if check_country_is_ok() is True:
                     load_result = True
+                    set_zone()
 
 
 # parameters = ' --tls-client --client --dev tun ' \
@@ -542,7 +544,6 @@ for z in range(BOUCLE_SUPER_VIP):
 
     connect_purevpn()  # PureVPN
     connect_openvpn()  # OpenVPN
-    set_zone()
 
     for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
         check_ping_is_ok()
