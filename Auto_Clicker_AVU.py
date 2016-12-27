@@ -63,11 +63,12 @@ def get_random_vpn():
 
 def check_ping_is_ok():
     print('Check PING...')
-    hostname = "bing.com"
-    response = os.system("ping -n 1 " + hostname)
-    if response == 0:
-        return True
-    else:
+    hostname = 'bing.com'
+    try:
+        response = os.system("ping -n 1 " + hostname)
+        if response == 0:
+            return True
+    except:
         connect_purevpn()
         connect_openvpn()
 
@@ -449,8 +450,7 @@ def set_zone():
                    str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
             timeZoneId = load(urlopen(link))['timeZoneId']
             zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
-            print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set
-                  + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
             check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             load_result = True
         except:
