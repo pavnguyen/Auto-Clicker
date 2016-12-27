@@ -106,8 +106,8 @@ def connect_purevpn():
             sleep(1)
             if check_ping_is_ok() is True:
                 if check_country_is_ok() is True:
-                    load_result = True
                     set_zone()
+                    load_result = True
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
 
 
@@ -126,14 +126,25 @@ def connect_openvpn():
             cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
             value = random.randint(0, len(CONFIG_IP) - 1)
             print('Random Server: ' + CONFIG_IP[value].strip())
-            parameters = ' --client --dev tun --proto udp --remote ' + CONFIG_IP[value].strip() + \
-                         ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun ' \
-                         '--cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server ' \
-                         '--auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0 --keepalive 10 120  ' \
-                         '--crl-verify data\crl.rsa.2048.pem ' \
-                         '--auth-nocache --tun-mtu 1492 ' \
-                         '--block-outside-dns ' \
-                         '--ca data\ca.rsa.2048.crt '
+            if 'privateinternetaccess' in CONFIG_IP[value].strip():
+                parameters = ' --client --dev tun --proto udp --remote ' + CONFIG_IP[value].strip() + \
+                             ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun ' \
+                             '--cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server ' \
+                             '--auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0 ' \
+                             '--crl-verify data\crl.rsa.2048.pem ' \
+                             '--auth-nocache --tun-mtu 1492 ' \
+                             '--block-outside-dns ' \
+                             '--ca data\ca.rsa.2048.crt '
+            else:
+                parameters = ' --tls-client --client --dev tun ' \
+                             '--remote ' + CONFIG_IP[value].strip() + ' --proto udp --port 1197 ' \
+                                                                      '--lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3 ' \
+                                                                      '--tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt ' \
+                                                                      '--reneg-sec 0 --keepalive 10 120 --route-method exe --route-delay 2 ' \
+                                                                      '--verb 3 --log c:\\log.txt --status c:\\stat.db 1 --auth-nocache ' \
+                                                                      '--crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns ' \
+                                                                      '--cipher aes-256-cbc --auth sha256'
+
             cmd += parameters
             try:
                 subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
@@ -144,29 +155,8 @@ def connect_openvpn():
 
             if check_ping_is_ok() is True:
                 if check_country_is_ok() is True:
-                    load_result = True
                     set_zone()
-
-
-# parameters = ' --tls-client --client --dev tun ' \
-#              '--remote ' + CONFIG_IP[value].strip() + \
-#              ' --proto udp --port 1197 ' \
-#              '--lport 53 --persist-key ' \
-#              '--persist-tun ' \
-#              '--ca data\ca.crt ' \
-#              '--comp-lzo --mute 3 ' \
-#              '--tun-mtu 1400 --mssfix 1360 ' \
-#              '--auth-user-pass data\\auth.txt ' \
-#              '--reneg-sec 0 --keepalive 10 120 ' \
-#              '--route-method exe --route-delay 2 ' \
-#              '--verb 3 --log c:\\log.txt ' \
-#              '--status c:\\stat.db 1 ' \
-#              '--auth-nocache ' \
-#              '--crl-verify data\crl.pem ' \
-#              '--remote-cert-tls server ' \
-#              '--block-outside-dns ' \
-#              '--cipher aes-256-cbc ' \
-#              '--auth sha256'
+                    load_result = True
 
 
 def get_random_resolution():
@@ -424,40 +414,40 @@ def get_key_search():
 
 
 def set_zone():
-    load_result = False
-    while load_result is False:
-        try:
-            link = 'http://freegeoip.net/json/'
-            latitude = load(urlopen(link))['latitude']
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Latitude] => ' + str(latitude) + Style.RESET_ALL)
-            longitude = load(urlopen(link))['longitude']
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Longitude] => ' + str(longitude) + Style.RESET_ALL)
-            timestamp = str(time.time())
+    try:
+        link = 'http://freegeoip.net/json/'
+        latitude = load(urlopen(link))['latitude']
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Latitude] => ' + str(latitude) + Style.RESET_ALL)
+        longitude = load(urlopen(link))['longitude']
+        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Longitude] => ' + str(longitude) + Style.RESET_ALL)
+        timestamp = str(time.time())
 
-            # Public IP & DateTime
-            ip = urlopen('http://ip.42.pl/raw').read()
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
+        # Public IP & DateTime
+        ip = urlopen('http://ip.42.pl/raw').read()
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
 
-            region_name = load(urlopen(link))['region_name']
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+        region_name = load(urlopen(link))['region_name']
+        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
 
-            city = load(urlopen(link))['city']
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+        city = load(urlopen(link))['city']
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
 
-            time_zone = load(urlopen(link))['time_zone']
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+        time_zone = load(urlopen(link))['time_zone']
+        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
-            # Google API service form Vu.nomos
-            link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
-                   str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
-            timeZoneId = load(urlopen(link))['timeZoneId']
-            load_result = True
-            zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
-            print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
-            if zone_to_set.strip() != '':
-                check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
-        except:
-            pass
+        load_result = True
+
+        # Google API service form Vu.nomos
+        link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
+               str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
+        timeZoneId = load(urlopen(link))['timeZoneId']
+
+        zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
+        print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
+        if zone_to_set.strip() != '':
+            check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+    except:
+        pass
 
 
 def countdown(timing):

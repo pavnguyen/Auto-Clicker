@@ -38,6 +38,8 @@ def replace_uuid(path):
             #     line = "uuid.location = " + '\"' + new_uuid + '\"' + '\n'
             if "ethernet0.address = " in line:
                 line = "ethernet0.address = " + '\"' + generate_mac() + '\"' + '\n'
+            elif "ethernet0.generatedAddress = " in line:
+                line = "ethernet0.generatedAddress = " + '\"' + generate_mac() + '\"' + '\n'
 
             lines.append(line)
     with open(path, 'w') as outfile:
