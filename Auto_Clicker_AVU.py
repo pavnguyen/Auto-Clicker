@@ -68,7 +68,7 @@ def check_ping_is_ok():
     if response == 0:
         return True
     else:
-        connect_openvpn()
+        connect_purevpn()
         connect_openvpn()
 
 
