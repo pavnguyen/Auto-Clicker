@@ -449,10 +449,11 @@ def set_zone():
             link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
                    str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
             timeZoneId = load(urlopen(link))['timeZoneId']
+            load_result = True
             zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
             print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
-            check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
-            load_result = True
+            if zone_to_set.strip() != '':
+                check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
         except:
             pass
 
