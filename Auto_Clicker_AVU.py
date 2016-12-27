@@ -61,6 +61,25 @@ def get_random_vpn():
     return server
 
 
+def ping_is_ok():
+    print('Check PING...')
+    hostname = "bing.com"
+    response = os.system("ping -n 1 " + hostname)
+    if response == 0:
+        return True
+    else:
+        return False
+
+
+def check_country_is_ok():
+    link = 'http://freegeoip.net/json/'
+    country_name = load(urlopen(link))['country_name']
+    if 'Vietnam' in country_name:
+        return False
+    else:
+        return True
+
+
 def connect_purevpn():
     if PUREVPN == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
         load_result = False
@@ -80,7 +99,7 @@ def connect_purevpn():
             password = USER_PASS.get(value)[1]
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
-            if ping_is_ok() is True:
+            if ping_is_ok() is True and check_country_is_ok() is True:
                 load_result = True
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
 
@@ -132,18 +151,8 @@ def connect_openvpn():
             subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
             print('Please wait to connect to OpenVPN...')
             countdown(8)
-            if ping_is_ok() is True:
+            if ping_is_ok() is True and check_country_is_ok():
                 load_result = True
-
-
-def ping_is_ok():
-    print('Check PING...')
-    hostname = "bing.com"
-    response = os.system("ping -n 1 " + hostname)
-    if response == 0:
-        return True
-    else:
-        return False
 
 
 def get_random_resolution():
@@ -416,13 +425,13 @@ def set_zone():
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
 
             region_name = load(urlopen(link))['region_name']
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
 
             city = load(urlopen(link))['city']
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
 
             time_zone = load(urlopen(link))['time_zone']
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
             # Google API service form Vu.nomos
             link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
