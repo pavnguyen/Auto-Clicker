@@ -437,13 +437,13 @@ def set_zone():
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
 
             region_name = load(urlopen(link))['region_name']
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
 
             city = load(urlopen(link))['city']
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
 
             time_zone = load(urlopen(link))['time_zone']
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
             # Google API service form Vu.nomos
             link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
