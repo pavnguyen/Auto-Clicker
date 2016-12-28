@@ -128,23 +128,23 @@ def connect_openvpn():
             print('Random Server: ' + CONFIG_IP[value].strip())
             if 'privateinternetaccess' in CONFIG_IP[value].strip():
                 parameters = ' --client --dev tun --proto udp --remote ' + CONFIG_IP[value].strip() + \
-                             ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun ' \
-                             '--cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server ' \
-                             '--auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0 ' \
-                             '--crl-verify data\crl.rsa.2048.pem ' \
-                             '--auth-nocache --tun-mtu 1492 ' \
-                             '--block-outside-dns ' \
-                             '--ca data\ca.rsa.2048.crt '
+                             ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
+                             ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
+                             ' --auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0' \
+                             ' --crl-verify data\crl.rsa.2048.pem' \
+                             ' --auth-nocache --tun-mtu 1492' \
+                             ' --block-outside-dns' \
+                             ' --ca data\ca.rsa.2048.crt'
             else:
-                parameters = ' --tls-client --client --dev tun ' \
-                             '--remote ' + CONFIG_IP[value].strip() + \
-                             ' --proto udp --port 1197 ' \
-                             '--lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3 ' \
-                             '--tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt ' \
-                             '--reneg-sec 0 --keepalive 10 120 --route-method exe --route-delay 2 ' \
-                             '--verb 3 --log c:\\log.txt --status c:\\stat.db 1 --auth-nocache ' \
-                             '--crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns ' \
-                             '--cipher aes-256-cbc --auth sha256'
+                parameters = ' --tls-client --client --dev tun' \
+                             ' --remote ' + CONFIG_IP[value].strip() + \
+                             ' --proto udp --port 1197' \
+                             ' --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3' \
+                             ' --tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt' \
+                             ' --reneg-sec 0 --route-method exe --route-delay 2' \
+                             ' --verb 3 --log c:\\log.txt --status c:\\stat.db 1 --auth-nocache' \
+                             ' --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns' \
+                             ' --cipher aes-256-cbc --auth sha256'
 
             cmd += parameters
             try:
