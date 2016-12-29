@@ -108,7 +108,6 @@ def connect_purevpn():
                 if check_country_is_ok() is True:
                     if set_zone() is True:
                         load_result = True
-            print('Current VPN: ' + str(rasdial.get_current_vpn()))
 
 
 def connect_openvpn():
