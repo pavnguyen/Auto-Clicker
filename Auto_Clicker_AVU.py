@@ -369,26 +369,35 @@ def random_small_sleep():
 
 def random_mouse_move():
     for i in range(random.randrange(3, 5)):
-        print('Mouse Move')
-        x = random.randint(5, 1024)
-        y = random.randint(8, 768)
-        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-        pyautogui.moveRel(x, y, random.random(), pyautogui.easeOutQuad)
-        random_small_sleep()
+        try:
+            print('Mouse Move')
+            x = random.randint(5, 1024)
+            y = random.randint(8, 768)
+            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+            pyautogui.moveRel(x, y, random.random(), pyautogui.easeOutQuad)
+            random_small_sleep()
+        except:
+            pass
 
 
 def random_mouse_scroll():
     for i in range(random.randrange(2, 4)):
-        print('Mouse Scroll')
+        try:
+            print('Mouse Scroll')
+            r = random.randint(-5000, 5000)
+            pyautogui.scroll(r)
+            random_small_sleep()
+            r = random.randint(-5000, 5000)
+            pyautogui.scroll(-r)
+            random_small_sleep()
+        except:
+            pass
+    try:
         r = random.randint(-5000, 5000)
         pyautogui.scroll(r)
         random_small_sleep()
-        r = random.randint(-5000, 5000)
-        pyautogui.scroll(-r)
-        random_small_sleep()
-    r = random.randint(-5000, 5000)
-    pyautogui.scroll(r)
-    random_small_sleep()
+    except:
+        pass
 
 
 def get_path_profile_firefox():
@@ -401,9 +410,12 @@ def get_path_profile_firefox():
 
 
 def get_position_mouse():
-    x, y = pyautogui.position()
-    positionStr = '    X: ' + str(x).rjust(4) + '  Y: ' + str(y).rjust(4)
-    print(positionStr)
+    try:
+        x, y = pyautogui.position()
+        positionStr = '    X: ' + str(x).rjust(4) + '  Y: ' + str(y).rjust(4)
+        print(positionStr)
+    except:
+        pass
 
 
 def get_key_search():
