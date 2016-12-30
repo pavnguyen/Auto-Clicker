@@ -85,28 +85,29 @@ def check_country_is_ok():
 
 
 def connect_purevpn():
-    if USER_CONFIG == 'VUNPA' and PUREVPN == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
-        load_result = False
-        rasdial.disconnect()
-        division = TOTAL_CHANNEL / 2
-        print('Current VPN: ' + str(rasdial.get_current_vpn()))
-        while load_result is False:
+    if PUREVPN == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
+        if USER_CONFIG == 'VUNPA':
+            load_result = False
             rasdial.disconnect()
-            sleep(1)
-            server = get_random_vpn()
+            division = TOTAL_CHANNEL / 2
+            print('Current VPN: ' + str(rasdial.get_current_vpn()))
+            while load_result is False:
+                rasdial.disconnect()
+                sleep(1)
+                server = get_random_vpn()
 
-            if NUMBER_MACHINE <= division:
-                value = 1
-            elif division < NUMBER_MACHINE <= TOTAL_CHANNEL:
-                value = 2
-            user = USER_PASS.get(value)[0]
-            password = USER_PASS.get(value)[1]
-            rasdial.connect(server, user, password)  # connect to a vpn
-            sleep(1)
-            if check_ping_is_ok() is True:
-                if check_country_is_ok() is True:
-                    if set_zone() is True:
-                        load_result = True
+                if NUMBER_MACHINE <= division:
+                    value = 1
+                elif division < NUMBER_MACHINE <= TOTAL_CHANNEL:
+                    value = 2
+                user = USER_PASS.get(value)[0]
+                password = USER_PASS.get(value)[1]
+                rasdial.connect(server, user, password)  # connect to a vpn
+                sleep(1)
+                if check_ping_is_ok() is True:
+                    if check_country_is_ok() is True:
+                        if set_zone() is True:
+                            load_result = True
 
 
 def connect_openvpn():
