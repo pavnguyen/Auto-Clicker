@@ -1,5 +1,5 @@
 # UTF-8
-# pyinstaller --clean --win-private-assemblies --console --icon robo.ico --version-file=version.txt auto_browser.py
+# pyinstaller --clean --win-private-assemblies --console --icon robo.ico --version-file=version.txt Auto_Browser_AVU.py
 # For more details about fixed file info 'ffi' see:
 # http://msdn.microsoft.com/en-us/library/ms646997.aspx
 VSVersionInfo(
@@ -33,7 +33,7 @@ VSVersionInfo(
         StringStruct(u'ProductName', u'Auto Clicker'),
         StringStruct(u'ProductVersion', u'1, 0, 0, 0'),
         StringStruct(u'InternalName', u'Auto Browser'),
-        StringStruct(u'OriginalFilename', u'auto_browser.exe'),
+        StringStruct(u'OriginalFilename', u'Auto_Clicker_AVU.exe'),
         StringStruct(u'FileVersion', u'1, 0, 0, 0'),
         StringStruct(u'FileDescription', u'Click Auto'),
         StringStruct(u'LegalCopyright', u'Copyright 2016 [Phuoc Anh Vu NGUYEN], Inc.'),

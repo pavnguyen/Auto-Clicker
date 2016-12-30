@@ -7,11 +7,10 @@ import os
 import random
 import sys
 import time
+import win32gui
 from json import load
 from subprocess import check_output
 from time import sleep
-
-import win32gui
 
 try:
     # For Python 3.0 and later
@@ -36,7 +35,7 @@ from config import USER_PASS
 from config import VPN_NAME
 from screen_resolution import ScreenRes
 import subprocess
-import configparser
+
 
 init()
 
@@ -86,7 +85,7 @@ def check_country_is_ok():
 
 
 def connect_purevpn():
-    if PUREVPN == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
+    if USER_CONFIG == 'VUNPA' and PUREVPN == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
         load_result = False
         rasdial.disconnect()
         division = TOTAL_CHANNEL / 2
@@ -111,52 +110,53 @@ def connect_purevpn():
 
 
 def connect_openvpn():
-    if (OPENVPN == 1 and NUMBER_MACHINE > TOTAL_CHANNEL) or ADS_BOTTOM == 0:
-        load_result = False
-        while load_result is False:
-            try:
-                print('Try to Disconnect OpenVPN')
-                rasdial.disconnect()  # Disconnect PureVPN first
-                check_output("taskkill /im openvpn.exe /F", shell=True)
-            except:
-                pass
+    if OPENVPN == 1:
+        if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
+            load_result = False
+            while load_result is False:
+                try:
+                    print('Try to Disconnect OpenVPN')
+                    rasdial.disconnect()  # Disconnect PureVPN first
+                    check_output("taskkill /im openvpn.exe /F", shell=True)
+                except:
+                    pass
 
-            print('Connect OpenVPN')
-            cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
-            value = random.randint(0, len(CONFIG_IP) - 1)
-            print('Random Server: ' + CONFIG_IP[value].strip())
-            if 'privateinternetaccess' in CONFIG_IP[value].strip():
-                parameters = ' --client --dev tun --proto udp --remote ' + CONFIG_IP[value].strip() + \
-                             ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
-                             ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
-                             ' --auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0' \
-                             ' --crl-verify data\crl.rsa.2048.pem' \
-                             ' --auth-nocache --tun-mtu 1492' \
-                             ' --block-outside-dns' \
-                             ' --ca data\ca.rsa.2048.crt'
-            else:
-                parameters = ' --tls-client --client --dev tun' \
-                             ' --remote ' + CONFIG_IP[value].strip() + \
-                             ' --proto udp --port 1197' \
-                             ' --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3' \
-                             ' --tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt' \
-                             ' --reneg-sec 0 --route-method exe --route-delay 2' \
-                             ' --verb 3 --log c:\\log.txt --status c:\\stat.db 1 --auth-nocache' \
-                             ' --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns' \
-                             ' --cipher aes-256-cbc --auth sha256'
+                print('Connect OpenVPN')
+                cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
+                value = random.randint(0, len(CONFIG_IP) - 1)
+                print('Random Server: ' + CONFIG_IP[value].strip())
+                if 'privateinternetaccess' in CONFIG_IP[value].strip():
+                    parameters = ' --client --dev tun --proto udp --remote ' + CONFIG_IP[value].strip() + \
+                                 ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
+                                 ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
+                                 ' --auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0' \
+                                 ' --crl-verify data\crl.rsa.2048.pem' \
+                                 ' --auth-nocache --tun-mtu 1492' \
+                                 ' --block-outside-dns' \
+                                 ' --ca data\ca.rsa.2048.crt'
+                else:
+                    parameters = ' --tls-client --client --dev tun' \
+                                 ' --remote ' + CONFIG_IP[value].strip() + \
+                                 ' --proto udp --port 1197' \
+                                 ' --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3' \
+                                 ' --tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt' \
+                                 ' --reneg-sec 0 --route-method exe --route-delay 2' \
+                                 ' --verb 3 --log c:\\log.txt --status c:\\stat.db 1 --auth-nocache' \
+                                 ' --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns' \
+                                 ' --cipher aes-256-cbc --auth sha256'
 
-            cmd += parameters
-            try:
-                subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-                print('Please wait to connect to OpenVPN...')
-                countdown(8)
-            except:
-                pass
+                cmd += parameters
+                try:
+                    subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+                    print('Please wait to connect to OpenVPN...')
+                    countdown(8)
+                except:
+                    pass
 
-            if check_ping_is_ok() is True:
-                if check_country_is_ok() is True:
-                    if set_zone() is True:
-                        load_result = True
+                if check_ping_is_ok() is True:
+                    if check_country_is_ok() is True:
+                        if set_zone() is True:
+                            load_result = True
 
 
 def get_random_resolution():
@@ -472,9 +472,7 @@ def countdown(timing):
 
 
 def get_params(param):
-    config = configparser.ConfigParser()
-    config.read('config_auto_clicker.ini')
-    return config['DEFAULT'][param]
+    return CONFIG_JSON['DEFAULT'][0][param]
 
 
 ########################################################################################################################
@@ -500,7 +498,13 @@ global KEYWORDS
 global CONFIG_IP
 global COUNTER_TOURS
 global TOTAL_CLICKS_ADS_BOTTOM
+global CONFIG_JSON
+global USER_CONFIG
 
+with open('config_auto_clicker.json') as data_file:
+    CONFIG_JSON = load(data_file)
+
+USER_CONFIG = get_params('USER_CONFIG')
 ADS_BOTTOM = int(get_params('ADS_BOTTOM'))
 ADS_RIGHT = int(get_params('ADS_RIGHT'))
 CLOSE_ADS_BOTTOM = int(get_params('CLOSE_ADS_BOTTOM'))
