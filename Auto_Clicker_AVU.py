@@ -229,9 +229,9 @@ def search_google():
         counter += 1
         try:
             key_search = get_key_search()
-            sleep(1)
+            sleep(2)
             BROWSER.get('https://encrypted.google.com/#q=' + key_search)
-            countdown(3)
+            countdown(2)
             try:
                 first_result = ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER:
                                                                    BROWSER.find_element_by_class_name('rc'))

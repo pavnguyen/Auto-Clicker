@@ -22,6 +22,10 @@
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" deleteVM "E:\Virtual Machine\22\22.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" deleteVM "E:\Virtual Machine\23\23.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" deleteVM "E:\Virtual Machine\24\24.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" deleteVM "E:\Virtual Machine\25\25.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" deleteVM "E:\Virtual Machine\26\26.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" deleteVM "E:\Virtual Machine\27\27.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" deleteVM "E:\Virtual Machine\28\28.vmx"
 
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" clone "E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx" "E:\Virtual Machine\1\1.vmx" linked -cloneName="1"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" clone "E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx" "E:\Virtual Machine\2\2.vmx" linked -cloneName="2"
@@ -47,7 +51,10 @@
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" clone "E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx" "E:\Virtual Machine\22\22.vmx" linked -cloneName="22"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" clone "E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx" "E:\Virtual Machine\23\23.vmx" linked -cloneName="23"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" clone "E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx" "E:\Virtual Machine\24\24.vmx" linked -cloneName="24"
-
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" clone "E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx" "E:\Virtual Machine\25\25.vmx" linked -cloneName="25"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" clone "E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx" "E:\Virtual Machine\26\26.vmx" linked -cloneName="26"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" clone "E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx" "E:\Virtual Machine\27\27.vmx" linked -cloneName="27"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" clone "E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx" "E:\Virtual Machine\28\28.vmx" linked -cloneName="28"
 
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\1\1.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\2\2.vmx"
@@ -73,4 +80,7 @@
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\22\22.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\23\23.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\24\24.vmx"
-
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\25\25.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\26\26.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\27\27.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\28\28.vmx"

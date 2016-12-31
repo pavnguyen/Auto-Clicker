@@ -48,8 +48,8 @@ def replace_uuid(path):
 
 
 def change_uuid_mac_for(nbr_machine):
-    path = 'E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx'
-    replace_uuid(path)
+    # path = 'E:\Virtual Machine\May Ao Chuan\Windows 7 x64.vmx'
+    # replace_uuid(path)
 
     for i in range(nbr_machine):
         number_machine = i + 1
