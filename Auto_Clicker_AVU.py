@@ -148,7 +148,7 @@ def connect_openvpn():
 
                 cmd += parameters
                 try:
-                    subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+                    subprocess.Popen(cmd)
                     print('Please wait to connect to OpenVPN...')
                     countdown(8)
                 except:
@@ -192,9 +192,8 @@ def set_screen_resolution():
         windowList = []
         win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
                              windowList)
-        cmdWindow = [i for i in windowList if "auto clicker" in i[0].lower()]
+        cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower()]
 
-        # win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1050, 0, 670, 160, 0)
         win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
     except:
         pass
@@ -244,7 +243,7 @@ def search_google():
                 print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"rc\" => Load \"ads-ad\" ' +
                       Style.RESET_ALL)
                 try:
-                    first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                    first_result = ui.WebDriverWait(BROWSER, 8).until(lambda BROWSER:
                                                                       BROWSER.find_element_by_class_name('ads-ad'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
@@ -695,6 +694,9 @@ def main():
                     print('Current Url is not found!')
                     pass
 
+                if found_ads_bottom is True:
+                    replay_clip()  # Click and replay clip
+
                 if current_url is not None:
                     try:
                         wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
@@ -702,9 +704,6 @@ def main():
                             wait_time = random.randint(150, 180)
                     except:
                         wait_time = random.randint(150, 180)
-
-                if found_ads_bottom is True:
-                    replay_clip()  # Click and replay clip
 
                     # Try to close Ads
                     if CLOSE_ADS_BOTTOM == 1:
