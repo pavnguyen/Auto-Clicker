@@ -358,8 +358,8 @@ def main():
     X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
     X_SCREEN = int(get_params('WIDTH'))
     Y_SCREEN = int(get_params('HEIGHT'))
-    CONFIG_IP = tuple(open('ressources\config_ip.txt', 'r'))
-    KEYWORDS = tuple(open('ressources\keyword.txt', 'r'))
+    # CONFIG_IP = tuple(open('ressources\config_ip.txt', 'r'))
+    # KEYWORDS = tuple(open('ressources\keyword.txt', 'r'))
     COUNTER_TOURS = 0
     TOTAL_CLICKS_ADS_BOTTOM = 0
 
