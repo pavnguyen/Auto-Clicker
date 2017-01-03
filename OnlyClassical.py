@@ -6,11 +6,10 @@ import getpass
 import os
 import random
 import time
+import win32gui
 from json import load
 from subprocess import check_output
 from time import sleep
-
-import win32gui
 
 try:
     # For Python 3.0 and later
@@ -34,6 +33,13 @@ from config import VPN_NAME
 # import subprocess
 
 init()
+
+
+def get_recalcul_xy(x, y):
+    x_new = x * X_SCREEN_SET / X_SCREEN
+    y_new = y * Y_SCREEN_SET / Y_SCREEN
+
+    return x_new, y_new
 
 
 def get_random_vpn():
@@ -179,44 +185,27 @@ def detect_and_click_ads_bottom(url, timing_ads):
     switch_main_window()
     try:
         BROWSER.get(url)
-        countdown(3)
+        countdown(2)
         try:
-            first_result = ui.WebDriverWait(BROWSER, timing_ads).until(lambda BROWSER:
-                                                                       BROWSER.find_element_by_class_name('adx'))
+            close_warning = ui.WebDriverWait(BROWSER, 10).until(lambda BROWSER:
+                                                                BROWSER.find_element_by_id('spmCloseButton'))
+            close_warning.click()
+        except:
+            pass
+        try:
+            print('debut')
+            first_result = ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER:
+                                                               BROWSER.find_element_by_id('google_image_div'))
+            print('first result')
             first_link = first_result.find_element_by_tag_name('a')
+            print('first link')
             first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adx\" => ' + Style.RESET_ALL +
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'ID \"google_image_div\" => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
             load_result = True
         except:
-            try:
-                first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
-                                                                  BROWSER.find_element_by_id('google_image_div'))
-                first_link = first_result.find_element_by_tag_name('a')
-                first_link.send_keys(Keys.CONTROL + Keys.RETURN)
-
-                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"google_image_div\" => ' + Style.RESET_ALL +
-                      Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-                load_result = True
-
-                print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"adx\"' + Style.RESET_ALL)
-            except:
-                try:
-                    first_result = ui.WebDriverWait(BROWSER, 5).until \
-                        (lambda BROWSER: BROWSER.find_element_by_class_name('adx'))
-                    first_link = first_result.find_element_by_tag_name('a')
-                    first_link.send_keys(Keys.CONTROL + Keys.RETURN)
-
-                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adx\" => ' + Style.RESET_ALL +
-                          Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-
-                    load_result = True
-
-                except:
-                    print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
-                    pass
-                pass
+            pass
         # Switch tab to the new tab, which we will assume is the next one on the right
         if load_result is True:
             switch_tab()
@@ -343,7 +332,11 @@ def main():
     global MAIN_WINDOW
     global PUREVPN
     global OPENVPN
+    global X_SCREEN_SET
+    global Y_SCREEN_SET
     global NUMBER_MACHINE
+    global X_SCREEN
+    global Y_SCREEN
     global KEYWORDS
     global CONFIG_IP
     global COUNTER_TOURS
@@ -358,6 +351,9 @@ def main():
     BOUCLE_SUPER_VIP = int(get_params('BOUCLE_SUPER_VIP'))
     PUREVPN = int(get_params('PureVPN'))
     OPENVPN = int(get_params('OpenVPN'))
+    X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
+    X_SCREEN = int(get_params('WIDTH'))
+    Y_SCREEN = int(get_params('HEIGHT'))
     CONFIG_IP = tuple(open('ressources\config_ip.txt', 'r'))
     KEYWORDS = tuple(open('ressources\keyword.txt', 'r'))
     COUNTER_TOURS = 0
@@ -376,7 +372,7 @@ def main():
 
     for z in range(BOUCLE_SUPER_VIP):
 
-        connect_purevpn()  # PureVPN
+        # connect_purevpn()  # PureVPN
 
         start_time = time.time()
         # Open Firefox with default profile
@@ -414,9 +410,9 @@ def main():
         # Google Search #
         #################
         try:
-            total_key = random.randint(1, 3)
+            total_key = random.randint(1, 2)
             for j in range(total_key):
-                loaded_google = search_google()  # Search Google with keywords
+                # loaded_google = search_google()  # Search Google with keywords
 
                 print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Search Key] => ' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[ OK ]' + Style.RESET_ALL)
@@ -434,36 +430,17 @@ def main():
         # Check Ads Bottom
         url = 'http://onlyclassical.org'
 
-        found_ads_bottom = False
-        counter = 0
-        timing_ads = random.randint(25, 39)
-        while found_ads_bottom is False and counter < 3:
-            try:
-                counter += 1
-                print("Test Ads Bottom: " + str(counter))
-                found_ads_bottom = detect_and_click_ads_bottom(url, timing_ads)
-                if found_ads_bottom is True:
-                    TOTAL_CLICKS_ADS_BOTTOM += 1
-                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Ads Bottom] => ' +
-                          Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
-                          '[FOUND & CLICKED]' + Style.RESET_ALL)
-                    print(
-                        Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' +
-                        Style.RESET_ALL + Fore.LIGHTGREEN_EX + Back.BLACK +
-                        str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL)
-            except:
-                try:
-                    BROWSER.quit()
-                except:
-                    pass
-                continue
-
-        if found_ads_bottom is False:
-            try:
-                BROWSER.quit()
-            except:
-                pass
-            continue
+        BROWSER.get(url)
+        countdown(10)
+        x, y = get_recalcul_xy(1210, 760)
+        print('Try to click Ads: X->' + str(x) + ' Y->' + str(y))
+        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+        sleep(0.25)
+        pyautogui.click(x, y)
+        countdown(10)
+        random_mouse_scroll()
+        random_mouse_move()
+        countdown(120)
 
         COUNTER_TOURS += 1
 
@@ -482,13 +459,13 @@ def main():
 
         BROWSER.delete_all_cookies()
 
-    try:
-        BROWSER.delete_all_cookies()
-        BROWSER.quit()
-    except:
-        pass
+        try:
+            BROWSER.delete_all_cookies()
+            BROWSER.quit()
+        except:
+            pass
 
-    print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
+    print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads] => ' + Style.RESET_ALL
           + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
     print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + 'Press ENTER to close...' + '')
     raw_input()
