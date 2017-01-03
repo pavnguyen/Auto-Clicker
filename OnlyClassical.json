@@ -3,8 +3,8 @@
     {
       "USER_CONFIG": "VUNPA",
       "BOUCLE_SUPER_VIP": "2000",
-      "PureVPN": "1",
-      "OpenVPN": "1",
+      "PureVPN": "0",
+      "OpenVPN": "0",
       "USER_PUREVPN": "purevpn0s1122211",
       "WIDTH": "1716",
       "HEIGHT": "927",

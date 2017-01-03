@@ -134,7 +134,7 @@ def search_google():
     while load_result is False and counter < 2:
         counter += 1
         try:
-            key_search = get_key_search()
+            key_search = 'onlyclassical'
             sleep(2)
             BROWSER.get('https://encrypted.google.com/#q=' + key_search)
             countdown(2)
@@ -158,7 +158,7 @@ def search_google():
                 except:
                     print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"ads-ad\" => Reload... ' +
                           Style.RESET_ALL)
-                    switch_main_window()
+                    # switch_main_window()
                     pass
             pass
         except:
@@ -176,16 +176,16 @@ def search_google():
     switch_tab()
     random_small_sleep()
     # Take hand the window opener
-    switch_main_window()
+    # switch_main_window()
     return load_result
 
 
 def detect_and_click_ads_bottom(url, timing_ads):
     load_result = False
-    switch_main_window()
+    # switch_main_window()
     try:
-        BROWSER.get(url)
-        countdown(2)
+        # BROWSER.get(url)
+        countdown(5)
         try:
             close_warning = ui.WebDriverWait(BROWSER, 10).until(lambda BROWSER:
                                                                 BROWSER.find_element_by_id('spmCloseButton'))
@@ -193,8 +193,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
         except:
             pass
         try:
-            print('debut')
-            first_result = ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER:
+            first_result = ui.WebDriverWait(BROWSER, 10).until(lambda BROWSER:
                                                                BROWSER.find_element_by_id('google_image_div'))
             print('first result')
             first_link = first_result.find_element_by_tag_name('a')
@@ -205,10 +204,15 @@ def detect_and_click_ads_bottom(url, timing_ads):
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
             load_result = True
         except:
+            x, y = get_recalcul_xy(1125, 745)
+            print('Try to click Ads: X->' + str(x) + ' Y->' + str(y))
+            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+            sleep(0.25)
+            pyautogui.click(x, y)
             pass
         # Switch tab to the new tab, which we will assume is the next one on the right
         if load_result is True:
-            switch_tab()
+            # switch_tab()
             random_sleep()
             random_mouse_move()
             random_mouse_scroll()
@@ -372,7 +376,7 @@ def main():
 
     for z in range(BOUCLE_SUPER_VIP):
 
-        # connect_purevpn()  # PureVPN
+        connect_purevpn()  # PureVPN
 
         start_time = time.time()
         # Open Firefox with default profile
@@ -410,13 +414,13 @@ def main():
         # Google Search #
         #################
         try:
-            total_key = random.randint(1, 2)
-            for j in range(total_key):
-                # loaded_google = search_google()  # Search Google with keywords
+            # total_key = random.randint(1, 2)
+            # for j in range(total_key):
+            loaded_google = search_google()  # Search Google with keywords
 
-                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Search Key] => ' + Style.RESET_ALL +
-                      Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[ OK ]' + Style.RESET_ALL)
-                random_small_sleep()
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Search Key] => ' + Style.RESET_ALL +
+                  Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[ OK ]' + Style.RESET_ALL)
+            random_small_sleep()
         except:
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Search Key] => ' + Style.RESET_ALL +
                   Back.LIGHTRED_EX + Fore.BLACK + Style.BRIGHT + 'FAILED!!!' + Style.RESET_ALL)
@@ -425,18 +429,12 @@ def main():
         #####################
         # Detect Ads Bottom #
         #####################
-        switch_main_window()
+        # switch_main_window()
 
         # Check Ads Bottom
         url = 'http://onlyclassical.org'
+        detect_and_click_ads_bottom(url, 15)
 
-        BROWSER.get(url)
-        countdown(10)
-        x, y = get_recalcul_xy(1210, 760)
-        print('Try to click Ads: X->' + str(x) + ' Y->' + str(y))
-        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-        sleep(0.25)
-        pyautogui.click(x, y)
         countdown(10)
         random_mouse_scroll()
         random_mouse_move()
@@ -447,7 +445,7 @@ def main():
         #####################
         # Back to the video #
         #####################
-        switch_main_window()
+        # switch_main_window()
         random_mouse_move()
         print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
               str(datetime.timedelta(seconds=time.time() - start_time)) + '')
