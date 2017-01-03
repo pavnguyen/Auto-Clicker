@@ -1,1 +1,1 @@
-pyinstaller --clean --win-private-assemblies --console --icon robo.ico --version-file=version.txt Auto_Clicker_AVU.py
+pyinstaller --clean --win-private-assemblies --console --onefile --icon robo.ico --version-file=version.txt Auto_Clicker_AVU.py
