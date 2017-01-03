@@ -33,7 +33,6 @@ from list_timezone import LIST_TIME_ZONE
 from config import SCREEN_RESOLUTION  # config.py
 from config import USER_PASS
 from config import VPN_NAME
-from screen_resolution import ScreenRes
 import subprocess
 
 init()
@@ -179,13 +178,13 @@ def get_info_length_youtube(url_real_youtube):
 
 
 def set_screen_resolution():
-    print('Primary screen resolution: {}x{}'.format(
-        *ScreenRes.get()
-    ))
+    # print('Primary screen resolution: {}x{}'.format(
+    #     *ScreenRes.get()
+    # ))
 
-    width, height = get_random_resolution()
+    # width, height = get_random_resolution()
 
-    ScreenRes.set(width, height)
+    # ScreenRes.set(width, height)
     # ScreenRes.set() # Set defaults
     try:
         windowList = []
@@ -280,33 +279,33 @@ def detect_and_click_ads_bottom(url, timing_ads):
         countdown(3)
         try:
             first_result = ui.WebDriverWait(BROWSER, timing_ads).until(lambda BROWSER:
-                                                                       BROWSER.find_element_by_class_name('adDisplay'))
+                                                                       BROWSER.find_element_by_class_name('adx'))
             first_link = first_result.find_element_by_tag_name('a')
             first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adx\" => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
             load_result = True
         except:
             try:
                 first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
-                                                                  BROWSER.find_element_by_id('AdSense'))
+                                                                  BROWSER.find_element_by_id('google_image_div'))
                 first_link = first_result.find_element_by_tag_name('a')
                 first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
+                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"google_image_div\" => ' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
                 load_result = True
 
-                print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
+                print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"adx\"' + Style.RESET_ALL)
             except:
                 try:
                     first_result = ui.WebDriverWait(BROWSER, 5).until \
-                        (lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
+                        (lambda BROWSER: BROWSER.find_element_by_class_name('adx'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
+                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adx\" => ' + Style.RESET_ALL +
                           Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
 
                     load_result = True
@@ -527,7 +526,7 @@ def main():
     set_screen_resolution()
 
     print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
-    print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'Auto Clicker [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
+    print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'OnlyClassical [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
     print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
     if len(sys.argv) > 1:
@@ -749,7 +748,7 @@ def main():
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
             print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
-            print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'Auto Clicker [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
+            print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'OnlyClassical [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
             print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
             BROWSER.delete_all_cookies()
