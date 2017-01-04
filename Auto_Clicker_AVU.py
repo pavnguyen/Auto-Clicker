@@ -89,7 +89,7 @@ def connect_purevpn():
         if USER_CONFIG == 'VUNPA':
             load_result = False
             rasdial.disconnect()
-            division = TOTAL_CHANNEL / 2
+            division = TOTAL_CHANNEL / 3
             print('Current VPN: ' + str(rasdial.get_current_vpn()))
             while load_result is False:
                 rasdial.disconnect()
@@ -98,8 +98,10 @@ def connect_purevpn():
 
                 if NUMBER_MACHINE <= division:
                     value = 1
-                elif division < NUMBER_MACHINE <= TOTAL_CHANNEL:
+                elif division < NUMBER_MACHINE <= TOTAL_CHANNEL - division:
                     value = 2
+                else:
+                    value = 3
                 user = USER_PASS.get(value)[0]
                 password = USER_PASS.get(value)[1]
                 rasdial.connect(server, user, password)  # connect to a vpn

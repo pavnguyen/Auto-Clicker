@@ -48,4 +48,5 @@ VPN_NAME = {
 USER_PASS = {
     1: ('purevpn0s1122863', 'nPL6hkRk77')
     , 2: ('purevpn0s1122211', 'vunguyen')
+    , 3: ('purevpn0s1125250', '0pf6jzw7')
 }
