@@ -5,6 +5,7 @@ import datetime
 import getpass
 import os
 import random
+import subprocess
 import time
 import win32gui
 from json import load
@@ -56,8 +57,8 @@ def check_ping_is_ok():
         if response == 0:
             return True
     except:
-        connect_purevpn()
-        # connect_openvpn()
+        # connect_purevpn()
+        connect_openvpn()
 
 
 def check_country_is_ok():
@@ -70,6 +71,42 @@ def check_country_is_ok():
         return False
     else:
         return True
+
+
+def connect_openvpn():
+    if OPENVPN == 1:
+        load_result = False
+        while load_result is False:
+            try:
+                print('Try to Disconnect OpenVPN')
+                rasdial.disconnect()  # Disconnect PureVPN first
+                check_output("taskkill /im openvpn.exe /F", shell=True)
+            except:
+                pass
+
+            print('Connect OpenVPN')
+            cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
+            value = random.randint(0, len(CONFIG_IP) - 1)
+            print('Random Server: ' + CONFIG_IP[value].strip())
+            if 'pointtoserver' in CONFIG_IP[value].strip():
+                parameters = ' --client --dev tun --remote ' + CONFIG_IP[value].strip() + ' --port 53' + \
+                             ' --proto udp --nobind --persist-key --persist-tun --tls-auth Wdc.key 1 --ca ca.crt' + \
+                             ' --cipher AES-256-CBC --comp-lzo --verb 1 --mute 20 --float --route-method exe' + \
+                             ' --route-delay 2 --auth-user-pass auth.txt --auth-retry interact' \
+                             ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache --block-outside-dns'
+
+            cmd += parameters
+            try:
+                subprocess.Popen(cmd)
+                print('Please wait to connect to OpenVPN...')
+                countdown(8)
+            except:
+                pass
+
+            if check_ping_is_ok() is True:
+                if check_country_is_ok() is True:
+                    if set_zone() is True:
+                        load_result = True
 
 
 def connect_purevpn():
@@ -144,7 +181,7 @@ def search_google():
                 first_link = first_result.find_element_by_tag_name('a')
                 # Open the link in a new tab by sending key strokes on the element
                 # Use: Keys.CONTROL + Keys.SHIFT + Keys.RETURN to open tab on top of the stack
-                first_link.send_keys(Keys.CONTROL + Keys.RETURN)
+                first_link.send_keys(Keys.RETURN)
                 load_result = True
             except:
                 print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"rc\" => Load \"ads-ad\" ' +
@@ -153,7 +190,7 @@ def search_google():
                     first_result = ui.WebDriverWait(BROWSER, 8).until(lambda BROWSER:
                                                                       BROWSER.find_element_by_class_name('ads-ad'))
                     first_link = first_result.find_element_by_tag_name('a')
-                    first_link.send_keys(Keys.CONTROL + Keys.RETURN)
+                    first_link.send_keys(Keys.RETURN)
                     load_result = True
                 except:
                     print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"ads-ad\" => Reload... ' +
@@ -358,7 +395,7 @@ def main():
     X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
     X_SCREEN = int(get_params('WIDTH'))
     Y_SCREEN = int(get_params('HEIGHT'))
-    # CONFIG_IP = tuple(open('ressources\config_ip.txt', 'r'))
+    CONFIG_IP = tuple(open('listVPN.txt', 'r'))
     # KEYWORDS = tuple(open('ressources\keyword.txt', 'r'))
     COUNTER_TOURS = 0
     TOTAL_CLICKS_ADS_BOTTOM = 0
@@ -376,7 +413,7 @@ def main():
 
     for z in range(BOUCLE_SUPER_VIP):
 
-        connect_purevpn()  # PureVPN
+        connect_openvpn()  # PureVPN
 
         start_time = time.time()
         # Open Firefox with default profile
