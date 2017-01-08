@@ -36,7 +36,6 @@ from config import VPN_NAME
 from screen_resolution import ScreenRes
 import subprocess
 
-
 init()
 
 
@@ -502,10 +501,10 @@ def main():
     global Y_SCREEN
     global KEYWORDS
     global CONFIG_IP
-    global COUNTER_TOURS
-    global TOTAL_CLICKS_ADS_BOTTOM
     global CONFIG_JSON
     global USER_CONFIG
+    global COUNTER_TOURS
+    global TOTAL_CLICKS_ADS_BOTTOM
 
     with open('config_auto_clicker.json') as data_file:
         CONFIG_JSON = load(data_file)
@@ -523,8 +522,6 @@ def main():
     X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
     CONFIG_IP = tuple(open('ressources\config_ip.txt', 'r'))
     KEYWORDS = tuple(open('ressources\keyword.txt', 'r'))
-    COUNTER_TOURS = 0
-    TOTAL_CLICKS_ADS_BOTTOM = 0
 
     # Resize Screen and set Always on TOP
     set_screen_resolution()
@@ -783,4 +780,12 @@ def main():
 
 
 if __name__ == "__main__":
+    COUNTER_TOURS = 0
+    TOTAL_CLICKS_ADS_BOTTOM = 0
+
     main()
+    # schedule.every(60).minutes.do(main)
+    #
+    # while True:
+    #     schedule.run_pending()
+    #     time.sleep(1)

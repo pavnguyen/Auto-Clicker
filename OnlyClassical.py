@@ -93,7 +93,7 @@ def connect_openvpn():
                              ' --proto udp --nobind --persist-key --persist-tun --tls-auth Wdc.key 1 --ca ca.crt' + \
                              ' --cipher AES-256-CBC --comp-lzo --verb 1 --mute 20 --float --route-method exe' + \
                              ' --route-delay 2 --auth-user-pass auth.txt --auth-retry interact' \
-                             ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache --block-outside-dns'
+                             ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache '
 
             cmd += parameters
             try:
@@ -138,7 +138,7 @@ def set_screen_resolution():
                              windowList)
         cmdWindow = [i for i in windowList if 'onlyclassical' in i[0].lower() or 'classical' in i[0].lower()]
 
-        win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
+        win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 0, 0, 320, 915, 0)
     except:
         pass
 
@@ -176,7 +176,7 @@ def search_google():
             BROWSER.get('https://encrypted.google.com/#q=' + key_search)
             countdown(2)
             try:
-                first_result = ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER:
+                first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
                                                                    BROWSER.find_element_by_class_name('rc'))
                 first_link = first_result.find_element_by_tag_name('a')
                 # Open the link in a new tab by sending key strokes on the element
@@ -187,7 +187,7 @@ def search_google():
                 print(Fore.LIGHTRED_EX + Back.LIGHTWHITE_EX + Style.BRIGHT + 'Error: \"rc\" => Load \"ads-ad\" ' +
                       Style.RESET_ALL)
                 try:
-                    first_result = ui.WebDriverWait(BROWSER, 8).until(lambda BROWSER:
+                    first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
                                                                       BROWSER.find_element_by_class_name('ads-ad'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.RETURN)
@@ -230,22 +230,13 @@ def detect_and_click_ads_bottom(url, timing_ads):
         except:
             pass
         try:
-            first_result = ui.WebDriverWait(BROWSER, 10).until(lambda BROWSER:
-                                                               BROWSER.find_element_by_id('google_image_div'))
-            print('first result')
-            first_link = first_result.find_element_by_tag_name('a')
-            print('first link')
-            first_link.send_keys(Keys.CONTROL + Keys.RETURN)
-
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'ID \"google_image_div\" => ' + Style.RESET_ALL +
-                  Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-            load_result = True
-        except:
-            x, y = get_recalcul_xy(1125, 745)
+            x, y = get_recalcul_xy(1125, 725)
             print('Try to click Ads: X->' + str(x) + ' Y->' + str(y))
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
             sleep(0.25)
             pyautogui.click(x, y)
+            load_result = True
+        except:
             pass
         # Switch tab to the new tab, which we will assume is the next one on the right
         if load_result is True:
@@ -492,10 +483,7 @@ def main():
         print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'OnlyClassical [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
         print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
-        BROWSER.delete_all_cookies()
-
         try:
-            BROWSER.delete_all_cookies()
             BROWSER.quit()
         except:
             pass
