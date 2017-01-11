@@ -648,6 +648,7 @@ def main():
                     print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                           Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
                     BROWSER.get(url_view)
+                    random_mouse_move()
                     countdown(timing_view)
                 except:
                     pass
