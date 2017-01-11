@@ -29,7 +29,7 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 import rasdial
 from list_timezone import LIST_TIME_ZONE
-from config import VPN_NAME
+from config import PURE_VPN_NAME
 
 # import subprocess
 
@@ -44,8 +44,8 @@ def get_recalcul_xy(x, y):
 
 
 def get_random_vpn():
-    value = random.randint(1, len(VPN_NAME))
-    server = VPN_NAME.get(value)
+    value = random.randint(1, len(PURE_VPN_NAME))
+    server = PURE_VPN_NAME.get(value)
     return server
 
 

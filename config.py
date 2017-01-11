@@ -12,7 +12,7 @@ SCREEN_RESOLUTION = {
     # , 10: (1024, 768)
 }
 
-VPN_NAME = {
+PURE_VPN_NAME = {
     1: 'Chicago'
     , 2: 'LosAngeles'
     , 3: 'Sanfrancisco'
@@ -43,6 +43,19 @@ VPN_NAME = {
     , 28: 'Zurich'
     , 29: 'Dubai'
     , 30: 'Munich'
+}
+
+PIA_VPN_NAME = {
+    1: 'PIA-California'
+    , 2: 'PIA-East'
+    , 3: 'PIA-Midwest'
+    , 4: 'PIA-Chicago'
+    , 5: 'PIA-Texas'
+    , 6: 'PIA-Florida'
+    , 7: 'PIA-Seatle'
+    , 8: 'PIA-West'
+    , 9: 'PIA-SiliconValley'
+    , 10: 'PIA-Newyork'
 }
 
 USER_PASS = {

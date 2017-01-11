@@ -32,7 +32,8 @@ import rasdial
 from list_timezone import LIST_TIME_ZONE
 from config import SCREEN_RESOLUTION  # config.py
 from config import USER_PASS
-from config import VPN_NAME
+from config import PURE_VPN_NAME
+from config import PIA_VPN_NAME
 from screen_resolution import ScreenRes
 import subprocess
 
@@ -53,9 +54,9 @@ def get_tinyurl_clip(channel):
     return yt_tinyurl
 
 
-def get_random_vpn():
-    value = random.randint(1, len(VPN_NAME))
-    server = VPN_NAME.get(value)
+def get_random_vpn(name):
+    value = random.randint(1, len(name))
+    server = name.get(value)
     return server
 
 
@@ -68,7 +69,7 @@ def check_ping_is_ok():
             return True
     except:
         connect_purevpn()
-        connect_openvpn()
+        # connect_openvpn()
 
 
 def check_country_is_ok():
@@ -84,16 +85,18 @@ def check_country_is_ok():
 
 
 def connect_purevpn():
-    if PUREVPN == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
-        if USER_CONFIG == 'VUNPA':
-            load_result = False
+    # if PUREVPN == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
+    if PUREVPN == 1:
+        load_result = False
+        rasdial.disconnect()
+        division = TOTAL_CHANNEL / len(USER_PASS)
+        print('Current VPN: ' + str(rasdial.get_current_vpn()))
+        while load_result is False:
             rasdial.disconnect()
-            division = TOTAL_CHANNEL / 3
-            print('Current VPN: ' + str(rasdial.get_current_vpn()))
-            while load_result is False:
-                rasdial.disconnect()
-                sleep(1)
-                server = get_random_vpn()
+            sleep(1)
+
+            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1:
+                server = get_random_vpn(PURE_VPN_NAME)
 
                 if NUMBER_MACHINE <= division:
                     value = 1
@@ -103,12 +106,17 @@ def connect_purevpn():
                     value = 3
                 user = USER_PASS.get(value)[0]
                 password = USER_PASS.get(value)[1]
-                rasdial.connect(server, user, password)  # connect to a vpn
-                sleep(1)
-                if check_ping_is_ok() is True:
-                    if check_country_is_ok() is True:
-                        if set_zone() is True:
-                            load_result = True
+            elif USER_CONFIG != 'VUNPA' or ADS_BOTTOM == 0:
+                server = get_random_vpn(PIA_VPN_NAME)
+                user = 'x3569491'
+                password = 'rUTPQnvnv7'
+
+            rasdial.connect(server, user, password)  # connect to a vpn
+            sleep(1)
+            if check_ping_is_ok() is True:
+                if check_country_is_ok() is True:
+                    if set_zone() is True:
+                        load_result = True
 
 
 def connect_openvpn():
@@ -123,6 +131,9 @@ def connect_openvpn():
                 except:
                     pass
 
+                check_output('ipconfig /release', shell=True)
+                check_output('ipconfig /renew', shell=True)
+
                 print('Connect OpenVPN')
                 cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
                 value = random.randint(0, len(CONFIG_IP) - 1)
@@ -133,7 +144,7 @@ def connect_openvpn():
                                  ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
                                  ' --auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0' \
                                  ' --crl-verify data\crl.rsa.2048.pem' \
-                                 ' --auth-nocache --tun-mtu 1492' \
+                                 ' --auth-nocache' \
                                  ' --block-outside-dns' \
                                  ' --ca data\ca.rsa.2048.crt'
                 else:
@@ -141,7 +152,7 @@ def connect_openvpn():
                                  ' --remote ' + CONFIG_IP[value].strip() + \
                                  ' --proto udp --port 1197' \
                                  ' --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3' \
-                                 ' --tun-mtu 1400 --mssfix 1360 --auth-user-pass data\\auth.txt' \
+                                 ' --auth-user-pass data\\auth.txt' \
                                  ' --reneg-sec 0 --route-method exe --route-delay 2' \
                                  ' --verb 3 --log c:\\log.txt --status c:\\stat.db 1 --auth-nocache' \
                                  ' --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns' \
@@ -551,10 +562,11 @@ def main():
     path_profil = get_path_profile_firefox()
     binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
+    modulo = random.randint(3, 4)
     for z in range(BOUCLE_SUPER_VIP):
-
-        connect_purevpn()  # PureVPN
-        connect_openvpn()  # OpenVPN
+        if z % modulo == 0:
+            connect_purevpn()  # PureVPN
+        # connect_openvpn()  # OpenVPN
 
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
             if i != NUMBER_MACHINE:
