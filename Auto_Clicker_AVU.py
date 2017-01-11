@@ -7,10 +7,11 @@ import os
 import random
 import sys
 import time
-import win32gui
 from json import load
 from subprocess import check_output
 from time import sleep
+
+import win32gui
 
 try:
     # For Python 3.0 and later
@@ -603,7 +604,7 @@ def main():
             #################
             if ADS_BOTTOM == 1:
                 try:
-                    total_key = random.randint(1, 3)
+                    total_key = random.randint(1, 2)
                     for j in range(total_key):
                         loaded_google = search_google()  # Search Google with keywords
 
@@ -633,9 +634,27 @@ def main():
             if file_channel == 0:
                 file_channel = TOTAL_CHANNEL
 
+            # View before detect and click real ads
+            if ADS_BOTTOM == 1:
+                total_key = random.randint(1, 2)
+                timing_view = random.randint(10, 15)
+            else:
+                total_key = random.randint(3, 4)
+                timing_view = random.randint(20, 30)
+
+            for j in range(total_key):
+                try:
+                    url_view = get_tinyurl_clip(str(file_channel))
+                    print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
+                          Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
+                    BROWSER.get(url_view)
+                    countdown(timing_view)
+                except:
+                    pass
+
             url = get_tinyurl_clip(str(file_channel))
 
-            print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL >> ' + Style.RESET_ALL +
+            print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL Ads >> ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
 
             # Check Ads Bottom
