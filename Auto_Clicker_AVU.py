@@ -106,7 +106,7 @@ def connect_purevpn():
                     value = 3
                 user = USER_PASS.get(value)[0]
                 password = USER_PASS.get(value)[1]
-            elif USER_CONFIG != 'VUNPA' or ADS_BOTTOM == 0:
+            elif USER_CONFIG != 'VUNPA' or (USER_CONFIG == 'VUNPA' and ADS_BOTTOM == 1) or ADS_BOTTOM == 0:
                 server = get_random_vpn(PIA_VPN_NAME)
                 user = 'x3569491'
                 password = 'rUTPQnvnv7'
@@ -562,7 +562,11 @@ def main():
     path_profil = get_path_profile_firefox()
     binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
-    modulo = random.randint(3, 4)
+    if ADS_BOTTOM == 0:
+        modulo = TOTAL_CHANNEL
+    else:
+        modulo = random.randint(3, 4)
+
     for z in range(BOUCLE_SUPER_VIP):
         if z % modulo == 0:
             connect_purevpn()  # PureVPN
@@ -645,9 +649,28 @@ def main():
             if file_channel == 0:
                 file_channel = TOTAL_CHANNEL
 
+            # View before detect and click real ads
+            if ADS_BOTTOM == 1:
+                total_key = random.randint(1, 2)
+                timing_view = random.randint(10, 15)
+            else:
+                total_key = random.randint(3, 4)
+                timing_view = random.randint(20, 30)
+
+            for j in range(total_key):
+                try:
+                    url_view = get_tinyurl_clip(str(file_channel))
+                    BROWSER.get(url_view)
+                    print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
+                          Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
+                    random_mouse_move()
+                    countdown(timing_view)
+                except:
+                    pass
+
             url = get_tinyurl_clip(str(file_channel))
 
-            print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL >> ' + Style.RESET_ALL +
+            print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL Ads >> ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
 
             # Check Ads Bottom
@@ -754,7 +777,7 @@ def main():
             if found_ads_bottom is True:
                 countdown(wait_time)  # Wait n minutes to view
             elif ADS_BOTTOM == 0:
-                countdown(random.randint(21, 60))
+                countdown(random.randint(21, 49))
 
             print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
                   str(datetime.timedelta(seconds=time.time() - start_time)) + '')
