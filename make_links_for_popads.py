@@ -1,4 +1,5 @@
 # Copy all links to input.txt => output.txt with link Tinyurl#linkYoutube
+# for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].href)}
 import tinyurl
 
 f = open('ressources\LinksPopAds\\output.txt', 'w+')

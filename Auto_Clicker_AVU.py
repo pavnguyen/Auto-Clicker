@@ -600,7 +600,7 @@ def main():
                         id_level = BROWSER.find_element_by_id('anonym_level').text
                         load_result = True
                     except:
-                        connect_openvpn()  # OpenVPN
+                        # connect_openvpn()  # OpenVPN
                         pass
                 print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
@@ -680,7 +680,7 @@ def main():
                 timing_ads = random.randint(25, 39)
                 while found_ads_bottom is False and counter < 3:
                     try:
-                        counter += 1
+                        counter += 10
                         print("Test Ads Bottom: " + str(counter))
                         found_ads_bottom = detect_and_click_ads_bottom(url, timing_ads)
                         if found_ads_bottom is True:
