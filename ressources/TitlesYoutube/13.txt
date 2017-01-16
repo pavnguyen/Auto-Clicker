@@ -1,0 +1,11 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[NOM] Does Ethereum compete against Bitcoin 2099NO
+[NOM] What is Mining digital Crypto Currencies 2099NO
+[NOM] What is blockchain 2099NO
+[NOM] Synereo   Decentralized Economy 2099NO
+[NOM] Steemit 2099NO
+[NOM] How to Install the Ethereum Wallet 2099NO
+[NOM] How the Stolen Credit Card Market Works 2099NO
+[NOM] How Does a Bank Work 2099NO
+[NOM] Evolving layered technologies in cryptocurrency 2099NO
+[NOM] Blockchain Health Teaser 2099NO
