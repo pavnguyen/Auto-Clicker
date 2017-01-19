@@ -1,7 +1,7 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
 [VUN] What is Mining digital Crypto Currencies 2099VU
 [VUN] What is blockchain 2099VU
-[VUN] Synereo   Decentralized Economy 2099VU
+[VUN] Synereo Decentralized Economy 2099VU
 [VUN] Steemit 2099VU
 [VUN] How to Install the Ethereum Wallet 2099VU
 [VUN] How the Stolen Credit Card Market Works 2099VU

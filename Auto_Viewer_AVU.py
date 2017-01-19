@@ -12,6 +12,8 @@ from json import load
 from subprocess import check_output
 from time import sleep
 
+from config import PIA_VPN_NAME
+
 try:
     # For Python 3.0 and later
     from urllib.request import urlopen
@@ -31,7 +33,6 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import rasdial
 from list_timezone import LIST_TIME_ZONE
 from config import SCREEN_RESOLUTION  # config.py
-from config import PURE_VPN_NAME
 from screen_resolution import ScreenRes
 import subprocess
 
@@ -42,7 +43,7 @@ def get_tinyurl_clip():
     load_result = False
     while load_result is False:
         try:
-            links_tinyurl = tuple(open('ressources\Links_Group\\nhactienchienvn.txt', 'r'))
+            links_tinyurl = tuple(open('ressources\Links_Group\\' + FILE_URL, 'r'))
             random_int = random.randint(0, len(links_tinyurl) - 1)
             if 'http' in links_tinyurl[random_int].strip():
                 yt_tinyurl = links_tinyurl[random_int].strip()
@@ -91,9 +92,13 @@ def connect_purevpn():
             rasdial.disconnect()
             sleep(1)
 
-            server = get_random_vpn(PURE_VPN_NAME)
-            user = 'purevpn0s1125250'
-            password = '0xtzqqd5'
+            # server = get_random_vpn(PURE_VPN_NAME)
+            # user = 'purevpn0s1125250'
+            # password = '0xtzqqd5'
+
+            server = get_random_vpn(PIA_VPN_NAME)
+            user = 'x3569491'
+            password = 'rUTPQnvnv7'
 
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
@@ -188,7 +193,8 @@ def set_screen_resolution():
         windowList = []
         win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
                              windowList)
-        cmdWindow = [i for i in windowList if 'auto viewer' in i[0].lower() or 'openvpn' in i[0].lower()]
+        cmdWindow = [i for i in windowList if 'auto viewer' in i[0].lower() or 'openvpn' in i[0].lower()
+                     or 'auto_' in i[0].lower()]
 
         win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
     except:
@@ -348,6 +354,7 @@ def main():
     global USER_CONFIG
     global COUNTER_TOURS
     global TOTAL_CLICKS_ADS_BOTTOM
+    global FILE_URL
 
     with open('config_auto_clicker.json') as data_file:
         CONFIG_JSON = load(data_file)
@@ -377,6 +384,7 @@ def main():
 
     if len(sys.argv) > 1:
         NUMBER_MACHINE = int(sys.argv[1])
+        FILE_URL = sys.argv[2]
     else:
         print(Back.BLACK + Fore.LIGHTWHITE_EX + ' ' * 3 + '[ Please enter the Machine Number: ]' +
               Back.LIGHTRED_EX + Fore.LIGHTWHITE_EX)
@@ -430,7 +438,7 @@ def main():
                         id_level = BROWSER.find_element_by_id('anonym_level').text
                         load_result = True
                     except:
-                        # connect_openvpn()  # OpenVPN
+                        connect_purevpn()  # OpenVPN
                         pass
                 print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)

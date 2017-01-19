@@ -342,23 +342,26 @@ def detect_and_click_ads_bottom(url, timing_ads):
 
 def click_ads_right():
     if ADS_RIGHT == 1:
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT)
+        print('>> Ads Right >> Try to Click Ads RIGHT')
+        print(Style.RESET_ALL)
         try:
+            first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                                                              BROWSER.find_element_by_id('google_companion_ad_div'))
             x, y = get_recalcul_xy(1330, 270)
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
             pyautogui.keyDown('ctrl')
             pyautogui.click()
             pyautogui.keyUp('ctrl')
-            sleep(1)
-            x, y = get_recalcul_xy(1335, 423)
-            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-            pyautogui.keyDown('ctrl')
-            pyautogui.click()
-            pyautogui.keyUp('ctrl')
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT)
-            print('>> Ads Right >> Try to Click Ads RIGHT')
-            print(Style.RESET_ALL)
+            countdown(15)
         except:
+            pyautogui.keyUp('ctrl')
             pass
+    try:
+        pyautogui.keyUp('ctrl')
+        random_mouse_move()
+    except:
+        pass
 
 
 def replay_clip():
@@ -516,10 +519,12 @@ def main():
     global USER_CONFIG
     global COUNTER_TOURS
     global TOTAL_CLICKS_ADS_BOTTOM
+    global TYPE_CLICKER
 
     with open('config_auto_clicker.json') as data_file:
         CONFIG_JSON = load(data_file)
 
+    TYPE_CLICKER = get_params('TYPE_CLICKER')
     USER_CONFIG = get_params('USER_CONFIG')
     ADS_BOTTOM = int(get_params('ADS_BOTTOM'))
     ADS_RIGHT = int(get_params('ADS_RIGHT'))
@@ -565,7 +570,7 @@ def main():
     if ADS_BOTTOM == 0:
         modulo = TOTAL_CHANNEL
     else:
-        modulo = random.randint(3, 4)
+        modulo = random.randint(9, 10)
 
     for z in range(BOUCLE_SUPER_VIP):
         if z % modulo == 0:
@@ -634,7 +639,7 @@ def main():
             #####################
             # Detect Ads Bottom #
             #####################
-            switch_main_window()
+            # switch_main_window()
 
             print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                   + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
@@ -650,24 +655,28 @@ def main():
                 file_channel = TOTAL_CHANNEL
 
             # View before detect and click real ads
-            if ADS_BOTTOM == 1:
-                total_key = random.randint(1, 2)
-                timing_view = random.randint(10, 15)
-            else:
-                total_key = random.randint(3, 4)
-                timing_view = random.randint(20, 30)
+            if TYPE_CLICKER == 'DAILY':
+                if ADS_BOTTOM == 1:
+                    total_key = random.randint(1, 2)
+                    timing_view = random.randint(10, 15)
+                else:
+                    total_key = random.randint(3, 4)
+                    timing_view = random.randint(20, 30)
 
-            for j in range(total_key):
-                try:
-                    url_view = get_tinyurl_clip(str(file_channel))
-                    BROWSER.get(url_view)
-                    print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
-                          Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
-                    random_mouse_move()
-                    countdown(timing_view)
-                except:
-                    pass
-
+                for j in range(total_key):
+                    try:
+                        switch_main_window()
+                        url_view = get_tinyurl_clip(str(file_channel))
+                        BROWSER.get(url_view)
+                        print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
+                              Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
+                        random_mouse_move()
+                        countdown(timing_view)
+                        if ADS_BOTTOM == 1 and ADS_RIGHT == 1:
+                            click_ads_right()
+                    except:
+                        pass
+            switch_main_window()
             url = get_tinyurl_clip(str(file_channel))
 
             print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL Ads >> ' + Style.RESET_ALL +
@@ -753,13 +762,12 @@ def main():
                                 pass
 
             random_mouse_move()
-            ###################
-            # Click Ads RIGHT #
-            ###################
-
-            click_ads_right()
 
             if ADS_BOTTOM == 1:
+                ###################
+                # Click Ads RIGHT #
+                ###################
+
                 print(Fore.LIGHTYELLOW_EX + Back.BLACK + '[Search key] => ' + Style.RESET_ALL
                       + Fore.LIGHTGREEN_EX + Back.BLACK + str(total_key) + Style.RESET_ALL)
                 print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + '[Duration to click ads]' + Style.RESET_ALL +
@@ -775,7 +783,9 @@ def main():
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
             if found_ads_bottom is True:
-                countdown(wait_time)  # Wait n minutes to view
+                countdown(wait_time)
+                if ADS_RIGHT == 1:
+                    click_ads_right()
             elif ADS_BOTTOM == 0:
                 countdown(random.randint(21, 49))
 

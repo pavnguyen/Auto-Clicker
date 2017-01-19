@@ -3,7 +3,7 @@
     {
       "USER_CONFIG": "VUNPA",
       "TOTAL_CHANNEL": "15",
-      "ADS_RIGHT": "0",
+      "ADS_RIGHT": "1",
       "ADS_BOTTOM": "1",
       "CLOSE_ADS_BOTTOM": "0",
       "BOUCLE_SUPER_VIP": "300",
@@ -11,7 +11,8 @@
       "HEIGHT": "927",
       "PATH_VMX": "E:\\Virtual Machine\\",
       "PureVPN": "1",
-      "OpenVPN": "1"
+      "OpenVPN": "1",
+      "TYPE_CLICKER": "DAILY"
     }
   ]
 }
