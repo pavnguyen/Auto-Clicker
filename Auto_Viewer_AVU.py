@@ -404,15 +404,15 @@ def main():
     path_profil = get_path_profile_firefox()
     binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
-    modulo = random.randint(10, 20)
+    modulo = random.randint(2, 3)
 
     for z in range(BOUCLE_SUPER_VIP):
         if z % modulo == 0:
             connect_purevpn()  # PureVPN
 
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
-            if i != NUMBER_MACHINE:
-                check_ping_is_ok()
+            # if i != NUMBER_MACHINE:
+            #     check_ping_is_ok()
 
             start_time = time.time()
             if ADS_BOTTOM == 1:
@@ -429,19 +429,17 @@ def main():
             if i == NUMBER_MACHINE:
                 print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Please wait to check Whoer.net... '
                       + Style.RESET_ALL)
-                load_result = False
-                while load_result is False:
-                    try:
-                        print('...Check Whoer...')
-                        BROWSER.get('https://whoer.net/')
-                        ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
-                        id_level = BROWSER.find_element_by_id('anonym_level').text
-                        load_result = True
-                    except:
-                        connect_purevpn()  # OpenVPN
-                        pass
-                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
-                      Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
+                try:
+                    print('...Check Whoer...')
+                    BROWSER.get('https://whoer.net/')
+                    ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
+                    id_level = BROWSER.find_element_by_id('anonym_level').text
+                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
+                          Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
+
+                except:
+                    # connect_purevpn()  # OpenVPN
+                    pass
 
                 BROWSER.delete_all_cookies()
 

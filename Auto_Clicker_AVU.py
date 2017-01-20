@@ -291,6 +291,67 @@ def detect_and_click_ads_bottom(url, timing_ads):
     try:
         BROWSER.get(url)
         countdown(3)
+        # SKIP ADS
+        try:
+            x, y = get_recalcul_xy(330, 590)
+            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+            first_result = ui.WebDriverWait(BROWSER, timing_ads).until(
+                lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-contents'))
+            # first_link = first_result.find_element_by_tag_name('a')
+            # first_link.send_keys(Keys.CONTROL + Keys.RETURN)
+            pyautogui.keyDown('ctrl')
+            pyautogui.click(x, y)
+            pyautogui.keyUp('ctrl')
+
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
+                  Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+            switch_tab()
+            random_sleep()
+            random_mouse_move()
+            random_mouse_scroll()
+            switch_main_window()
+
+            try:
+                first_result = ui.WebDriverWait(BROWSER, timing_ads).until(
+                    lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiSkipButton'))
+                first_result.click()
+            except:
+                # Click Skip ads
+                x, y = get_recalcul_xy(980, 559)
+                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                pyautogui.click(x, y)
+                pass
+
+        except:
+            pyautogui.keyUp('ctrl')
+            try:
+                x, y = get_recalcul_xy(330, 590)
+                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                first_result = ui.WebDriverWait(BROWSER, 5).until(
+                    lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
+                pyautogui.keyDown('ctrl')
+                pyautogui.click(x, y)
+                pyautogui.keyUp('ctrl')
+
+                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"videoAdUiVisitAdvertiserLinkText\" => '
+                      + Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
+                      '[DETECTED]' + Style.RESET_ALL)
+                switch_tab()
+                random_sleep()
+                random_mouse_move()
+                random_mouse_scroll()
+                switch_main_window()
+
+                # Click Skip ads
+                x, y = get_recalcul_xy(980, 559)
+                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                pyautogui.click(x, y)
+            except:
+                pyautogui.keyUp('ctrl')
+                pass
+            pass
+
+        # ADS BOTTOM
         try:
             first_result = ui.WebDriverWait(BROWSER, timing_ads).until(lambda BROWSER:
                                                                        BROWSER.find_element_by_class_name('adDisplay'))
@@ -356,6 +417,18 @@ def click_ads_right():
             countdown(15)
         except:
             pyautogui.keyUp('ctrl')
+            try:
+                first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                                                                  BROWSER.find_element_by_id('adContent-border'))
+                x, y = get_recalcul_xy(1330, 270)
+                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                pyautogui.keyDown('ctrl')
+                pyautogui.click()
+                pyautogui.keyUp('ctrl')
+                countdown(15)
+            except:
+                pyautogui.keyUp('ctrl')
+                pass
             pass
     try:
         pyautogui.keyUp('ctrl')
@@ -568,18 +641,18 @@ def main():
     binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
     if ADS_BOTTOM == 0:
-        modulo = TOTAL_CHANNEL
+        modulo = 2
     else:
-        modulo = random.randint(9, 10)
+        modulo = random.randint(2, 3)
 
     for z in range(BOUCLE_SUPER_VIP):
         if z % modulo == 0:
             connect_purevpn()  # PureVPN
-        # connect_openvpn()  # OpenVPN
+            # connect_openvpn()  # OpenVPN
 
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
-            if i != NUMBER_MACHINE:
-                check_ping_is_ok()
+            # if i != NUMBER_MACHINE:
+            #     check_ping_is_ok()
 
             start_time = time.time()
             if ADS_BOTTOM == 1:
@@ -592,32 +665,29 @@ def main():
                 BROWSER = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
                 BROWSER.maximize_window()
 
-            # Check Whoer once!!!
-            if i == NUMBER_MACHINE:
-                print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Please wait to check Whoer.net... '
-                      + Style.RESET_ALL)
-                load_result = False
-                while load_result is False:
-                    try:
-                        print('...Check Whoer...')
-                        BROWSER.get('https://whoer.net/')
-                        ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
-                        id_level = BROWSER.find_element_by_id('anonym_level').text
-                        load_result = True
-                    except:
-                        # connect_openvpn()  # OpenVPN
-                        pass
-                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
-                      Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
-
-                BROWSER.delete_all_cookies()
-
             # Save the window opener
             try:
                 MAIN_WINDOW = BROWSER.current_window_handle
             except:
                 MAIN_WINDOW = BROWSER.current_window_handle
                 pass
+
+            # Check Whoer once!!!
+            # if i == NUMBER_MACHINE:
+            #     print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Please wait to check Whoer.net... '
+            #           + Style.RESET_ALL)
+            #     try:
+            #         print('...Check Whoer...')
+            #         BROWSER.get('https://whoer.net/')
+            #         ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
+            #         id_level = BROWSER.find_element_by_id('anonym_level').text
+            #         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
+            #               Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
+            #     except:
+            #         # connect_openvpn()  # OpenVPN
+            #         pass
+            #
+            #     BROWSER.delete_all_cookies()
 
             #################
             # Google Search #
@@ -672,8 +742,8 @@ def main():
                               Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
                         random_mouse_move()
                         countdown(timing_view)
-                        if ADS_BOTTOM == 1 and ADS_RIGHT == 1:
-                            click_ads_right()
+                        # if ADS_BOTTOM == 1 and ADS_RIGHT == 1:
+                        #     click_ads_right()
                     except:
                         pass
             switch_main_window()
@@ -689,7 +759,7 @@ def main():
                 timing_ads = random.randint(25, 39)
                 while found_ads_bottom is False and counter < 3:
                     try:
-                        counter += 10
+                        counter += 1
                         print("Test Ads Bottom: " + str(counter))
                         found_ads_bottom = detect_and_click_ads_bottom(url, timing_ads)
                         if found_ads_bottom is True:
