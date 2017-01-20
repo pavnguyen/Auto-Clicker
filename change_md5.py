@@ -3,6 +3,7 @@ import os
 import random
 import sys
 
+
 try:
     if len(sys.argv) > 1:
         path = sys.argv[1]
@@ -16,8 +17,7 @@ except:
 try:
     for file_source in dirs:
         print('[File to change MD5]  ' + file_source)
-        old_md5 = hashlib.md5(open(path + file_source, 'rb').read()).hexdigest() \
- \
+        old_md5 = hashlib.md5(open(path + file_source, 'rb').read()).hexdigest()
         file_opened = open(path + file_source, 'rb').read()
         with open(path + file_source, 'wb') as new_file:
             value_random = random.randint(1, 99) * random.randint(1, 99)
