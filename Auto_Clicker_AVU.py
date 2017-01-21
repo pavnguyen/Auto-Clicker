@@ -303,7 +303,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
             pyautogui.click(x, y)
             pyautogui.keyUp('ctrl')
 
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
+            print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
             switch_tab()
             random_sleep()
@@ -333,7 +333,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 pyautogui.click(x, y)
                 pyautogui.keyUp('ctrl')
 
-                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"videoAdUiVisitAdvertiserLinkText\" => '
+                print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"videoAdUiVisitAdvertiserLinkText\" => '
                       + Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
                       '[DETECTED]' + Style.RESET_ALL)
                 switch_tab()
@@ -694,7 +694,7 @@ def main():
             #################
             if ADS_BOTTOM == 1:
                 try:
-                    total_key = random.randint(1, 3)
+                    total_key = random.randint(1, 2)
                     for j in range(total_key):
                         loaded_google = search_google()  # Search Google with keywords
 
@@ -756,7 +756,7 @@ def main():
             found_ads_bottom = False
             if ADS_BOTTOM == 1:
                 counter = 0
-                timing_ads = random.randint(25, 39)
+                timing_ads = random.randint(23, 34)
                 while found_ads_bottom is False and counter < 3:
                     try:
                         counter += 1

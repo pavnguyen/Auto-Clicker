@@ -1,0 +1,11 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[WEN] Tony Robbins: Best Piece of Financial Advice
+[WEN] JimRohnWorkingonYourselfDoesn'tWorkJimRohnPersonalDevelopment
+[WEN] Jim Rohn  Today My Life Changed Tony Robbins Eric Thomas
+[WEN] Jim Rohn  The Ant Philosophy ~ Personal Development
+[WEN] Jim Rohn  Skills You Need to Be Successful ~ Personal Development
+[WEN] Jim Rohn  Skills You Need to Be Successful Jim Rohn Personal Development
+[WEN] Jim Rohn  Bring Joy Back To Your Job ~ Motivation1
+[WEN] Jim Rohn  Bring Joy Back To Your Job ~ Motivation
+[WEN] Jim Rohn  4 Questions to Ask Yourself Everyday ~ Motivation
+[WEN] Jack Ma  Trust Yourself Not Others ~ Motivation

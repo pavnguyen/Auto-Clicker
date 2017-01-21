@@ -1,0 +1,11 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[LAD] Success Story ~ Michael Phelps   The Mindset of an Olympian
+[LAD] Shift To Strategic Mindset
+[LAD] Interesting Story
+[LAD] Marketing Mindset  Experiment, Learn, Modify
+[LAD] Speaking Test Between 2 Teachers Part 2
+[LAD] How Bill Gates Made Billions  ~ The Mindset of a Billionaire
+[LAD] Speaking Between 2 Teachers 1
+[LAD] I Heart Teachers  Encouraging Growth Mindset
+[LAD] Growth Mindset Goal Setting, Data Tracking and Reflection
+[LAD] Fixed Mindset vs  Growth Mindset
