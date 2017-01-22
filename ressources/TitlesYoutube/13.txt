@@ -1,11 +1,10 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
-[NOM] Does Ethereum compete against Bitcoin 2099NO
-[NOM] What is Mining digital Crypto Currencies 2099NO
-[NOM] What is blockchain 2099NO
-[NOM] Synereo Decentralized Economy 2099NO
-[NOM] Steemit 2099NO
-[NOM] How to Install the Ethereum Wallet 2099NO
-[NOM] How the Stolen Credit Card Market Works 2099NO
-[NOM] How Does a Bank Work 2099NO
-[NOM] Evolving layered technologies in cryptocurrency 2099NO
-[NOM] Blockchain Health Teaser 2099NO
+[TRE] Success Story ~ Michael Phelps ~ The Mindset of an Olympian 999
+[TRE] Soldiers Journal ~ Warrior Mindset 999
+[TRE] Shift To Strategic Mindset 999
+[TRE] Marketing Mindset Experiment, Learn, Modify 999
+[TRE] I Heart Teachers Encouraging Growth Mindset 999
+[TRE] How Bill Gates Made Billions ~ The Mindset of a Billionaire 999
+[TRE] Growth Mindset Goal Setting, Data Tracking and Reflection 999
+[TRE] Fixed Mindset vs Growth Mindset 999
+

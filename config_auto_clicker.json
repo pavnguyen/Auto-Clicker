@@ -2,9 +2,9 @@
   "DEFAULT": [
     {
       "USER_CONFIG": "VUNPA",
-      "TOTAL_CHANNEL": "14",
+      "TOTAL_CHANNEL": "17",
       "ADS_RIGHT": "1",
-      "ADS_BOTTOM": "0",
+      "ADS_BOTTOM": "1",
       "CLOSE_ADS_BOTTOM": "0",
       "BOUCLE_SUPER_VIP": "300",
       "WIDTH": "1716",

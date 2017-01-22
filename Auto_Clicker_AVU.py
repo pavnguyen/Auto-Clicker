@@ -95,7 +95,7 @@ def connect_purevpn():
             rasdial.disconnect()
             sleep(1)
 
-            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1:
+            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1 and NUMBER_MACHINE <= 15:
                 server = get_random_vpn(PURE_VPN_NAME)
 
                 if NUMBER_MACHINE <= division:

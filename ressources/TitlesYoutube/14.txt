@@ -1,11 +1,11 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
-[PHU] What is Mining digital Crypto Currencies 2099PH
-[PHU] What is blockchain 2099PH
-[PHU] Synereo Decentralized Economy 2099PH
-[PHU] Steemit 2099PH
-[PHU] How to Install the Ethereum Wallet 2099PH
-[PHU] How the Stolen Credit Card Market Works 2099PH
-[PHU] How Does a Bank Work 2099PH
-[PHU] Evolving layered technologies in cryptocurrency 2099PH
-[PHU] Does Ethereum compete against Bitcoin 2099PH
-[PHU] Blockchain Health Teaser 2099PH
+[LAD] Success Story ~ Michael Phelps The Mindset of an Olympian
+[LAD] Shift To Strategic Mindset
+[LAD] Interesting Story
+[LAD] Marketing Mindset Experiment, Learn, Modify
+[LAD] Speaking Test Between 2 Teachers Part 2
+[LAD] How Bill Gates Made Billions ~ The Mindset of a Billionaire
+[LAD] Speaking Between 2 Teachers 1
+[LAD] I Heart Teachers Encouraging Growth Mindset
+[LAD] Growth Mindset Goal Setting, Data Tracking and Reflection
+[LAD] Fixed Mindset vs Growth Mindset

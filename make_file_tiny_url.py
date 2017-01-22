@@ -59,7 +59,10 @@ for i in range(debut, fin + 1):
                 # Find out correct link <-> Youtube
                 for index in range(5):
                     if (name_clip + ' - YouTube' == linkElems[index].getText()) or \
-                            (name_clip[:67] + ' ...' == linkElems[index].getText() + ' ...'):
+                            (name_clip[:65] + ' ...' == linkElems[index].getText() + ' ...') or \
+                            (name_clip[:67] + ' ...' == linkElems[index].getText() + ' ...') or \
+                            (name_clip[:67] + '...' == linkElems[index].getText() + ' ...') or \
+                            (name_clip[:71] + ' ...' == linkElems[index].getText() + ' ...'):
                         url_ytb = 'https://www.google.com' + linkElems[index].get('href')
                         print('Youtube: ' + url_ytb + '\n')
                         sleep(1)
