@@ -95,7 +95,7 @@ def connect_purevpn():
             rasdial.disconnect()
             sleep(1)
 
-            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1 and NUMBER_MACHINE <= 15:
+            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1:
                 server = get_random_vpn(PURE_VPN_NAME)
 
                 if NUMBER_MACHINE <= division:
@@ -287,6 +287,7 @@ def search_google():
 
 def detect_and_click_ads_bottom(url, timing_ads):
     load_result = False
+    ad_SkipAds = False
     switch_main_window()
     try:
         BROWSER.get(url)
@@ -297,14 +298,14 @@ def detect_and_click_ads_bottom(url, timing_ads):
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
             first_result = ui.WebDriverWait(BROWSER, timing_ads).until(
                 lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-contents'))
-            # first_link = first_result.find_element_by_tag_name('a')
-            # first_link.send_keys(Keys.CONTROL + Keys.RETURN)
             pyautogui.keyDown('ctrl')
             pyautogui.click(x, y)
             pyautogui.keyUp('ctrl')
 
             print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+            ad_SkipAds = True
+            load_result = True
             switch_tab()
             random_sleep()
             random_mouse_move()
@@ -312,7 +313,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
             switch_main_window()
 
             try:
-                first_result = ui.WebDriverWait(BROWSER, timing_ads).until(
+                first_result = ui.WebDriverWait(BROWSER, 10).until(
                     lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiSkipButton'))
                 first_result.click()
             except:
@@ -329,13 +330,19 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
                 first_result = ui.WebDriverWait(BROWSER, 5).until(
                     lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
-                pyautogui.keyDown('ctrl')
-                pyautogui.click(x, y)
-                pyautogui.keyUp('ctrl')
+                try:
+                    pyautogui.keyDown('ctrl')
+                    pyautogui.click(x, y)
+                    pyautogui.keyUp('ctrl')
+                    print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
+                          'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
+                          Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
+                          '[DETECTED]' + Style.RESET_ALL)
+                    ad_SkipAds = True
+                    load_result = True
+                except:
+                    pass
 
-                print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"videoAdUiVisitAdvertiserLinkText\" => '
-                      + Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
-                      '[DETECTED]' + Style.RESET_ALL)
                 switch_tab()
                 random_sleep()
                 random_mouse_move()
@@ -352,49 +359,53 @@ def detect_and_click_ads_bottom(url, timing_ads):
             pass
 
         # ADS BOTTOM
-        try:
-            first_result = ui.WebDriverWait(BROWSER, timing_ads).until(lambda BROWSER:
-                                                                       BROWSER.find_element_by_class_name('adDisplay'))
-            first_link = first_result.find_element_by_tag_name('a')
-            first_link.send_keys(Keys.CONTROL + Keys.RETURN)
-
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
-                  Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-            load_result = True
-        except:
+        if ad_SkipAds is False:
             try:
-                first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
-                                                                  BROWSER.find_element_by_id('AdSense'))
+                first_result = ui.WebDriverWait(BROWSER, timing_ads).until(lambda BROWSER:
+                                                                           BROWSER.find_element_by_class_name(
+                                                                               'adDisplay'))
                 first_link = first_result.find_element_by_tag_name('a')
                 first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
+                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
                 load_result = True
-
-                print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
             except:
                 try:
-                    first_result = ui.WebDriverWait(BROWSER, 5).until \
-                        (lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
+                    first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                                                                      BROWSER.find_element_by_id('AdSense'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
+                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
                           Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-
                     load_result = True
 
+                    print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
                 except:
-                    print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
+                    try:
+                        first_result = ui.WebDriverWait(BROWSER, 5).until \
+                            (lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
+                        first_link = first_result.find_element_by_tag_name('a')
+                        first_link.send_keys(Keys.CONTROL + Keys.RETURN)
+
+                        print(
+                            Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
+                            Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+
+                        load_result = True
+
+                    except:
+                        print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
+                        pass
                     pass
-                pass
-        # Switch tab to the new tab, which we will assume is the next one on the right
+                    # Switch tab to the new tab, which we will assume is the next one on the right
         if load_result is True:
             switch_tab()
             random_sleep()
             random_mouse_move()
             random_mouse_scroll()
+            switch_main_window()
     except:
         pass
 
