@@ -655,7 +655,7 @@ def main():
     for z in range(BOUCLE_SUPER_VIP):
         # if z % modulo == 0:
         connect_purevpn()  # PureVPN
-            # connect_openvpn()  # OpenVPN
+        # connect_openvpn()  # OpenVPN
 
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
             # if i != NUMBER_MACHINE:
@@ -844,9 +844,11 @@ def main():
                 ###################
                 # Click Ads RIGHT #
                 ###################
-
-                print(Fore.LIGHTYELLOW_EX + Back.BLACK + '[Search key] => ' + Style.RESET_ALL
-                      + Fore.LIGHTGREEN_EX + Back.BLACK + str(total_key) + Style.RESET_ALL)
+                try:
+                    print(Fore.LIGHTYELLOW_EX + Back.BLACK + '[Search key] => ' + Style.RESET_ALL
+                          + Fore.LIGHTGREEN_EX + Back.BLACK + str(total_key) + Style.RESET_ALL)
+                except:
+                    pass
                 print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + '[Duration to click ads]' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTWHITE_EX + ' ' +
                       str(datetime.timedelta(seconds=time.time() - start_time)) + '' + Style.RESET_ALL)

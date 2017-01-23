@@ -425,8 +425,6 @@ def main():
                     pyautogui.moveTo(1540, 135, random.random(), pyautogui.easeOutQuad)
                     pyautogui.click(1540, 135)
                 except:
-                    print('Click Skip Ads!')
-                    pyautogui.moveTo(1540, 135, random.random(), pyautogui.easeOutQuad)
                     pyautogui.click(1540, 133)
                     pass
             except:
