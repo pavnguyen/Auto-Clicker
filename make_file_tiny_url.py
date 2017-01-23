@@ -14,13 +14,6 @@ import bs4
 import requests
 import tinyurl
 
-try:
-    # For Python 3.0 and later
-    from urllib.request import urlopen
-except ImportError:
-    # Fall back to Python 2's urllib2
-    from urllib2 import urlopen
-
 # Search clip in Google
 link_search_google = 'https://encrypted.google.com/search?q='
 

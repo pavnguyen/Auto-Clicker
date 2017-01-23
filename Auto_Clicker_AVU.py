@@ -287,7 +287,6 @@ def search_google():
 
 def detect_and_click_ads_bottom(url, timing_ads):
     load_result = False
-    ad_SkipAds = False
     switch_main_window()
     try:
         BROWSER.get(url)
@@ -304,8 +303,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
 
             print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-            ad_SkipAds = True
-            load_result = True
             switch_tab()
             random_sleep()
             random_mouse_move()
@@ -338,8 +335,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
                           'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
                           Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
                           '[DETECTED]' + Style.RESET_ALL)
-                    ad_SkipAds = True
-                    load_result = True
                 except:
                     pass
 
@@ -359,47 +354,46 @@ def detect_and_click_ads_bottom(url, timing_ads):
             pass
 
         # ADS BOTTOM
-        if ad_SkipAds is False:
+        try:
+            first_result = ui.WebDriverWait(BROWSER, timing_ads).until(lambda BROWSER:
+                                                                       BROWSER.find_element_by_class_name(
+                                                                           'adDisplay'))
+            first_link = first_result.find_element_by_tag_name('a')
+            first_link.send_keys(Keys.CONTROL + Keys.RETURN)
+
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
+                  Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+            load_result = True
+        except:
             try:
-                first_result = ui.WebDriverWait(BROWSER, timing_ads).until(lambda BROWSER:
-                                                                           BROWSER.find_element_by_class_name(
-                                                                               'adDisplay'))
+                first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                                                                  BROWSER.find_element_by_id('AdSense'))
                 first_link = first_result.find_element_by_tag_name('a')
                 first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
+                print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
                 load_result = True
+
+                print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
             except:
                 try:
-                    first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
-                                                                      BROWSER.find_element_by_id('AdSense'))
+                    first_result = ui.WebDriverWait(BROWSER, 5).until \
+                        (lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
-                          Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+                    print(
+                        Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
+                        Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+
                     load_result = True
 
-                    print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
                 except:
-                    try:
-                        first_result = ui.WebDriverWait(BROWSER, 5).until \
-                            (lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
-                        first_link = first_result.find_element_by_tag_name('a')
-                        first_link.send_keys(Keys.CONTROL + Keys.RETURN)
-
-                        print(
-                            Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
-                            Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-
-                        load_result = True
-
-                    except:
-                        print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
-                        pass
+                    print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
                     pass
-                    # Switch tab to the new tab, which we will assume is the next one on the right
+                pass
+                # Switch tab to the new tab, which we will assume is the next one on the right
         if load_result is True:
             switch_tab()
             random_sleep()
@@ -604,6 +598,7 @@ def main():
     global COUNTER_TOURS
     global TOTAL_CLICKS_ADS_BOTTOM
     global TYPE_CLICKER
+    global GOOGLE_SEARCH
 
     with open('config_auto_clicker.json') as data_file:
         CONFIG_JSON = load(data_file)
@@ -612,6 +607,7 @@ def main():
     USER_CONFIG = get_params('USER_CONFIG')
     ADS_BOTTOM = int(get_params('ADS_BOTTOM'))
     ADS_RIGHT = int(get_params('ADS_RIGHT'))
+    GOOGLE_SEARCH = int(get_params('GOOGLE_SEARCH'))
     CLOSE_ADS_BOTTOM = int(get_params('CLOSE_ADS_BOTTOM'))
     TOTAL_CHANNEL = int(get_params('TOTAL_CHANNEL'))
     BOUCLE_SUPER_VIP = int(get_params('BOUCLE_SUPER_VIP'))
@@ -657,8 +653,8 @@ def main():
         modulo = random.randint(2, 3)
 
     for z in range(BOUCLE_SUPER_VIP):
-        if z % modulo == 0:
-            connect_purevpn()  # PureVPN
+        # if z % modulo == 0:
+        connect_purevpn()  # PureVPN
             # connect_openvpn()  # OpenVPN
 
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
@@ -703,7 +699,7 @@ def main():
             #################
             # Google Search #
             #################
-            if ADS_BOTTOM == 1:
+            if ADS_BOTTOM == 1 and GOOGLE_SEARCH == 1:
                 try:
                     total_key = random.randint(1, 2)
                     for j in range(total_key):
@@ -717,13 +713,13 @@ def main():
                           Back.LIGHTRED_EX + Fore.BLACK + Style.BRIGHT + 'FAILED!!!' + Style.RESET_ALL)
                     pass
 
+                print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
+                      + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
             #####################
             # Detect Ads Bottom #
             #####################
             # switch_main_window()
 
-            print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
-                  + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
 
             file_channel = i
 

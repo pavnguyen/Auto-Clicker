@@ -38,11 +38,11 @@ PURE_VPN_NAME = {
     , 23: 'Sydney'
     , 24: 'Brisbane'
     , 25: 'Melbourne'
-    , 26: 'Kuwait'
-    , 27: 'Bangkok'
+    , 26: 'Washington'
+    , 27: 'NewYork'
     , 28: 'Zurich'
-    , 29: 'Dubai'
-    , 30: 'Munich'
+    , 29: 'Georgia'
+    , 30: 'LosAngeles'
 }
 
 PIA_VPN_NAME = {

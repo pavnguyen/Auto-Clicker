@@ -12,8 +12,6 @@ from json import load
 from subprocess import check_output
 from time import sleep
 
-from config import PIA_VPN_NAME
-
 try:
     # For Python 3.0 and later
     from urllib.request import urlopen
@@ -23,7 +21,6 @@ except ImportError:
 
 import pafy
 import pyautogui
-import selenium.webdriver.support.ui as ui
 import win32con
 from colorama import init, Fore, Back, Style
 from selenium import webdriver
@@ -35,15 +32,15 @@ from list_timezone import LIST_TIME_ZONE
 from config import SCREEN_RESOLUTION  # config.py
 from screen_resolution import ScreenRes
 import subprocess
-
+from config import PURE_VPN_NAME
 init()
 
 
-def get_tinyurl_clip():
+def get_tinyurl_clip(channel):
     load_result = False
     while load_result is False:
         try:
-            links_tinyurl = tuple(open('Auto_4passion.txt', 'r'))
+            links_tinyurl = tuple(open('ressources\LinksShorter\\' + str(channel) + '.txt', 'r'))
             random_int = random.randint(0, len(links_tinyurl) - 1)
             if 'http' in links_tinyurl[random_int].strip():
                 yt_tinyurl = links_tinyurl[random_int].strip()
@@ -92,9 +89,9 @@ def connect_purevpn():
             rasdial.disconnect()
             sleep(1)
 
-            server = get_random_vpn(PIA_VPN_NAME)
-            user = 'x3569491'
-            password = 'rUTPQnvnv7'
+            server = get_random_vpn(PURE_VPN_NAME)
+            user = 'purevpn0s1122211'
+            password = 'vunguyen'
 
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
@@ -192,7 +189,8 @@ def set_screen_resolution():
         cmdWindow = [i for i in windowList if 'auto viewer' in i[0].lower() or 'openvpn' in i[0].lower()
                      or 'auto_' in i[0].lower()]
 
-        win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
+        win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 0, 0, 320, 915, 0)
+        # win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
     except:
         pass
 
@@ -392,10 +390,10 @@ def main():
     path_profil = get_path_profile_firefox()
     binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
-    modulo = random.randint(2, 3)
+    # modulo = random.randint(2, 3)
 
     for z in range(BOUCLE_SUPER_VIP):
-        if z % modulo == 0:
+        if z % 1000 == 0:
             connect_purevpn()  # PureVPN
 
         start_time = time.time()
@@ -410,44 +408,32 @@ def main():
             MAIN_WINDOW = BROWSER.current_window_handle
             pass
 
-        #####################
-        # View              #
-        #####################
-        switch_main_window()
-
         # View before detect and click real ads
-        total_key = random.randint(1, 2)
-        timing_view = random.randint(3, 5)
+        timing_view = random.randint(25, 35)
 
-        for j in range(total_key):
+        for j in range(13, 18):
             try:
-                url_view = get_tinyurl_clip()
+                url_view = get_tinyurl_clip(j)
                 print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                       Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
                 BROWSER.get(url_view)
+                countdown(10)
+
                 # Click Skip ads
-                countdown(8)
                 try:
-                    print('Detect Skips Ads')
-                    first_result = ui.WebDriverWait(BROWSER, 15).until(
-                        lambda BROWSER: BROWSER.find_element_by_id('close-overlay-container'))
-                    print('Skips Ads detected!')
-                    try:
-                        first_result.click()
-                        print('Click')
-                    except:
-                        pass
-                    random_mouse_move()
-                    random_mouse_scroll()
+                    print('Click Skip Ads!')
+                    pyautogui.moveTo(1540, 135, random.random(), pyautogui.easeOutQuad)
+                    pyautogui.click(1540, 135)
                 except:
+                    print('Click Skip Ads!')
+                    pyautogui.moveTo(1540, 135, random.random(), pyautogui.easeOutQuad)
+                    pyautogui.click(1540, 133)
                     pass
             except:
                 pass
             countdown(timing_view)
 
         COUNTER_TOURS += 1
-
-        random_mouse_move()
 
         print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 9 + 'FINISH -> Tours -> ' +
@@ -490,8 +476,3 @@ if __name__ == "__main__":
     TOTAL_CLICKS_ADS_BOTTOM = 0
 
     main()
-    # schedule.every(60).minutes.do(main)
-    #
-    # while True:
-    #     schedule.run_pending()
-    #     time.sleep(1)
