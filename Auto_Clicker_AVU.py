@@ -95,7 +95,7 @@ def connect_purevpn():
             rasdial.disconnect()
             sleep(1)
 
-            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1:
+            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1 and NUMBER_MACHINE <= 15:
                 server = get_random_vpn(PURE_VPN_NAME)
 
                 if NUMBER_MACHINE <= division:
@@ -297,6 +297,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
             first_result = ui.WebDriverWait(BROWSER, timing_ads).until(
                 lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-contents'))
+            x, y = get_recalcul_xy(330, 590)
             pyautogui.keyDown('ctrl')
             pyautogui.click(x, y)
             pyautogui.keyUp('ctrl')
@@ -328,6 +329,22 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 first_result = ui.WebDriverWait(BROWSER, 5).until(
                     lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
                 try:
+                    first_result.click()
+                except:
+                    pass
+                try:
+                    first_result = ui.WebDriverWait(BROWSER, 3).until(
+                        lambda BROWSER: BROWSER.find_element_by_class_name('annotation'))
+                    x, y = get_recalcul_xy(414, 580)
+                    try:
+                        pyautogui.click(x, y)
+                    except:
+                        pass
+                except:
+                    pass
+
+                try:
+                    x, y = get_recalcul_xy(330, 590)
                     pyautogui.keyDown('ctrl')
                     pyautogui.click(x, y)
                     pyautogui.keyUp('ctrl')
@@ -355,7 +372,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
 
         # ADS BOTTOM
         try:
-            first_result = ui.WebDriverWait(BROWSER, timing_ads).until(lambda BROWSER:
+            first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
                                                                        BROWSER.find_element_by_class_name(
                                                                            'adDisplay'))
             first_link = first_result.find_element_by_tag_name('a')
@@ -646,21 +663,13 @@ def main():
     # Firefox Parameters
     path_profil = get_path_profile_firefox()
     binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
-
-    if ADS_BOTTOM == 0:
-        modulo = 2
-    else:
-        modulo = random.randint(2, 3)
-
+    modulo = 2
     for z in range(BOUCLE_SUPER_VIP):
-        # if z % modulo == 0:
-        connect_purevpn()  # PureVPN
+        if z % modulo == 0:
+            connect_purevpn()  # PureVPN
         # connect_openvpn()  # OpenVPN
 
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
-            # if i != NUMBER_MACHINE:
-            #     check_ping_is_ok()
-
             start_time = time.time()
             if ADS_BOTTOM == 1:
                 print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
@@ -718,8 +727,6 @@ def main():
             #####################
             # Detect Ads Bottom #
             #####################
-            # switch_main_window()
-
 
             file_channel = i
 
@@ -749,8 +756,6 @@ def main():
                               Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
                         random_mouse_move()
                         countdown(timing_view)
-                        # if ADS_BOTTOM == 1 and ADS_RIGHT == 1:
-                        #     click_ads_right()
                     except:
                         pass
             switch_main_window()

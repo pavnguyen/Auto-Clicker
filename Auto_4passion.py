@@ -32,7 +32,7 @@ from list_timezone import LIST_TIME_ZONE
 from config import SCREEN_RESOLUTION  # config.py
 from screen_resolution import ScreenRes
 import subprocess
-from config import PURE_VPN_NAME
+
 init()
 
 
@@ -89,9 +89,17 @@ def connect_purevpn():
             rasdial.disconnect()
             sleep(1)
 
-            server = get_random_vpn(PURE_VPN_NAME)
-            user = 'purevpn0s1122211'
-            password = 'vunguyen'
+            # server = get_random_vpn(PURE_VPN_NAME)
+            # user = 'purevpn0s1122211'
+            # password = 'vunguyen'
+
+            # server = get_random_vpn(PIA_VPN_NAME)
+            # user = 'x3569491'
+            # password = 'rUTPQnvnv7'
+
+            server = 'HMA'
+            user = 'avestergrd'
+            password = 'vESsRzDB'
 
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
@@ -127,7 +135,6 @@ def connect_openvpn():
                                  ' --auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0' \
                                  ' --crl-verify data\crl.rsa.2048.pem' \
                                  ' --auth-nocache' \
-                                 ' --block-outside-dns' \
                                  ' --ca data\ca.rsa.2048.crt'
                 else:
                     parameters = ' --tls-client --client --dev tun' \
@@ -137,7 +144,7 @@ def connect_openvpn():
                                  ' --auth-user-pass data\\auth.txt' \
                                  ' --reneg-sec 0 --route-method exe --route-delay 2' \
                                  ' --verb 3 --log c:\\log.txt --status c:\\stat.db 1 --auth-nocache' \
-                                 ' --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns' \
+                                 ' --crl-verify data\crl.pem --remote-cert-tls server' \
                                  ' --cipher aes-256-cbc --auth sha256'
 
                 cmd += parameters
@@ -392,10 +399,9 @@ def main():
 
     # modulo = random.randint(2, 3)
 
-    for z in range(BOUCLE_SUPER_VIP):
-        if z % 1000 == 0:
-            connect_purevpn()  # PureVPN
-
+    for z in range(200):
+        # connect_openvpn()
+        connect_purevpn()
         start_time = time.time()
         # Open Firefox with default profile
         fp = webdriver.FirefoxProfile(path_profil)
@@ -409,12 +415,13 @@ def main():
             pass
 
         # View before detect and click real ads
-        timing_view = random.randint(25, 35)
+        timing_view = random.randint(10, 20)
 
-        for j in range(13, 18):
+        for j in range(50):
+            y = random.randint(13, 17)
             try:
-                url_view = get_tinyurl_clip(j)
-                print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
+                url_view = get_tinyurl_clip(y)
+                print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(y) + ' >> ' +
                       Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
                 BROWSER.get(url_view)
                 countdown(10)
@@ -426,11 +433,12 @@ def main():
                     pyautogui.click(1540, 135)
                 except:
                     pyautogui.click(1540, 133)
-                    pass
+                    continue
             except:
-                pass
+                continue
             countdown(timing_view)
 
+        random_mouse_move()
         COUNTER_TOURS += 1
 
         print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
