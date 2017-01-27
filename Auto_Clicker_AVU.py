@@ -111,6 +111,10 @@ def connect_purevpn():
                 user = 'x3569491'
                 password = 'rUTPQnvnv7'
 
+                # server = 'HMA'
+                # user = 'avestergrd'
+                # password = 'vESsRzDB'
+
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
             if check_ping_is_ok() is True:
@@ -298,10 +302,8 @@ def detect_and_click_ads_bottom(url, timing_ads):
             first_result = ui.WebDriverWait(BROWSER, timing_ads).until(
                 lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-contents'))
             x, y = get_recalcul_xy(330, 590)
-            pyautogui.keyDown('ctrl')
             pyautogui.click(x, y)
-            pyautogui.keyUp('ctrl')
-
+            TOTAL_CLICKS_ADS_SKIPS += 1
             print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
             switch_tab()
@@ -330,7 +332,9 @@ def detect_and_click_ads_bottom(url, timing_ads):
                     lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
                 try:
                     first_result.click()
+                    TOTAL_CLICKS_ADS_SKIPS += 1
                 except:
+                    pyautogui.cliok(330, 590)
                     pass
                 try:
                     first_result = ui.WebDriverWait(BROWSER, 3).until(
@@ -338,6 +342,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
                     x, y = get_recalcul_xy(414, 580)
                     try:
                         pyautogui.click(x, y)
+                        TOTAL_CLICKS_ADS_SKIPS += 1
                     except:
                         pass
                 except:
@@ -345,9 +350,8 @@ def detect_and_click_ads_bottom(url, timing_ads):
 
                 try:
                     x, y = get_recalcul_xy(330, 590)
-                    pyautogui.keyDown('ctrl')
                     pyautogui.click(x, y)
-                    pyautogui.keyUp('ctrl')
+                    TOTAL_CLICKS_ADS_SKIPS += 1
                     print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
                           'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
                           Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
@@ -366,7 +370,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
                 pyautogui.click(x, y)
             except:
-                pyautogui.keyUp('ctrl')
                 pass
             pass
 
@@ -428,30 +431,42 @@ def click_ads_right():
         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT)
         print('>> Ads Right >> Try to Click Ads RIGHT')
         print(Style.RESET_ALL)
+
         try:
-            first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
-                                                              BROWSER.find_element_by_id('google_companion_ad_div'))
             x, y = get_recalcul_xy(1330, 270)
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
             pyautogui.keyDown('ctrl')
             pyautogui.click()
             pyautogui.keyUp('ctrl')
             countdown(15)
+            print('Click Ads Right!')
         except:
             pyautogui.keyUp('ctrl')
-            try:
-                first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
-                                                                  BROWSER.find_element_by_id('adContent-border'))
-                x, y = get_recalcul_xy(1330, 270)
-                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                pyautogui.keyDown('ctrl')
-                pyautogui.click()
-                pyautogui.keyUp('ctrl')
-                countdown(15)
-            except:
-                pyautogui.keyUp('ctrl')
-                pass
-            pass
+
+            # try:
+            #     first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+            #                                                       BROWSER.find_element_by_id('google_companion_ad_div'))
+            #     x, y = get_recalcul_xy(1330, 270)
+            #     pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+            #     pyautogui.keyDown('ctrl')
+            #     pyautogui.click()
+            #     pyautogui.keyUp('ctrl')
+            #     countdown(15)
+            # except:
+            #     pyautogui.keyUp('ctrl')
+            #     try:
+            #         first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+            #                                                           BROWSER.find_element_by_id('adContent-border'))
+            #         x, y = get_recalcul_xy(1330, 270)
+            #         pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+            #         pyautogui.keyDown('ctrl')
+            #         pyautogui.click()
+            #         pyautogui.keyUp('ctrl')
+            #         countdown(15)
+            #     except:
+            #         pyautogui.keyUp('ctrl')
+            #         pass
+            #     pass
     try:
         pyautogui.keyUp('ctrl')
         random_mouse_move()
@@ -614,6 +629,7 @@ def main():
     global USER_CONFIG
     global COUNTER_TOURS
     global TOTAL_CLICKS_ADS_BOTTOM
+    global TOTAL_CLICKS_ADS_SKIPS
     global TYPE_CLICKER
     global GOOGLE_SEARCH
 
@@ -674,6 +690,8 @@ def main():
             if ADS_BOTTOM == 1:
                 print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                       + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
+                print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Click Ads SKIP] => ' + Style.RESET_ALL
+                      + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
 
             # Open Firefox with default profile
             if i == NUMBER_MACHINE or ADS_BOTTOM == 1:
@@ -687,23 +705,6 @@ def main():
             except:
                 MAIN_WINDOW = BROWSER.current_window_handle
                 pass
-
-            # Check Whoer once!!!
-            # if i == NUMBER_MACHINE:
-            #     print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Please wait to check Whoer.net... '
-            #           + Style.RESET_ALL)
-            #     try:
-            #         print('...Check Whoer...')
-            #         BROWSER.get('https://whoer.net/')
-            #         ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
-            #         id_level = BROWSER.find_element_by_id('anonym_level').text
-            #         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
-            #               Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
-            #     except:
-            #         # connect_openvpn()  # OpenVPN
-            #         pass
-            #
-            #     BROWSER.delete_all_cookies()
 
             #################
             # Google Search #
@@ -724,6 +725,8 @@ def main():
 
                 print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                       + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
+                print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Click Ads SKIP] => ' + Style.RESET_ALL
+                      + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
             #####################
             # Detect Ads Bottom #
             #####################
@@ -783,6 +786,10 @@ def main():
                                 Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' +
                                 Style.RESET_ALL + Fore.LIGHTGREEN_EX + Back.BLACK +
                                 str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL)
+                            print(
+                                Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Click Ads SKIP] => ' +
+                                Style.RESET_ALL + Fore.LIGHTYELLOW_EX + Back.BLACK +
+                                str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL)
                     except:
                         try:
                             BROWSER.quit()
@@ -859,6 +866,8 @@ def main():
                       str(datetime.timedelta(seconds=time.time() - start_time)) + '' + Style.RESET_ALL)
                 print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                       + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL)
+                print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Click Ads SKIP] => ' + Style.RESET_ALL
+                      + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL)
 
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 9 + 'FINISH -> Tours -> ' +
@@ -868,8 +877,7 @@ def main():
 
             if found_ads_bottom is True:
                 countdown(wait_time)
-                if ADS_RIGHT == 1:
-                    click_ads_right()
+                click_ads_right()
             elif ADS_BOTTOM == 0:
                 countdown(random.randint(21, 49))
 
@@ -896,6 +904,8 @@ def main():
     if ADS_BOTTOM == 1:
         print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
               + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
+        print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Click Ads SKIP] => ' + Style.RESET_ALL
+              + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
         print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + 'Press ENTER to close...' + '')
     raw_input()
 
@@ -911,6 +921,7 @@ def main():
 if __name__ == "__main__":
     COUNTER_TOURS = 0
     TOTAL_CLICKS_ADS_BOTTOM = 0
+    TOTAL_CLICKS_ADS_SKIPS = 0
 
     main()
     # schedule.every(60).minutes.do(main)

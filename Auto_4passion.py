@@ -93,13 +93,13 @@ def connect_purevpn():
             # user = 'purevpn0s1122211'
             # password = 'vunguyen'
 
-            # server = get_random_vpn(PIA_VPN_NAME)
-            # user = 'x3569491'
-            # password = 'rUTPQnvnv7'
+            server = get_random_vpn(PIA_VPN_NAME)
+            user = 'x3569491'
+            password = 'rUTPQnvnv7'
 
-            server = 'HMA'
-            user = 'avestergrd'
-            password = 'vESsRzDB'
+            # server = 'HMA'
+            # user = 'avestergrd'
+            # password = 'vESsRzDB'
 
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)

@@ -1,13 +1,7 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].href)}
+for(i = 0; i < 5; i++){ console.log ($$(".vm-video-title-content")[i].href)}
+https://www.youtube.com/watch?v=GGY0d7oIevs
+https://www.youtube.com/watch?v=d1a-8sX3j0Y
+https://www.youtube.com/watch?v=0LHQ5DirQoY
 https://www.youtube.com/watch?v=cwwg6_l5J_A
 https://www.youtube.com/watch?v=aCfs6soI7Go
-https://www.youtube.com/watch?v=Nm5nWuAKYo0
-https://www.youtube.com/watch?v=KMMTQFr4QIo
-https://www.youtube.com/watch?v=mu5UsjDdsRA
-https://www.youtube.com/watch?v=pZZZPTmeXuQ
-https://www.youtube.com/watch?v=yDdG6ZEiFhM
-https://www.youtube.com/watch?v=wzCxgQFMSDc
-https://www.youtube.com/watch?v=HsTdtItrGy4
-https://www.youtube.com/watch?v=bhm87CXwOGs
-https://www.youtube.com/watch?v=c2rk21aaqhc
 undefined
