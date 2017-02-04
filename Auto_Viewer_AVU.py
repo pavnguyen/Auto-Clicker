@@ -23,7 +23,6 @@ except ImportError:
 
 import pafy
 import pyautogui
-import selenium.webdriver.support.ui as ui
 import win32con
 from colorama import init, Fore, Back, Style
 from selenium import webdriver
@@ -39,11 +38,11 @@ import subprocess
 init()
 
 
-def get_tinyurl_clip():
+def get_tinyurl_clip(channel):
     load_result = False
     while load_result is False:
         try:
-            links_tinyurl = tuple(open('ressources\Links_Group\\' + FILE_URL, 'r'))
+            links_tinyurl = tuple(open('ressources\LinksTinyURL\\' + str(channel) + '.txt', 'r'))
             random_int = random.randint(0, len(links_tinyurl) - 1)
             if 'http' in links_tinyurl[random_int].strip():
                 yt_tinyurl = links_tinyurl[random_int].strip()
@@ -67,8 +66,8 @@ def check_ping_is_ok():
         if response == 0:
             return True
     except:
-        connect_purevpn()
-        # connect_openvpn()
+        # connect_purevpn()
+        connect_openvpn()
 
 
 def check_country_is_ok():
@@ -128,7 +127,8 @@ def connect_openvpn():
                 value = random.randint(0, len(CONFIG_IP) - 1)
                 print('Random Server: ' + CONFIG_IP[value].strip())
                 if 'privateinternetaccess' in CONFIG_IP[value].strip():
-                    parameters = ' --client --dev tun --proto udp --remote ' + CONFIG_IP[value].strip() + \
+                    parameters = ' --client --dev tun --link-mtu 1500 --proto udp --remote ' \
+                                 + CONFIG_IP[value].strip() + \
                                  ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
                                  ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
                                  ' --auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0' \
@@ -137,7 +137,7 @@ def connect_openvpn():
                                  ' --block-outside-dns' \
                                  ' --ca data\ca.rsa.2048.crt'
                 else:
-                    parameters = ' --tls-client --client --dev tun' \
+                    parameters = ' --tls-client --client --dev tun --link-mtu 1500' \
                                  ' --remote ' + CONFIG_IP[value].strip() + \
                                  ' --proto udp --port 1197' \
                                  ' --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3' \
@@ -206,7 +206,6 @@ def switch_main_window():
         BROWSER.switch_to.window(MAIN_WINDOW)
     except:
         print('Error: Browser can not take main window => Re-take main window ')
-        BROWSER.switch_to.window(MAIN_WINDOW)
         pass
 
 
@@ -354,7 +353,6 @@ def main():
     global USER_CONFIG
     global COUNTER_TOURS
     global TOTAL_CLICKS_ADS_BOTTOM
-    global FILE_URL
 
     with open('config_auto_clicker.json') as data_file:
         CONFIG_JSON = load(data_file)
@@ -384,7 +382,6 @@ def main():
 
     if len(sys.argv) > 1:
         NUMBER_MACHINE = int(sys.argv[1])
-        FILE_URL = sys.argv[2]
     else:
         print(Back.BLACK + Fore.LIGHTWHITE_EX + ' ' * 3 + '[ Please enter the Machine Number: ]' +
               Back.LIGHTRED_EX + Fore.LIGHTWHITE_EX)
@@ -404,86 +401,56 @@ def main():
     path_profil = get_path_profile_firefox()
     binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
-    modulo = random.randint(2, 3)
-
     for z in range(BOUCLE_SUPER_VIP):
-        if z % modulo == 0:
-            connect_purevpn()  # PureVPN
+        connect_openvpn()  # PureVPN
 
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
-            # if i != NUMBER_MACHINE:
-            #     check_ping_is_ok()
 
             start_time = time.time()
-            if ADS_BOTTOM == 1:
-                print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
-                      + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
 
             # Open Firefox with default profile
-            if i == NUMBER_MACHINE or ADS_BOTTOM == 1:
-                fp = webdriver.FirefoxProfile(path_profil)
-                BROWSER = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
-                BROWSER.maximize_window()
+            fp = webdriver.FirefoxProfile(path_profil)
+            BROWSER = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
+            BROWSER.maximize_window()
 
-            # Check Whoer once!!!
-            if i == NUMBER_MACHINE:
-                print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Please wait to check Whoer.net... '
-                      + Style.RESET_ALL)
-                try:
-                    print('...Check Whoer...')
-                    BROWSER.get('https://whoer.net/')
-                    ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER: BROWSER.find_element_by_id('anonym_level'))
-                    id_level = BROWSER.find_element_by_id('anonym_level').text
-                    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Status] => ' + Style.RESET_ALL +
-                          Back.BLACK + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + id_level + '' + Style.RESET_ALL)
-
-                except:
-                    # connect_purevpn()  # OpenVPN
-                    pass
-
-                BROWSER.delete_all_cookies()
-
-            # Save the window opener
-            try:
-                MAIN_WINDOW = BROWSER.current_window_handle
-            except:
-                MAIN_WINDOW = BROWSER.current_window_handle
-                pass
 
             #####################
             # View              #
             #####################
-            switch_main_window()
 
             print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                   + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
 
+            file_channel = i
+
+            if i <= TOTAL_CHANNEL:
+                file_channel = i
+            else:
+                file_channel = (i + TOTAL_CHANNEL) % TOTAL_CHANNEL
+
+            if file_channel == 0:
+                file_channel = TOTAL_CHANNEL
+
             # View before detect and click real ads
             total_key = random.randint(3, 4)
-            timing_view = random.randint(20, 30)
+            timing_view = random.randint(85, 100)
 
             for j in range(total_key):
                 try:
-                    url_view = get_tinyurl_clip()
-                    BROWSER.get(url_view)
+                    url_view = get_tinyurl_clip(str(file_channel))
                     print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                           Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
+                    BROWSER.get(url_view)
                     random_mouse_move()
                     countdown(timing_view)
                 except:
                     pass
-
-            url = get_tinyurl_clip()
-
-            print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL Ads >> ' + Style.RESET_ALL +
-                  Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
 
             COUNTER_TOURS += 1
 
             #####################
             # Back to the video #
             #####################
-            switch_main_window()
             random_mouse_move()
 
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
@@ -491,8 +458,6 @@ def main():
                   Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(COUNTER_TOURS) + '' +
                   Style.RESET_ALL)
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
-
-            countdown(random.randint(21, 49))
 
             print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
                   str(datetime.timedelta(seconds=time.time() - start_time)) + '')
@@ -502,12 +467,15 @@ def main():
             print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'Auto Viewer [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
             print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
-            BROWSER.delete_all_cookies()
-            if ADS_BOTTOM == 1:
-                try:
-                    BROWSER.quit()
-                except:
-                    pass
+            try:
+                BROWSER.delete_all_cookies()
+            except:
+                pass
+
+            try:
+                BROWSER.quit()
+            except:
+                pass
         try:
             BROWSER.delete_all_cookies()
             BROWSER.quit()

@@ -36,6 +36,7 @@ from config import PURE_VPN_NAME
 from config import PIA_VPN_NAME
 from screen_resolution import ScreenRes
 import subprocess
+import schedule
 
 init()
 
@@ -68,8 +69,10 @@ def check_ping_is_ok():
         if response == 0:
             return True
     except:
-        connect_purevpn()
-        # connect_openvpn()
+        if PURE_VPN_NAME == 0:
+            connect_openvpn()
+        else:
+            connect_purevpn()
 
 
 def check_country_is_ok():
@@ -95,7 +98,7 @@ def connect_purevpn():
             rasdial.disconnect()
             sleep(1)
 
-            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1 and NUMBER_MACHINE <= 15:
+            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1 and NUMBER_MACHINE <= 0:
                 server = get_random_vpn(PURE_VPN_NAME)
 
                 if NUMBER_MACHINE <= division:
@@ -123,6 +126,42 @@ def connect_purevpn():
                         load_result = True
 
 
+def connect_openvpn_purevpn():
+    if OPENVPN == 1:
+        load_result = False
+        while load_result is False:
+            try:
+                print('Try to Disconnect OpenVPN')
+                rasdial.disconnect()  # Disconnect PureVPN first
+                check_output("taskkill /im openvpn.exe /F", shell=True)
+            except:
+                pass
+
+            print('Connect OpenVPN')
+            cmd = '"C:\Program Files\OpenVPN\\bin\openvpn.exe"'
+            value = random.randint(0, len(CONFIG_IP_PURE) - 1)
+            print('Random Server: ' + CONFIG_IP_PURE[value].strip())
+            if 'pointtoserver' in CONFIG_IP_PURE[value].strip():
+                parameters = ' --client --dev tun --remote ' + CONFIG_IP_PURE[value].strip() + ' --port 53' + \
+                             ' --proto udp --nobind --persist-key --persist-tun --tls-auth Wdc.key 1 --ca ca.crt' + \
+                             ' --cipher AES-256-CBC --comp-lzo --verb 1 --mute 20 --float --route-method exe' + \
+                             ' --route-delay 2 --auth-user-pass auth.txt --auth-retry interact' \
+                             ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache '
+
+            cmd += parameters
+            try:
+                subprocess.Popen(cmd)
+                print('Please wait to connect to OpenVPN...')
+                countdown(8)
+            except:
+                pass
+
+            if check_ping_is_ok() is True:
+                if check_country_is_ok() is True:
+                    if set_zone() is True:
+                        load_result = True
+
+
 def connect_openvpn():
     if OPENVPN == 1:
         if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
@@ -143,7 +182,8 @@ def connect_openvpn():
                 value = random.randint(0, len(CONFIG_IP) - 1)
                 print('Random Server: ' + CONFIG_IP[value].strip())
                 if 'privateinternetaccess' in CONFIG_IP[value].strip():
-                    parameters = ' --client --dev tun --proto udp --remote ' + CONFIG_IP[value].strip() + \
+                    parameters = ' --client --dev tun --link-mtu 1500 --proto udp --remote ' \
+                                 + CONFIG_IP[value].strip() + \
                                  ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
                                  ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
                                  ' --auth-user-pass data\\auth.txt --comp-lzo --verb 1 --reneg-sec 0' \
@@ -152,7 +192,7 @@ def connect_openvpn():
                                  ' --block-outside-dns' \
                                  ' --ca data\ca.rsa.2048.crt'
                 else:
-                    parameters = ' --tls-client --client --dev tun' \
+                    parameters = ' --tls-client --client --dev tun --link-mtu 1500' \
                                  ' --remote ' + CONFIG_IP[value].strip() + \
                                  ' --proto udp --port 1197' \
                                  ' --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3' \
@@ -209,13 +249,16 @@ def set_screen_resolution():
         win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
                              windowList)
         cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower()]
-
         win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
     except:
         pass
 
 
 def switch_main_window():
+    try:
+        BROWSER.switch_to.window(WINDOW_BEFORE)
+    except:
+        pass
     try:
         BROWSER.switch_to.window(MAIN_WINDOW)
     except:
@@ -299,17 +342,20 @@ def detect_and_click_ads_bottom(url, timing_ads):
         try:
             x, y = get_recalcul_xy(330, 590)
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-            first_result = ui.WebDriverWait(BROWSER, timing_ads).until(
+            first_result = ui.WebDriverWait(BROWSER, 15).until(
                 lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-contents'))
             x, y = get_recalcul_xy(330, 590)
+            pyautogui.keyDown('ctrl')
             pyautogui.click(x, y)
             TOTAL_CLICKS_ADS_SKIPS += 1
+            pyautogui.keyUp('ctrl')
             print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
             switch_tab()
             random_sleep()
             random_mouse_move()
             random_mouse_scroll()
+            random_small_sleep()
             switch_main_window()
 
             try:
@@ -320,7 +366,9 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 # Click Skip ads
                 x, y = get_recalcul_xy(980, 559)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                pyautogui.keyDown('ctrl')
                 pyautogui.click(x, y)
+                pyautogui.keyUp('ctrl')
                 pass
 
         except:
@@ -331,33 +379,37 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 first_result = ui.WebDriverWait(BROWSER, 5).until(
                     lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
                 try:
+                    pyautogui.keyDown('ctrl')
                     first_result.click()
                     TOTAL_CLICKS_ADS_SKIPS += 1
+                    pyautogui.keyUp('ctrl')
                 except:
+                    pyautogui.keyDown('ctrl')
                     pyautogui.cliok(330, 590)
+                    TOTAL_CLICKS_ADS_SKIPS += 1
+                    pyautogui.keyUp('ctrl')
                     pass
                 try:
                     first_result = ui.WebDriverWait(BROWSER, 3).until(
                         lambda BROWSER: BROWSER.find_element_by_class_name('annotation'))
-                    x, y = get_recalcul_xy(414, 580)
                     try:
-                        pyautogui.click(x, y)
+                        first_result.click()
                         TOTAL_CLICKS_ADS_SKIPS += 1
                     except:
+                        x, y = get_recalcul_xy(414, 580)
+                        pyautogui.keyDown('ctrl')
+                        pyautogui.click(x, y)
+                        TOTAL_CLICKS_ADS_SKIPS += 1
+                        pyautogui.keyUp('ctrl')
                         pass
                 except:
+                    pyautogui.keyUp('ctrl')
                     pass
 
-                try:
-                    x, y = get_recalcul_xy(330, 590)
-                    pyautogui.click(x, y)
-                    TOTAL_CLICKS_ADS_SKIPS += 1
-                    print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
-                          'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
-                          Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
-                          '[DETECTED]' + Style.RESET_ALL)
-                except:
-                    pass
+                print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
+                      'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
+                      Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
+                      '[DETECTED]' + Style.RESET_ALL)
 
                 switch_tab()
                 random_sleep()
@@ -370,6 +422,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
                 pyautogui.click(x, y)
             except:
+                pyautogui.keyUp('ctrl')
                 pass
             pass
 
@@ -418,8 +471,11 @@ def detect_and_click_ads_bottom(url, timing_ads):
             switch_tab()
             random_sleep()
             random_mouse_move()
+            random_small_sleep()
             random_mouse_scroll()
             switch_main_window()
+        else:
+            click_ads_right()
     except:
         pass
 
@@ -433,45 +489,23 @@ def click_ads_right():
         print(Style.RESET_ALL)
 
         try:
-            x, y = get_recalcul_xy(1330, 270)
+            x, y = get_recalcul_xy(1230, 205)
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
             pyautogui.keyDown('ctrl')
             pyautogui.click()
             pyautogui.keyUp('ctrl')
-            countdown(15)
-            print('Click Ads Right!')
+            switch_tab()
+            random_mouse_move()
+            countdown(20)
         except:
             pyautogui.keyUp('ctrl')
 
-            # try:
-            #     first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
-            #                                                       BROWSER.find_element_by_id('google_companion_ad_div'))
-            #     x, y = get_recalcul_xy(1330, 270)
-            #     pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-            #     pyautogui.keyDown('ctrl')
-            #     pyautogui.click()
-            #     pyautogui.keyUp('ctrl')
-            #     countdown(15)
-            # except:
-            #     pyautogui.keyUp('ctrl')
-            #     try:
-            #         first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
-            #                                                           BROWSER.find_element_by_id('adContent-border'))
-            #         x, y = get_recalcul_xy(1330, 270)
-            #         pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-            #         pyautogui.keyDown('ctrl')
-            #         pyautogui.click()
-            #         pyautogui.keyUp('ctrl')
-            #         countdown(15)
-            #     except:
-            #         pyautogui.keyUp('ctrl')
-            #         pass
-            #     pass
     try:
         pyautogui.keyUp('ctrl')
         random_mouse_move()
     except:
         pass
+    switch_main_window()
 
 
 def replay_clip():
@@ -625,6 +659,7 @@ def main():
     global Y_SCREEN
     global KEYWORDS
     global CONFIG_IP
+    global CONFIG_IP_PURE
     global CONFIG_JSON
     global USER_CONFIG
     global COUNTER_TOURS
@@ -632,6 +667,7 @@ def main():
     global TOTAL_CLICKS_ADS_SKIPS
     global TYPE_CLICKER
     global GOOGLE_SEARCH
+    global WINDOW_BEFORE
 
     with open('config_auto_clicker.json') as data_file:
         CONFIG_JSON = load(data_file)
@@ -650,6 +686,7 @@ def main():
     Y_SCREEN = int(get_params('HEIGHT'))
     X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
     CONFIG_IP = tuple(open('ressources\config_ip.txt', 'r'))
+    CONFIG_IP_PURE = tuple(open('listVPN.txt', 'r'))
     KEYWORDS = tuple(open('ressources\keyword.txt', 'r'))
 
     # Resize Screen and set Always on TOP
@@ -679,11 +716,16 @@ def main():
     # Firefox Parameters
     path_profil = get_path_profile_firefox()
     binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
-    modulo = 2
+    if ADS_BOTTOM == 0:
+        modulo = TOTAL_CHANNEL
+    else:
+        modulo = 2
     for z in range(BOUCLE_SUPER_VIP):
-        if z % modulo == 0:
+        # if z % modulo == 0:
+        if PUREVPN == 0:
+            connect_openvpn()  # OpenVPN
+        else:
             connect_purevpn()  # PureVPN
-        # connect_openvpn()  # OpenVPN
 
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
             start_time = time.time()
@@ -705,6 +747,9 @@ def main():
             except:
                 MAIN_WINDOW = BROWSER.current_window_handle
                 pass
+
+            # Save the browser opener
+            WINDOW_BEFORE = BROWSER.window_handles[0]
 
             #################
             # Google Search #
@@ -831,11 +876,11 @@ def main():
 
                 if current_url is not None:
                     try:
-                        wait_time = get_info_length_youtube(current_url) - random.randint(40, 60)
-                        if wait_time < 0 or wait_time > 240:
-                            wait_time = random.randint(150, 180)
+                        wait_time = get_info_length_youtube(current_url) - random.randint(75, 85)
+                        if wait_time < 0 or wait_time > 220:
+                            wait_time = random.randint(115, 145)
                     except:
-                        wait_time = random.randint(150, 180)
+                        wait_time = random.randint(115, 145)
 
                     # Try to close Ads
                     if CLOSE_ADS_BOTTOM == 1:
@@ -875,9 +920,9 @@ def main():
                   Style.RESET_ALL)
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
+            click_ads_right()
             if found_ads_bottom is True:
                 countdown(wait_time)
-                click_ads_right()
             elif ADS_BOTTOM == 0:
                 countdown(random.randint(21, 49))
 
@@ -907,7 +952,9 @@ def main():
         print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Click Ads SKIP] => ' + Style.RESET_ALL
               + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
         print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + 'Press ENTER to close...' + '')
-    raw_input()
+
+    if TYPE_CLICKER != 'DAILY':
+        raw_input()
 
 
 ########################################################################################################################
@@ -924,8 +971,9 @@ if __name__ == "__main__":
     TOTAL_CLICKS_ADS_SKIPS = 0
 
     main()
-    # schedule.every(60).minutes.do(main)
-    #
-    # while True:
-    #     schedule.run_pending()
-    #     time.sleep(1)
+
+    if TYPE_CLICKER == 'DAILY':
+        schedule.every(240).minutes.do(main)
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
