@@ -182,7 +182,7 @@ def connect_openvpn():
                 value = random.randint(0, len(CONFIG_IP) - 1)
                 print('Random Server: ' + CONFIG_IP[value].strip())
                 if 'privateinternetaccess' in CONFIG_IP[value].strip():
-                    parameters = ' --client --dev tun --link-mtu 1500 --proto udp --remote ' \
+                    parameters = ' --client --dev tun --tun-mtu 1500 --proto udp --remote ' \
                                  + CONFIG_IP[value].strip() + \
                                  ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
                                  ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
@@ -476,6 +476,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
             switch_main_window()
         else:
             click_ads_right()
+            switch_main_window()
     except:
         pass
 
@@ -631,7 +632,7 @@ def set_zone():
 
 
 def countdown(timing):
-    while timing:
+    while timing >= 0:
         mins, secs = divmod(timing, 60)
         timeformat = '{:02d}:{:02d}'.format(mins, secs)
         time.sleep(1)
@@ -716,10 +717,10 @@ def main():
     # Firefox Parameters
     path_profil = get_path_profile_firefox()
     binary_ff = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
-    if ADS_BOTTOM == 0:
-        modulo = TOTAL_CHANNEL
-    else:
-        modulo = 2
+
+    if TYPE_CLICKER == 'DAILY' and ADS_BOTTOM == 1:
+        BOUCLE_SUPER_VIP = 1
+
     for z in range(BOUCLE_SUPER_VIP):
         # if z % modulo == 0:
         if PUREVPN == 0:
@@ -786,26 +787,6 @@ def main():
             if file_channel == 0:
                 file_channel = TOTAL_CHANNEL
 
-            # View before detect and click real ads
-            if TYPE_CLICKER == 'DAILY':
-                if ADS_BOTTOM == 1:
-                    total_key = random.randint(1, 2)
-                    timing_view = random.randint(10, 15)
-                else:
-                    total_key = random.randint(3, 4)
-                    timing_view = random.randint(20, 30)
-
-                for j in range(total_key):
-                    try:
-                        switch_main_window()
-                        url_view = get_tinyurl_clip(str(file_channel))
-                        BROWSER.get(url_view)
-                        print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
-                              Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
-                        random_mouse_move()
-                        countdown(timing_view)
-                    except:
-                        pass
             switch_main_window()
             url = get_tinyurl_clip(str(file_channel))
 
@@ -857,6 +838,29 @@ def main():
                     pass
 
             COUNTER_TOURS += 1
+
+            # View AFTER detect and click real ads
+            if TYPE_CLICKER == 'DAILY':
+                if ADS_BOTTOM == 1:
+                    total_key = random.randint(1, 2)
+                    timing_view = random.randint(30, 40)
+                else:
+                    total_key = random.randint(3, 4)
+                    timing_view = random.randint(30, 40)
+
+                for j in range(total_key):
+                    try:
+                        switch_main_window()
+                        url_view = get_tinyurl_clip(str(file_channel))
+                        BROWSER.get(url_view)
+                        print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
+                              Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
+                        random_mouse_move()
+                        countdown(timing_view)
+                        click_ads_right()
+                        switch_main_window()
+                    except:
+                        pass
 
             #####################
             # Back to the video #
@@ -921,6 +925,7 @@ def main():
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
             click_ads_right()
+            switch_main_window()
             if found_ads_bottom is True:
                 countdown(wait_time)
             elif ADS_BOTTOM == 0:
@@ -951,9 +956,9 @@ def main():
               + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
         print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Click Ads SKIP] => ' + Style.RESET_ALL
               + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
-        print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + 'Press ENTER to close...' + '')
 
     if TYPE_CLICKER != 'DAILY':
+        print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + 'Press ENTER to close...' + '')
         raw_input()
 
 
@@ -972,8 +977,8 @@ if __name__ == "__main__":
 
     main()
 
-    if TYPE_CLICKER == 'DAILY':
-        schedule.every(240).minutes.do(main)
+    if TYPE_CLICKER == 'DAILY' and ADS_BOTTOM == 1:
+        schedule.every(90).minutes.do(main)
         while True:
             schedule.run_pending()
             time.sleep(1)
