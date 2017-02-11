@@ -32,7 +32,11 @@ for i in range(debut, fin + 1):
         list_name_youtube_channel = tuple(open('ressources\TitlesYoutube\\' + str(i) + '.txt', 'r'))
         print('Get file...')
         sleep(1)
-        for j in range(1, len(list_name_youtube_channel)):
+        for j in range(1, len(list_name_youtube_channel) - 1):
+            if 'undefined' in list_name_youtube_channel[random_int].strip() or \
+                            list_name_youtube_channel[random_int].strip() is None or \
+                            list_name_youtube_channel[random_int].strip() != '':
+                continue
             try:
                 # Get clip to search with Google
                 name_clip = list_name_youtube_channel[j]
