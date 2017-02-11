@@ -47,12 +47,29 @@ def get_tinyurl_clip(channel):
         try:
             links_tinyurl = tuple(open('ressources\LinksTinyURL\\' + str(channel) + '.txt', 'r'))
             random_int = random.randint(0, len(links_tinyurl) - 1)
-            if 'http' in links_tinyurl[random_int].strip():
+            if 'http' in links_tinyurl[random_int].strip() and 'undefined' not in links_tinyurl[random_int].strip():
                 yt_tinyurl = links_tinyurl[random_int].strip()
                 load_result = True
         except:
             pass
     return yt_tinyurl
+
+
+def get_title_clip(channel):
+    global TITLE_YOUTUBE
+    load_result = False
+    search_youtube = 'https://www.youtube.com/results?search_query='
+    while load_result is False:
+        try:
+            links_tinyurl = tuple(open('ressources\TitlesYoutube\\' + str(channel) + '.txt', 'r'))
+            random_int = random.randint(1, len(links_tinyurl) - 1)
+            if 'undefined' not in links_tinyurl[random_int].strip() and links_tinyurl[random_int].strip() is not None \
+                    and links_tinyurl[random_int].strip() != '':
+                TITLE_YOUTUBE = links_tinyurl[random_int].strip()
+                load_result = True
+        except:
+            pass
+    return search_youtube + TITLE_YOUTUBE
 
 
 def get_random_vpn(name):
@@ -98,7 +115,7 @@ def connect_purevpn():
             rasdial.disconnect()
             sleep(1)
 
-            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1 and NUMBER_MACHINE <= 0:
+            if USER_CONFIG == 'VUNPA' and NUMBER_MACHINE <= TOTAL_CHANNEL and ADS_BOTTOM == 1 and NUMBER_MACHINE <= 15:
                 server = get_random_vpn(PURE_VPN_NAME)
 
                 if NUMBER_MACHINE <= division:
@@ -263,7 +280,6 @@ def switch_main_window():
         BROWSER.switch_to.window(MAIN_WINDOW)
     except:
         print('Error: Browser can not take main window => Re-take main window ')
-        BROWSER.switch_to.window(MAIN_WINDOW)
         pass
 
 
@@ -332,12 +348,29 @@ def search_google():
     return load_result
 
 
+def search_youtube(url):
+    switch_main_window()
+    load_result = False
+    count = 0
+    while load_result is False and count <= 1:
+        count += 1
+        try:
+            BROWSER.get(url)
+            print(TITLE_YOUTUBE)
+            xpath_search = "//a[@title=" + "'" + TITLE_YOUTUBE + "']"
+            first_link = ui.WebDriverWait(BROWSER, 8).until(lambda BROWSER: BROWSER.find_element_by_xpath(xpath_search))
+            random_mouse_move()
+            first_link.send_keys(Keys.RETURN)
+            load_result = True
+        except:
+            pass
+    return load_result
+
+
 def detect_and_click_ads_bottom(url, timing_ads):
     load_result = False
     switch_main_window()
     try:
-        BROWSER.get(url)
-        countdown(3)
         # SKIP ADS
         try:
             x, y = get_recalcul_xy(330, 590)
@@ -476,7 +509,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
             switch_main_window()
         else:
             click_ads_right()
-            switch_main_window()
     except:
         pass
 
@@ -499,7 +531,10 @@ def click_ads_right():
             random_mouse_move()
             countdown(20)
         except:
-            pyautogui.keyUp('ctrl')
+            try:
+                pyautogui.keyUp('ctrl')
+            except:
+                pass
 
     try:
         pyautogui.keyUp('ctrl')
@@ -540,8 +575,8 @@ def random_mouse_move():
     for i in range(random.randrange(3, 5)):
         try:
             print('Mouse Move')
-            x = random.randint(5, 1024)
-            y = random.randint(8, 768)
+            x = random.randint(5, 1380)
+            y = random.randint(110, 890)
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
             pyautogui.moveRel(x, y, random.random(), pyautogui.easeOutQuad)
             random_small_sleep()
@@ -680,7 +715,10 @@ def main():
     GOOGLE_SEARCH = int(get_params('GOOGLE_SEARCH'))
     CLOSE_ADS_BOTTOM = int(get_params('CLOSE_ADS_BOTTOM'))
     TOTAL_CHANNEL = int(get_params('TOTAL_CHANNEL'))
-    BOUCLE_SUPER_VIP = int(get_params('BOUCLE_SUPER_VIP'))
+    if ADS_BOTTOM == 1:
+        BOUCLE_SUPER_VIP = int(get_params('BOUCLE_SUPER_VIP'))
+    else:
+        BOUCLE_SUPER_VIP = 1000
     PUREVPN = int(get_params('PureVPN'))
     OPENVPN = int(get_params('OpenVPN'))
     X_SCREEN = int(get_params('WIDTH'))
@@ -737,7 +775,7 @@ def main():
                       + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
 
             # Open Firefox with default profile
-            if i == NUMBER_MACHINE or ADS_BOTTOM == 1:
+            if i == NUMBER_MACHINE or ADS_BOTTOM == 1 or ADS_BOTTOM == 0:
                 fp = webdriver.FirefoxProfile(path_profil)
                 BROWSER = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
                 BROWSER.maximize_window()
@@ -746,11 +784,13 @@ def main():
             try:
                 MAIN_WINDOW = BROWSER.current_window_handle
             except:
-                MAIN_WINDOW = BROWSER.current_window_handle
                 pass
 
             # Save the browser opener
-            WINDOW_BEFORE = BROWSER.window_handles[0]
+            try:
+                WINDOW_BEFORE = BROWSER.window_handles[0]
+            except:
+                pass
 
             #################
             # Google Search #
@@ -788,17 +828,22 @@ def main():
                 file_channel = TOTAL_CHANNEL
 
             switch_main_window()
-            url = get_tinyurl_clip(str(file_channel))
-
-            print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL Ads >> ' + Style.RESET_ALL +
-                  Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
 
             # Check Ads Bottom
             found_ads_bottom = False
             if ADS_BOTTOM == 1:
+                url = get_title_clip(str(file_channel))
+                print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL Ads >> ' + Style.RESET_ALL +
+                      Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
+                result_search_youtube = search_youtube(url)
+
+                if result_search_youtube is False:
+                    url = get_tinyurl_clip(str(file_channel))
+                    BROWSER.get(url)
+
                 counter = 0
                 timing_ads = random.randint(23, 34)
-                while found_ads_bottom is False and counter < 3:
+                while found_ads_bottom is False and counter < 2:
                     try:
                         counter += 1
                         print("Test Ads Bottom: " + str(counter))
@@ -833,32 +878,30 @@ def main():
                 print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + '-----------[MODE] VIEW ONLY----------' +
                       Style.RESET_ALL)
                 try:
-                    BROWSER.get(url)
+                    search_youtube(url)
                 except:
                     pass
 
             COUNTER_TOURS += 1
 
             # View AFTER detect and click real ads
-            if TYPE_CLICKER == 'DAILY':
-                if ADS_BOTTOM == 1:
-                    total_key = random.randint(1, 2)
-                    timing_view = random.randint(30, 40)
-                else:
-                    total_key = random.randint(3, 4)
-                    timing_view = random.randint(30, 40)
 
+            if ADS_BOTTOM == 0:
+                total_key = random.randint(3, 4)
                 for j in range(total_key):
                     try:
                         switch_main_window()
-                        url_view = get_tinyurl_clip(str(file_channel))
-                        BROWSER.get(url_view)
+                        url = get_title_clip(str(file_channel))
+                        result_search_youtube = search_youtube(url)
+                        if result_search_youtube is False:
+                            url = get_tinyurl_clip(str(file_channel))
+                            BROWSER.get(url)
+
+                        countdown(80)
                         print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                               Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
                         random_mouse_move()
-                        countdown(timing_view)
                         click_ads_right()
-                        switch_main_window()
                     except:
                         pass
 
@@ -880,11 +923,11 @@ def main():
 
                 if current_url is not None:
                     try:
-                        wait_time = get_info_length_youtube(current_url) - random.randint(75, 85)
+                        wait_time = get_info_length_youtube(current_url) - random.randint(59, 69)
                         if wait_time < 0 or wait_time > 220:
-                            wait_time = random.randint(115, 145)
+                            wait_time = random.randint(105, 115)
                     except:
-                        wait_time = random.randint(115, 145)
+                        wait_time = random.randint(105, 115)
 
                     # Try to close Ads
                     if CLOSE_ADS_BOTTOM == 1:
@@ -925,11 +968,10 @@ def main():
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
             click_ads_right()
-            switch_main_window()
             if found_ads_bottom is True:
                 countdown(wait_time)
             elif ADS_BOTTOM == 0:
-                countdown(random.randint(21, 49))
+                countdown(random.randint(15, 35))
 
             print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
                   str(datetime.timedelta(seconds=time.time() - start_time)) + '')
@@ -939,12 +981,11 @@ def main():
             print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'Auto Clicker [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
             print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
-            BROWSER.delete_all_cookies()
-            if ADS_BOTTOM == 1:
-                try:
-                    BROWSER.quit()
-                except:
-                    pass
+            # if ADS_BOTTOM == 1:
+            try:
+                BROWSER.quit()
+            except:
+                pass
         try:
             BROWSER.delete_all_cookies()
             BROWSER.quit()
