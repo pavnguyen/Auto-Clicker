@@ -1,11 +1,12 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
+
+[JAY] A Cryptocurrency Arbitrage Robot review 2049JA
 [JAY] What is Mining digital Crypto Currencies 2049JA
 [JAY] What is blockchain 2049JA
 [JAY] Steemit 2049JA
 [JAY] Evolving layered technologies in cryptocurrency 2049JA
 [JAY] Does Ethereum compete against Bitcoin 2049JA
-[JAY] Cost control for mining hardware 2049JA
 [JAY] Blockchain Wallet 2049JA
 [JAY] Blockchain Health Teaser 2049JA
 [JAY] Bitcoin mining operation 2049JA
-[JAY] Bitcoin mining operation 2049JA
+undefined

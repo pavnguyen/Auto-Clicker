@@ -1,4 +1,6 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
+
+[BEA] A Cryptocurrency Arbitrage Robot review 2099[BE]
 [BEA] What is Mining digital Crypto Currencies 2099BE
 [BEA] What is blockchain 2099BE
 [BEA] Steemit 2099BE
@@ -6,6 +8,6 @@ for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-
 [BEA] How Does a Bank Work 2099BE
 [BEA] Evolving layered technologies in cryptocurrency 2099BE
 [BEA] Does Ethereum compete against Bitcoin 2099BE
-[BEA] Cost control for mining hardware 2099BE
 [BEA] Blockchain Health Teaser 2099BE
 [BEA] Bitcoin mining operation 2099BE
+undefined

@@ -1,4 +1,6 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
+for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
+
+[ELI] A Cryptocurrency Arbitrage Robot review 2049EL
 [ELI] Evolving layered technologies in cryptocurrency 2049EL
 [ELIZ] Donate to Revolution 2013lm
 [ELIZA]Donate Fines To Charity 2016ka
@@ -9,3 +11,4 @@ for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-
 [ELIZ] Auto Insurance Mortgage 2015LA
 [ELIZ] Student Loans Debt Worth 2015
 [ELIZ] Effect of Air Pollutants on Health
+undefined

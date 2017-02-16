@@ -1,11 +1,12 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].innerHTML)}
-[BUY] What is Mining digital Crypto Currencies 2099BU
-[BUY] What is blockchain 2099BU
-[BUY] Steemit 2099BU
-[BUY] How the Stolen Credit Card Market Works 2099BU
-[BUY] How Does a Bank Work 2099BU
-[BUY] Evolving layered technologies in cryptocurrency 2099BU
-[BUY] Does Ethereum compete against Bitcoin 2099BU
-[BUY] Cost control for mining hardware 2099BU
-[BUY] Blockchain Health Teaser 2099BU
-[BUY] Bitcoin mining operation 2099BU
+for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
+
+[JM5] A Cryptocurrency Arbitrage Robot review 2049JM
+[JM5] What is Mining digital Crypto Currencies 2049JM
+[JM5] What is blockchain 2049JM
+[JM5] Steemit 2049JM
+[JM5] Evolving layered technologies in cryptocurrency 2049JM
+[JM5] Does Ethereum compete against Bitcoin 2049JM
+[JM5] Blockchain Wallet 2049JM
+[JM5] Blockchain Health Teaser 2049JM
+[JM5] Bitcoin mining operation 2049JM
+undefined

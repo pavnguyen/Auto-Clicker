@@ -14,8 +14,8 @@ else:
 
 for i in range(debut, fin + 1):
     try:
-        f = open('ressources\LinksPopAds\\' + str(i) + '.txt', 'w+')
-        list_links = tuple(open('ressources\LinksYoutube\\' + str(i) + '.txt', 'r'))
+        f = open('ressources/LinksPopAds/' + str(i) + '.txt', 'w+')
+        list_links = tuple(open('ressources/LinksYoutube/' + str(i) + '.txt', 'r'))
         for j in range(0, len(list_links)):
             if "http" in list_links[j]:
                 link = list_links[j].strip()

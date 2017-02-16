@@ -466,7 +466,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
         # ADS BOTTOM
         if load_result is False:
             try:
-                first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                first_result = ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER:
                                                                   BROWSER.find_element_by_class_name(
                                                                       'adDisplay'))
                 first_link = first_result.find_element_by_tag_name('a')
@@ -1026,7 +1026,8 @@ if __name__ == "__main__":
     TOTAL_CLICKS_ADS_BOTTOM = 0
     TOTAL_CLICKS_ADS_SKIPS = 0
     for y in range(0, 6):
-        main(1)
+        if y == 0:
+            main(1)
         main(0)
 
     if TYPE_CLICKER == 'DAILY' and ADS_BOTTOM == 1:

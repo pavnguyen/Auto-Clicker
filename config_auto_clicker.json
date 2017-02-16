@@ -2,12 +2,12 @@
   "DEFAULT": [
     {
       "USER_CONFIG": "VUNPA",
-      "TOTAL_CHANNEL": "17",
+      "TOTAL_CHANNEL": "14",
       "ADS_RIGHT": "1",
       "ADS_BOTTOM": "1",
       "GOOGLE_SEARCH": "0",
       "CLOSE_ADS_BOTTOM": "0",
-      "BOUCLE_SUPER_VIP": "1000",
+      "BOUCLE_SUPER_VIP": "2",
       "WIDTH": "1716",
       "HEIGHT": "927",
       "PureVPN": "0",
