@@ -1,3 +1,5 @@
+import os
+import sys
 import time
 import webbrowser
 from subprocess import check_output
@@ -9,7 +11,10 @@ brow = raw_input("Enter your default browser : ")
 def openUrl(url):
     print("Successfully Viewed. ")
     try:
-        check_output("taskkill /F /IM firefox.exe", shell=True)
+        if sys.platform == 'win32':
+            check_output("taskkill /F /IM " + brow + ".exe", shell=True)
+        else:
+            os.system(" killall -9 " + brow)
     except:
         pass
 
