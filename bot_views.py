@@ -2,16 +2,14 @@ import time
 import webbrowser
 from subprocess import check_output
 
-url = str(raw_input("Enter YouTube URL : "))
 refresh = raw_input("Enter refresh rate(seconds) : ")
 brow = raw_input("Enter your default browser : ")
 
 
-def OpenUrl():
-    print("Successfully Viewd. ")
-    # os.system("TASKKILL /F /IM " + brow + ".exe")
+def openUrl(url):
+    print("Successfully Viewed. ")
     try:
-        check_output("taskkill /F /IM " + brow + ".exe", shell=True)
+        check_output("taskkill /F /IM firefox.exe", shell=True)
     except:
         pass
 
@@ -19,5 +17,8 @@ def OpenUrl():
     time.sleep(int(refresh))
 
 
-for i in range(3):
-    OpenUrl()
+urls = tuple(open('ressources/Links_bot_views.txt', 'r'))
+
+for i in range(0, len(urls) - 1):
+    for i in range(100):
+        OpenUrl(urls[i])
