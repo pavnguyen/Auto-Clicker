@@ -20,5 +20,5 @@ def openUrl(url):
 urls = tuple(open('ressources/Links_bot_views.txt', 'r'))
 
 for i in range(0, len(urls) - 1):
-    for i in range(100):
+    for j in range(100):
         OpenUrl(urls[i])
