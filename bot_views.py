@@ -6,6 +6,7 @@ import time
 from subprocess import check_output
 
 import requests
+from selenium import webdriver
 
 import rasdial
 
@@ -71,26 +72,27 @@ def countdown(timing):
 
 
 def OpenUrl(url):
-    print("*" * 50)
-    # webbrowser.open(str(url))
     r = requests.get(url)
-    countdown(int(refresh))
-    r.close()
+    # r.close()
 
 
-refresh = raw_input("Enter refresh rate(seconds) : ")
-# brow = raw_input("Enter your default browser : ")
-
+# refresh = raw_input("Enter refresh rate(seconds) : ")
 urls = tuple(open('ressources/Links_bot_views.txt', 'r'))
-for j in range(100):
-    if j == 0:
-        connect_openvpn()
-    elif j % 30 == 0:
-        connect_openvpn()
+BROWSER = webdriver.Firefox()
 
+# connect_openvpn()
+for j in range(50):
     for i in range(0, len(urls) - 1):
+        print("*" * 60)
         print('Tour: ' + str(j + 1) + ' --- ' + str(i + 1) + ' -> ' + urls[i])
-        OpenUrl(urls[i])
+        print("*" * 60)
+        BROWSER.get(urls[i])
+        try:
+            MAIN_WINDOW = BROWSER.current_window_handle
+        except:
+            pass
+
+        countdown(15)
 
 print('Press ENTER to close...' + '')
 raw_input()
