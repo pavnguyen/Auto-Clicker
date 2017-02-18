@@ -734,7 +734,6 @@ def main(optional):
     Y_SCREEN = int(get_params('HEIGHT'))
     X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
     CONFIG_IP = tuple(open('ressources/config_ip.txt', 'r'))
-    CONFIG_IP_PURE = tuple(open('listVPN.txt', 'r'))
     KEYWORDS = tuple(open('ressources/keyword.txt', 'r'))
 
     # Resize Screen and set Always on TOP
@@ -910,7 +909,7 @@ def main(optional):
                             url = get_tinyurl_clip(str(file_channel))
                             BROWSER.get(url)
 
-                        countdown(80)
+                        countdown(30)
                         print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                               Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
                         random_mouse_move()
@@ -1027,7 +1026,7 @@ if __name__ == "__main__":
     TOTAL_CLICKS_ADS_SKIPS = 0
     for y in range(0, 6):
         if y == 0:
-            main(0)
+            main(1)
         main(0)
 
     if TYPE_CLICKER == 'DAILY' and ADS_BOTTOM == 1:
