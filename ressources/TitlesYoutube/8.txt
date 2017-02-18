@@ -1,12 +1,27 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
-
-[JM5] A Cryptocurrency Arbitrage Robot review 2049JM
-[JM5] What is Mining digital Crypto Currencies 2049JM
-[JM5] What is blockchain 2049JM
-[JM5] Steemit 2049JM
-[JM5] Evolving layered technologies in cryptocurrency 2049JM
-[JM5] Does Ethereum compete against Bitcoin 2049JM
-[JM5] Blockchain Wallet 2049JM
-[JM5] Blockchain Health Teaser 2049JM
-[JM5] Bitcoin mining operation 2049JM
-undefined
+for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 20){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
+Alan Watts: How To End Suffering?
+Jim Rohn: You Can Have More in Life
+Jim Rohn: See Things That Don't Exist
+Jim Rohn: See Things That Don't Exist
+Jim Rohn: Let the Success find you
+Jim Rohn: How can Ambition lead to Success?
+Jim Rohn: What To Do With Your First Dollar?
+Jim Rohn: Number One Thing
+Jim Rohn: Laws of Success and Failure
+Jim Rohn: You Can Have More in Life
+Jim Rohn: Financial Independence
+Jim Rohn: If I Can Do It You Can Do It
+Jim Rohn: Coming Back From Failure
+Jim Rohn: What Are You Becoming? ~ Motivation
+Jim Rohn: Amazing Success Lessons
+Jim Rohn: How to Set Smart Goals ~ Motivation
+Transform Fear In to Action ~ Jim Rohn &amp; Tony Robbins
+Alan watts: Thought Patterns
+Jim Rohn: Successful People are Self Disciplined ~ Personal Development
+Jim Rohn: Without Dream ~ Motivation
+Jim Rohn: Train Yourself for Success ~  Motivation
+Jim Rohn: The Value of Personal Development
+Jim Rohn: Why Do People Take Risks Jim Rohn Motivation
+Jim Rohn: How to Use Money Wisely
+Jim Rohn: Do Something Different ~ Motivational Video
+Jim Rohn: Any body Can Do it ~ Personal Development
