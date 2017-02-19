@@ -149,7 +149,7 @@ def connect_openvpn_purevpn():
         while load_result is False:
             try:
                 print('Try to Disconnect OpenVPN')
-                rasdial.disconnect()  # Disconnect PureVPN first
+                rasdial.disconnect()  # Disconnect params_PureVPN first
                 check_output("taskkill /im openvpn.exe /F", shell=True)
             except:
                 pass
@@ -160,9 +160,11 @@ def connect_openvpn_purevpn():
             print('Random Server: ' + CONFIG_IP_PURE[value].strip())
             if 'pointtoserver' in CONFIG_IP_PURE[value].strip():
                 parameters = ' --client --dev tun --remote ' + CONFIG_IP_PURE[value].strip() + ' --port 53' + \
-                             ' --proto udp --nobind --persist-key --persist-tun --tls-auth Wdc.key 1 --ca ca.crt' + \
+                             ' --proto udp --nobind --persist-key --persist-tun ' \
+                             '--tls-auth ressources/params_PureVPN/Wdc.key 1 --ca ressources/params_PureVPN/ca.crt' + \
                              ' --cipher AES-256-CBC --comp-lzo --verb 1 --mute 20 --float --route-method exe' + \
-                             ' --route-delay 2 --auth-user-pass auth.txt --auth-retry interact' \
+                             ' --route-delay 2 --auth-user-pass ressources/params_PureVPN/auth.txt ' + \
+                             '--auth-retry interact' + \
                              ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache '
 
             cmd += parameters
@@ -187,7 +189,7 @@ def connect_openvpn():
                 if sys.platform == 'win32':
                     try:
                         print('Try to Disconnect OpenVPN')
-                        rasdial.disconnect()  # Disconnect PureVPN first
+                        rasdial.disconnect()  # Disconnect params_PureVPN first
                         check_output("taskkill /im openvpn.exe /F", shell=True)
                     except:
                         pass
@@ -207,20 +209,23 @@ def connect_openvpn():
                                  + CONFIG_IP[value].strip() + \
                                  ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
                                  ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
-                                 ' --auth-user-pass data/auth.txt --comp-lzo --verb 1 --reneg-sec 0' \
-                                 ' --crl-verify data\crl.rsa.2048.pem' \
+                                 ' --auth-user-pass ressources/params_PIA/data/auth.txt ' \
+                                 '--comp-lzo --verb 1 --reneg-sec 0' \
+                                 ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
                                  ' --auth-nocache' \
                                  ' --block-outside-dns' \
-                                 ' --ca data\ca.rsa.2048.crt'
+                                 ' --ca ressources/params_PIA/data/ca.rsa.2048.crt'
                 else:
                     parameters = ' --tls-client --client --dev tun --link-mtu 1500' \
                                  ' --remote ' + CONFIG_IP[value].strip() + \
                                  ' --proto udp --port 1197' \
-                                 ' --lport 53 --persist-key --persist-tun --ca data\ca.crt --comp-lzo --mute 3' \
-                                 ' --auth-user-pass data/auth.txt' \
+                                 ' --lport 53 --persist-key --persist-tun --ca ressources/params_PIA/data/ca.crt ' \
+                                 '--comp-lzo --mute 3' \
+                                 ' --auth-user-pass ressources/params_PIA/data/auth.txt' \
                                  ' --reneg-sec 0 --route-method exe --route-delay 2' \
                                  ' --verb 3 --log c:/log.txt --status c:/stat.db 1 --auth-nocache' \
-                                 ' --crl-verify data\crl.pem --remote-cert-tls server --block-outside-dns' \
+                                 ' --crl-verify ressources/params_PIA/data/crl.pem ' \
+                                 '--remote-cert-tls server --block-outside-dns' \
                                  ' --cipher aes-256-cbc --auth sha256'
 
                 cmd += parameters
@@ -733,7 +738,7 @@ def main(optional):
     X_SCREEN = int(get_params('WIDTH'))
     Y_SCREEN = int(get_params('HEIGHT'))
     X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
-    CONFIG_IP = tuple(open('ressources/config_ip.txt', 'r'))
+    CONFIG_IP = tuple(open('ressources/params_PIA/list_PIA.txt', 'r'))
     KEYWORDS = tuple(open('ressources/keyword.txt', 'r'))
 
     # Resize Screen and set Always on TOP
@@ -774,7 +779,7 @@ def main(optional):
                 if PUREVPN == 0:
                     connect_openvpn()  # OpenVPN
                 else:
-                    connect_purevpn()  # PureVPN
+                    connect_purevpn()  # params_PureVPN
 
             start_time = time.time()
             if ADS_BOTTOM == 1:

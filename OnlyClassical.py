@@ -79,7 +79,7 @@ def connect_openvpn():
         while load_result is False:
             try:
                 print('Try to Disconnect OpenVPN')
-                rasdial.disconnect()  # Disconnect PureVPN first
+                rasdial.disconnect()  # Disconnect params_PureVPN first
                 check_output("taskkill /im openvpn.exe /F", shell=True)
             except:
                 pass
@@ -90,9 +90,11 @@ def connect_openvpn():
             print('Random Server: ' + CONFIG_IP[value].strip())
             if 'pointtoserver' in CONFIG_IP[value].strip():
                 parameters = ' --client --dev tun --remote ' + CONFIG_IP[value].strip() + ' --port 53' + \
-                             ' --proto udp --nobind --persist-key --persist-tun --tls-auth Wdc.key 1 --ca ca.crt' + \
+                             ' --proto udp --nobind --persist-key --persist-tun ' \
+                             '--tls-auth ressources/params_PureVPN/Wdc.key 1 --ca ca.crt' + \
                              ' --cipher AES-256-CBC --comp-lzo --verb 1 --mute 20 --float --route-method exe' + \
-                             ' --route-delay 2 --auth-user-pass auth.txt --auth-retry interact' \
+                             ' --route-delay 2 --auth-user-pass ressources/params_PureVPN/auth.txt ' + \
+                             '--auth-retry interact' + \
                              ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache '
 
             cmd += parameters
@@ -381,12 +383,12 @@ def main():
 
     USER_CONFIG = get_params('USER_CONFIG')
     BOUCLE_SUPER_VIP = int(get_params('BOUCLE_SUPER_VIP'))
-    PUREVPN = int(get_params('PureVPN'))
+    PUREVPN = int(get_params('params_PureVPN'))
     OPENVPN = int(get_params('OpenVPN'))
     X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
     X_SCREEN = int(get_params('WIDTH'))
     Y_SCREEN = int(get_params('HEIGHT'))
-    CONFIG_IP = tuple(open('ressources/listVPN.txt', 'r'))
+    CONFIG_IP = tuple(open('ressources/params_PureVPN/list_PureVPN.txt', 'r'))
     # KEYWORDS = tuple(open('ressources\keyword.txt', 'r'))
     COUNTER_TOURS = 0
     TOTAL_CLICKS_ADS_BOTTOM = 0
@@ -404,7 +406,7 @@ def main():
 
     for z in range(BOUCLE_SUPER_VIP):
 
-        connect_openvpn()  # PureVPN
+        connect_openvpn()  # params_PureVPN
 
         start_time = time.time()
         # Open Firefox with default profile
