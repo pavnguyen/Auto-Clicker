@@ -50,7 +50,7 @@ def connect_openvpn():
                          ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
                          ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
                          ' --auth-user-pass ressources/params_PIA/data/auth.txt --comp-lzo --verb 1 --reneg-sec 0' \
-                         ' --crl-verify data\crl.rsa.2048.pem' \
+                         ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
                          ' --auth-nocache' \
                          ' --block-outside-dns' \
                          ' --ca ressources/params_PIA/data/ca.rsa.2048.crt'
@@ -92,12 +92,13 @@ urls = tuple(open('ressources/URL_bot_views.txt', 'r'))
 
 path_profil = get_path_profile_firefox()
 binary_ff = FirefoxBinary(r'C:/Program Files (x86)/Mozilla Firefox/firefox.exe')
+connect_openvpn()
 
 for j in range(300):
     fp = webdriver.FirefoxProfile(path_profil)
     BROWSER = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
 
-    if j % 15 == 0 or j == 0:
+    if j % 15 == 0 and j != 0:
         connect_openvpn()
     for i in range(0, len(urls) - 1):
         print("*" * 60)

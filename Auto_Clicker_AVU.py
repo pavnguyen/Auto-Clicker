@@ -27,7 +27,6 @@ from colorama import init, Fore, Back, Style
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-
 import rasdial
 from list_timezone import LIST_TIME_ZONE
 from config import SCREEN_RESOLUTION  # config.py
@@ -36,7 +35,6 @@ from config import PURE_VPN_NAME
 from config import PIA_VPN_NAME
 from screen_resolution import ScreenRes
 import subprocess
-import schedule
 
 init()
 
@@ -282,10 +280,6 @@ def set_screen_resolution():
 
 def switch_main_window():
     try:
-        BROWSER.switch_to.window(WINDOW_BEFORE)
-    except:
-        pass
-    try:
         BROWSER.switch_to.window(MAIN_WINDOW)
     except:
         print('Error: Browser can not take MAIN WINDOW')
@@ -394,7 +388,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
             print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
                   Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
             switch_tab()
-            random_sleep()
             random_mouse_move()
             random_mouse_scroll()
             random_small_sleep()
@@ -452,7 +445,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
                       Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
                       '[DETECTED]' + Style.RESET_ALL)
                 switch_tab()
-                random_small_sleep()
                 random_mouse_move()
                 random_mouse_scroll()
                 switch_main_window()
@@ -463,12 +455,17 @@ def detect_and_click_ads_bottom(url, timing_ads):
                 x, y = get_recalcul_xy(980, 559)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
                 pyautogui.click(x, y)
+                random_mouse_move()
             except:
                 pyautogui.keyUp('ctrl')
                 pass
             pass
 
         # ADS BOTTOM
+        random_mouse_move()
+        x, y = get_recalcul_xy(624, 559)  # just for fun
+        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+
         if load_result is False:
             try:
                 first_result = ui.WebDriverWait(BROWSER, 35).until(lambda BROWSER:
@@ -512,7 +509,6 @@ def detect_and_click_ads_bottom(url, timing_ads):
                     # Switch tab to the new tab, which we will assume is the next one on the right
             if load_result is True:
                 switch_tab()
-                random_sleep()
                 random_mouse_move()
                 random_small_sleep()
                 random_mouse_scroll()
@@ -527,7 +523,7 @@ def detect_and_click_ads_bottom(url, timing_ads):
 
 
 def click_ads_right():
-    if ADS_RIGHT == 1:
+    if ADS_RIGHT == 1 or ADS_BOTTOM == 0:
         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT)
         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT)
         print('>> Ads Right >> Try to Click Ads RIGHT')
@@ -574,7 +570,7 @@ def replay_clip():
 
 
 def random_sleep():
-    r = random.randint(4, 7)
+    r = random.randint(3, 5)
     sleep(r)
 
 
@@ -584,9 +580,9 @@ def random_small_sleep():
 
 
 def random_mouse_move():
+    print('Mouse Move')
     for i in range(random.randrange(2, 4)):
         try:
-            print('Mouse Move')
             x = random.randint(5, 1380)
             y = random.randint(110, 890)
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
@@ -597,9 +593,9 @@ def random_mouse_move():
 
 
 def random_mouse_scroll():
+    print('Mouse Scroll')
     for i in range(random.randrange(2, 4)):
         try:
-            print('Mouse Scroll')
             r = random.randint(-5000, 5000)
             pyautogui.scroll(r)
             random_small_sleep()
@@ -714,7 +710,6 @@ def main(optional):
     global TOTAL_CLICKS_ADS_BOTTOM
     global TYPE_CLICKER
     global GOOGLE_SEARCH
-    global WINDOW_BEFORE
 
     with open('config_auto_clicker.json') as data_file:
         CONFIG_JSON = load(data_file)
@@ -797,12 +792,6 @@ def main(optional):
                     BROWSER = webdriver.Firefox()
                 BROWSER.maximize_window()
 
-            # Save the browser opener
-            try:
-                WINDOW_BEFORE = BROWSER.window_handles[0]
-            except:
-                pass
-
             # Save the window opener
             try:
                 MAIN_WINDOW = BROWSER.current_window_handle
@@ -861,7 +850,6 @@ def main(optional):
                         if result_search_youtube is False:
                             url = get_tinyurl_clip(str(file_channel))
                             BROWSER.get(url)
-
                         counter += 1
                         print("Test Ads Bottom: " + str(counter))
                         found_ads_bottom = detect_and_click_ads_bottom(url, timing_ads)
@@ -894,10 +882,6 @@ def main(optional):
             else:
                 print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + '-----------[MODE] VIEW ONLY----------' +
                       Style.RESET_ALL)
-                try:
-                    search_youtube(url)
-                except:
-                    pass
 
             COUNTER_TOURS += 1
 
@@ -914,9 +898,9 @@ def main(optional):
                             url = get_tinyurl_clip(str(file_channel))
                             BROWSER.get(url)
 
-                        countdown(30)
+                        countdown(15)
                         print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
-                              Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url_view + '' + Style.RESET_ALL)
+                              Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
                         random_mouse_move()
                         click_ads_right()
                     except:
@@ -981,11 +965,11 @@ def main(optional):
                   Style.RESET_ALL)
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
-            click_ads_right()
+            # click_ads_right()
             if found_ads_bottom is True:
                 countdown(wait_time)
-            elif ADS_BOTTOM == 0:
-                countdown(random.randint(15, 35))
+                # elif ADS_BOTTOM == 0:
+                # countdown(random.randint(15, 35))
 
             print(Fore.LIGHTGREEN_EX + Back.BLACK + '\n[Total timing]' + Style.RESET_ALL + ' ' +
                   str(datetime.timedelta(seconds=time.time() - start_time)) + '')
@@ -995,7 +979,6 @@ def main(optional):
             print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'Auto Clicker [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
             print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
 
-            # if ADS_BOTTOM == 1:
             try:
                 BROWSER.quit()
             except:
@@ -1013,7 +996,7 @@ def main(optional):
               + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
 
     if TYPE_CLICKER != 'DAILY':
-        print(Back.BLACK + Fore.LIGHTRED_EX + Style.BRIGHT + 'Press ENTER to close...' + '')
+        print(Back.LIGHTWHITE_EX + Fore.LIGHTRED_EX + Style.BRIGHT + 'VuNguyen.XBT@Gmail.com ...' + '')
         # raw_input()
 
 
@@ -1034,8 +1017,3 @@ if __name__ == "__main__":
             main(1)
         main(0)
 
-    if TYPE_CLICKER == 'DAILY' and ADS_BOTTOM == 1:
-        schedule.every(90).minutes.do(main)
-        while True:
-            schedule.run_pending()
-            time.sleep(1)
