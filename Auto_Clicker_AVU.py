@@ -394,14 +394,14 @@ def detect_and_click_ads_bottom(timing_ads):
             try:
                 first_result.click()
                 TOTAL_CLICKS_ADS_SKIPS += 1
-                print('annotation')
+                print('annotation 1')
                 load_result = True
             except:
                 x, y = get_recalcul_xy(414, 576)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
                 random_small_sleep()
                 pyautogui.click(x, y)
-                print('annotation')
+                print('annotation 2')
                 TOTAL_CLICKS_ADS_SKIPS += 1
                 load_result = True
             switch_tab()
@@ -410,7 +410,7 @@ def detect_and_click_ads_bottom(timing_ads):
             random_mouse_move()
 
             pyautogui.hotkey('alt', 'esc')
-            replay_clip()
+            # replay_clip()
             click_button_skipads()
             random_mouse_move()
         except:
