@@ -1,11 +1,27 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
-
+for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[JAY] The real value of blockchains
+[JAY] Introduction to Bitcoin
+[JAY] Ethereum   Consensus vs Immutability
+[JAY] Ethereum, Monero and Dash
+[JAY] Bitcoin or Blockchain - The differences
+[JAY] Bitcoin is the Real Electronic Cash
+[JAY] Bitcoin and the Banks   Five Stages of Grief
 [JAY] A Cryptocurrency Arbitrage Robot review 2049JA
+[JAY] Zcash vs Dash
 [JAY] What is Mining digital Crypto Currencies 2049JA
+[JAY] What is Ethereum
 [JAY] What is blockchain 2049JA
 [JAY] Steemit 2049JA
+[JAY] Mining pc at full load 2049JA
+[JAY] Mining Litecoin
+[JAY] How to mine Zcash
+[JAY] How to Explain Mining
+[JAY] Farm Simulator Dota 2
 [JAY] Evolving layered technologies in cryptocurrency 2049JA
+[JAY] Ethereum Tuto Mining Ether
+[JAY] Dota 2 FY Moment 101 fast
 [JAY] Does Ethereum compete against Bitcoin 2049JA
+[JAY] Cost control for mining hardware 2049JA
 [JAY] Blockchain Wallet 2049JA
 [JAY] Blockchain Health Teaser 2049JA
 [JAY] Bitcoin mining operation 2049JA

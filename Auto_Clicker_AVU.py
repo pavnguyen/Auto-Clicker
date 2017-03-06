@@ -103,11 +103,10 @@ def check_country_is_ok():
 
 
 def connect_purevpn():
-    # if PUREVPN == 1 and ADS_BOTTOM == 1 and NUMBER_MACHINE <= TOTAL_CHANNEL:
     if PUREVPN == 1:
         load_result = False
         rasdial.disconnect()
-        division = TOTAL_CHANNEL / len(USER_PASS)
+        division = round(float(TOTAL_CHANNEL) / len(USER_PASS))
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
         while load_result is False:
             rasdial.disconnect()
@@ -118,7 +117,7 @@ def connect_purevpn():
 
                 if NUMBER_MACHINE <= division:
                     value = 1
-                elif division < NUMBER_MACHINE <= TOTAL_CHANNEL - division:
+                elif division < NUMBER_MACHINE <= TOTAL_CHANNEL - (TOTAL_CHANNEL / len(USER_PASS)):
                     value = 2
                 else:
                     value = 3
@@ -181,63 +180,63 @@ def connect_openvpn_purevpn():
 
 def connect_openvpn():
     if OPENVPN == 1:
-        if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
-            load_result = False
-            while load_result is False:
-                if sys.platform == 'win32':
-                    try:
-                        print('Try to Disconnect OpenVPN')
-                        rasdial.disconnect()  # Disconnect params_PureVPN first
-                        check_output("taskkill /im openvpn.exe /F", shell=True)
-                    except:
-                        pass
-
-                    check_output('ipconfig /release', shell=True)
-                    check_output('ipconfig /renew', shell=True)
-
-                print('Connect OpenVPN')
-                if sys.platform == 'win32':
-                    cmd = '"C:/Program Files/OpenVPN/bin/openvpn.exe"'
-                else:
-                    cmd = '/etc/openvpn/openvpn'
-                value = random.randint(0, len(CONFIG_IP) - 1)
-                print('Random Server: ' + CONFIG_IP[value].strip())
-                if 'privateinternetaccess' in CONFIG_IP[value].strip():
-                    parameters = ' --client --dev tun --tun-mtu 1500 --proto udp --remote ' \
-                                 + CONFIG_IP[value].strip() + \
-                                 ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
-                                 ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
-                                 ' --auth-user-pass ressources/params_PIA/data/auth.txt ' \
-                                 '--comp-lzo --verb 1 --reneg-sec 0' \
-                                 ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
-                                 ' --auth-nocache' \
-                                 ' --block-outside-dns' \
-                                 ' --ca ressources/params_PIA/data/ca.rsa.2048.crt'
-                else:
-                    parameters = ' --tls-client --client --dev tun --link-mtu 1500' \
-                                 ' --remote ' + CONFIG_IP[value].strip() + \
-                                 ' --proto udp --port 1197' \
-                                 ' --lport 53 --persist-key --persist-tun --ca ressources/params_PIA/data/ca.crt ' \
-                                 '--comp-lzo --mute 3' \
-                                 ' --auth-user-pass ressources/params_PIA/data/auth.txt' \
-                                 ' --reneg-sec 0 --route-method exe --route-delay 2' \
-                                 ' --verb 3 --log c:/log.txt --status c:/stat.db 1 --auth-nocache' \
-                                 ' --crl-verify ressources/params_PIA/data/crl.pem ' \
-                                 '--remote-cert-tls server --block-outside-dns' \
-                                 ' --cipher aes-256-cbc --auth sha256'
-
-                cmd += parameters
+        # if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
+        load_result = False
+        while load_result is False:
+            if sys.platform == 'win32':
                 try:
-                    subprocess.Popen(cmd)
-                    print('Please wait to connect to OpenVPN...')
-                    countdown(8)
+                    print('Try to Disconnect OpenVPN')
+                    rasdial.disconnect()  # Disconnect params_PureVPN first
+                    check_output("taskkill /im openvpn.exe /F", shell=True)
                 except:
                     pass
 
-                if check_ping_is_ok() is True:
-                    if check_country_is_ok() is True:
-                        if set_zone() is True:
-                            load_result = True
+                check_output('ipconfig /release', shell=True)
+                check_output('ipconfig /renew', shell=True)
+
+            print('Connect OpenVPN')
+            if sys.platform == 'win32':
+                cmd = '"C:/Program Files/OpenVPN/bin/openvpn.exe"'
+            else:
+                cmd = '/etc/openvpn/openvpn'
+            value = random.randint(0, len(CONFIG_IP) - 1)
+            print('Random Server: ' + CONFIG_IP[value].strip())
+            if 'privateinternetaccess' in CONFIG_IP[value].strip():
+                parameters = ' --client --dev tun --tun-mtu 1500 --proto udp --remote ' \
+                             + CONFIG_IP[value].strip() + \
+                             ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
+                             ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
+                             ' --auth-user-pass ressources/params_PIA/data/auth.txt ' \
+                             '--comp-lzo --verb 1 --reneg-sec 0' \
+                             ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
+                             ' --auth-nocache' \
+                             ' --block-outside-dns' \
+                             ' --ca ressources/params_PIA/data/ca.rsa.2048.crt'
+            else:
+                parameters = ' --tls-client --client --dev tun --link-mtu 1500' \
+                             ' --remote ' + CONFIG_IP[value].strip() + \
+                             ' --proto udp --port 1197' \
+                             ' --lport 53 --persist-key --persist-tun --ca ressources/params_PIA/data/ca.crt ' \
+                             '--comp-lzo --mute 3' \
+                             ' --auth-user-pass ressources/params_PIA/data/auth.txt' \
+                             ' --reneg-sec 0 --route-method exe --route-delay 2' \
+                             ' --verb 3 --log c:/log.txt --status c:/stat.db 1 --auth-nocache' \
+                             ' --crl-verify ressources/params_PIA/data/crl.pem ' \
+                             '--remote-cert-tls server --block-outside-dns' \
+                             ' --cipher aes-256-cbc --auth sha256'
+
+            cmd += parameters
+            try:
+                subprocess.Popen(cmd)
+                print('Please wait to connect to OpenVPN...')
+                countdown(8)
+            except:
+                pass
+
+            if check_ping_is_ok() is True:
+                if check_country_is_ok() is True:
+                    if set_zone() is True:
+                        load_result = True
 
 
 def get_random_resolution():
@@ -370,96 +369,107 @@ def search_youtube(url):
     return load_result
 
 
-def detect_and_click_ads_bottom(url, timing_ads):
+def click_button_skipads():
+    try:
+        first_result = ui.WebDriverWait(BROWSER, 3).until(
+            lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiSkipButton'))
+        x, y = get_recalcul_xy(980, 559)
+        random_sleep()
+        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+        pyautogui.click(x, y)
+    except:
+        pass
+
+
+def detect_and_click_ads_bottom(timing_ads):
     global TOTAL_CLICKS_ADS_SKIPS
     load_result = False
     switch_main_window()
     try:
         # SKIP ADS
         try:
-            x, y = get_recalcul_xy(330, 590)
-            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-            first_result = ui.WebDriverWait(BROWSER, 10).until(
-                lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-contents'))
-            x, y = get_recalcul_xy(330, 580)
-            pyautogui.click(x, y)
-            TOTAL_CLICKS_ADS_SKIPS += 1
-            load_result = True
-            print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
-                  Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
-            switch_tab()
-            random_mouse_move()
-            random_mouse_scroll()
-            random_small_sleep()
-            switch_main_window()
-
+            first_result = ui.WebDriverWait(BROWSER, 12).until(
+                lambda BROWSER: BROWSER.find_element_by_class_name('annotation'))
+            print('annotation checked')
             try:
-                pyautogui.hotkey('alt', 'esc')
-                replay_clip()
-                first_result = ui.WebDriverWait(BROWSER, 3).until(
-                    lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiSkipButton'))
                 first_result.click()
+                TOTAL_CLICKS_ADS_SKIPS += 1
+                print('annotation')
                 load_result = True
             except:
-                # Click Skip ads
-                x, y = get_recalcul_xy(980, 559)
+                x, y = get_recalcul_xy(414, 576)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                random_small_sleep()
                 pyautogui.click(x, y)
+                print('annotation')
+                TOTAL_CLICKS_ADS_SKIPS += 1
                 load_result = True
-                pass
+            switch_tab()
+            random_mouse_move()
+            switch_main_window()
+            random_mouse_move()
+
+            pyautogui.hotkey('alt', 'esc')
+            replay_clip()
+            click_button_skipads()
+            random_mouse_move()
         except:
-            pyautogui.keyUp('ctrl')
             try:
-                x, y = get_recalcul_xy(330, 580)
+                x, y = get_recalcul_xy(330, 600)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                first_result = ui.WebDriverWait(BROWSER, 5).until(
-                    lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
+                first_result = ui.WebDriverWait(BROWSER, 3).until(
+                    lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-contents'))
                 try:
-                    first_result.click()
-                    TOTAL_CLICKS_ADS_SKIPS += 1
-                    load_result = True
+                    pyautogui.click(330, 576)
+                    print('click 2')
                 except:
-                    pyautogui.click(330, 580)
-                    TOTAL_CLICKS_ADS_SKIPS += 1
-                    load_result = True
+                    pyautogui.click(330, 576)
                     pass
+                TOTAL_CLICKS_ADS_SKIPS += 1
+                load_result = True
+                print(
+                    Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
+                    Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+                switch_tab()
+                random_mouse_move()
+                random_small_sleep()
+                switch_main_window()
+                random_mouse_move()
+
+                pyautogui.hotkey('alt', 'esc')
+                replay_clip()
+                click_button_skipads()
+            except:
                 try:
-                    first_result = ui.WebDriverWait(BROWSER, 3).until(
-                        lambda BROWSER: BROWSER.find_element_by_class_name('annotation'))
+                    x, y = get_recalcul_xy(330, 600)
+                    pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                    first_result = ui.WebDriverWait(BROWSER, 5).until(
+                        lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
+                    print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
+                          'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
+                          Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
+                          '[DETECTED]' + Style.RESET_ALL)
                     try:
-                        first_result.click()
+                        pyautogui.moveTo(330, 600, random.random(), pyautogui.easeOutQuad)
+                        random_small_sleep()
+                        pyautogui.click(330, 576)
+                        print('click 4')
                         TOTAL_CLICKS_ADS_SKIPS += 1
                         load_result = True
                     except:
-                        x, y = get_recalcul_xy(414, 580)
-                        pyautogui.click(x, y)
-                        TOTAL_CLICKS_ADS_SKIPS += 1
-                        load_result = True
+                        pyautogui.click(330, 576)
                         pass
+                    switch_tab()
+                    random_mouse_move()
+                    switch_main_window()
+                    random_mouse_move()
+
+                    pyautogui.hotkey('alt', 'esc')
+                    replay_clip()
+                    click_button_skipads()
+                    random_mouse_move()
                 except:
-                    pyautogui.keyUp('ctrl')
                     pass
-
-                print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
-                      'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
-                      Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
-                      '[DETECTED]' + Style.RESET_ALL)
-                switch_tab()
-                random_mouse_move()
-                random_mouse_scroll()
-                switch_main_window()
-
-                pyautogui.hotkey('alt', 'esc')
-                replay_clip()
-                # Click Skip ads
-                x, y = get_recalcul_xy(980, 559)
-                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                pyautogui.click(x, y)
-                random_mouse_move()
-            except:
-                pyautogui.keyUp('ctrl')
-                pass
-            pass
 
         # ADS BOTTOM
         random_mouse_move()
@@ -548,6 +558,7 @@ def click_ads_right():
         pyautogui.keyUp('ctrl')
         random_mouse_move()
     except:
+        pyautogui.keyUp('ctrl')
         pass
     switch_main_window()
 
@@ -564,6 +575,7 @@ def replay_clip():
         except:
             pass
         print('-> Mouse click to REPLAY')
+        random_mouse_move()
         random_mouse_move()
     except:
         pass
@@ -727,7 +739,7 @@ def main(optional):
     if ADS_BOTTOM == 1:
         BOUCLE_SUPER_VIP = int(get_params('BOUCLE_SUPER_VIP'))
     else:
-        BOUCLE_SUPER_VIP = 5
+        BOUCLE_SUPER_VIP = 3
     PUREVPN = int(get_params('PureVPN'))
     OPENVPN = int(get_params('OpenVPN'))
     X_SCREEN = int(get_params('WIDTH'))
@@ -769,13 +781,12 @@ def main(optional):
         BOUCLE_SUPER_VIP = 1
 
     for z in range(BOUCLE_SUPER_VIP):
-        for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
-            if i == NUMBER_MACHINE:
-                if PUREVPN == 0:
-                    connect_openvpn()  # OpenVPN
-                else:
-                    connect_purevpn()  # params_PureVPN
+        if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
+            connect_openvpn()  # OpenVPN
+        else:
+            connect_purevpn()  # params_PureVPN
 
+        for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
             start_time = time.time()
             if ADS_BOTTOM == 1:
                 print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
@@ -844,7 +855,7 @@ def main(optional):
                     try:
                         url = get_title_clip(str(file_channel))
                         print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL Ads >> ' + Style.RESET_ALL +
-                              Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
+                              Back.BLACK + Fore.LIGHTWHITE_EX + url + Style.RESET_ALL)
                         result_search_youtube = search_youtube(url)
 
                         if result_search_youtube is False:
@@ -852,7 +863,7 @@ def main(optional):
                             BROWSER.get(url)
                         counter += 1
                         print("Test Ads Bottom: " + str(counter))
-                        found_ads_bottom = detect_and_click_ads_bottom(url, timing_ads)
+                        found_ads_bottom = detect_and_click_ads_bottom(timing_ads)
                         if found_ads_bottom is True:
                             TOTAL_CLICKS_ADS_BOTTOM += 1
                             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Ads Bottom] => ' +
@@ -867,10 +878,6 @@ def main(optional):
                                 Style.RESET_ALL + Fore.LIGHTYELLOW_EX + Back.BLACK +
                                 str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL)
                     except:
-                        try:
-                            BROWSER.quit()
-                        except:
-                            pass
                         continue
 
                 if found_ads_bottom is False:
@@ -961,11 +968,10 @@ def main(optional):
 
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 9 + 'FINISH -> Tours -> ' +
-                  Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(COUNTER_TOURS) + '' +
-                  Style.RESET_ALL)
+                  Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(COUNTER_TOURS) + '' + Style.RESET_ALL)
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
-            # click_ads_right()
+            click_ads_right()
             if found_ads_bottom is True:
                 countdown(wait_time)
                 # elif ADS_BOTTOM == 0:
@@ -1012,8 +1018,7 @@ if __name__ == "__main__":
     COUNTER_TOURS = 0
     TOTAL_CLICKS_ADS_BOTTOM = 0
     TOTAL_CLICKS_ADS_SKIPS = 0
-    for y in range(0, 6):
+    for y in range(0, 3):
         if y == 0:
             main(1)
         main(0)
-

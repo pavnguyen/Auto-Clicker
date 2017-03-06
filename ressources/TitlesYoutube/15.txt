@@ -1,13 +1,10 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
-
-[BRY] Do You Need A Shift?
-[BRY] Biggest Secret To Success
-[BRY] Selling is Everything
-[BRY] The Best Gift I Can Give You
-[BRY] Sales And Marketing
-[BRY] Two Types Of People
-[BRY] View future
-[BRY] Best Piece of Financial Advice
-[BRY] Working on Yourself Doesn't Work
-[BRY] Jack Ma Trust Yourself Not Others
+for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+Addiction Is Not Always A Mental or Moral Weakness
+Addicts Have Less Dopamine Receptors?
+The Coolidge Effect Of Pornography
+The Brain Of Addict Different From Non Addict
+Why Drug Use Increases With Tolerance?
+The Brain Is In Continual Conflict
+Why Is The Limbic System So Strong?
+Why Pornography Gets Us Addicted?
 undefined
