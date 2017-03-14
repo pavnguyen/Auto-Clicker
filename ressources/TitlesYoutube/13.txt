@@ -1,5 +1,4 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
-
 [TRE] How to Become a Millionaire?
 [TRE] Tony Robbins: Do You Need A 2-millimeter Shift
 [TRE] Jim Rohn:  Biggest Secret To Success

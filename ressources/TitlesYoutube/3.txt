@@ -1,4 +1,5 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[HAR] Introducing NEM
 [HAR] The real value of blockchains
 [HAR] Introduction to Bitcoin
 [HAR] Ethereum   Consensus vs Immutability

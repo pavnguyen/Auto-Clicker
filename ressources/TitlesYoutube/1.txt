@@ -1,4 +1,5 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[MCC] Introducing NEM
 [MCC] The real value of blockchains
 [MCC] Introduction to Bitcoin
 [MCC] The Golem Project   Ethereum

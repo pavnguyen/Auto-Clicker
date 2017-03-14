@@ -1,4 +1,5 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[WIL] Introducing NEM
 [WIL] The real value of blockchains
 [WIL] Introduction to Bitcoin
 [WIL] Ethereum   Consensus vs Immutability

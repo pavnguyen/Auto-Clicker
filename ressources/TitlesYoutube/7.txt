@@ -1,4 +1,5 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[ELI] Introducing NEM
 [ELI] The real value of blockchains
 [ELI] Introduction to Bitcoin
 [ELI] Ethereum   Consensus vs Immutability

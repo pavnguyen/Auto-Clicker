@@ -322,7 +322,7 @@ def copyanything(src, dst):
         if exc.errno == errno.ENOTDIR:
             shutil.copy(src, dst)
         else:
-            raise
+            pass
 
 
 def backup_profile(numberMachine):
@@ -343,6 +343,16 @@ def backup_profile(numberMachine):
             copyanything(path, 'ressources/Profils/' + numberMachine)
         except:
             pass
+    try:
+        BROWSER.quit()
+    except:
+        pass
+
+    try:
+        shutil.rmtree(path)
+    except:
+        print('Cannot delete!!!')
+        pass
     print('Profil Firefox is backup!!!')
 
 
@@ -412,10 +422,8 @@ def main(optional):
                   Back.LIGHTRED_EX + Fore.BLACK + Style.BRIGHT + 'FAILED!!!' + Style.RESET_ALL)
             pass
 
-        print(BROWSER.profile.path)
         countdown(200)
         backup_profile(z)
-
 
 ########################################################################################################################
 #                                                Main Program                                                          #

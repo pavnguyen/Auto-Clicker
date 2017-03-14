@@ -179,7 +179,7 @@ def connect_openvpn_purevpn():
 
 
 def connect_openvpn():
-    if OPENVPN == 1:
+    if OPENVPN == 1 or ADS_BOTTOM == 0:
         # if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
         load_result = False
         while load_result is False:
@@ -202,7 +202,7 @@ def connect_openvpn():
             value = random.randint(0, len(CONFIG_IP) - 1)
             print('Random Server: ' + CONFIG_IP[value].strip())
             if 'privateinternetaccess' in CONFIG_IP[value].strip():
-                parameters = ' --client --dev tun --tun-mtu 1500 --proto udp --remote ' \
+                parameters = ' --client --dev tun --proto udp --remote ' \
                              + CONFIG_IP[value].strip() + \
                              ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
                              ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
@@ -210,8 +210,8 @@ def connect_openvpn():
                              '--comp-lzo --verb 1 --reneg-sec 0' \
                              ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
                              ' --auth-nocache' \
-                             ' --block-outside-dns' \
-                             ' --ca ressources/params_PIA/data/ca.rsa.2048.crt'
+                             ' --ca ressources/params_PIA/data/ca.rsa.2048.crt' \
+                    # ' --block-outside-dns'
             else:
                 parameters = ' --tls-client --client --dev tun --link-mtu 1500' \
                              ' --remote ' + CONFIG_IP[value].strip() + \
@@ -383,6 +383,8 @@ def click_button_skipads():
 
 def detect_and_click_ads_bottom(timing_ads):
     global TOTAL_CLICKS_ADS_SKIPS
+    global DETECTED_ADDISPLAY
+
     load_result = False
     switch_main_window()
     try:
@@ -399,7 +401,6 @@ def detect_and_click_ads_bottom(timing_ads):
             except:
                 x, y = get_recalcul_xy(414, 576)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                random_small_sleep()
                 pyautogui.click(x, y)
                 print('annotation 2')
                 TOTAL_CLICKS_ADS_SKIPS += 1
@@ -451,7 +452,6 @@ def detect_and_click_ads_bottom(timing_ads):
                           '[DETECTED]' + Style.RESET_ALL)
                     try:
                         pyautogui.moveTo(330, 600, random.random(), pyautogui.easeOutQuad)
-                        random_small_sleep()
                         pyautogui.click(330, 576)
                         print('click 4')
                         TOTAL_CLICKS_ADS_SKIPS += 1
@@ -475,7 +475,7 @@ def detect_and_click_ads_bottom(timing_ads):
         random_mouse_move()
         x, y = get_recalcul_xy(624, 559)  # just for fun
         pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-
+        DETECTED_ADDISPLAY = 1
         if load_result is False:
             try:
                 first_result = ui.WebDriverWait(BROWSER, 35).until(lambda BROWSER:
@@ -497,7 +497,7 @@ def detect_and_click_ads_bottom(timing_ads):
                     print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
                           Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
                     load_result = True
-
+                    DETECTED_ADDISPLAY = 0
                     print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
                 except:
                     try:
@@ -507,11 +507,12 @@ def detect_and_click_ads_bottom(timing_ads):
                         first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
                         print(
-                            Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
-                            Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+                            Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class 2 \"adDisplay\" => ' +
+                            Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
+                            '[DETECTED]' + Style.RESET_ALL)
 
                         load_result = True
-
+                        DETECTED_ADDISPLAY = 0
                     except:
                         print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
                         pass
@@ -662,14 +663,14 @@ def set_zone():
         ip = urlopen('http://ip.42.pl/raw').read()
         print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
 
-        region_name = load(urlopen(link))['region_name']
-        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
-
-        city = load(urlopen(link))['city']
-        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
-
-        time_zone = load(urlopen(link))['time_zone']
-        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+        # region_name = load(urlopen(link))['region_name']
+        # print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+        #
+        # city = load(urlopen(link))['city']
+        # print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+        #
+        # time_zone = load(urlopen(link))['time_zone']
+        # print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
 
         # Google API service form Vu.nomos
         link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
@@ -710,7 +711,6 @@ def main(optional):
     global OPENVPN
     global X_SCREEN_SET
     global Y_SCREEN_SET
-    global NUMBER_MACHINE
     global X_SCREEN
     global Y_SCREEN
     global KEYWORDS
@@ -736,12 +736,15 @@ def main(optional):
     GOOGLE_SEARCH = int(get_params('GOOGLE_SEARCH'))
     CLOSE_ADS_BOTTOM = int(get_params('CLOSE_ADS_BOTTOM'))
     TOTAL_CHANNEL = int(get_params('TOTAL_CHANNEL'))
+    PUREVPN = int(get_params('PureVPN'))
+    OPENVPN = int(get_params('OpenVPN'))
     if ADS_BOTTOM == 1:
         BOUCLE_SUPER_VIP = int(get_params('BOUCLE_SUPER_VIP'))
     else:
-        BOUCLE_SUPER_VIP = 3
-    PUREVPN = int(get_params('PureVPN'))
-    OPENVPN = int(get_params('OpenVPN'))
+        PUREVPN = 0
+        OPENVPN = 1
+        BOUCLE_SUPER_VIP = 1
+
     X_SCREEN = int(get_params('WIDTH'))
     Y_SCREEN = int(get_params('HEIGHT'))
     X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
@@ -754,15 +757,6 @@ def main(optional):
     print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
     print(Fore.LIGHTWHITE_EX + '=' * 8 + '  ' + 'Auto Clicker [AVU]' + '  ' + '=' * 7 + Style.RESET_ALL)
     print(Back.BLACK + Fore.LIGHTRED_EX + Style.NORMAL + '=' * 37 + Style.RESET_ALL)
-
-    if len(sys.argv) > 1:
-        NUMBER_MACHINE = int(sys.argv[1])
-    else:
-        print(Back.BLACK + Fore.LIGHTWHITE_EX + ' ' * 3 + '[ Please enter the Machine Number: ]' +
-              Back.LIGHTRED_EX + Fore.LIGHTWHITE_EX)
-        print(Style.RESET_ALL)
-
-        NUMBER_MACHINE = str(raw_input())
 
     print(
         Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + "Number Machine: " + str(NUMBER_MACHINE) + '' + Style.RESET_ALL)
@@ -781,7 +775,7 @@ def main(optional):
         BOUCLE_SUPER_VIP = 1
 
     for z in range(BOUCLE_SUPER_VIP):
-        if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
+        if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0 or optional == 0:
             connect_openvpn()  # OpenVPN
         else:
             connect_purevpn()  # params_PureVPN
@@ -895,7 +889,7 @@ def main(optional):
             # View AFTER detect and click real ads
 
             if ADS_BOTTOM == 0:
-                total_key = random.randint(3, 4)
+                total_key = random.randint(5, 7)
                 for j in range(total_key):
                     try:
                         switch_main_window()
@@ -909,7 +903,8 @@ def main(optional):
                         print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                               Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
                         random_mouse_move()
-                        click_ads_right()
+                        if j % total_key == 0:
+                            click_ads_right()
                     except:
                         pass
 
@@ -937,13 +932,20 @@ def main(optional):
                     # Try to close Ads
                     if CLOSE_ADS_BOTTOM == 1:
                         random_close = random.randint(0, 1)
-                        if random_close == 0:
+                        if random_close == 1:
                             try:
-                                x, y = get_recalcul_xy(845, 551)
-                                print('Try to close Ads: X->' + str(x) + ' Y->' + str(y))
+                                if DETECTED_ADDISPLAY == 0:
+                                    x, y = get_recalcul_xy(990, 503)
+                                else:
+                                    x, y = get_recalcul_xy(845, 536)
+                                print(Fore.LIGHTYELLOW_EX + Back.BLACK + 'Try to close Ads: X->' +
+                                      str(x) + ' Y->' + str(y) + Style.RESET_ALL)
                                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
                                 sleep(0.25)
-                                pyautogui.click(x, y)
+                                try:
+                                    pyautogui.click(x, y)
+                                except:
+                                    pass
                             except:
                                 pass
 
@@ -1018,7 +1020,17 @@ if __name__ == "__main__":
     COUNTER_TOURS = 0
     TOTAL_CLICKS_ADS_BOTTOM = 0
     TOTAL_CLICKS_ADS_SKIPS = 0
-    for y in range(0, 3):
-        if y == 0:
+    global NUMBER_MACHINE
+    if len(sys.argv) > 1:
+        NUMBER_MACHINE = int(sys.argv[1])
+    else:
+        print(Back.BLACK + Fore.LIGHTWHITE_EX + ' ' * 3 + '[ Please enter the Machine Number: ]' +
+              Back.LIGHTRED_EX + Fore.LIGHTWHITE_EX)
+        print(Style.RESET_ALL)
+        NUMBER_MACHINE = str(raw_input())
+
+    for i in range(0, 30):
+        if NUMBER_MACHINE <= 15:
+            main(0)
+        else:
             main(1)
-        main(0)

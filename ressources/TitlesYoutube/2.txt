@@ -1,4 +1,5 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[JAY] Introducing NEM
 [JAY] The real value of blockchains
 [JAY] Introduction to Bitcoin
 [JAY] Ethereum   Consensus vs Immutability

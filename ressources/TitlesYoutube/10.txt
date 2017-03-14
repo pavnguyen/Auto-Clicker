@@ -1,4 +1,5 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[TRO] Introducing NEM
 [TRO] The real value of blockchains
 [TRO] Introduction to Bitcoin
 [TRO] Ethereum   Consensus vs Immutability

@@ -1,4 +1,5 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[BEA] Introducing NEM
 [BEA] The real value of blockchains
 [BEA] Introduction to Bitcoin
 [BEA] Ethereum   Consensus vs Immutability
