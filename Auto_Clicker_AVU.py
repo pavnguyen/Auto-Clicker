@@ -35,7 +35,8 @@ from config import PURE_VPN_NAME
 from config import PIA_VPN_NAME
 from screen_resolution import ScreenRes
 import subprocess
-import shutil, errno
+import shutil
+import errno
 
 init()
 
