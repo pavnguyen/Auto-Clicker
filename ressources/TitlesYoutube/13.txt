@@ -1,0 +1,18 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
+[TRE] How to Become a Millionaire?
+[TRE] Tony Robbins: Do You Need A 2-millimeter Shift
+[TRE] Jim Rohn:  Biggest Secret To Success
+[TRE] Jordan Belfort: Selling is Everything
+[TRE] Jim Rohn: The Best Gift I Can Give You
+[TRE] Jordan Belfort: Sales And Marketing
+[TRE] Jordan Belfortaka: The Wolf Of Wall Street
+[TRE] View future - Jim Rohn
+[TRE] The Mindset of an Olympian 999
+[TRE] Soldiers Journal - Warrior Mindset 999
+[TRE] Shift To Strategic Mindset 999
+[TRE] Marketing Mindset Experiment, Learn, Modify 999
+[TRE] I Heart Teachers Encouraging Growth Mindset 999
+[TRE] How Bill Gates Made Billions - The Mindset of a Billionaire 999
+[TRE] Growth Mindset Goal Setting Data Tracking and Reflection 999
+[TRE] Fixed Mindset vs Growth Mindset 999
+undefined

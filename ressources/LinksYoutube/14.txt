@@ -1,0 +1,7 @@
+for(i = 0; i < 5; i++){ console.log ($$(".vm-video-title-content")[i].href)}
+https://www.youtube.com/watch?v=_uYDU9HndV4
+https://www.youtube.com/watch?v=L0Ps8136VVI
+https://www.youtube.com/watch?v=X5gsWiDONpQ
+https://www.youtube.com/watch?v=fGnth6-5Qxk
+https://www.youtube.com/watch?v=W4b5Je0i-4I
+undefined

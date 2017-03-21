@@ -1,0 +1,20 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
+[LAD] How to Become a Millionaire?
+[LAD] Do You Need A 2-millimeter Shift?
+[LAD] Jim Rohn: Biggest Secret To Success
+[LAD] Jordan Belfort: Selling is Everything
+[LAD] Jim Rohn: The Best Gift I Can Give You
+[LAD] Jordan Belfort: Sales And Marketing
+[LAD] Two Types Of People
+[LAD] View future
+[LAD] Michael Phelps The Mindset of an Olympian
+[LAD] Shift To Strategic Mindset
+[LAD] Interesting Story
+[LAD] Marketing Mindset Experiment, Learn, Modify
+[LAD] Speaking Test Between 2 Teachers Part 2
+[LAD] How Bill Gates Made Billions
+[LAD] Speaking Between 2 Teachers 1
+[LAD] I Heart Teachers Encouraging Growth Mindset
+[LAD] Growth Mindset Goal Setting, Data Tracking and Reflection
+[LAD] Fixed Mindset vs Growth Mindset
+undefined

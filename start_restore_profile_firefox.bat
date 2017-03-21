@@ -1,0 +1,1 @@
+python "Z:\Project Python\Auto Clicker\restore_profile_firefox.py"

@@ -1,0 +1,29 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[WIL] Introducing NEM
+[WIL] The real value of blockchains
+[WIL] Introduction to Bitcoin
+[WIL] Ethereum   Consensus vs Immutability
+[WIL] Ethereum, Monero and Dash
+[WIL] Bitcoin or Blockchain - The differences
+[WIL] Bitcoin is the Real Electronic Cash
+[WIL] Bitcoin and the Banks   Five Stages of Grief
+[WIL] A Cryptocurrency Arbitrage Robot review 2049WI
+[WIL] Zcash vs Dash
+[WIL] What is Mining digital Crypto Currencies 2049WI
+[WIL] What is Ethereum
+[WIL] What is blockchain 2049WI
+[WIL] Steemit 2049WI
+[WIL] Mining pc at full load 2049WI
+[WIL] Mining Litecoin
+[WIL] How to mine Zcash
+[WIL] How to Explain Mining
+[WIL] Farm Simulator Dota 2
+[WIL] Evolving layered technologies in cryptocurrency 2049WI
+[WIL] Ethereum Tuto Mining Ether
+[WIL] Dota 2 FY Moment 101 fast
+[WIL] Does Ethereum compete against Bitcoin 2049WI
+[WIL] Cost control for mining hardware 2049WI
+[WIL] Blockchain Wallet 2049WI
+[WIL] Blockchain Health Teaser 2049WI
+[WIL] Bitcoin mining operation 2049WI
+undefined

@@ -1,0 +1,14 @@
+{
+  "DEFAULT": [
+    {
+      "USER_CONFIG": "VUNPA",
+      "BOUCLE_SUPER_VIP": "2000",
+      "PureVPN": "0",
+      "OpenVPN": "1",
+      "USER_PUREVPN": "purevpn0s1122211",
+      "WIDTH": "1716",
+      "HEIGHT": "927",
+      "PASSWORD_PUREVPN": "vunguyen"
+    }
+  ]
+}

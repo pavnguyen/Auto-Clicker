@@ -1,0 +1,14 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
+
+[WEN] How to Become a Millionaire?
+[WEN] Do You Need A 2-millimeter Shift?
+[WEN] Jim Rohn: Biggest Secret To Success
+[WENT] Jordan Belfort: Selling is Everything
+[WEN] Jim Rohn: The Best Gift I Can Give You
+[WEN] Sales And Marketing
+[WEN] Two Types Of People On Wall Street
+[WEN] View future - Jim Rohn
+[WEN] Best Piece of Financial Advice
+[WEN] Working on Yourself Doesn't Work
+[WEN] Trust Yourself Not Others
+undefined

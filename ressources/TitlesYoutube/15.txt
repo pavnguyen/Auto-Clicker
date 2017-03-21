@@ -1,0 +1,10 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+Addiction Is Not Always A Mental or Moral Weakness
+Addicts Have Less Dopamine Receptors?
+The Coolidge Effect Of Pornography
+The Brain Of Addict Different From Non Addict
+Why Drug Use Increases With Tolerance?
+The Brain Is In Continual Conflict
+Why Is The Limbic System So Strong?
+Why Pornography Gets Us Addicted?
+undefined

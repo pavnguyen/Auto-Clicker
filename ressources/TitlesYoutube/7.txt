@@ -1,0 +1,29 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[ELI] Introducing NEM
+[ELI] The real value of blockchains
+[ELI] Introduction to Bitcoin
+[ELI] Ethereum   Consensus vs Immutability
+[ELIZ] Ethereum, Monero and Dash
+[ELIZ] Bitcoin or Blockchain - The differences
+[ELI] Bitcoin is the Real Electronic Cash
+[ELI] Bitcoin and the Banks   Five Stages of Grief
+[ELI] A Cryptocurrency Arbitrage Robot review 2049EL
+[ELI] Evolving layered technologies in cryptocurrency 2049EL
+[ELIZ] Donate to Revolution 2013lm
+[ELIZA]Donate Fines To Charity 2016ka
+[ELIZ]Donate a Car 2016lm
+[ELIZ]Burma Muslim Massacre  DONATE NOW
+[ELIZ]How to donate breast milk to the Calgary Mothers' Milk Bank
+[ELIZ] What is the Treatment for Back Pain?
+[ELIZ] Auto Insurance Mortgage 2015LA
+[ELIZ] Student Loans Debt Worth 2015
+[ELIZ] Effect of Air Pollutants on Health
+[ELIZ]OG vs Liquid Manila Major Grand Final Game 2
+[ELIZ]OG vs Liquid Manila Major Grand Final Game 1
+[ELIZ]Liquid vs Newbee Manila Major LB Final Game 3
+[ELIZ]Liquid vs Newbee Manila Major LB Final Game 2
+[ELIZ]Liquid vs LGD Highlights Manila Major LB Game 2
+[ELIZ]Liquid vs LGD Highlights Manila Major LB Game 1
+[ELIZ]OG vs Liquid Manila Major Grand Final Game 3
+[ELIZ]OG vs Liquid Manila Major Grand Final Game 4
+undefined

@@ -1,0 +1,1 @@
+python onlyclassical.py 1

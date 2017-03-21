@@ -1,0 +1,14 @@
+for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML.length) <=4  && parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 4){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
+
+[GAYE] How to Become a Millionaire?
+[GAYE] Do You Need A 2-millimeter Shift?
+[GAYE] Biggest Secret To Success
+[GAYE] Selling is Everything
+[GAYE] The Best Gift I Can Give You
+[GAYE] Sales And Marketing
+[GAYE] Two Types Of People On Wall Street
+[GAYE] View future
+[GAYE] Best Piece of Financial Advice
+[GAYE] Working on Yourself
+[GAYE] Jack Ma Trust Yourself Not Others
+undefined
