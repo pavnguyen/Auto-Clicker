@@ -35,8 +35,47 @@ from config import PURE_VPN_NAME
 from config import PIA_VPN_NAME
 from screen_resolution import ScreenRes
 import subprocess
+import shutil, errno
 
 init()
+
+
+def copyanything(src, dst):
+    try:
+        shutil.copytree(src, dst, ignore=shutil.ignore_patterns("parent.lock", "lock", ".parentlock"))
+    except OSError as exc:
+        if exc.errno == errno.ENOTDIR:
+            shutil.copy(src, dst)
+        else:
+            pass
+
+
+def restore_profile():
+    numberMachine = str(random.randint(0, len(os.listdir('ressources\Profiles\\')) - 1))
+    user_name = getpass.getuser()
+    path_profil = 'C:\Users\\' + user_name + '\AppData\Roaming\Mozilla\Firefox\Profiles\\'
+    profil_name = os.listdir(path_profil)[0]
+    folder = path_profil + profil_name
+
+    for the_file in os.listdir(folder):
+        file_path = os.path.join(folder, the_file)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except:
+            pass
+
+    try:
+        shutil.rmtree(folder)
+    except:
+        pass
+    print(numberMachine)
+    if not os.path.exists(folder):
+        copyanything('ressources\Profiles\\' + numberMachine, folder)
+
+    print('Profil Firefox is restore!!!')
 
 
 def get_tinyurl_clip(channel):
@@ -479,8 +518,8 @@ def detect_and_click_ads_bottom(timing_ads):
         if load_result is False:
             try:
                 first_result = ui.WebDriverWait(BROWSER, 35).until(lambda BROWSER:
-                                                                  BROWSER.find_element_by_class_name(
-                                                                      'adDisplay'))
+                                                                   BROWSER.find_element_by_class_name(
+                                                                       'adDisplay'))
                 first_link = first_result.find_element_by_tag_name('a')
                 first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
@@ -768,6 +807,7 @@ def main(optional):
 
     # Firefox Parameters
     if sys.platform == 'win32':
+        restore_profile()
         path_profil = get_path_profile_firefox()
         binary_ff = FirefoxBinary(r'C:/Program Files (x86)/Mozilla Firefox/firefox.exe')
 
@@ -902,6 +942,7 @@ def main(optional):
                         countdown(15)
                         print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                               Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
+                        click_button_skipads()
                         random_mouse_move()
                         if j % total_key == 0:
                             click_ads_right()
@@ -1030,7 +1071,7 @@ if __name__ == "__main__":
         NUMBER_MACHINE = str(raw_input())
 
     for i in range(0, 30):
-        if NUMBER_MACHINE <= 15:
+        if NUMBER_MACHINE <= 17:
             main(0)
         else:
             main(1)
