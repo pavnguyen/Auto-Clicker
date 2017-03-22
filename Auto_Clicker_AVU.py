@@ -9,7 +9,7 @@ import sys
 import time
 import win32gui
 from json import load
-from subprocess import check_output
+from platform import uname
 from time import sleep
 
 try:
@@ -46,7 +46,8 @@ def send_email_alert():
     try:
         fromaddr = 'vu.nomos@gmail.com'
         toaddrs = 'vunguyen.xbt@gmail.com'
-        msg = 'Probleme d\'Autoclicker'
+        text = uname()[1] + ' could not connect!!!'
+        msg = 'Subject: {}\n\n{}'.format('AutoClicker', text)
         username = 'vu.nomos@gmail.com'
         password = 'Params$&#!'
         server = smtplib.SMTP('smtp.gmail.com:587')
@@ -70,7 +71,7 @@ def copyanything(src, dst):
 
 
 def restore_profile():
-    numberMachine = str(random.randint(0, len(os.listdir('ressources\Profiles\\')) - 1))
+    profile_number = str(random.randint(0, len(os.listdir('ressources\Profiles\\')) - 1))
     user_name = getpass.getuser()
     path_profil = 'C:\Users\\' + user_name + '\AppData\Roaming\Mozilla\Firefox\Profiles\\'
     profil_name = os.listdir(path_profil)[0]
@@ -90,11 +91,9 @@ def restore_profile():
         shutil.rmtree(folder)
     except:
         pass
-    print(numberMachine)
+    print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Profile: ' + profile_number + Style.RESET_ALL)
     if not os.path.exists(folder):
-        copyanything('ressources\Profiles\\' + numberMachine, folder)
-
-    print('Profil Firefox is restore!!!')
+        copyanything('ressources\Profiles\\' + profile_number, folder)
 
 
 def get_tinyurl_clip(channel):
@@ -209,7 +208,7 @@ def connect_openvpn_purevpn():
             try:
                 print('Try to Disconnect OpenVPN')
                 rasdial.disconnect()  # Disconnect params_PureVPN first
-                check_output("taskkill /im openvpn.exe /F", shell=True)
+                subprocess.check_output("taskkill /im openvpn.exe /F", shell=True)
             except:
                 pass
 
@@ -253,12 +252,12 @@ def connect_openvpn():
                 try:
                     print('Try to Disconnect OpenVPN')
                     rasdial.disconnect()  # Disconnect params_PureVPN first
-                    check_output("taskkill /im openvpn.exe /F", shell=True)
+                    subprocess.check_output("taskkill /im openvpn.exe /F", shell=True)
                 except:
                     pass
 
-                check_output('ipconfig /release', shell=True)
-                check_output('ipconfig /renew', shell=True)
+                subprocess.check_output('ipconfig /release', shell=True)
+                subprocess.check_output('ipconfig /renew', shell=True)
 
             print('Connect OpenVPN')
             if sys.platform == 'win32':
@@ -746,7 +745,7 @@ def set_zone():
         zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
         print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
         if zone_to_set.strip() != '':
-            check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+            subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             return True
     except:
         return False
