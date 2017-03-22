@@ -37,8 +37,26 @@ from screen_resolution import ScreenRes
 import subprocess
 import shutil
 import errno
+import smtplib
 
 init()
+
+
+def send_email_alert():
+    try:
+        fromaddr = 'vu.nomos@gmail.com'
+        toaddrs = 'vunguyen.xbt@gmail.com'
+        msg = 'Probleme d\'Autoclicker'
+        username = 'vu.nomos@gmail.com'
+        password = 'Params$&#!'
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.ehlo()
+        server.starttls()
+        server.login(username, password)
+        server.sendmail(fromaddr, toaddrs, msg)
+        server.close()
+    except:
+        pass
 
 
 def copyanything(src, dst):
@@ -148,7 +166,11 @@ def connect_purevpn():
         rasdial.disconnect()
         division = round(float(TOTAL_CHANNEL) / len(USER_PASS))
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
+        counter_connect = 0
         while load_result is False:
+            if counter_connect >= 3:
+                send_email_alert()
+            counter_connect += 1
             rasdial.disconnect()
             sleep(1)
 
@@ -222,7 +244,11 @@ def connect_openvpn():
     if OPENVPN == 1 or ADS_BOTTOM == 0:
         # if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
         load_result = False
+        counter_connect = 0
         while load_result is False:
+            if counter_connect >= 3:
+                send_email_alert()
+            counter_connect += 1
             if sys.platform == 'win32':
                 try:
                     print('Try to Disconnect OpenVPN')
@@ -1071,7 +1097,7 @@ if __name__ == "__main__":
         print(Style.RESET_ALL)
         NUMBER_MACHINE = str(raw_input())
 
-    for i in range(0, 30):
+    for i in range(0, 100):
         if NUMBER_MACHINE <= 17:
             main(0)
         else:
