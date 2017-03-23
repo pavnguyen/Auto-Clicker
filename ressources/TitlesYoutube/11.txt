@@ -1,8 +1,9 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[BEA] Bitcoin Unlimited Presentations and Discussions
 [BEA] Introducing NEM
 [BEA] The real value of blockchains
 [BEA] Introduction to Bitcoin
-[BEA] Ethereum   Consensus vs Immutability
+[BEA] Ethereum Consensus vs Immutability
 [BEA] Ethereum, Monero and Dash
 [BEA] Bitcoin or Blockchain - The differences
 [BEA] Bitcoin is the Real Electronic Cash

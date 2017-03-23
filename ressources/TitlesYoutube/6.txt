@@ -1,8 +1,9 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[WIL] Bitcoin Unlimited Presentations and Discussions
 [WIL] Introducing NEM
 [WIL] The real value of blockchains
 [WIL] Introduction to Bitcoin
-[WIL] Ethereum   Consensus vs Immutability
+[WIL] Ethereum Consensus vs Immutability
 [WIL] Ethereum, Monero and Dash
 [WIL] Bitcoin or Blockchain - The differences
 [WIL] Bitcoin is the Real Electronic Cash
