@@ -7,10 +7,11 @@ import os
 import random
 import sys
 import time
-import win32gui
 from json import load
 from platform import uname
 from time import sleep
+
+import win32gui
 
 try:
     # For Python 3.0 and later
@@ -182,6 +183,19 @@ def connect_purevpn():
                     value = 2
                 else:
                     value = 3
+                user = USER_PASS.get(value)[0]
+                password = USER_PASS.get(value)[1]
+            elif USER_CONFIG == 'VUNPA' and NUMBER_MACHINE >= 20:
+                division = NUMBER_MACHINE % 20
+                if division == 0:
+                    value = 1
+                elif division == 1:
+                    value = 2
+                elif division == 2:
+                    value = 3
+                else:
+                    value = random.randint(1, 3)
+                server = get_random_vpn(PURE_VPN_NAME)
                 user = USER_PASS.get(value)[0]
                 password = USER_PASS.get(value)[1]
             elif USER_CONFIG != 'VUNPA' or (USER_CONFIG == 'VUNPA' and ADS_BOTTOM == 1) or ADS_BOTTOM == 0:
