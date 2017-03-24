@@ -166,8 +166,8 @@ def connect_purevpn():
         division = round(float(TOTAL_CHANNEL) / len(USER_PASS))
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
         counter_connect = 0
-        while load_result is False:
-            if counter_connect >= 3:
+        while load_result is False and counter_connect < 4:
+            if counter_connect >= 2:
                 send_email_alert()
             counter_connect += 1
             rasdial.disconnect()
@@ -244,8 +244,8 @@ def connect_openvpn():
         # if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
         load_result = False
         counter_connect = 0
-        while load_result is False:
-            if counter_connect >= 3:
+        while load_result is False and counter_connect < 4:
+            if counter_connect >= 2:
                 send_email_alert()
             counter_connect += 1
             if sys.platform == 'win32':
