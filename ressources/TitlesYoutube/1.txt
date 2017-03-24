@@ -1,9 +1,10 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML.trim())}
+[MCC] Bitcoin Unlimited Presentations and Discussions
 [MCC] Introducing NEM
 [MCC] The real value of blockchains
 [MCC] Introduction to Bitcoin
 [MCC] The Golem Project   Ethereum
-[MCC] Ethereum   Consensus vs Immutability
+[MCC] Ethereum Consensus vs Immutability
 [MCC] Ethereum, Monero and Dash
 [MCC] Bitcoin or Blockchain - The differences
 [MCC] Bitcoin is the Real Electronic Cash

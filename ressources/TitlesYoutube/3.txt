@@ -1,8 +1,9 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[HAR] Bitcoin Unlimited Presentations and Discussions
 [HAR] Introducing NEM
 [HAR] The real value of blockchains
 [HAR] Introduction to Bitcoin
-[HAR] Ethereum   Consensus vs Immutability
+[HAR] Ethereum Consensus vs Immutability
 [HAR] Ethereum, Monero and Dash
 [HAR] Bitcoin or Blockchain - The differences
 [HAR] Bitcoin is the Real Electronic Cash

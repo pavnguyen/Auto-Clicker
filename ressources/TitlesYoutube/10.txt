@@ -1,8 +1,9 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[TRO] Bitcoin Unlimited Presentations and Discussions
 [TRO] Introducing NEM
 [TRO] The real value of blockchains
 [TRO] Introduction to Bitcoin
-[TRO] Ethereum   Consensus vs Immutability
+[TRO] Ethereum Consensus vs Immutability
 [TRO] Ethereum, Monero and Dash
 [TRO] Bitcoin or Blockchain - The differences
 [TRO] Bitcoin is the Real Electronic Cash

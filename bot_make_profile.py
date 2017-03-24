@@ -32,8 +32,26 @@ from screen_resolution import ScreenRes
 import subprocess
 import getpass
 import shutil, errno
+import smtplib
 
 init()
+
+
+def send_email_alert():
+    try:
+        fromaddr = 'vu.nomos@gmail.com'
+        toaddrs = 'vunguyen.xbt@gmail.com'
+        msg = 'Probleme d\'Autoclicker'
+        username = 'vu.nomos@gmail.com'
+        password = 'Params$&#!'
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.ehlo()
+        server.starttls()
+        server.login(username, password)
+        server.sendmail(fromaddr, toaddrs, msg)
+        server.close()
+    except:
+        pass
 
 
 def get_random_vpn(name):
@@ -71,7 +89,11 @@ def check_country_is_ok():
 def connect_openvpn():
     if OPENVPN == 1 or ADS_BOTTOM == 0:
         load_result = False
+        counter_connect = 0
         while load_result is False:
+            if counter_connect >= 3:
+                send_email_alert()
+            counter_connect += 1
             if sys.platform == 'win32':
                 try:
                     print('Try to Disconnect OpenVPN')

@@ -9,7 +9,7 @@ import sys
 import time
 import win32gui
 from json import load
-from subprocess import check_output
+from platform import uname
 from time import sleep
 
 try:
@@ -37,8 +37,27 @@ from screen_resolution import ScreenRes
 import subprocess
 import shutil
 import errno
+import smtplib
 
 init()
+
+
+def send_email_alert():
+    try:
+        fromaddr = 'vu.nomos@gmail.com'
+        toaddrs = 'vunguyen.xbt@gmail.com'
+        text = uname()[1] + ' could not connect!!!'
+        msg = 'Subject: {}\n\n{}'.format('AutoClicker', text)
+        username = 'vu.nomos@gmail.com'
+        password = 'Params$&#!'
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.ehlo()
+        server.starttls()
+        server.login(username, password)
+        server.sendmail(fromaddr, toaddrs, msg)
+        server.close()
+    except:
+        pass
 
 
 def copyanything(src, dst):
@@ -52,7 +71,7 @@ def copyanything(src, dst):
 
 
 def restore_profile():
-    numberMachine = str(random.randint(0, len(os.listdir('ressources\Profiles\\')) - 1))
+    profile_number = str(random.randint(0, len(os.listdir('ressources\Profiles\\')) - 1))
     user_name = getpass.getuser()
     path_profil = 'C:\Users\\' + user_name + '\AppData\Roaming\Mozilla\Firefox\Profiles\\'
     profil_name = os.listdir(path_profil)[0]
@@ -72,11 +91,9 @@ def restore_profile():
         shutil.rmtree(folder)
     except:
         pass
-    print(numberMachine)
+    print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Profile: ' + profile_number + Style.RESET_ALL)
     if not os.path.exists(folder):
-        copyanything('ressources\Profiles\\' + numberMachine, folder)
-
-    print('Profil Firefox is restore!!!')
+        copyanything('ressources\Profiles\\' + profile_number, folder)
 
 
 def get_tinyurl_clip(channel):
@@ -148,7 +165,11 @@ def connect_purevpn():
         rasdial.disconnect()
         division = round(float(TOTAL_CHANNEL) / len(USER_PASS))
         print('Current VPN: ' + str(rasdial.get_current_vpn()))
-        while load_result is False:
+        counter_connect = 0
+        while load_result is False and counter_connect < 4:
+            if counter_connect >= 2:
+                send_email_alert()
+            counter_connect += 1
             rasdial.disconnect()
             sleep(1)
 
@@ -187,7 +208,7 @@ def connect_openvpn_purevpn():
             try:
                 print('Try to Disconnect OpenVPN')
                 rasdial.disconnect()  # Disconnect params_PureVPN first
-                check_output("taskkill /im openvpn.exe /F", shell=True)
+                subprocess.check_output("taskkill /im openvpn.exe /F", shell=True)
             except:
                 pass
 
@@ -222,17 +243,21 @@ def connect_openvpn():
     if OPENVPN == 1 or ADS_BOTTOM == 0:
         # if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0:
         load_result = False
-        while load_result is False:
+        counter_connect = 0
+        while load_result is False and counter_connect < 4:
+            if counter_connect >= 2:
+                send_email_alert()
+            counter_connect += 1
             if sys.platform == 'win32':
                 try:
                     print('Try to Disconnect OpenVPN')
                     rasdial.disconnect()  # Disconnect params_PureVPN first
-                    check_output("taskkill /im openvpn.exe /F", shell=True)
+                    subprocess.check_output("taskkill /im openvpn.exe /F", shell=True)
                 except:
                     pass
 
-                check_output('ipconfig /release', shell=True)
-                check_output('ipconfig /renew', shell=True)
+                subprocess.check_output('ipconfig /release', shell=True)
+                subprocess.check_output('ipconfig /renew', shell=True)
 
             print('Connect OpenVPN')
             if sys.platform == 'win32':
@@ -434,17 +459,14 @@ def detect_and_click_ads_bottom(timing_ads):
                 lambda BROWSER: BROWSER.find_element_by_class_name('annotation'))
             print('annotation checked')
             try:
-                first_result.click()
-                TOTAL_CLICKS_ADS_SKIPS += 1
-                print('annotation 1')
-                load_result = True
-            except:
                 x, y = get_recalcul_xy(414, 576)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
                 pyautogui.click(x, y)
-                print('annotation 2')
+                print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'annotation 2' + Style.RESET_ALL)
                 TOTAL_CLICKS_ADS_SKIPS += 1
                 load_result = True
+            except:
+                pass
             switch_tab()
             random_mouse_move()
             switch_main_window()
@@ -720,7 +742,7 @@ def set_zone():
         zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
         print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
         if zone_to_set.strip() != '':
-            check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+            subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             return True
     except:
         return False
@@ -1071,8 +1093,8 @@ if __name__ == "__main__":
         print(Style.RESET_ALL)
         NUMBER_MACHINE = str(raw_input())
 
-    for i in range(0, 30):
-        if NUMBER_MACHINE <= 17:
+    for i in range(0, 100):
+        if NUMBER_MACHINE <= 19:
             main(0)
         else:
             main(1)

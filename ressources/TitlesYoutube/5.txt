@@ -1,8 +1,9 @@
 for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
+[JOR] Bitcoin Unlimited Presentations and Discussions
 [JOR] Introducing NEM
 [JOR] The real value of blockchains
 [JOR] Introduction to Bitcoin
-[JOR] Ethereum   Consensus vs Immutability
+[JOR] Ethereum Consensus vs Immutability
 [JOR] Ethereum, Monero and Dash
 [JOR] Bitcoin or Blockchain - The differences
 [JOR] Bitcoin is the Real Electronic Cash
