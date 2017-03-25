@@ -7,11 +7,10 @@ import os
 import random
 import sys
 import time
+import win32gui
 from json import load
 from platform import uname
 from time import sleep
-
-import win32gui
 
 try:
     # For Python 3.0 and later
@@ -210,8 +209,8 @@ def connect_purevpn():
             rasdial.connect(server, user, password)  # connect to a vpn
             sleep(1)
             if check_ping_is_ok() is True:
-                if check_country_is_ok() is True:
-                    if set_zone() is True:
+                # if check_country_is_ok() is True:
+                if set_zone() is True:
                         load_result = True
 
 
@@ -313,8 +312,8 @@ def connect_openvpn():
                 pass
 
             if check_ping_is_ok() is True:
-                if check_country_is_ok() is True:
-                    if set_zone() is True:
+                # if check_country_is_ok() is True:
+                if set_zone() is True:
                         load_result = True
 
 
@@ -469,24 +468,27 @@ def detect_and_click_ads_bottom(timing_ads):
     try:
         # SKIP ADS
         try:
-            first_result = ui.WebDriverWait(BROWSER, 12).until(
+            first_result = ui.WebDriverWait(BROWSER, 20).until(
                 lambda BROWSER: BROWSER.find_element_by_class_name('annotation'))
             print('annotation checked')
             try:
-                x, y = get_recalcul_xy(414, 576)
-                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                pyautogui.click(x, y)
-                print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'annotation 2' + Style.RESET_ALL)
-                TOTAL_CLICKS_ADS_SKIPS += 1
-                load_result = True
+                first_result.click()
+                switch_tab()
+                random_mouse_move()
+                switch_main_window()
+                random_mouse_move()
+                pyautogui.hotkey('alt', 'esc')
             except:
+                # try:
+                #     x, y = get_recalcul_xy(414, 576)
+                #     pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                #     pyautogui.click(x, y)
+                #     print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'annotation 2' + Style.RESET_ALL)
+                #     TOTAL_CLICKS_ADS_SKIPS += 1
+                #     load_result = True
+                # except:
                 pass
-            switch_tab()
-            random_mouse_move()
-            switch_main_window()
-            random_mouse_move()
 
-            pyautogui.hotkey('alt', 'esc')
             # replay_clip()
             click_button_skipads()
             random_mouse_move()
@@ -595,6 +597,7 @@ def detect_and_click_ads_bottom(timing_ads):
                     pass
                     # Switch tab to the new tab, which we will assume is the next one on the right
             if load_result is True:
+                pyautogui.click(650, 450)
                 switch_tab()
                 random_mouse_move()
                 random_small_sleep()
@@ -852,7 +855,7 @@ def main(optional):
         BOUCLE_SUPER_VIP = 1
 
     for z in range(BOUCLE_SUPER_VIP):
-        if NUMBER_MACHINE > TOTAL_CHANNEL or ADS_BOTTOM == 0 or PUREVPN == 0 or optional == 0:
+        if (NUMBER_MACHINE > TOTAL_CHANNEL and PUREVPN != 1) or ADS_BOTTOM == 0 or PUREVPN == 0 or optional == 0:
             connect_openvpn()  # OpenVPN
         else:
             connect_purevpn()  # params_PureVPN
