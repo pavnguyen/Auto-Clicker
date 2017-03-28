@@ -437,7 +437,7 @@ def search_youtube(url):
         try:
             BROWSER.get(url)
             random_mouse_move()
-            print(TITLE_YOUTUBE)
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + TITLE_YOUTUBE + Style.RESET_ALL)
             xpath_search = "//a[@title=" + "'" + TITLE_YOUTUBE + "']"
             first_link = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER: BROWSER.find_element_by_xpath(xpath_search))
             first_link.send_keys(Keys.RETURN)
@@ -467,93 +467,103 @@ def detect_and_click_ads_bottom(timing_ads):
     switch_main_window()
     try:
         # SKIP ADS
+        # try:
+        #     first_result = ui.WebDriverWait(BROWSER, 20).until(
+        #         lambda BROWSER: BROWSER.find_element_by_class_name('annotation'))
+        #     print('...Annotation checked')
+        #     try:
+        #         first_result.click()
+        #     except:
+        #         try:
+        #             x, y = get_recalcul_xy(323, 556)
+        #             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+        #             random_small_sleep()
+        #             pyautogui.click(323, 556)
+        #             print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'annotation 2' + Style.RESET_ALL)
+        #             TOTAL_CLICKS_ADS_SKIPS += 1
+        #             load_result = True
+        #         except:
+        #             pass
+        #     switch_tab()
+        #     random_mouse_move()
+        #     switch_main_window()
+        #     random_mouse_move()
+        #     pyautogui.hotkey('alt', 'esc')
+        #
+        #     replay_clip()
+        #     click_button_skipads()
+        #     random_mouse_move()
+        # except:
         try:
+            x, y = get_recalcul_xy(330, 600)
+            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
             first_result = ui.WebDriverWait(BROWSER, 20).until(
-                lambda BROWSER: BROWSER.find_element_by_class_name('annotation'))
-            print('annotation checked')
+                lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-txt'))  # ('iv-promo-contents'))
             try:
                 first_result.click()
-                switch_tab()
-                random_mouse_move()
-                switch_main_window()
-                random_mouse_move()
-                pyautogui.hotkey('alt', 'esc')
+                print('click 2')
             except:
-                # try:
-                #     x, y = get_recalcul_xy(414, 576)
-                #     pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                #     pyautogui.click(x, y)
-                #     print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'annotation 2' + Style.RESET_ALL)
-                #     TOTAL_CLICKS_ADS_SKIPS += 1
-                #     load_result = True
-                # except:
+                pyautogui.click(323, 556)
+                print('click 3')
                 pass
-
-            # replay_clip()
-            click_button_skipads()
+            TOTAL_CLICKS_ADS_SKIPS += 1
+            load_result = True
+            print(
+                Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-txt\" => ' + Style.RESET_ALL +
+                Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+            switch_tab()
             random_mouse_move()
+            random_small_sleep()
+            switch_main_window()
+            random_mouse_move()
+
+            pyautogui.hotkey('alt', 'esc')
+            replay_clip()
+            click_button_skipads()
         except:
             try:
                 x, y = get_recalcul_xy(330, 600)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                first_result = ui.WebDriverWait(BROWSER, 3).until(
-                    lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-contents'))
+                first_result = ui.WebDriverWait(BROWSER, 5).until(
+                    lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
+                print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
+                      'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
+                      Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
+                      '[DETECTED]' + Style.RESET_ALL)
                 try:
+                    pyautogui.moveTo(330, 600, random.random(), pyautogui.easeOutQuad)
                     pyautogui.click(330, 576)
-                    print('click 2')
+                    print('click 4')
+                    TOTAL_CLICKS_ADS_SKIPS += 1
+                    load_result = True
                 except:
                     pyautogui.click(330, 576)
                     pass
-                TOTAL_CLICKS_ADS_SKIPS += 1
-                load_result = True
-                print(
-                    Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-contents\" => ' + Style.RESET_ALL +
-                    Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
                 switch_tab()
                 random_mouse_move()
-                random_small_sleep()
                 switch_main_window()
                 random_mouse_move()
 
                 pyautogui.hotkey('alt', 'esc')
                 replay_clip()
                 click_button_skipads()
+                random_mouse_move()
             except:
-                try:
-                    x, y = get_recalcul_xy(330, 600)
-                    pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                    first_result = ui.WebDriverWait(BROWSER, 5).until(
-                        lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
-                    print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
-                          'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
-                          Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
-                          '[DETECTED]' + Style.RESET_ALL)
-                    try:
-                        pyautogui.moveTo(330, 600, random.random(), pyautogui.easeOutQuad)
-                        pyautogui.click(330, 576)
-                        print('click 4')
-                        TOTAL_CLICKS_ADS_SKIPS += 1
-                        load_result = True
-                    except:
-                        pyautogui.click(330, 576)
-                        pass
-                    switch_tab()
-                    random_mouse_move()
-                    switch_main_window()
-                    random_mouse_move()
-
-                    pyautogui.hotkey('alt', 'esc')
-                    replay_clip()
-                    click_button_skipads()
-                    random_mouse_move()
-                except:
-                    pass
+                pass
 
         # ADS BOTTOM
         random_mouse_move()
         x, y = get_recalcul_xy(624, 559)  # just for fun
         pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
         DETECTED_ADDISPLAY = 1
+
+        try:
+            if get_info_length_youtube(BROWSER.current_url) / 60 > 10:
+                print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Wait n times to click SECOND ads' +
+                      Style.RESET_ALL)
+                countdown(45)
+        except:
+            pass
         if load_result is False:
             try:
                 first_result = ui.WebDriverWait(BROWSER, 35).until(lambda BROWSER:
@@ -579,8 +589,8 @@ def detect_and_click_ads_bottom(timing_ads):
                     print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
                 except:
                     try:
-                        first_result = ui.WebDriverWait(BROWSER, 5).until \
-                            (lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
+                        first_result = ui.WebDriverWait(BROWSER, 5).until(
+                            lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
                         first_link = first_result.find_element_by_tag_name('a')
                         first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
@@ -597,7 +607,6 @@ def detect_and_click_ads_bottom(timing_ads):
                     pass
                     # Switch tab to the new tab, which we will assume is the next one on the right
             if load_result is True:
-                pyautogui.click(650, 450)
                 switch_tab()
                 random_mouse_move()
                 random_small_sleep()
@@ -936,7 +945,7 @@ def main(optional):
                             url = get_tinyurl_clip(str(file_channel))
                             BROWSER.get(url)
                         counter += 1
-                        print("Test Ads Bottom: " + str(counter))
+                        print("...Test Ads Bottom: " + str(counter))
                         found_ads_bottom = detect_and_click_ads_bottom(timing_ads)
                         if found_ads_bottom is True:
                             TOTAL_CLICKS_ADS_BOTTOM += 1
@@ -1054,7 +1063,7 @@ def main(optional):
                   Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(COUNTER_TOURS) + '' + Style.RESET_ALL)
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
-            click_ads_right()
+            # click_ads_right()
             if found_ads_bottom is True:
                 countdown(wait_time)
                 # elif ADS_BOTTOM == 0:

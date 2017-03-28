@@ -74,24 +74,12 @@ def check_ping_is_ok():
             connect_purevpn()
 
 
-def check_country_is_ok():
-    link = 'http://freegeoip.net/json/'
-    try:
-        country_name = load(urlopen(link))['country_name']
-    except:
-        return False
-    if 'Vietnam' in country_name:
-        return False
-    else:
-        return True
-
-
 def connect_openvpn():
     if OPENVPN == 1 or ADS_BOTTOM == 0:
         load_result = False
         counter_connect = 0
-        while load_result is False:
-            if counter_connect >= 3:
+        while load_result is False and counter_connect < 4:
+            if counter_connect >= 2:
                 send_email_alert()
             counter_connect += 1
             if sys.platform == 'win32':
@@ -132,9 +120,8 @@ def connect_openvpn():
                 pass
 
             if check_ping_is_ok() is True:
-                if check_country_is_ok() is True:
-                    if set_zone() is True:
-                        load_result = True
+                if set_zone() is True:
+                    load_result = True
 
 
 def get_random_resolution():
@@ -192,7 +179,7 @@ def search_google():
         try:
             key_search = get_key_search()
             sleep(2)
-            BROWSER.get('https://encrypted.google.com/#q=' + key_search)
+            BROWSER.get('https://www.google.com/#q=' + key_search)
             countdown(2)
             try:
                 first_result = ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER:
@@ -357,12 +344,12 @@ def backup_profile(numberMachine):
             path += profilName
             pass
     print(path)
-    if not os.path.exists('ressources/Profils/' + numberMachine):
-        copyanything(path, 'ressources/Profils/' + numberMachine)
+    if not os.path.exists('ressources/Profiles/' + numberMachine):
+        copyanything(path, 'ressources/Profiles/' + numberMachine)
     else:
         try:
-            shutil.rmtree('ressources/Profils/' + numberMachine)
-            copyanything(path, 'ressources/Profils/' + numberMachine)
+            shutil.rmtree('ressources/Profiles/' + numberMachine)
+            copyanything(path, 'ressources/Profiles/' + numberMachine)
         except:
             pass
     try:
@@ -456,4 +443,4 @@ def main(optional):
 
 
 if __name__ == "__main__":
-    main(100)
+    main(500)
