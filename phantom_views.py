@@ -337,15 +337,14 @@ def set_screen_resolution():
     width, height = get_random_resolution()
 
     ScreenRes.set(width, height)
-    # ScreenRes.set() # Set defaults
-    try:
-        windowList = []
-        win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
-                             windowList)
-        cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower()]
-        win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
-    except:
-        pass
+    # try:
+    #     windowList = []
+    #     win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
+    #                          windowList)
+    #     cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower()]
+    #     win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
+    # except:
+    #     pass
 
 
 def search_youtube(url):
