@@ -508,7 +508,8 @@ def detect_and_click_ads_bottom(timing_ads):
                 first_result.click()
                 print('click 2')
             except:
-                pyautogui.click(323, 556)
+                x, y = get_recalcul_xy(323, 556)
+                pyautogui.click(x, y)
                 print('click 3')
                 pass
             TOTAL_CLICKS_ADS_SKIPS += 1
@@ -536,13 +537,15 @@ def detect_and_click_ads_bottom(timing_ads):
                       Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
                       '[DETECTED]' + Style.RESET_ALL)
                 try:
-                    pyautogui.moveTo(330, 600, random.random(), pyautogui.easeOutQuad)
-                    pyautogui.click(330, 576)
+                    x, y = get_recalcul_xy(330, 576)
+                    pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+                    pyautogui.click(x, y)
                     print('click 4')
                     TOTAL_CLICKS_ADS_SKIPS += 1
                     load_result = True
                 except:
-                    pyautogui.click(330, 576)
+                    x, y = get_recalcul_xy(330, 576)
+                    pyautogui.click(x, y)
                     pass
                 switch_tab()
                 random_mouse_move()
