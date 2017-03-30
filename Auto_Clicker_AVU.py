@@ -278,13 +278,15 @@ def connect_openvpn():
             else:
                 cmd = '/etc/openvpn/openvpn'
             if ADS_BOTTOM == 0:
-                value = random.randint(0, len(CONFIG_IP_VIEW) - 1)
+                USE_IP = CONFIG_IP_VIEW   
             else:
-                value = random.randint(0, len(CONFIG_IP) - 1)
-            print('Random Server: ' + CONFIG_IP[value].strip())
-            if 'privateinternetaccess' in CONFIG_IP[value].strip():
+                USE_IP = CONFIG_IP
+                
+            value = random.randint(0, len(USE_IP) - 1)
+            print('Random Server: ' + USE_IP[value].strip())
+            if 'privateinternetaccess' in USE_IP[value].strip():
                 parameters = ' --client --dev tun --proto udp --remote ' \
-                             + CONFIG_IP[value].strip() + \
+                             + USE_IP[value].strip() + \
                              ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
                              ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
                              ' --auth-user-pass ressources/params_PIA/data/auth.txt ' \
@@ -295,7 +297,7 @@ def connect_openvpn():
                     # ' --block-outside-dns'
             else:
                 parameters = ' --tls-client --client --dev tun --link-mtu 1500' \
-                             ' --remote ' + CONFIG_IP[value].strip() + \
+                             ' --remote ' + USE_IP[value].strip() + \
                              ' --proto udp --port 1197' \
                              ' --lport 53 --persist-key --persist-tun --ca ressources/params_PIA/data/ca.crt ' \
                              '--comp-lzo --mute 3' \
