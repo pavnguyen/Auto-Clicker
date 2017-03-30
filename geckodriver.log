@@ -1,239 +1,239 @@
-1490874713249	geckodriver	INFO	Listening on 127.0.0.1:50832
-1490874712594	mozprofile::profile	INFO	Using profile path C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy
-1490874714247	geckodriver::marionette	INFO	Starting browser C:/Program Files (x86)/Mozilla Firefox/firefox.exe with args []
-1490874714247	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50716
-1490874714623	addons.manager	DEBUG	Application has been upgraded
-1490874714674	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/addons/XPIProvider.jsm: ["XPIProvider"]
-1490874714678	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/LightweightThemeManager.jsm: ["LightweightThemeManager"]
-1490874714683	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/addons/GMPProvider.jsm
-1490874714686	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/addons/PluginProvider.jsm
-1490874714687	addons.manager	DEBUG	Starting provider: XPIProvider
-1490874714688	addons.xpi	DEBUG	startup
-1490874714690	addons.xpi	INFO	Mapping @no-resource-uri-leak to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\@no-resource-uri-leak.xpi
-1490874714690	addons.xpi	INFO	Mapping @stop-fingerprinting to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\@stop-fingerprinting.xpi
-1490874714691	addons.xpi	INFO	Mapping CanvasBlocker@kkapsner.de to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\CanvasBlocker@kkapsner.de.xpi
-1490874714692	addons.xpi	INFO	Mapping firebug@software.joehewitt.com to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\firebug@software.joehewitt.com.xpi
-1490874714693	addons.xpi	INFO	Mapping FireXPath@pierre.tholence.com to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\FireXPath@pierre.tholence.com.xpi
-1490874714693	addons.xpi	INFO	Mapping jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi
-1490874714693	addons.xpi	INFO	Mapping jid1-AVgCeF1zoVzMjA@jetpack to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\jid1-AVgCeF1zoVzMjA@jetpack.xpi
-1490874714694	addons.xpi	INFO	SystemAddonInstallLocation directory is missing
-1490874714695	addons.xpi	INFO	Mapping aushelper@mozilla.org to C:\Program Files (x86)\Mozilla Firefox\browser\features\aushelper@mozilla.org.xpi
-1490874714696	addons.xpi	INFO	Mapping deployment-checker@mozilla.org to C:\Program Files (x86)\Mozilla Firefox\browser\features\deployment-checker@mozilla.org.xpi
-1490874714696	addons.xpi	INFO	Mapping e10srollout@mozilla.org to C:\Program Files (x86)\Mozilla Firefox\browser\features\e10srollout@mozilla.org.xpi
-1490874714697	addons.xpi	INFO	Mapping firefox@getpocket.com to C:\Program Files (x86)\Mozilla Firefox\browser\features\firefox@getpocket.com.xpi
-1490874714697	addons.xpi	INFO	Mapping webcompat@mozilla.org to C:\Program Files (x86)\Mozilla Firefox\browser\features\webcompat@mozilla.org.xpi
-1490874714698	addons.xpi	INFO	Mapping {972ce4c6-7e08-4474-a285-3208198ce6fd} to C:\Program Files (x86)\Mozilla Firefox\browser\extensions\{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
-1490874714699	addons.xpi	DEBUG	checkForChanges
-1490874714700	addons.xpi	INFO	SystemAddonInstallLocation directory is missing
-1490874714701	addons.xpi	DEBUG	Loaded add-on state from prefs: {"app-profile":{"@no-resource-uri-leak":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.yNqqydYJoOIN\\extensions\\@no-resource-uri-leak.xpi","e":true,"v":"1.1.0","st":1489598750542},"@stop-fingerprinting":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.yNqqydYJoOIN\\extensions\\@stop-fingerprinting.xpi","e":true,"v":"0.1.0","st":1489598750542},"CanvasBlocker@kkapsner.de":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.yNqqydYJoOIN\\extensions\\CanvasBlocker@kkapsner.de.xpi","e":true,"v":"0.3.7-Release","st":1489598750542},"firebug@software.joehewitt.com":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.yNqqydYJoOIN\\extensions\\firebug@software.joehewitt.com.xpi","e":true,"v":"2.0.19","st":1489598750573},"FireXPath@pierre.tholence.com":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.yNqqydYJoOIN\\extensions\\FireXPath@pierre.tholence.com.xpi","e":true,"v":"0.9.7.1.1-signed.1-signed","st":1489598750573},"jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.yNqqydYJoOIN\\extensions\\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi","e":true,"v":"0.4.11","st":1489598750573},"jid1-AVgCeF1zoVzMjA@jetpack":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.yNqqydYJoOIN\\extensions\\jid1-AVgCeF1zoVzMjA@jetpack.xpi","e":true,"v":"0.9.5.6","st":1489598750573}},"app-system-defaults":{"aushelper@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\aushelper@mozilla.org.xpi","e":true,"v":"2.0","st":1488786665830},"e10srollout@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\e10srollout@mozilla.org.xpi","e":true,"v":"1.9","st":1488786665830},"firefox@getpocket.com":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\firefox@getpocket.com.xpi","e":true,"v":"1.0.5","st":1488786665830},"webcompat@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\webcompat@mozilla.org.xpi","e":true,"v":"1.0","st":1488786665767}},"app-global":{"{972ce4c6-7e08-4474-a285-3208198ce6fd}":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\extensions\\{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi","e":true,"v":"52.0","st":1488786665830}}}
-1490874714703	addons.xpi	DEBUG	getModTime: Recursive scan of @no-resource-uri-leak
-1490874714704	addons.xpi	DEBUG	Changed add-on @no-resource-uri-leak in app-profile
-1490874714705	addons.xpi	DEBUG	getModTime: Recursive scan of @stop-fingerprinting
-1490874714706	addons.xpi	DEBUG	Changed add-on @stop-fingerprinting in app-profile
-1490874714707	addons.xpi	DEBUG	getModTime: Recursive scan of CanvasBlocker@kkapsner.de
-1490874714707	addons.xpi	DEBUG	Changed add-on CanvasBlocker@kkapsner.de in app-profile
-1490874714708	addons.xpi	DEBUG	getModTime: Recursive scan of firebug@software.joehewitt.com
-1490874714709	addons.xpi	DEBUG	Changed add-on firebug@software.joehewitt.com in app-profile
-1490874714709	addons.xpi	DEBUG	getModTime: Recursive scan of FireXPath@pierre.tholence.com
-1490874714710	addons.xpi	DEBUG	Changed add-on FireXPath@pierre.tholence.com in app-profile
-1490874714711	addons.xpi	DEBUG	getModTime: Recursive scan of jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack
-1490874714711	addons.xpi	DEBUG	Changed add-on jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack in app-profile
-1490874714712	addons.xpi	DEBUG	getModTime: Recursive scan of jid1-AVgCeF1zoVzMjA@jetpack
-1490874714713	addons.xpi	DEBUG	Changed add-on jid1-AVgCeF1zoVzMjA@jetpack in app-profile
-1490874714714	addons.xpi	DEBUG	getModTime: Recursive scan of aushelper@mozilla.org
-1490874714714	addons.xpi	DEBUG	Changed add-on aushelper@mozilla.org in app-system-defaults
-1490874714715	addons.xpi	DEBUG	New add-on deployment-checker@mozilla.org in app-system-defaults
-1490874714715	addons.xpi	DEBUG	getModTime: Recursive scan of deployment-checker@mozilla.org
-1490874714716	addons.xpi	DEBUG	getModTime: Recursive scan of e10srollout@mozilla.org
-1490874714717	addons.xpi	DEBUG	Changed add-on e10srollout@mozilla.org in app-system-defaults
-1490874714718	addons.xpi	DEBUG	getModTime: Recursive scan of firefox@getpocket.com
-1490874714719	addons.xpi	DEBUG	Changed add-on firefox@getpocket.com in app-system-defaults
-1490874714719	addons.xpi	DEBUG	getModTime: Recursive scan of webcompat@mozilla.org
-1490874714720	addons.xpi	DEBUG	Changed add-on webcompat@mozilla.org in app-system-defaults
-1490874714720	addons.xpi	DEBUG	getModTime: Recursive scan of {972ce4c6-7e08-4474-a285-3208198ce6fd}
-1490874714722	addons.xpi	DEBUG	Changed add-on {972ce4c6-7e08-4474-a285-3208198ce6fd} in app-global
-1490874714723	addons.xpi	DEBUG	getInstallState changed: true, state: {"app-profile":{"@no-resource-uri-leak":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\@no-resource-uri-leak.xpi","e":true,"v":"1.1.0","st":1490874713623},"@stop-fingerprinting":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\@stop-fingerprinting.xpi","e":true,"v":"0.1.0","st":1490874713623},"CanvasBlocker@kkapsner.de":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\CanvasBlocker@kkapsner.de.xpi","e":true,"v":"0.3.7-Release","st":1490874713623},"firebug@software.joehewitt.com":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\firebug@software.joehewitt.com.xpi","e":true,"v":"2.0.19","st":1490874713655},"FireXPath@pierre.tholence.com":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\FireXPath@pierre.tholence.com.xpi","e":true,"v":"0.9.7.1.1-signed.1-signed","st":1490874713655},"jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi","e":true,"v":"0.4.11","st":1490874713655},"jid1-AVgCeF1zoVzMjA@jetpack":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\jid1-AVgCeF1zoVzMjA@jetpack.xpi","e":true,"v":"0.9.5.6","st":1490874713670}},"app-system-defaults":{"aushelper@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\aushelper@mozilla.org.xpi","e":true,"v":"2.0","st":1490461325602},"deployment-checker@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\deployment-checker@mozilla.org.xpi","st":1490461325602},"e10srollout@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\e10srollout@mozilla.org.xpi","e":true,"v":"1.9","st":1490461325602},"firefox@getpocket.com":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\firefox@getpocket.com.xpi","e":true,"v":"1.0.5","st":1490461325602},"webcompat@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\webcompat@mozilla.org.xpi","e":true,"v":"1.0","st":1490461325540}},"app-global":{"{972ce4c6-7e08-4474-a285-3208198ce6fd}":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\extensions\\{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi","e":true,"v":"52.0","st":1490461325602}}}
-1490874714739	addons.xpi-utils	DEBUG	Opening XPI database C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions.json
-1490874714749	addons.xpi-utils	DEBUG	Successfully read XPI database
-1490874714754	addons.xpi-utils	DEBUG	Add-on jid1-AVgCeF1zoVzMjA@jetpack modified in app-profile
+1490874755516	geckodriver	INFO	Listening on 127.0.0.1:50519
+1490874721704	mozprofile::profile	INFO	Using profile path C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2
+1490874723420	geckodriver::marionette	INFO	Starting browser C:/Program Files (x86)/Mozilla Firefox/firefox.exe with args []
+1490874723420	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50838
+1490874723853	addons.manager	DEBUG	Application has been upgraded
+1490874723921	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/addons/XPIProvider.jsm: ["XPIProvider"]
+1490874723926	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/LightweightThemeManager.jsm: ["LightweightThemeManager"]
+1490874723935	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/addons/GMPProvider.jsm
+1490874723941	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/addons/PluginProvider.jsm
+1490874723945	addons.manager	DEBUG	Starting provider: XPIProvider
+1490874723946	addons.xpi	DEBUG	startup
+1490874723950	addons.xpi	INFO	Mapping @no-resource-uri-leak to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\@no-resource-uri-leak.xpi
+1490874723951	addons.xpi	INFO	Mapping @stop-fingerprinting to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\@stop-fingerprinting.xpi
+1490874723952	addons.xpi	INFO	Mapping CanvasBlocker@kkapsner.de to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\CanvasBlocker@kkapsner.de.xpi
+1490874723953	addons.xpi	INFO	Mapping firebug@software.joehewitt.com to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\firebug@software.joehewitt.com.xpi
+1490874723955	addons.xpi	INFO	Mapping FireXPath@pierre.tholence.com to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\FireXPath@pierre.tholence.com.xpi
+1490874723955	addons.xpi	INFO	Mapping jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi
+1490874723956	addons.xpi	INFO	Mapping jid1-AVgCeF1zoVzMjA@jetpack to C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\jid1-AVgCeF1zoVzMjA@jetpack.xpi
+1490874723957	addons.xpi	INFO	SystemAddonInstallLocation directory is missing
+1490874723961	addons.xpi	INFO	Mapping aushelper@mozilla.org to C:\Program Files (x86)\Mozilla Firefox\browser\features\aushelper@mozilla.org.xpi
+1490874723961	addons.xpi	INFO	Mapping deployment-checker@mozilla.org to C:\Program Files (x86)\Mozilla Firefox\browser\features\deployment-checker@mozilla.org.xpi
+1490874723962	addons.xpi	INFO	Mapping e10srollout@mozilla.org to C:\Program Files (x86)\Mozilla Firefox\browser\features\e10srollout@mozilla.org.xpi
+1490874723963	addons.xpi	INFO	Mapping firefox@getpocket.com to C:\Program Files (x86)\Mozilla Firefox\browser\features\firefox@getpocket.com.xpi
+1490874723964	addons.xpi	INFO	Mapping webcompat@mozilla.org to C:\Program Files (x86)\Mozilla Firefox\browser\features\webcompat@mozilla.org.xpi
+1490874723968	addons.xpi	INFO	Mapping {972ce4c6-7e08-4474-a285-3208198ce6fd} to C:\Program Files (x86)\Mozilla Firefox\browser\extensions\{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
+1490874723970	addons.xpi	DEBUG	checkForChanges
+1490874723971	addons.xpi	INFO	SystemAddonInstallLocation directory is missing
+1490874723972	addons.xpi	DEBUG	Loaded add-on state from prefs: {"app-profile":{"@no-resource-uri-leak":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.jJDG8TSAZHj7\\extensions\\@no-resource-uri-leak.xpi","e":true,"v":"1.1.0","st":1489651250139},"@stop-fingerprinting":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.jJDG8TSAZHj7\\extensions\\@stop-fingerprinting.xpi","e":true,"v":"0.1.0","st":1489651250139},"CanvasBlocker@kkapsner.de":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.jJDG8TSAZHj7\\extensions\\CanvasBlocker@kkapsner.de.xpi","e":true,"v":"0.3.7-Release","st":1489651250139},"firebug@software.joehewitt.com":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.jJDG8TSAZHj7\\extensions\\firebug@software.joehewitt.com.xpi","e":true,"v":"2.0.19","st":1489651250170},"FireXPath@pierre.tholence.com":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.jJDG8TSAZHj7\\extensions\\FireXPath@pierre.tholence.com.xpi","e":true,"v":"0.9.7.1.1-signed.1-signed","st":1489651250170},"jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.jJDG8TSAZHj7\\extensions\\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi","e":true,"v":"0.4.11","st":1489651250170},"jid1-AVgCeF1zoVzMjA@jetpack":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.jJDG8TSAZHj7\\extensions\\jid1-AVgCeF1zoVzMjA@jetpack.xpi","e":true,"v":"0.9.5.6","st":1489651250170}},"app-system-defaults":{"aushelper@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\aushelper@mozilla.org.xpi","e":true,"v":"2.0","st":1488786665830},"e10srollout@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\e10srollout@mozilla.org.xpi","e":true,"v":"1.9","st":1488786665830},"firefox@getpocket.com":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\firefox@getpocket.com.xpi","e":true,"v":"1.0.5","st":1488786665830},"webcompat@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\webcompat@mozilla.org.xpi","e":true,"v":"1.0","st":1488786665767}},"app-global":{"{972ce4c6-7e08-4474-a285-3208198ce6fd}":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\extensions\\{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi","e":true,"v":"52.0","st":1488786665830}}}
+1490874723976	addons.xpi	DEBUG	getModTime: Recursive scan of @no-resource-uri-leak
+1490874723977	addons.xpi	DEBUG	Changed add-on @no-resource-uri-leak in app-profile
+1490874723979	addons.xpi	DEBUG	getModTime: Recursive scan of @stop-fingerprinting
+1490874723981	addons.xpi	DEBUG	Changed add-on @stop-fingerprinting in app-profile
+1490874723982	addons.xpi	DEBUG	getModTime: Recursive scan of CanvasBlocker@kkapsner.de
+1490874723984	addons.xpi	DEBUG	Changed add-on CanvasBlocker@kkapsner.de in app-profile
+1490874723986	addons.xpi	DEBUG	getModTime: Recursive scan of firebug@software.joehewitt.com
+1490874723988	addons.xpi	DEBUG	Changed add-on firebug@software.joehewitt.com in app-profile
+1490874723989	addons.xpi	DEBUG	getModTime: Recursive scan of FireXPath@pierre.tholence.com
+1490874723991	addons.xpi	DEBUG	Changed add-on FireXPath@pierre.tholence.com in app-profile
+1490874723992	addons.xpi	DEBUG	getModTime: Recursive scan of jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack
+1490874723993	addons.xpi	DEBUG	Changed add-on jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack in app-profile
+1490874723994	addons.xpi	DEBUG	getModTime: Recursive scan of jid1-AVgCeF1zoVzMjA@jetpack
+1490874723996	addons.xpi	DEBUG	Changed add-on jid1-AVgCeF1zoVzMjA@jetpack in app-profile
+1490874723998	addons.xpi	DEBUG	getModTime: Recursive scan of aushelper@mozilla.org
+1490874724000	addons.xpi	DEBUG	Changed add-on aushelper@mozilla.org in app-system-defaults
+1490874724002	addons.xpi	DEBUG	New add-on deployment-checker@mozilla.org in app-system-defaults
+1490874724002	addons.xpi	DEBUG	getModTime: Recursive scan of deployment-checker@mozilla.org
+1490874724004	addons.xpi	DEBUG	getModTime: Recursive scan of e10srollout@mozilla.org
+1490874724005	addons.xpi	DEBUG	Changed add-on e10srollout@mozilla.org in app-system-defaults
+1490874724006	addons.xpi	DEBUG	getModTime: Recursive scan of firefox@getpocket.com
+1490874724009	addons.xpi	DEBUG	Changed add-on firefox@getpocket.com in app-system-defaults
+1490874724010	addons.xpi	DEBUG	getModTime: Recursive scan of webcompat@mozilla.org
+1490874724011	addons.xpi	DEBUG	Changed add-on webcompat@mozilla.org in app-system-defaults
+1490874724012	addons.xpi	DEBUG	getModTime: Recursive scan of {972ce4c6-7e08-4474-a285-3208198ce6fd}
+1490874724014	addons.xpi	DEBUG	Changed add-on {972ce4c6-7e08-4474-a285-3208198ce6fd} in app-global
+1490874724016	addons.xpi	DEBUG	getInstallState changed: true, state: {"app-profile":{"@no-resource-uri-leak":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\@no-resource-uri-leak.xpi","e":true,"v":"1.1.0","st":1490874722718},"@stop-fingerprinting":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\@stop-fingerprinting.xpi","e":true,"v":"0.1.0","st":1490874722718},"CanvasBlocker@kkapsner.de":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\CanvasBlocker@kkapsner.de.xpi","e":true,"v":"0.3.7-Release","st":1490874722718},"firebug@software.joehewitt.com":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\firebug@software.joehewitt.com.xpi","e":true,"v":"2.0.19","st":1490874722749},"FireXPath@pierre.tholence.com":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\FireXPath@pierre.tholence.com.xpi","e":true,"v":"0.9.7.1.1-signed.1-signed","st":1490874722749},"jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi","e":true,"v":"0.4.11","st":1490874722749},"jid1-AVgCeF1zoVzMjA@jetpack":{"d":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\jid1-AVgCeF1zoVzMjA@jetpack.xpi","e":true,"v":"0.9.5.6","st":1490874722749}},"app-system-defaults":{"aushelper@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\aushelper@mozilla.org.xpi","e":true,"v":"2.0","st":1490461325602},"deployment-checker@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\deployment-checker@mozilla.org.xpi","st":1490461325602},"e10srollout@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\e10srollout@mozilla.org.xpi","e":true,"v":"1.9","st":1490461325602},"firefox@getpocket.com":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\firefox@getpocket.com.xpi","e":true,"v":"1.0.5","st":1490461325602},"webcompat@mozilla.org":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\webcompat@mozilla.org.xpi","e":true,"v":"1.0","st":1490461325540}},"app-global":{"{972ce4c6-7e08-4474-a285-3208198ce6fd}":{"d":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\extensions\\{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi","e":true,"v":"52.0","st":1490461325602}}}
+1490874724037	addons.xpi-utils	DEBUG	Opening XPI database C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions.json
+1490874724050	addons.xpi-utils	DEBUG	Successfully read XPI database
+1490874724056	addons.xpi-utils	DEBUG	Add-on jid1-AVgCeF1zoVzMjA@jetpack modified in app-profile
 *** Blocklist::_loadBlocklistFromFile: blocklist is disabled
-1490874714792	DeferredSave.extensions.json	DEBUG	Save changes
-1490874714795	DeferredSave.extensions.json	DEBUG	Save changes
-1490874714795	addons.xpi-utils	DEBUG	Add-on jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack modified in app-profile
-1490874714805	DeferredSave.extensions.json	DEBUG	Starting timer
-1490874714818	DeferredSave.extensions.json	DEBUG	Save changes
-1490874714821	DeferredSave.extensions.json	DEBUG	Save changes
-1490874714821	addons.xpi-utils	DEBUG	Add-on @no-resource-uri-leak modified in app-profile
-1490874714832	DeferredSave.extensions.json	DEBUG	Starting write
-1490874714853	DeferredSave.extensions.json	DEBUG	Save changes
-1490874714853	DeferredSave.extensions.json	DEBUG	Data changed while write in progress
-1490874714856	DeferredSave.extensions.json	DEBUG	Save changes
-1490874714857	addons.xpi-utils	DEBUG	Add-on @stop-fingerprinting modified in app-profile
-1490874714877	DeferredSave.extensions.json	DEBUG	Save changes
-1490874714881	DeferredSave.extensions.json	DEBUG	Save changes
-1490874714882	addons.xpi-utils	DEBUG	Add-on firebug@software.joehewitt.com modified in app-profile
-1490874714979	DeferredSave.extensions.json	DEBUG	Write succeeded
-1490874714980	addons.xpi-utils	DEBUG	XPI Database saved, setting schema version preference to 19
-1490874714980	DeferredSave.extensions.json	DEBUG	Starting timer
-1490874715016	DeferredSave.extensions.json	DEBUG	Starting write
-1490874715022	DeferredSave.extensions.json	DEBUG	Write succeeded
-1490874715057	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715059	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715060	addons.xpi-utils	DEBUG	Add-on FireXPath@pierre.tholence.com modified in app-profile
-1490874715067	DeferredSave.extensions.json	DEBUG	Starting timer
-1490874715077	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715079	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715079	addons.xpi-utils	DEBUG	Add-on CanvasBlocker@kkapsner.de modified in app-profile
-1490874715090	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715091	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715092	addons.xpi-utils	DEBUG	Add-on firefox@getpocket.com modified in app-system-defaults
-1490874715099	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715100	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715100	addons.xpi-utils	DEBUG	Add-on webcompat@mozilla.org modified in app-system-defaults
-1490874715109	DeferredSave.extensions.json	DEBUG	Starting write
-1490874715115	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715115	DeferredSave.extensions.json	DEBUG	Data changed while write in progress
-1490874715117	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715118	addons.xpi-utils	DEBUG	Add-on e10srollout@mozilla.org modified in app-system-defaults
-1490874715126	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715127	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715129	addons.xpi-utils	DEBUG	Add-on aushelper@mozilla.org modified in app-system-defaults
-1490874715139	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715141	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715142	addons.xpi-utils	DEBUG	New add-on deployment-checker@mozilla.org installed in app-system-defaults
-1490874715150	DeferredSave.extensions.json	DEBUG	Write succeeded
-1490874715151	DeferredSave.extensions.json	DEBUG	Starting timer
-1490874715155	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715156	addons.xpi-utils	DEBUG	Add-on {972ce4c6-7e08-4474-a285-3208198ce6fd} modified in app-global
-1490874715163	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715164	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715165	addons.manager	DEBUG	Registering startup change 'changed' for jid1-AVgCeF1zoVzMjA@jetpack
-1490874715184	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\jid1-AVgCeF1zoVzMjA@jetpack.xpi
-1490874715294	addons.xpi	DEBUG	Calling bootstrap method install on jid1-AVgCeF1zoVzMjA@jetpack version 0.9.5.6
-1490874715295	addons.xpi-utils	DEBUG	Make addon app-profile:jid1-AVgCeF1zoVzMjA@jetpack visible
-1490874715296	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715296	addons.manager	DEBUG	Registering startup change 'changed' for jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack
-1490874715298	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi
-1490874715302	addons.xpi	DEBUG	Calling bootstrap method install on jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack version 0.4.11
-1490874715303	addons.xpi-utils	DEBUG	Make addon app-profile:jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack visible
-1490874715305	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715306	addons.manager	DEBUG	Registering startup change 'changed' for @no-resource-uri-leak
-1490874715308	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\@no-resource-uri-leak.xpi
-1490874715312	addons.xpi	DEBUG	Calling bootstrap method install on @no-resource-uri-leak version 1.1.0
-1490874715313	addons.xpi-utils	DEBUG	Make addon app-profile:@no-resource-uri-leak visible
-1490874715314	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715314	addons.manager	DEBUG	Registering startup change 'changed' for @stop-fingerprinting
-1490874715316	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\@stop-fingerprinting.xpi
-1490874715323	addons.xpi	DEBUG	Calling bootstrap method install on @stop-fingerprinting version 0.1.0
-1490874715323	addons.xpi-utils	DEBUG	Make addon app-profile:@stop-fingerprinting visible
-1490874715325	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715325	addons.manager	DEBUG	Registering startup change 'changed' for firebug@software.joehewitt.com
-1490874715327	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\firebug@software.joehewitt.com.xpi
-1490874715332	addons.xpi	DEBUG	Calling bootstrap method install on firebug@software.joehewitt.com version 2.0.19
-1490874715332	addons.xpi-utils	DEBUG	Make addon app-profile:firebug@software.joehewitt.com visible
-1490874715333	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715333	addons.manager	DEBUG	Registering startup change 'changed' for FireXPath@pierre.tholence.com
-1490874715334	addons.xpi-utils	DEBUG	Make addon app-profile:FireXPath@pierre.tholence.com visible
-1490874715336	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715337	addons.manager	DEBUG	Registering startup change 'changed' for CanvasBlocker@kkapsner.de
-1490874715339	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\CanvasBlocker@kkapsner.de.xpi
-1490874715344	addons.xpi	DEBUG	Calling bootstrap method install on CanvasBlocker@kkapsner.de version 0.3.7-Release
-1490874715345	addons.xpi-utils	DEBUG	Make addon app-profile:CanvasBlocker@kkapsner.de visible
-1490874715347	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715347	addons.manager	DEBUG	Registering startup change 'changed' for firefox@getpocket.com
-1490874715349	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\firefox@getpocket.com.xpi
-1490874715356	addons.xpi	DEBUG	Calling bootstrap method install on firefox@getpocket.com version 1.0.5
-1490874715357	addons.xpi-utils	DEBUG	Make addon app-system-defaults:firefox@getpocket.com visible
-1490874715359	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715360	addons.manager	DEBUG	Registering startup change 'changed' for webcompat@mozilla.org
-1490874715362	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\webcompat@mozilla.org.xpi
-1490874715365	addons.xpi	DEBUG	Calling bootstrap method install on webcompat@mozilla.org version 1.0
-1490874715365	addons.xpi-utils	DEBUG	Make addon app-system-defaults:webcompat@mozilla.org visible
-1490874715368	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715368	addons.manager	DEBUG	Registering startup change 'changed' for e10srollout@mozilla.org
-1490874715370	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\e10srollout@mozilla.org.xpi
-1490874715378	addons.xpi	DEBUG	Calling bootstrap method install on e10srollout@mozilla.org version 1.11
-1490874715381	addons.xpi-utils	DEBUG	Make addon app-system-defaults:e10srollout@mozilla.org visible
-1490874715383	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715384	addons.manager	DEBUG	Registering startup change 'changed' for aushelper@mozilla.org
-1490874715385	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\aushelper@mozilla.org.xpi
-1490874715391	addons.xpi	DEBUG	Calling bootstrap method install on aushelper@mozilla.org version 2.0
-1490874715392	addons.xpi-utils	DEBUG	Make addon app-system-defaults:aushelper@mozilla.org visible
-1490874715393	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715394	addons.manager	DEBUG	Registering startup change 'installed' for deployment-checker@mozilla.org
-1490874715396	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\deployment-checker@mozilla.org.xpi
-1490874715409	addons.xpi	DEBUG	Calling bootstrap method install on deployment-checker@mozilla.org version 1.0
-1490874715457	addons.xpi-utils	DEBUG	Make addon app-system-defaults:deployment-checker@mozilla.org visible
-1490874715459	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715459	addons.manager	DEBUG	Registering startup change 'changed' for {972ce4c6-7e08-4474-a285-3208198ce6fd}
-1490874715460	addons.xpi-utils	DEBUG	Make addon app-global:{972ce4c6-7e08-4474-a285-3208198ce6fd} visible
-1490874715461	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715462	addons.xpi	DEBUG	Updating XPIState for {"id":"jid1-AVgCeF1zoVzMjA@jetpack","syncGUID":"{e5cc47be-18ff-4b94-852c-98d725c30b6e}","location":"app-profile","version":"0.9.5.6","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{},"iconURL":"resource://jid1-AVgCeF1zoVzMjA-at-jetpack/data/images/icon.png","icon64URL":null,"defaultLocale":{"name":"Random Agent Spoofer","description":"Allows the use of various browser profiles (including useragent ,platform, oscpu, accept headers and other options), which it can randomly switch between after a chosen period of time has expired","creator":"dbyrne","homepageURL":"https://github.com/dillbyrne/random-agent-spoofer"},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\jid1-AVgCeF1zoVzMjA@jetpack.xpi","installDate":1480895412741,"updateDate":1490874713670,"applyBackgroundUpdates":"1","bootstrap":true,"skinnable":false,"size":501203,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"38.0a1","maxVersion":"43.0"}],"targetPlatforms":[],"multiprocessCompatible":false,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715462	addons.xpi	DEBUG	Updating XPIState for {"id":"jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack","syncGUID":"{e55b7744-febc-4d63-81ec-d6df28cb86aa}","location":"app-profile","version":"0.4.11","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{"32":"icon.png","48":"icon.png"},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Self-Destructing Cookies","description":"Fix the web. Gets rid of a site's cookies and LocalStorage as soon as you close its tabs. Protects against trackers and zombie-cookies. Trustworthy services can be whitelisted.","creator":"Ove","homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi","installDate":1481573258190,"updateDate":1490874713655,"applyBackgroundUpdates":"1","bootstrap":true,"skinnable":false,"size":261247,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"38.0a1","maxVersion":"*"},{"id":"{aa3c5121-dab2-40e2-81ca-7ea25febc110}","minVersion":"38.0a1","maxVersion":"*"}],"targetPlatforms":[],"multiprocessCompatible":false,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715462	addons.xpi	DEBUG	Updating XPIState for {"id":"@no-resource-uri-leak","syncGUID":"{eaef4254-15c0-4502-9f2c-9956469110b0}","location":"app-profile","version":"1.1.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{"32":"icon.png","48":"icon.png","64":"icon64.png"},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"No Resource URI Leak","description":"Deny resource:// access to Web content: We fill the hole to defend against fingerprinting. Very important to Firefox privacy. A direct workaround for bugzil.la/863246","creator":"Desktopd Project","homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\@no-resource-uri-leak.xpi","installDate":1486029477857,"updateDate":1490874713623,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":65509,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"38.0a1","maxVersion":"*"},{"id":"{aa3c5121-dab2-40e2-81ca-7ea25febc110}","minVersion":"38.0a1","maxVersion":"*"},{"id":"{3550f703-e582-4d05-9a08-453d09bdfdc6}","minVersion":"38.0a1","maxVersion":"48.*"},{"id":"{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}","minVersion":"2.38","maxVersion":"2.47.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715463	addons.xpi	DEBUG	Updating XPIState for {"id":"@stop-fingerprinting","syncGUID":"{53d3d444-937c-453b-b2ff-7beeae53ab80}","location":"app-profile","version":"0.1.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{"32":"icon.png","48":"icon.png"},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Stop Fingerprinting","description":"Disables / modifies some browser APIs that would otherwise allow browser fingerprinting","creator":"Niklas Gollenstede","homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\@stop-fingerprinting.xpi","installDate":1486167644656,"updateDate":1490874713623,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":46314,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"38.0","maxVersion":"47.0"}],"targetPlatforms":[],"multiprocessCompatible":true,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715463	addons.xpi	DEBUG	Updating XPIState for {"id":"firebug@software.joehewitt.com","syncGUID":"{5d8ef129-3c93-4732-9c20-ef0ff2f7db94}","location":"app-profile","version":"2.0.19","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":"chrome://firebug/skin/firebugBig.png","icon64URL":null,"defaultLocale":{"name":"Firebug","description":"Web Development Evolved. Firebug is free and open source software distributed under the BSD License.","creator":"Joe Hewitt","homepageURL":"http://www.getfirebug.com/","translators":["Leszek(teo)Zyczkowski (pl-PL)","markh (nl)","peter3 (sv-SE)","AlleyKat (da-DK)","Hector Zhao, lovelywcm (zh-CN)","Lukas Kucharczyk, Michal Kec (cs-CZ)","Team erweiterungen.de, ReinekeFux, Benedikt Langens, Sebastian Zartner (de-DE)","l0stintranslation, gonzalopirobutirro, Luigi Grilli (it-IT)","alexxed (ro-RO)","Nicolas Martin, Franck Marcia (fr-FR)","gLes (hu-HU)","Xavi Ivars - Softcatala (ca)","gezmen (tr-TR)","eternoendless (es-AR)","Dark Preacher (ru)","Tiago Oliveira, Diego de Carvalho Zimmermann, Alexandre Rapaki (pt-BR)","Juan Botias, Alvaro G. Vicario (es-ES)","Andriy Zhouck (uk-UA)","Hisateru Tanaka, k2jp (ja-JP)","Mohsen Shadroo (fa-IR)","Eduard Babayan (hy-AM)","Helder Magalhaes (pt-PT)","Tomaz Macus (sl-SI)","Stoyan Stefanov, Alexander Shopov (bg)","Kristjan Bjarni Guomundsson (is-IS)","NGUYEN Manh Hung (vi-VN)","Bwah (hr-HR)","Sonickydon (el)","David Gonzales (es)","DakSrbija (sr)","bootleq (zh-TW)","Asier Iturralde Sarasola, Julen Irazoki Oteiza (eu)"],"contributors":["John J. Barton (IBM Almaden)","Jan Odvarko (Mozilla Corp.)","Max Stepanov (Aptana Inc.)","Rob Campbell (Mozilla Corp.)","Hans Hillen (Paciello Group, Mozilla)","Curtis Bartley (Mozilla Corp.)","Mike Collins (IBM Almaden)","Kevin Decker","Mike Ratcliffe (Mozilla Corp.)","Hernan Rodriguez Colmeiro","Austin Andrews","Christoph Dorn","Steven Roussey (Illuminations for Developers)","Sebastian Zartner","Harutyun Amirjanyan","Simon Lindholm","Stampolidis Anastasios","Joe Walker (Mozilla Corp.)","Vladimir Zhuravlev","Farshid Beheshti","Leon Sorokin","Florent Fayolle","Hector Zhao","Bharath Thiruveedula","Nathan Mische","Belakhdar Abdeldjalil","Jakob Kaltenbrunner"]},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\firebug@software.joehewitt.com.xpi","installDate":1488395937921,"updateDate":1490874713655,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":9681994,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"toolkit@mozilla.org","minVersion":"30.0a1","maxVersion":"54.0"},{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"30.0a1","maxVersion":"54.0"}],"targetPlatforms":[],"multiprocessCompatible":true,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715463	addons.xpi	DEBUG	Updating XPIState for {"id":"FireXPath@pierre.tholence.com","syncGUID":"{70d2ec71-01db-4afb-b178-af39cb23b663}","location":"app-profile","version":"0.9.7.1.1-signed.1-signed","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":"chrome://firepath/content/FirePath.png","icon64URL":null,"defaultLocale":{"name":"FirePath","description":"FirePath is a Firebug extension that adds a development tool to edit, inspect and generate XPath 1.0 expressions, CSS 3 selectors and JQuery selectors.","creator":"Pierre Tholence","homepageURL":null,"contributors":["David Rees"]},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\FireXPath@pierre.tholence.com.xpi","installDate":1488395951511,"updateDate":1490874713655,"applyBackgroundUpdates":1,"bootstrap":false,"skinnable":false,"size":168435,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"4.0","maxVersion":"34.*"}],"targetPlatforms":[],"multiprocessCompatible":false,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715464	addons.xpi	DEBUG	Updating XPIState for {"id":"CanvasBlocker@kkapsner.de","syncGUID":"{2caeb205-4959-4592-85b1-a3b5355fafbb}","location":"app-profile","version":"0.3.7-Release","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"CanvasBlocker","description":"Changes the JS-API for modifying <canvas> to prevent Canvas-Fingerprinting.","creator":"Korbinian Kapsner","homepageURL":"https://github.com/kkapsner/CanvasBlocker/"},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.ZX12pNNkPiqy\\extensions\\CanvasBlocker@kkapsner.de.xpi","installDate":1481562903167,"updateDate":1490874713623,"applyBackgroundUpdates":"1","bootstrap":true,"skinnable":false,"size":62798,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[{"locales":["de"],"name":"CanvasBlocker","description":"Ändert die JS-API zum Ändern von <canvas> um Canvas-Fingerprinting zu verhindern.","creator":"Korbinian Kapsner","homepageURL":"https://github.com/kkapsner/CanvasBlocker/"}],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"45.0a1","maxVersion":"*"},{"id":"{aa3c5121-dab2-40e2-81ca-7ea25febc110}","minVersion":"45.0","maxVersion":"*"}],"targetPlatforms":[],"multiprocessCompatible":true,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715464	addons.xpi	DEBUG	Updating XPIState for {"id":"firefox@getpocket.com","syncGUID":"62-K5NfPSWn-","location":"app-system-defaults","version":"1.0.5","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Pocket","description":"When you find something you want to view later, put it in Pocket.","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\firefox@getpocket.com.xpi","installDate":1468234731000,"updateDate":1490461325602,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":913563,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715464	addons.xpi	DEBUG	Updating XPIState for {"id":"webcompat@mozilla.org","syncGUID":"{1561c393-6845-4666-a05a-504d6f97104a}","location":"app-system-defaults","version":"1.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Web Compat","description":"Urgent post-release fixes for web compatibility.","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\webcompat@mozilla.org.xpi","installDate":1479544429487,"updateDate":1490461325540,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":1454,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715464	addons.xpi	DEBUG	Updating XPIState for {"id":"e10srollout@mozilla.org","syncGUID":"o8OMZ0kHrMNx","location":"app-system-defaults","version":"1.11","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Multi-process staged rollout","description":"Staged rollout of Firefox multi-process feature.","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\e10srollout@mozilla.org.xpi","installDate":1468234731000,"updateDate":1490461325602,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":8068,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715465	addons.xpi	DEBUG	Updating XPIState for {"id":"aushelper@mozilla.org","syncGUID":"{f2554f87-290a-4473-845b-a23aae454400}","location":"app-system-defaults","version":"2.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Application Update Service Helper","description":"Sets value(s) in the update url based on custom checks.","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\aushelper@mozilla.org.xpi","installDate":1479544429563,"updateDate":1490461325602,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":8486,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715465	addons.xpi	DEBUG	Updating XPIState for {"id":"deployment-checker@mozilla.org","syncGUID":"{5f2f2ec7-5e23-472e-8c1f-df667ce9da0a}","location":"app-system-defaults","version":"1.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Site Deployment Checker","description":"Check that Users Encounter Mozilla Sites as Deployed by Mozilla","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\deployment-checker@mozilla.org.xpi","installDate":1490461325602,"updateDate":1490461325602,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":11553,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
-1490874715466	addons.xpi	DEBUG	getModTime: Recursive scan of deployment-checker@mozilla.org
-1490874715467	addons.xpi	DEBUG	Updating XPIState for {"id":"{972ce4c6-7e08-4474-a285-3208198ce6fd}","syncGUID":"FGwnmdl91csL","location":"app-global","version":"53.0","type":"theme","internalName":"classic/1.0","updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":"chrome://browser/content/default-theme-icon.svg","icon64URL":null,"defaultLocale":{"name":"Default","description":"The default theme.","creator":"Mozilla","homepageURL":null,"contributors":["Mozilla Contributors"]},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\extensions\\{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi","installDate":1468481930105,"updateDate":1490461325602,"applyBackgroundUpdates":1,"skinnable":true,"size":8201,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":true,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.0"}],"targetPlatforms":[],"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"userPermissions":null}
-1490874715469	DeferredSave.extensions.json	DEBUG	Save changes
-1490874715469	addons.xpi	DEBUG	Updating database with changes to installed add-ons
-1490874715470	addons.xpi-utils	DEBUG	Updating add-on states
-1490874715472	addons.xpi-utils	DEBUG	Writing add-ons list
-1490874715479	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\@no-resource-uri-leak.xpi
-1490874715480	addons.xpi	DEBUG	Calling bootstrap method startup on @no-resource-uri-leak version 1.1.0
-1490874715483	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\@stop-fingerprinting.xpi
-1490874715483	addons.xpi	DEBUG	Calling bootstrap method startup on @stop-fingerprinting version 0.1.0
-1490874715485	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\CanvasBlocker@kkapsner.de.xpi
-1490874715486	addons.xpi	DEBUG	Calling bootstrap method startup on CanvasBlocker@kkapsner.de version 0.3.7-Release
-1490874715488	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\aushelper@mozilla.org.xpi
-1490874715489	addons.xpi	DEBUG	Calling bootstrap method startup on aushelper@mozilla.org version 2.0
-1490874715491	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\deployment-checker@mozilla.org.xpi
-1490874715492	addons.xpi	DEBUG	Calling bootstrap method startup on deployment-checker@mozilla.org version 1.0
-1490874715493	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\e10srollout@mozilla.org.xpi
-1490874715493	addons.xpi	DEBUG	Calling bootstrap method startup on e10srollout@mozilla.org version 1.11
-1490874715494	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\firebug@software.joehewitt.com.xpi
-1490874715495	addons.xpi	DEBUG	Calling bootstrap method startup on firebug@software.joehewitt.com version 2.0.19
-1490874715513	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\firefox@getpocket.com.xpi
-1490874715515	addons.xpi	DEBUG	Calling bootstrap method startup on firefox@getpocket.com version 1.0.5
-1490874715516	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi
-1490874715517	addons.xpi	DEBUG	Calling bootstrap method startup on jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack version 0.4.11
-1490874715519	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.ZX12pNNkPiqy\extensions\jid1-AVgCeF1zoVzMjA@jetpack.xpi
-1490874715520	addons.xpi	DEBUG	Calling bootstrap method startup on jid1-AVgCeF1zoVzMjA@jetpack version 0.9.5.6
-1490874715521	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\webcompat@mozilla.org.xpi
-1490874715522	addons.xpi	DEBUG	Calling bootstrap method startup on webcompat@mozilla.org version 1.0
-1490874715525	addons.manager	DEBUG	Registering shutdown blocker for XPIProvider
-1490874715526	addons.manager	DEBUG	Provider finished startup: XPIProvider
-1490874715526	addons.manager	DEBUG	Starting provider: LightweightThemeManager
-1490874715526	addons.manager	DEBUG	Registering shutdown blocker for LightweightThemeManager
-1490874715527	addons.manager	DEBUG	Provider finished startup: LightweightThemeManager
-1490874715527	addons.manager	DEBUG	Starting provider: GMPProvider
-1490874715539	addons.manager	DEBUG	Registering shutdown blocker for GMPProvider
-1490874715540	addons.manager	DEBUG	Provider finished startup: GMPProvider
-1490874715540	addons.manager	DEBUG	Starting provider: PluginProvider
-1490874715540	addons.manager	DEBUG	Registering shutdown blocker for PluginProvider
-1490874715541	addons.manager	DEBUG	Provider finished startup: PluginProvider
-1490874715543	addons.manager	DEBUG	Completed startup sequence
-1490874715812	Marionette	INFO	Listening on port 50716
-1490874716064	addons.manager	DEBUG	Starting provider: <unnamed-provider>
-1490874716065	addons.manager	DEBUG	Registering shutdown blocker for <unnamed-provider>
-1490874716065	addons.manager	DEBUG	Provider finished startup: <unnamed-provider>
-1490874716099	addons.manager	DEBUG	Starting provider: PreviousExperimentProvider
-1490874716100	addons.manager	DEBUG	Registering shutdown blocker for PreviousExperimentProvider
-1490874716101	addons.manager	DEBUG	Provider finished startup: PreviousExperimentProvider
-1490874716107	DeferredSave.extensions.json	DEBUG	Starting write
-1490874716532	Marionette	WARN	TLS certificate errors will be ignored for this session
-1490874716648	DeferredSave.extensions.json	DEBUG	Write succeeded
-1490874707249	DeferredSave.extensions.json	DEBUG	Starting timer
-1490874707651	DeferredSave.extensions.json	DEBUG	Starting write
-1490874707727	Marionette	WARN	TLS certificate errors will be ignored for this session
-1490874707933	DeferredSave.extensions.json	DEBUG	Write succeeded
+1490874724101	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724107	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724108	addons.xpi-utils	DEBUG	Add-on jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack modified in app-profile
+1490874724119	DeferredSave.extensions.json	DEBUG	Starting timer
+1490874724134	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724137	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724138	addons.xpi-utils	DEBUG	Add-on @no-resource-uri-leak modified in app-profile
+1490874724160	DeferredSave.extensions.json	DEBUG	Starting write
+1490874724181	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724182	DeferredSave.extensions.json	DEBUG	Data changed while write in progress
+1490874724184	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724185	addons.xpi-utils	DEBUG	Add-on @stop-fingerprinting modified in app-profile
+1490874724213	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724219	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724220	addons.xpi-utils	DEBUG	Add-on firebug@software.joehewitt.com modified in app-profile
+1490874724316	DeferredSave.extensions.json	DEBUG	Write succeeded
+1490874724317	addons.xpi-utils	DEBUG	XPI Database saved, setting schema version preference to 19
+1490874724317	DeferredSave.extensions.json	DEBUG	Starting timer
+1490874724345	DeferredSave.extensions.json	DEBUG	Starting write
+1490874724353	DeferredSave.extensions.json	DEBUG	Write succeeded
+1490874724405	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724409	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724411	addons.xpi-utils	DEBUG	Add-on FireXPath@pierre.tholence.com modified in app-profile
+1490874724423	DeferredSave.extensions.json	DEBUG	Starting timer
+1490874724438	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724441	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724442	addons.xpi-utils	DEBUG	Add-on CanvasBlocker@kkapsner.de modified in app-profile
+1490874724456	DeferredSave.extensions.json	DEBUG	Starting write
+1490874724464	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724465	DeferredSave.extensions.json	DEBUG	Data changed while write in progress
+1490874724468	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724469	addons.xpi-utils	DEBUG	Add-on firefox@getpocket.com modified in app-system-defaults
+1490874724482	DeferredSave.extensions.json	DEBUG	Write succeeded
+1490874724483	DeferredSave.extensions.json	DEBUG	Starting timer
+1490874724485	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724486	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724487	addons.xpi-utils	DEBUG	Add-on webcompat@mozilla.org modified in app-system-defaults
+1490874724496	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724497	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724498	addons.xpi-utils	DEBUG	Add-on e10srollout@mozilla.org modified in app-system-defaults
+1490874724506	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724508	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724509	addons.xpi-utils	DEBUG	Add-on aushelper@mozilla.org modified in app-system-defaults
+1490874724522	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724524	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724526	addons.xpi-utils	DEBUG	New add-on deployment-checker@mozilla.org installed in app-system-defaults
+1490874724538	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724539	addons.xpi-utils	DEBUG	Add-on {972ce4c6-7e08-4474-a285-3208198ce6fd} modified in app-global
+1490874724548	DeferredSave.extensions.json	DEBUG	Starting write
+1490874724558	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724559	DeferredSave.extensions.json	DEBUG	Data changed while write in progress
+1490874724561	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724564	addons.manager	DEBUG	Registering startup change 'changed' for jid1-AVgCeF1zoVzMjA@jetpack
+1490874724597	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\jid1-AVgCeF1zoVzMjA@jetpack.xpi
+1490874724754	addons.xpi	DEBUG	Calling bootstrap method install on jid1-AVgCeF1zoVzMjA@jetpack version 0.9.5.6
+1490874724755	addons.xpi-utils	DEBUG	Make addon app-profile:jid1-AVgCeF1zoVzMjA@jetpack visible
+1490874724756	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724757	addons.manager	DEBUG	Registering startup change 'changed' for jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack
+1490874724760	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi
+1490874724769	addons.xpi	DEBUG	Calling bootstrap method install on jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack version 0.4.11
+1490874724770	addons.xpi-utils	DEBUG	Make addon app-profile:jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack visible
+1490874724771	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724771	addons.manager	DEBUG	Registering startup change 'changed' for @no-resource-uri-leak
+1490874724773	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\@no-resource-uri-leak.xpi
+1490874724779	addons.xpi	DEBUG	Calling bootstrap method install on @no-resource-uri-leak version 1.1.0
+1490874724780	addons.xpi-utils	DEBUG	Make addon app-profile:@no-resource-uri-leak visible
+1490874724781	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724781	addons.manager	DEBUG	Registering startup change 'changed' for @stop-fingerprinting
+1490874724783	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\@stop-fingerprinting.xpi
+1490874724789	addons.xpi	DEBUG	Calling bootstrap method install on @stop-fingerprinting version 0.1.0
+1490874724790	addons.xpi-utils	DEBUG	Make addon app-profile:@stop-fingerprinting visible
+1490874724791	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724792	addons.manager	DEBUG	Registering startup change 'changed' for firebug@software.joehewitt.com
+1490874724796	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\firebug@software.joehewitt.com.xpi
+1490874724804	addons.xpi	DEBUG	Calling bootstrap method install on firebug@software.joehewitt.com version 2.0.19
+1490874724805	addons.xpi-utils	DEBUG	Make addon app-profile:firebug@software.joehewitt.com visible
+1490874724807	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724808	addons.manager	DEBUG	Registering startup change 'changed' for FireXPath@pierre.tholence.com
+1490874724810	addons.xpi-utils	DEBUG	Make addon app-profile:FireXPath@pierre.tholence.com visible
+1490874724814	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724816	addons.manager	DEBUG	Registering startup change 'changed' for CanvasBlocker@kkapsner.de
+1490874724820	addons.xpi	DEBUG	Loading bootstrap scope from C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\CanvasBlocker@kkapsner.de.xpi
+1490874724827	addons.xpi	DEBUG	Calling bootstrap method install on CanvasBlocker@kkapsner.de version 0.3.7-Release
+1490874724828	addons.xpi-utils	DEBUG	Make addon app-profile:CanvasBlocker@kkapsner.de visible
+1490874724829	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724830	addons.manager	DEBUG	Registering startup change 'changed' for firefox@getpocket.com
+1490874724832	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\firefox@getpocket.com.xpi
+1490874724840	addons.xpi	DEBUG	Calling bootstrap method install on firefox@getpocket.com version 1.0.5
+1490874724841	addons.xpi-utils	DEBUG	Make addon app-system-defaults:firefox@getpocket.com visible
+1490874724843	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724844	addons.manager	DEBUG	Registering startup change 'changed' for webcompat@mozilla.org
+1490874724851	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\webcompat@mozilla.org.xpi
+1490874724858	addons.xpi	DEBUG	Calling bootstrap method install on webcompat@mozilla.org version 1.0
+1490874724858	addons.xpi-utils	DEBUG	Make addon app-system-defaults:webcompat@mozilla.org visible
+1490874724861	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724862	addons.manager	DEBUG	Registering startup change 'changed' for e10srollout@mozilla.org
+1490874724864	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\e10srollout@mozilla.org.xpi
+1490874724871	addons.xpi	DEBUG	Calling bootstrap method install on e10srollout@mozilla.org version 1.11
+1490874724876	addons.xpi-utils	DEBUG	Make addon app-system-defaults:e10srollout@mozilla.org visible
+1490874724879	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724880	addons.manager	DEBUG	Registering startup change 'changed' for aushelper@mozilla.org
+1490874724883	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\aushelper@mozilla.org.xpi
+1490874724890	addons.xpi	DEBUG	Calling bootstrap method install on aushelper@mozilla.org version 2.0
+1490874724892	addons.xpi-utils	DEBUG	Make addon app-system-defaults:aushelper@mozilla.org visible
+1490874724895	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724896	addons.manager	DEBUG	Registering startup change 'installed' for deployment-checker@mozilla.org
+1490874724899	addons.xpi	DEBUG	Loading bootstrap scope from C:\Program Files (x86)\Mozilla Firefox\browser\features\deployment-checker@mozilla.org.xpi
+1490874724914	addons.xpi	DEBUG	Calling bootstrap method install on deployment-checker@mozilla.org version 1.0
+1490874724984	addons.xpi-utils	DEBUG	Make addon app-system-defaults:deployment-checker@mozilla.org visible
+1490874724987	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724988	addons.manager	DEBUG	Registering startup change 'changed' for {972ce4c6-7e08-4474-a285-3208198ce6fd}
+1490874724990	addons.xpi-utils	DEBUG	Make addon app-global:{972ce4c6-7e08-4474-a285-3208198ce6fd} visible
+1490874724992	DeferredSave.extensions.json	DEBUG	Save changes
+1490874724993	addons.xpi	DEBUG	Updating XPIState for {"id":"jid1-AVgCeF1zoVzMjA@jetpack","syncGUID":"{e5cc47be-18ff-4b94-852c-98d725c30b6e}","location":"app-profile","version":"0.9.5.6","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{},"iconURL":"resource://jid1-AVgCeF1zoVzMjA-at-jetpack/data/images/icon.png","icon64URL":null,"defaultLocale":{"name":"Random Agent Spoofer","description":"Allows the use of various browser profiles (including useragent ,platform, oscpu, accept headers and other options), which it can randomly switch between after a chosen period of time has expired","creator":"dbyrne","homepageURL":"https://github.com/dillbyrne/random-agent-spoofer"},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\jid1-AVgCeF1zoVzMjA@jetpack.xpi","installDate":1480895412741,"updateDate":1490874722749,"applyBackgroundUpdates":"1","bootstrap":true,"skinnable":false,"size":501203,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"38.0a1","maxVersion":"43.0"}],"targetPlatforms":[],"multiprocessCompatible":false,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724994	addons.xpi	DEBUG	Updating XPIState for {"id":"jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack","syncGUID":"{e55b7744-febc-4d63-81ec-d6df28cb86aa}","location":"app-profile","version":"0.4.11","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{"32":"icon.png","48":"icon.png"},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Self-Destructing Cookies","description":"Fix the web. Gets rid of a site's cookies and LocalStorage as soon as you close its tabs. Protects against trackers and zombie-cookies. Trustworthy services can be whitelisted.","creator":"Ove","homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi","installDate":1481573258190,"updateDate":1490874722749,"applyBackgroundUpdates":"1","bootstrap":true,"skinnable":false,"size":261247,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"38.0a1","maxVersion":"*"},{"id":"{aa3c5121-dab2-40e2-81ca-7ea25febc110}","minVersion":"38.0a1","maxVersion":"*"}],"targetPlatforms":[],"multiprocessCompatible":false,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724994	addons.xpi	DEBUG	Updating XPIState for {"id":"@no-resource-uri-leak","syncGUID":"{eaef4254-15c0-4502-9f2c-9956469110b0}","location":"app-profile","version":"1.1.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{"32":"icon.png","48":"icon.png","64":"icon64.png"},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"No Resource URI Leak","description":"Deny resource:// access to Web content: We fill the hole to defend against fingerprinting. Very important to Firefox privacy. A direct workaround for bugzil.la/863246","creator":"Desktopd Project","homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\@no-resource-uri-leak.xpi","installDate":1486029477857,"updateDate":1490874722718,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":65509,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"38.0a1","maxVersion":"*"},{"id":"{aa3c5121-dab2-40e2-81ca-7ea25febc110}","minVersion":"38.0a1","maxVersion":"*"},{"id":"{3550f703-e582-4d05-9a08-453d09bdfdc6}","minVersion":"38.0a1","maxVersion":"48.*"},{"id":"{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}","minVersion":"2.38","maxVersion":"2.47.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724994	addons.xpi	DEBUG	Updating XPIState for {"id":"@stop-fingerprinting","syncGUID":"{53d3d444-937c-453b-b2ff-7beeae53ab80}","location":"app-profile","version":"0.1.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{"32":"icon.png","48":"icon.png"},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Stop Fingerprinting","description":"Disables / modifies some browser APIs that would otherwise allow browser fingerprinting","creator":"Niklas Gollenstede","homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\@stop-fingerprinting.xpi","installDate":1486167644656,"updateDate":1490874722718,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":46314,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"38.0","maxVersion":"47.0"}],"targetPlatforms":[],"multiprocessCompatible":true,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724994	addons.xpi	DEBUG	Updating XPIState for {"id":"firebug@software.joehewitt.com","syncGUID":"{5d8ef129-3c93-4732-9c20-ef0ff2f7db94}","location":"app-profile","version":"2.0.19","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":"chrome://firebug/skin/firebugBig.png","icon64URL":null,"defaultLocale":{"name":"Firebug","description":"Web Development Evolved. Firebug is free and open source software distributed under the BSD License.","creator":"Joe Hewitt","homepageURL":"http://www.getfirebug.com/","translators":["Leszek(teo)Zyczkowski (pl-PL)","markh (nl)","peter3 (sv-SE)","AlleyKat (da-DK)","Hector Zhao, lovelywcm (zh-CN)","Lukas Kucharczyk, Michal Kec (cs-CZ)","Team erweiterungen.de, ReinekeFux, Benedikt Langens, Sebastian Zartner (de-DE)","l0stintranslation, gonzalopirobutirro, Luigi Grilli (it-IT)","alexxed (ro-RO)","Nicolas Martin, Franck Marcia (fr-FR)","gLes (hu-HU)","Xavi Ivars - Softcatala (ca)","gezmen (tr-TR)","eternoendless (es-AR)","Dark Preacher (ru)","Tiago Oliveira, Diego de Carvalho Zimmermann, Alexandre Rapaki (pt-BR)","Juan Botias, Alvaro G. Vicario (es-ES)","Andriy Zhouck (uk-UA)","Hisateru Tanaka, k2jp (ja-JP)","Mohsen Shadroo (fa-IR)","Eduard Babayan (hy-AM)","Helder Magalhaes (pt-PT)","Tomaz Macus (sl-SI)","Stoyan Stefanov, Alexander Shopov (bg)","Kristjan Bjarni Guomundsson (is-IS)","NGUYEN Manh Hung (vi-VN)","Bwah (hr-HR)","Sonickydon (el)","David Gonzales (es)","DakSrbija (sr)","bootleq (zh-TW)","Asier Iturralde Sarasola, Julen Irazoki Oteiza (eu)"],"contributors":["John J. Barton (IBM Almaden)","Jan Odvarko (Mozilla Corp.)","Max Stepanov (Aptana Inc.)","Rob Campbell (Mozilla Corp.)","Hans Hillen (Paciello Group, Mozilla)","Curtis Bartley (Mozilla Corp.)","Mike Collins (IBM Almaden)","Kevin Decker","Mike Ratcliffe (Mozilla Corp.)","Hernan Rodriguez Colmeiro","Austin Andrews","Christoph Dorn","Steven Roussey (Illuminations for Developers)","Sebastian Zartner","Harutyun Amirjanyan","Simon Lindholm","Stampolidis Anastasios","Joe Walker (Mozilla Corp.)","Vladimir Zhuravlev","Farshid Beheshti","Leon Sorokin","Florent Fayolle","Hector Zhao","Bharath Thiruveedula","Nathan Mische","Belakhdar Abdeldjalil","Jakob Kaltenbrunner"]},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\firebug@software.joehewitt.com.xpi","installDate":1488395937921,"updateDate":1490874722749,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":9681994,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"toolkit@mozilla.org","minVersion":"30.0a1","maxVersion":"54.0"},{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"30.0a1","maxVersion":"54.0"}],"targetPlatforms":[],"multiprocessCompatible":true,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724995	addons.xpi	DEBUG	Updating XPIState for {"id":"FireXPath@pierre.tholence.com","syncGUID":"{70d2ec71-01db-4afb-b178-af39cb23b663}","location":"app-profile","version":"0.9.7.1.1-signed.1-signed","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":"chrome://firepath/content/FirePath.png","icon64URL":null,"defaultLocale":{"name":"FirePath","description":"FirePath is a Firebug extension that adds a development tool to edit, inspect and generate XPath 1.0 expressions, CSS 3 selectors and JQuery selectors.","creator":"Pierre Tholence","homepageURL":null,"contributors":["David Rees"]},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\FireXPath@pierre.tholence.com.xpi","installDate":1488395951511,"updateDate":1490874722749,"applyBackgroundUpdates":1,"bootstrap":false,"skinnable":false,"size":168435,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"4.0","maxVersion":"34.*"}],"targetPlatforms":[],"multiprocessCompatible":false,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724995	addons.xpi	DEBUG	Updating XPIState for {"id":"CanvasBlocker@kkapsner.de","syncGUID":"{2caeb205-4959-4592-85b1-a3b5355fafbb}","location":"app-profile","version":"0.3.7-Release","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":"data:text/xml,<placeholder/>","optionsType":"2","aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"CanvasBlocker","description":"Changes the JS-API for modifying <canvas> to prevent Canvas-Fingerprinting.","creator":"Korbinian Kapsner","homepageURL":"https://github.com/kkapsner/CanvasBlocker/"},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Users\\CAS\\AppData\\Local\\Temp\\rust_mozprofile.XkXlMlv3hwU2\\extensions\\CanvasBlocker@kkapsner.de.xpi","installDate":1481562903167,"updateDate":1490874722718,"applyBackgroundUpdates":"1","bootstrap":true,"skinnable":false,"size":62798,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[{"locales":["de"],"name":"CanvasBlocker","description":"Ändert die JS-API zum Ändern von <canvas> um Canvas-Fingerprinting zu verhindern.","creator":"Korbinian Kapsner","homepageURL":"https://github.com/kkapsner/CanvasBlocker/"}],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"45.0a1","maxVersion":"*"},{"id":"{aa3c5121-dab2-40e2-81ca-7ea25febc110}","minVersion":"45.0","maxVersion":"*"}],"targetPlatforms":[],"multiprocessCompatible":true,"signedState":2,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724995	addons.xpi	DEBUG	Updating XPIState for {"id":"firefox@getpocket.com","syncGUID":"62-K5NfPSWn-","location":"app-system-defaults","version":"1.0.5","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Pocket","description":"When you find something you want to view later, put it in Pocket.","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\firefox@getpocket.com.xpi","installDate":1468234731000,"updateDate":1490461325602,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":913563,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724996	addons.xpi	DEBUG	Updating XPIState for {"id":"webcompat@mozilla.org","syncGUID":"{1561c393-6845-4666-a05a-504d6f97104a}","location":"app-system-defaults","version":"1.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Web Compat","description":"Urgent post-release fixes for web compatibility.","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\webcompat@mozilla.org.xpi","installDate":1479544429487,"updateDate":1490461325540,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":1454,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724996	addons.xpi	DEBUG	Updating XPIState for {"id":"e10srollout@mozilla.org","syncGUID":"o8OMZ0kHrMNx","location":"app-system-defaults","version":"1.11","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Multi-process staged rollout","description":"Staged rollout of Firefox multi-process feature.","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\e10srollout@mozilla.org.xpi","installDate":1468234731000,"updateDate":1490461325602,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":8068,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724997	addons.xpi	DEBUG	Updating XPIState for {"id":"aushelper@mozilla.org","syncGUID":"{f2554f87-290a-4473-845b-a23aae454400}","location":"app-system-defaults","version":"2.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Application Update Service Helper","description":"Sets value(s) in the update url based on custom checks.","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\aushelper@mozilla.org.xpi","installDate":1479544429563,"updateDate":1490461325602,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":8486,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724998	addons.xpi	DEBUG	Updating XPIState for {"id":"deployment-checker@mozilla.org","syncGUID":"{10bcec2f-70ea-4c27-be43-11996218aedf}","location":"app-system-defaults","version":"1.0","type":"extension","internalName":null,"updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Site Deployment Checker","description":"Check that Users Encounter Mozilla Sites as Deployed by Mozilla","creator":null,"homepageURL":null},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\features\\deployment-checker@mozilla.org.xpi","installDate":1490461325602,"updateDate":1490461325602,"applyBackgroundUpdates":1,"bootstrap":true,"skinnable":false,"size":11553,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":false,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.*"}],"targetPlatforms":[],"multiprocessCompatible":true,"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"mpcOptedOut":false,"userPermissions":null}
+1490874724998	addons.xpi	DEBUG	getModTime: Recursive scan of deployment-checker@mozilla.org
+1490874725000	addons.xpi	DEBUG	Updating XPIState for {"id":"{972ce4c6-7e08-4474-a285-3208198ce6fd}","syncGUID":"FGwnmdl91csL","location":"app-global","version":"53.0","type":"theme","internalName":"classic/1.0","updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"icons":{},"iconURL":"chrome://browser/content/default-theme-icon.svg","icon64URL":null,"defaultLocale":{"name":"Default","description":"The default theme.","creator":"Mozilla","homepageURL":null,"contributors":["Mozilla Contributors"]},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"C:\\Program Files (x86)\\Mozilla Firefox\\browser\\extensions\\{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi","installDate":1468481930105,"updateDate":1490461325602,"applyBackgroundUpdates":1,"skinnable":true,"size":8201,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":true,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"53.0","maxVersion":"53.0"}],"targetPlatforms":[],"seen":true,"dependencies":[],"hasEmbeddedWebExtension":false,"userPermissions":null}
+1490874725003	DeferredSave.extensions.json	DEBUG	Save changes
+1490874725004	addons.xpi	DEBUG	Updating database with changes to installed add-ons
+1490874725005	addons.xpi-utils	DEBUG	Updating add-on states
+1490874725009	addons.xpi-utils	DEBUG	Writing add-ons list
+1490874725019	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\@no-resource-uri-leak.xpi
+1490874725020	addons.xpi	DEBUG	Calling bootstrap method startup on @no-resource-uri-leak version 1.1.0
+1490874725023	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\@stop-fingerprinting.xpi
+1490874725025	addons.xpi	DEBUG	Calling bootstrap method startup on @stop-fingerprinting version 0.1.0
+1490874725027	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\CanvasBlocker@kkapsner.de.xpi
+1490874725028	addons.xpi	DEBUG	Calling bootstrap method startup on CanvasBlocker@kkapsner.de version 0.3.7-Release
+1490874725032	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\aushelper@mozilla.org.xpi
+1490874725033	addons.xpi	DEBUG	Calling bootstrap method startup on aushelper@mozilla.org version 2.0
+1490874725037	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\deployment-checker@mozilla.org.xpi
+1490874725038	addons.xpi	DEBUG	Calling bootstrap method startup on deployment-checker@mozilla.org version 1.0
+1490874725041	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\e10srollout@mozilla.org.xpi
+1490874725043	addons.xpi	DEBUG	Calling bootstrap method startup on e10srollout@mozilla.org version 1.11
+1490874725044	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\firebug@software.joehewitt.com.xpi
+1490874725046	addons.xpi	DEBUG	Calling bootstrap method startup on firebug@software.joehewitt.com version 2.0.19
+1490874725075	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\firefox@getpocket.com.xpi
+1490874725077	addons.xpi	DEBUG	Calling bootstrap method startup on firefox@getpocket.com version 1.0.5
+1490874725079	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.xpi
+1490874725080	addons.xpi	DEBUG	Calling bootstrap method startup on jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack version 0.4.11
+1490874725084	addons.xpi	DEBUG	Registering manifest for C:\Users\CAS\AppData\Local\Temp\rust_mozprofile.XkXlMlv3hwU2\extensions\jid1-AVgCeF1zoVzMjA@jetpack.xpi
+1490874725085	addons.xpi	DEBUG	Calling bootstrap method startup on jid1-AVgCeF1zoVzMjA@jetpack version 0.9.5.6
+1490874725088	addons.xpi	DEBUG	Registering manifest for C:\Program Files (x86)\Mozilla Firefox\browser\features\webcompat@mozilla.org.xpi
+1490874725089	addons.xpi	DEBUG	Calling bootstrap method startup on webcompat@mozilla.org version 1.0
+1490874725095	addons.manager	DEBUG	Registering shutdown blocker for XPIProvider
+1490874725096	addons.manager	DEBUG	Provider finished startup: XPIProvider
+1490874725096	addons.manager	DEBUG	Starting provider: LightweightThemeManager
+1490874725097	addons.manager	DEBUG	Registering shutdown blocker for LightweightThemeManager
+1490874725097	addons.manager	DEBUG	Provider finished startup: LightweightThemeManager
+1490874725098	addons.manager	DEBUG	Starting provider: GMPProvider
+1490874725118	addons.manager	DEBUG	Registering shutdown blocker for GMPProvider
+1490874725119	addons.manager	DEBUG	Provider finished startup: GMPProvider
+1490874725120	addons.manager	DEBUG	Starting provider: PluginProvider
+1490874725120	addons.manager	DEBUG	Registering shutdown blocker for PluginProvider
+1490874725121	addons.manager	DEBUG	Provider finished startup: PluginProvider
+1490874725122	addons.manager	DEBUG	Completed startup sequence
+1490874725481	Marionette	INFO	Listening on port 50838
+1490874725737	addons.manager	DEBUG	Starting provider: <unnamed-provider>
+1490874725738	addons.manager	DEBUG	Registering shutdown blocker for <unnamed-provider>
+1490874725739	addons.manager	DEBUG	Provider finished startup: <unnamed-provider>
+1490874725786	addons.manager	DEBUG	Starting provider: PreviousExperimentProvider
+1490874725787	addons.manager	DEBUG	Registering shutdown blocker for PreviousExperimentProvider
+1490874725788	addons.manager	DEBUG	Provider finished startup: PreviousExperimentProvider
+1490874725803	DeferredSave.extensions.json	DEBUG	Write succeeded
+1490874725804	DeferredSave.extensions.json	DEBUG	Starting timer
+1490874726194	DeferredSave.extensions.json	DEBUG	Starting write
+1490874726459	DeferredSave.extensions.json	DEBUG	Write succeeded
+1490874726740	Marionette	WARN	TLS certificate errors will be ignored for this session
 console.error: 
   Message: TypeError: can't redefine non-configurable property "width"
   Stack:
@@ -257,16 +257,16 @@ Aa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:24
 za@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1274
 ya@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1136
 init@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:69:5
-vj.prototype.enable@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:758:181
-g.Og@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:392:1
-@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:766:1
-@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:1:17
-
-erty "productSub"
+vj.prototype.enable@httconsole.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> console.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
   Stack:
     fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
 fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:105:1
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
 onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
 observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
 onStateChange@chrome://browser/content/browser.js:4896:9
@@ -289,18 +289,16 @@ Ga/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:477
 q@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:8:247
 Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
 Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
-l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
-
+l/<@https://www.youtube.com/yts/jsbin/spf-vfJavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://jid1-avgcef1zovzmja-at-jetpack/lib/modifiedAPIs/screen.js, line 40: TypeError: screens[utils.getRandomNum(...)] is undefined
 console.error: 
-  Message: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsIHttpChannel.getResponseHeader]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: resource://gre/modules/commonjs/toolkit/loader.js -> resource://no-resource-uri-leak/resource-filter/process/filter.js :: observe :: line 84"  data: no]
+  Message: TypeError: can't redefine non-configurable property "width"
   Stack:
-    observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://no-resource-uri-leak/resource-filter/process/filter.js:84:26
-
-1490874714461	DeferredSave.extensions.json	DEBUG	Save changes
-1490874714463	DeferredSave.extensions.json	DEBUG	Starting timer
-1490874714489	DeferredSave.extensions.json	DEBUG	Starting write
-1490874714496	DeferredSave.extensions.json	DEBUG	Write succeeded
-rowser.xml:1127:13
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+createAboutBlankContentViewer@chrome://global/content/bindings/browser.xml:1127:13
 addTab@chrome://browser/content/tabbrowser.xml:2288:15
 loadOneTab@chrome://browser/content/tabbrowser.xml:1548:23
 openLinkIn@chrome://browser/content/utilityOverlay.js:406:26
@@ -311,12 +309,20 @@ console.error:
   Message: TypeError: can't redefine non-configurable property "width"
   Stack:
     fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
-fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/cconsole.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+
+ty "width"
   Stack:
     fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
 fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modulesconsole.error: 
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+
+console.error: 
   Message: TypeError: can't redefine non-configurable property "width"
   Stack:
     fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
@@ -346,8 +352,24 @@ observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modu
 onStateChange@chrome://browser/content/browser.js:4896:9
 callListeners@chrome://browser/content/tabbrowser.xml:493:24
 _callProgressListeners@chrome://browser/content/tabbrowser.xml:514:13
-_callProgconsole.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
+_callProgressListeners@chrome://browser/content/tabbrowser.xml:564:22
+onStateChange@chrome://browser/content/tabbrowser.xml:747:15
+@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:6273
+l@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:5327
+anonymous/x.prototype.X@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:3868
+B@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1996
+e@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1151
+anonymous/z<@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1674
+V@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:9415
+x@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1375
+anonymous/W.kKv@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11378
+@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11528
+g.zm/<@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/common.js:130:47
+Ga/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:477
+q@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:8:247
+Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
+Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:1JavaScript error: https://www.youtube.com/yts/jsbin/desktop_polymer-vflX-gcpU/desktop_polymer.js, line 22: TypeError: document.registerElement is not a function
+an't redefine non-configurable property "width"
   Stack:
     fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
 fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
@@ -356,59 +378,32 @@ onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://
 observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
 
 JavaScript error: https://www.youtube.com/yts/jsbin/desktop_polymer-vflX-gcpU/desktop_polymer.js, line 22: TypeError: document.registerElement is not a function
-_5y0_126agzRcbU.js line 1 > Function:1:9415
-x@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1375
-anonymous/W.kKv@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11378
-@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11528
-g.zm/<@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/common.js:130:47
+in/www-en_US-vflv0POC-/common.js:130:47
 Ga/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:477
 q@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:8:247
 Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
 Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
 l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
 
-1490874695227	addons.productaddons	INFO	sending request to: https://aus5.mozilla.org/update/3/GMP/53.0/20170323090023/WINNT_x86_64-msvc-x64/en-US/beta/Windows_NT%206.1.1.0%20(x64)/default/default/update.xml
-1490874696076	addons.productaddons	INFO	Completed downloading document
-console.error: 
-  Message: TypeErrconsole.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
-  Stack:
-    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
-fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/mconsole.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
-  Stack:
-    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
-fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
-onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
-observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
-
-console.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
-  Stack:
-    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
-fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
-onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
-observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
-xa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:979
-Ba@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:246
-Aa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:24
-za@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1274
-ya@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1136
-init@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:69:5
-vj.prototype.enable@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:758:181
-g.Og@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:392:1
-@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:766:1
-@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:1:17
-
-console.error: 
+1490874739714	addons.productaddons	INFO	sending request to: https://aus5.mozilla.org/update/3/GMP/53.0/20170323090023/WINNT_x86_64-msvc-x64/en-US/beta/Windows_NT%206.1.1.0%20(x64)/default/default/update.xml
+1490874741668	addons.productaddons	INFO	Completed downloading document
+r: 
   Message: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsIHttpChannel.getResponseHeader]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: resource://gre/modules/commonjs/toolkit/loader.js -> resource://no-resource-uri-leak/resource-filter/process/filter.js :: observe :: line 84"  data: no]
   Stack:
     observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://no-resource-uri-leak/resource-filter/process/filter.js:84:26
 
-bbrowser.xml:564:22
+console.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+onStateChange@chrome://browser/content/browser.js:4896:9
+callListeners@chrome://browser/content/tabbrowser.xml:493:24
+_callProgressListeners@chrome://browser/content/tabbrowser.xml:514:13
+_callProgressListeners@chrome://browser/content/tabbrowser.xml:564:22
 onStateChange@chrome://browser/content/tabbrowser.xml:747:15
 @https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:6273
 l@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:5327
@@ -427,102 +422,40 @@ Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
 Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
 l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
 
-n/spf-vflbAG6Qt/spf.js:7:132
-Ha@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:1008
-H@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:722
-J@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:798
-u/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:28:449
-ub@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:35:149
-u@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:28:433
-U/u<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:29:258
-l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
-Ha/a<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:959
-l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
-Ha@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:1008
-H@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:722
-U@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:30:47
-Dc@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:63:324
-l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
-Vb@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:48:352
-Sb@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:48:31
-l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
-Mb/h.onreadystatechange@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:40:435
-
-tent/tabbrowser.xml:564:22
+console.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+onStateChange@chrome://browser/content/browser.js:4896:9
+callListeners@chrome://browser/content/tabbrowser.xml:493:24
+_callProgressListeners@chrome://browser/content/tabbrowser.xml:514:13
+_callProgressListeners@chrome://browser/content/tabbrowser.xml:564:22
 onStateChange@chrome://browser/content/tabbrowser.xml:747:15
-rq@https://pagead2.googlesyndication.com/pagead/show_companion_ad.js:244:1
-g.h.od@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:5390:24
-kB@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:1896:139
-g.h.AN@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:5403:156
-Df@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:319:196
-g.h.dispatchEvent@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:4221:372
-dB@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:1890:16
-eB@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:1886:98
-g.h.dz@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:5391:78
-Df@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:319:196
-g.h.dispatchEvent@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:4221:372
-g.h.iG@https://www.youtube.com/yts/jsbin/player-en_US-vflgcceTZ/base.js:4234:282
-
-console.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
-  Stack:
-    fakeGettersconsole.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
-  Stack:
-    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
-fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
-onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
-observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
-
-JavaScript error: https://www.youtube.com/yts/jsbin/desktop_polymer-vflX-gcpU/desktop_polymer.js, line 22: TypeError: document.registerElement is not a function
-console.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
-  Stack:
-    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
-fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
-onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
-observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
-
-JavaScript error: https://www.youtube.com/yts/jsbin/desktop_polymer_selective_initialization_watch-vfljjo1LJ/desktop_polymer_selective_initialization_watch.js, line 22: TypeError: document.registerElement is not a function
-re/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
-onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
-observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
-xa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:979
-Ba@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:246
-Aa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:24
-za@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1274
-ya@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1136
-init@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:69:5
-vj.prototype.enable@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:758:181
-g.Og@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:392:1
-@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:766:1
-@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:1:17
-
-1 > Function:1:5327
-anonymous/x.prototype.X@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:3868
-B@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1996
-e@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1151
-anonymous/z<@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1674
-V@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:9415
-x@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1375
-anonymous/W.kKv@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11378
-@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11528
-g.zm/<@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/common.js:130:47
+setup@https://www.youtube.com/yts/jsbin/www-searchbox-legacy-vflkQ-8pH/www-searchbox-legacy.js:492:255
+sc/<@https://www.youtube.com/yts/jsbin/www-searchbox-legacy-vflkQ-8pH/www-searchbox-legacy.js:48:52
+sc@https://www.youtube.com/yts/jsbin/www-searchbox-legacy-vflkQ-8pH/www-searchbox-legacy.js:47:2
+a@https://www.youtube.com/yts/jsbin/www-searchbox-legacy-vflkQ-8pH/www-searchbox-legacy.js:764:237
+Kc@https://www.youtube.com/yts/jsbin/www-searchbox-legacy-vflkQ-8pH/www-searchbox-legacy.js:828:16
+pe@https://www.youtube.com/yts/jsbin/www-searchbox-legacy-vflkQ-8pH/www-searchbox-legacy.js:913:654
+@https://www.youtube.com/yts/jsbin/www-searchbox-legacy-vflkQ-8pH/www-searchbox-legacy.js:919:238
+Wp/<@https://www.youtube.com/yts/jsbin/www-pageframe-vflCELkR2/www-pageframe.js:1165:164
 Ga/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:477
 q@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:8:247
 Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
 Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
 l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
 
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://jid1-avgcef1zovzmja-at-jetpack/lib/modifiedAPIs/screen.js, line 40: TypeError: screens[utils.getRandomNum(...)] is undefined
 console.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
+  Message: TypeError: can't redefine non-configurable property "productSub"
   Stack:
     fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
 fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:105:1
 onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
 observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
 
@@ -543,6 +476,117 @@ init@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:69:5
 vj.prototype.enable@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:758:181
 g.Og@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:392:1
 @https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:766:1
+@https://www.youtube.comconsole.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+createAboutBlankContentViewer@chrome://global/content/bindings/browser.xml:1127:13
+addTab@chrome://browser/content/tabbrowser.xml:2288:15
+loadOneTab@chrome://browser/content/tabbrowser.xml:1548:23
+openLinkIn@chrome://browser/content/utilityOverlay.js:406:26
+handleLinkClick@chrome://browser/content/browser.js:5664:3
+contentAreaClick@chrome://browser/content/browser.js:5587:3
+
+.X@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:3868
+B@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1996
+e@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1151
+anonymous/z<@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1674
+V@https://www.google.com/js/bg/db7KNPtkE4zG9Bconsole.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resouconsole.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+onStateChange@chrome://browser/content/browser.js:4896:9
+callListeners@chrome://browser/content/tabbrowser.xml:493:24
+_callProgressListeners@chrome://browser/content/tabbrowser.xml:514:13
+_callProgressListeners@chrome://browser/content/tabbrowser.xml:564:22
+onStateChange@chrome://browser/content/tabbrowser.xmlconsole.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+
+console.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+xa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:979
+Ba@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:246
+Aa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:24
+za@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1274
+ya@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1136
+init@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:69:5
+vj.prototype.enable@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:758:181
+g.Og@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:392:1
+@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:766:1
+@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:1:17
+
+dth"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+
+console.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+
+ww.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:9415
+x@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1375
+anonymous/W.kKv@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11378
+@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11528
+g.zm/<@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/common.js:130:47
+Ga/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:477
+q@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:8:247
+Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
+Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
+l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
+
+:81:7
+
+console.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+xa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:979
+Ba@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:246
+Aa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:24
+za@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1274
+ya@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1136
+init@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:69:5
+vj.prototype.enable@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:758:181
+g.Og@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:392:1
+@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:766:1
 @https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:1:17
 
 console.error: 
@@ -575,57 +619,7 @@ Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
 Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
 l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
 
-.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
-  Stack:
-    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
-fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
-onGlobalCreatedconsole.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
-  Stack:
-    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
-fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
-onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
-observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
-onStateChange@chrome://browser/content/browser.js:4896:9
-callListeners@chrome://browser/content/tabbrowser.xml:493:24
-_callProgressListeners@chrome://browser/content/tabbrowser.xml:514:13
-_callProgressListeners@chrome://browser/content/tabbrowser.xml:564:22
-onStateChange@chrome://browser/content/tabbrowser.xml:747:15
-@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:6273
-l@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:5327
-anonymous/x.prototype.X@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:3868
-B@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1996
-e@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1151
-anonymous/z<@https://www.google.com/js/bg/db7KNPtkE4zG9BtR41490874680187	addons.productaddons	INFO	sending request to: https://aus5.mozilla.org/update/3/GMP/53.0/20170323090023/WINNT_x86_64-msvc-x64/en-US/beta/Windows_NT%206.1.1.0%20(x64)/default/default/update.xml
-1490874684678	addons.productaddons	INFO	Completed downloading document
-console.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
-  Stack:
-    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
-fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
-onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
-observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
-onStateChange@chrome://browser/content/browser.js:4896:9
-callListeners@chrome://browser/content/tabbrowser.xml:493:24
-_callProgressListeners@chrome://browser/content/tabbrowser.xml:514:13
-_callProgressListeners@chrome://browser/content/tabbrowser.xml:564:22
-onStateChange@chrome://browser/content/tabbrowser.xml:747:15
-@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:6273
-l@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:5327
-anonymous/x.prototype.X@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:3868
-B@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1996
-e@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1151
-anonymous/z<@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1674
-V@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:9415
-x@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1375
-anonymous/W.kKv@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11378
-@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11528
-g.zm/<@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/common.js:130:47
-Ga/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:477
+:13:477
 q@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:8:247
 Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
 Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
@@ -662,52 +656,7 @@ anonymous/W.kKv@console.error:
 fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
 fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
 onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
-observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
-onStateChange@chrome://browser/content/browser.js:4896:9
-callListeners@chrome://browser/content/tabbrowser.xml:493:24
-_callProgressListeners@chrome://browser/content/tabbrowser.xml:514:13
-_callProgressListeners@chrome://browser/content/tabbrowser.xml:564:22
-onStateChange@chrome://browser/content/tabbrowser.xml:747:15
-@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:6273
-l@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:5327
-anonymous/x.prototype.X@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:3868
-B@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1996
-e@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1151
-anonymous/z<@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1674
-V@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:9415
-x@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:1375
-anonymous/W.kKv@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11378
-@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11528
-g.zm/<@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/common.js:130:47
-Ga/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:477
-q@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:8:247
-Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
-Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
-l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
-
-otstrap method shutdown on aushelper@mozilla.org version 2.0
-1490874687823	addons.xpi	DEBUG	Calling bootstrap method shutdown on CanvasBlocker@kkapsner.de version 0.3.7-Release
-1490874687850	addons.xpi	DEBUG	Calling bootstrap method shutdown on @stop-fingerprinting version 0.1.0
-1490874687874	addons.xpi	DEBUG	Calling bootstrap method shutdown on @no-resource-uri-leak version 1.1.0
-ayer-en_US-vflymvbge/base.js:7034:138
-g.h.U@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5546:258
-g.rG.prototype.U@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5611:52
-FU@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:3367:160
-QU@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:3347:173
-TZ@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:4082:37
-g.h.ud@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5921:19
-g.h.pause@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5307:38
-g.h.pause@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5018:53
-g.h.pause@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5201:36
-g.h.pause@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5472:37
-g.h.Gr@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:6477:19
-g.h.U@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5546:258
-g.rG.prototype.U@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5611:52
-g.h.ud@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:5790:61
-g.h.Lx@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:6766:67
-g.h.gw@https://www.youtube.com/yts/jsbin/player-en_US-vflymvbge/base.js:4730:37
-
-console.error: 
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> reconsole.error: 
   Message: TypeError: can't redefine non-configurable property "width"
   Stack:
     fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
@@ -721,6 +670,54 @@ console.error:
   Stack:
     fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
 fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+xa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:979
+Ba@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:246
+Aa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:24
+za@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1274
+ya@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1136
+init@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:69:5
+vj.prototype.enable@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:758:181
+g.Og@https://www.youtube.com/yts/jsbin/console.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+
+console.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
+  Stack:
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+xa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:979
+Ba@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:246
+Aa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:24
+za@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1274
+ya@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1136
+init@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:69:5
+vj.prototype.enable@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:758:181
+g.Og@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:392:1
+@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:766:1
+@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:1:17
+
+https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11378
+@https://www.google.com/js/bg/db7KNPtkE4zG9BtR4cnMZHttZikK_5y0_126agzRcbU.js line 1 > Function:1:11528
+g.zm/<@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/common.js:130:47
+Ga/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:477
+q@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:8:247
+Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
+Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
+l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
+
+les/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
 fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
 onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
 observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
@@ -857,9 +854,14 @@ Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
 Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
 l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
 
-no]
+console.error: 
+  Message: TypeError: can't redefine non-configurable property "width"
   Stack:
-    observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://no-resource-uri-leak/resource-filter/process/filter.js:84:26
+    fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
+fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
+observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
 
 console.error: 
   Message: TypeError: can't redefine non-configurable property "width"
@@ -869,25 +871,26 @@ fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop
 fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
 onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
 observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
-onStateChange@chrome://browser/content/browser.js:4896:9
-callListeners@chrome://browser/content/tabbrowser.xml:493:24
-_callProgressListeners@chrome://browser/content/tabbrowser.xml:514:13
-_callProgressListeners@chrome://browser/content/tabbrowser.xml:564:22
-onStateChange@chrome://browser/content/tabbrowser.xml:747:15
-@https://tpc.googlesyndication.com/sodar/sbhK2lTE.js:7:1136
-V/<@https://tpc.googlesyndication.com/sodar/sbhK2lTE.js:5:839
-@https://tpc.googlesyndication.com/sodar/sbhK2lTE.js:7:709
-@https://tpc.googlesyndication.com/sodar/sbhK2lTE.js:7:693
-@https://tpc.googlesyndication.com/sodar/sbhK2lTE.js:1:2
 
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://jid1-avgcef1zovzmja-at-jetpack/lib/modifiedAPIs/screen.js, line 40: TypeError: screens[utils.getRandomNum(...)] is undefined
 console.error: 
-  Message: TypeError: can't redefine non-configurable property "width"
+  Message: TypeError: can't redefine non-configurable property "productSub"
   Stack:
     fakeGetters/<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:26:3
 fakeGetters@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:24:2
-fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:87:1
+fakeAPIs@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/content.js:105:1
 onGlobalCreated@resource://gre/modules/commonjs/toolkit/loader.js -> resource://stop-fingerprinting/main.js:28:2
 observe@resource://gre/modules/commonjs/toolkit/loader.js -> resource://gre/modules/commonjs/sdk/system/events.js:81:7
+xa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:979
+Ba@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:246
+Aa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:24
+za@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1274
+ya@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:11:1136
+init@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:69:5
+vj.prototype.enable@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:758:181
+g.Og@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:392:1
+@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:766:1
+@https://www.youtube.com/yts/jsbin/www-en_US-vflv0POC-/base.js:1:17
 
 console.error: 
   Message: TypeError: can't redefine non-configurable property "width"
@@ -919,14 +922,7 @@ Ga@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:13:441
 Pa@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:16:335
 l/<@https://www.youtube.com/yts/jsbin/spf-vflbAG6Qt/spf.js:7:132
 
-1490874709928	Marionette	INFO	New connections will no longer be accepted
-1490874709983	addons.xpi	DEBUG	Calling bootstrap method shutdown on webcompat@mozilla.org version 1.0
-1490874709985	addons.xpi	DEBUG	Calling bootstrap method shutdown on jid1-AVgCeF1zoVzMjA@jetpack version 0.9.5.6
-1490874710116	addons.xpi	DEBUG	Calling bootstrap method shutdown on jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack version 0.4.11
-1490874710178	addons.xpi	DEBUG	Calling bootstrap method shutdown on firefox@getpocket.com version 1.0.5
-1490874710181	addons.xpi	DEBUG	Calling bootstrap method shutdown on firebug@software.joehewitt.com version 2.0.19
-1490874710183	addons.xpi	DEBUG	Calling bootstrap method shutdown on e10srollout@mozilla.org version 1.11
-1490874710185	addons.xpi	DEBUG	Calling bootstrap method shutdown on deployment-checker@mozilla.org version 1.0
+ployment-checker@mozilla.org version 1.0
 1490874710187	addons.xpi	DEBUG	Calling bootstrap method shutdown on aushelper@mozilla.org version 2.0
 1490874710189	addons.xpi	DEBUG	Calling bootstrap method shutdown on CanvasBlocker@kkapsner.de version 0.3.7-Release
 1490874710207	addons.xpi	DEBUG	Calling bootstrap method shutdown on @stop-fingerprinting version 0.1.0
