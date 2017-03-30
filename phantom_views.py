@@ -96,24 +96,10 @@ def restore_profile():
         copyanything('ressources\Profiles\\' + profile_number, folder)
 
 
-def get_tinyurl_clip(channel):
-    load_result = False
-    while load_result is False:
-        try:
-            links_tinyurl = tuple(open('ressources/LinksTinyURL/' + str(channel) + '.txt', 'r'))
-            random_int = random.randint(0, len(links_tinyurl) - 1)
-            if 'http' in links_tinyurl[random_int].strip() and 'undefined' not in links_tinyurl[random_int].strip():
-                yt_tinyurl = links_tinyurl[random_int].strip()
-                load_result = True
-        except:
-            pass
-    return yt_tinyurl
-
-
 def get_title_clip(channel):
     global TITLE_YOUTUBE
     load_result = False
-    search_youtube = 'https://www.youtube.com/results?search_query='
+    search_link = 'https://www.youtube.com/results?search_query='
     while load_result is False:
         try:
             links_tinyurl = tuple(open('ressources/TitlesYoutube/' + str(channel) + '.txt', 'r'))
@@ -124,7 +110,7 @@ def get_title_clip(channel):
                 load_result = True
         except:
             pass
-    return search_youtube + TITLE_YOUTUBE
+    return search_link + TITLE_YOUTUBE
 
 
 def get_random_vpn(name):
@@ -337,14 +323,6 @@ def set_screen_resolution():
     width, height = get_random_resolution()
 
     ScreenRes.set(width, height)
-    # try:
-    #     windowList = []
-    #     win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
-    #                          windowList)
-    #     cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower()]
-    #     win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
-    # except:
-    #     pass
 
 
 def search_youtube(url):
@@ -357,7 +335,13 @@ def search_youtube(url):
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + TITLE_YOUTUBE + Style.RESET_ALL)
             xpath_search = "//a[@title=" + "'" + TITLE_YOUTUBE + "']"
             first_link = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER: BROWSER.find_element_by_xpath(xpath_search))
-            first_link.send_keys(Keys.RETURN)
+            try:
+                first_link.click()
+                print('**** Click is done! ***')
+            except:
+                pass
+            # first_link.send_keys(Keys.RETURN)
+            # print('**** Click is done! ***')
             load_result = True
         except:
             pass
@@ -496,7 +480,6 @@ def main(optional):
             connect_purevpn()  # params_PureVPN
 
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
-            start_time = time.time()
 
             file_channel = i
 
@@ -510,10 +493,6 @@ def main(optional):
 
             # Open Firefox with default profile
             if sys.platform == 'win32':
-                # fp = webdriver.FirefoxProfile(path_profil)
-                # BROWSER = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
-
-                ########################## TEST PHANTOM JS #############################################
                 headers = { 'Accept':'*/*',
                             'Accept-Encoding':'gzip, deflate, sdch',
                             'Accept-Language':'en-US,en;q=0.8',
@@ -523,35 +502,41 @@ def main(optional):
                 for key, value in enumerate(headers):
                     webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.{}'.format(key)] = value                                
                     BROWSER = webdriver.PhantomJS()
-                    BROWSER.set_window_size(1120, 550)
+                    BROWSER.set_window_size(1920, 1080)
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 9 + 'FINISH -> Tours -> ' +
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 9 + '   Tours -> ' +
                   Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(COUNTER_TOURS) + '' + Style.RESET_ALL)
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
                             
-            total_key = random.randint(5, 7)
-            COUNTER_TOURS += 1
+            total_key = random.randint(5, 7)            
             for j in range(total_key):
+                COUNTER_TOURS += 1
                 try:
                     url = get_title_clip(str(file_channel))
                     result_search_youtube = search_youtube(url)
-                    if result_search_youtube is False:
-                        url = get_tinyurl_clip(str(file_channel))
-                        BROWSER.get(url)
-
-                    countdown(15)
+                    countdown(10)
+                    try:
+                        BROWSER.get_screenshot_as_file("1-screen.png")
+                    except:
+                        print('Error Screenshot')
+                        pass                    
+                    
                     print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                             Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
                     click_button_skipads()
-                    countdown(random.randint(30, 90))
+                    countdown(random.randint(20, 45))
+                    try:
+                        BROWSER.get_screenshot_as_file("2-screen.png")
+                    except:
+                        print('Error Screenshot')
+                        pass                    
+                    
                 except:
                     pass
-
-            print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
-            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + ' ' * 9 + 'FINISH -> Tours -> ' +
-                  Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(COUNTER_TOURS) + '' + Style.RESET_ALL)
-            print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
-
+            try:
+                BROWSER.quit()
+            except:
+                pass
 
 
 ########################################################################################################################
@@ -571,7 +556,7 @@ if __name__ == "__main__":
         print(Back.BLACK + Fore.LIGHTWHITE_EX + ' ' * 3 + '[ Please enter the Machine Number: ]' +
               Back.LIGHTRED_EX + Fore.LIGHTWHITE_EX)
         print(Style.RESET_ALL)
-        NUMBER_MACHINE = str(raw_input())
+        NUMBER_MACHINE = int(raw_input())
 
     for i in range(0, 10000):
         main(0)

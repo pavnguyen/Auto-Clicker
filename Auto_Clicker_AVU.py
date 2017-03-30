@@ -113,7 +113,7 @@ def get_tinyurl_clip(channel):
 def get_title_clip(channel):
     global TITLE_YOUTUBE
     load_result = False
-    search_youtube = 'https://www.youtube.com/results?search_query='
+    search_link = 'https://www.youtube.com/results?search_query='
     while load_result is False:
         try:
             links_tinyurl = tuple(open('ressources/TitlesYoutube/' + str(channel) + '.txt', 'r'))
@@ -124,7 +124,7 @@ def get_title_clip(channel):
                 load_result = True
         except:
             pass
-    return search_youtube + TITLE_YOUTUBE
+    return search_link + TITLE_YOUTUBE
 
 
 def get_random_vpn(name):
@@ -1130,7 +1130,7 @@ if __name__ == "__main__":
         NUMBER_MACHINE = str(raw_input())
 
     for i in range(0, 100):
-        if NUMBER_MACHINE <= 19:
+        if NUMBER_MACHINE <= 20:
             main(0)
         else:
             main(1)
