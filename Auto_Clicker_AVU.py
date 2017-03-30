@@ -277,7 +277,10 @@ def connect_openvpn():
                 cmd = '"C:/Program Files/OpenVPN/bin/openvpn.exe"'
             else:
                 cmd = '/etc/openvpn/openvpn'
-            value = random.randint(0, len(CONFIG_IP) - 1)
+            if ADS_BOTTOM == 0:
+                value = random.randint(0, len(CONFIG_IP_VIEW) - 1)
+            else:
+                value = random.randint(0, len(CONFIG_IP) - 1)
             print('Random Server: ' + CONFIG_IP[value].strip())
             if 'privateinternetaccess' in CONFIG_IP[value].strip():
                 parameters = ' --client --dev tun --proto udp --remote ' \
@@ -803,6 +806,7 @@ def main(optional):
     global Y_SCREEN
     global KEYWORDS
     global CONFIG_IP
+    global CONFIG_IP_VIEW
     global CONFIG_IP_PURE
     global CONFIG_JSON
     global USER_CONFIG
@@ -837,6 +841,7 @@ def main(optional):
     Y_SCREEN = int(get_params('HEIGHT'))
     X_SCREEN_SET, Y_SCREEN_SET = pyautogui.size()
     CONFIG_IP = tuple(open('ressources/params_PIA/list_PIA.txt', 'r'))
+    CONFIG_IP_VIEW = tuple(open('ressources/params_PIA/list_PIA_VIEW.txt', 'r'))
     KEYWORDS = tuple(open('ressources/keyword.txt', 'r'))
 
     # Resize Screen and set Always on TOP
