@@ -1,27 +1,31 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){if (parseInt($$(".video-time")[i].innerHTML) > 0 && parseInt($$(".video-time")[i].innerHTML) < 20){console.log ($$(".vm-video-title-content")[i].innerHTML)}}
-Alan Watts: How To End Suffering?
-Jim Rohn: You Can Have More in Life
-Jim Rohn: See Things That Don't Exist
-Jim Rohn: See Things That Don't Exist
-Jim Rohn: Let the Success find you
-Jim Rohn: How can Ambition lead to Success?
-Jim Rohn: What To Do With Your First Dollar?
-Jim Rohn: Number One Thing
-Jim Rohn: Laws of Success and Failure
-Jim Rohn: You Can Have More in Life
-Jim Rohn: Financial Independence
-Jim Rohn: If I Can Do It You Can Do It
-Jim Rohn: Coming Back From Failure
-Jim Rohn: What Are You Becoming? ~ Motivation
-Jim Rohn: Amazing Success Lessons
-Jim Rohn: How to Set Smart Goals ~ Motivation
-Transform Fear In to Action ~ Jim Rohn &amp; Tony Robbins
-Alan watts: Thought Patterns
-Jim Rohn: Successful People are Self Disciplined ~ Personal Development
-Jim Rohn: Without Dream ~ Motivation
-Jim Rohn: Train Yourself for Success ~  Motivation
-Jim Rohn: The Value of Personal Development
-Jim Rohn: Why Do People Take Risks Jim Rohn Motivation
-Jim Rohn: How to Use Money Wisely
-Jim Rohn: Do Something Different ~ Motivational Video
-Jim Rohn: Any body Can Do it ~ Personal Development
+for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML.trim())}
+[MCC] Bitcoin Unlimited Presentations and Discussions
+[MCC] Introducing NEM
+[MCC] The real value of blockchains
+[MCC] Introduction to Bitcoin
+[MCC] The Golem Project   Ethereum
+[MCC] Ethereum Consensus vs Immutability
+[MCC] Ethereum, Monero and Dash
+[MCC] Bitcoin or Blockchain - The differences
+[MCC] Bitcoin is the Real Electronic Cash
+[MCC] Bitcoin and the Banks   Five Stages of Grief
+[MCC] A Cryptocurrency Arbitrage Robot review 2049MC
+[MCC] What is Mining digital Crypto Currencies? 2049MC
+[MCC] What is blockchain 2049MC
+[MCC] Steemit 2049MC
+[MCC] Blockchain Health Teaser 2049MC
+[MCC] Evolving layered technologies 2049MC
+[MCC] Does Ethereum compete against Bitcoin 2049MC
+[MCC] Bitcoin mining operation 2049MC
+[MCC] Cost control for mining hardware 2049MC
+[MCC] Mining pc at full load 2049MC
+[MCC] Blockchain Wallet 2049MC
+[MCC] Zcash vs Dash
+[MCC] What is Ethereum
+[MCC] Mining Litecoin
+[MCC] How to mine Zcash
+[MCC] How to Explain Mining
+[MCC] Farm Simulator Dota 2
+[MCC] Ethereum Tuto Mining Ether
+[MCC] Dota 2 FY Moment 101 fast
+undefined
