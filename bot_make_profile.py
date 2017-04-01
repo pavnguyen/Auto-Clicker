@@ -75,53 +75,52 @@ def check_ping_is_ok():
 
 
 def connect_openvpn():
-    if OPENVPN == 1 or ADS_BOTTOM == 0:
-        load_result = False
-        counter_connect = 0
-        while load_result is False and counter_connect < 4:
-            if counter_connect >= 2:
-                send_email_alert()
-            counter_connect += 1
-            if sys.platform == 'win32':
-                try:
-                    print('Try to Disconnect OpenVPN')
-                    rasdial.disconnect()  # Disconnect params_PureVPN first
-                    check_output("taskkill /im openvpn.exe /F", shell=True)
-                except:
-                    pass
-
-                check_output('ipconfig /release', shell=True)
-                check_output('ipconfig /renew', shell=True)
-
-            print('Connect OpenVPN')
-            if sys.platform == 'win32':
-                cmd = '"C:/Program Files/OpenVPN/bin/openvpn.exe"'
-            else:
-                cmd = '/etc/openvpn/openvpn'
-            value = random.randint(0, len(CONFIG_IP) - 1)
-            print('Random Server: ' + CONFIG_IP[value].strip())
-            if 'privateinternetaccess' in CONFIG_IP[value].strip():
-                parameters = ' --client --dev tun --proto udp --remote ' \
-                             + CONFIG_IP[value].strip() + \
-                             ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
-                             ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
-                             ' --auth-user-pass ressources/params_PIA/data/auth.txt ' \
-                             '--comp-lzo --verb 1 --reneg-sec 0' \
-                             ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
-                             ' --auth-nocache' \
-                             ' --ca ressources/params_PIA/data/ca.rsa.2048.crt' \
-                    # ' --block-outside-dns'
-            cmd += parameters
+    load_result = False
+    counter_connect = 0
+    while load_result is False and counter_connect < 4:
+        if counter_connect >= 2:
+            send_email_alert()
+        counter_connect += 1
+        if sys.platform == 'win32':
             try:
-                subprocess.Popen(cmd)
-                print('Please wait to connect to OpenVPN...')
-                countdown(8)
+                print('Try to Disconnect OpenVPN')
+                rasdial.disconnect()  # Disconnect params_PureVPN first
+                check_output("taskkill /im openvpn.exe /F", shell=True)
             except:
                 pass
 
-            if check_ping_is_ok() is True:
-                if set_zone() is True:
-                    load_result = True
+            check_output('ipconfig /release', shell=True)
+            check_output('ipconfig /renew', shell=True)
+
+        print('Connect OpenVPN')
+        if sys.platform == 'win32':
+            cmd = '"C:/Program Files/OpenVPN/bin/openvpn.exe"'
+        else:
+            cmd = '/etc/openvpn/openvpn'
+        value = random.randint(0, len(CONFIG_IP) - 1)
+        print('Random Server: ' + CONFIG_IP[value].strip())
+        if 'privateinternetaccess' in CONFIG_IP[value].strip():
+            parameters = ' --client --dev tun --proto udp --remote ' \
+                            + CONFIG_IP[value].strip() + \
+                            ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
+                            ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
+                            ' --auth-user-pass ressources/params_PIA/data/auth.txt ' \
+                            '--comp-lzo --verb 1 --reneg-sec 0' \
+                            ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
+                            ' --auth-nocache' \
+                            ' --ca ressources/params_PIA/data/ca.rsa.2048.crt' \
+                # ' --block-outside-dns'
+        cmd += parameters
+        try:
+            subprocess.Popen(cmd)
+            print('Please wait to connect to OpenVPN...')
+            countdown(8)
+        except:
+            pass
+
+        if check_ping_is_ok() is True:
+            if set_zone() is True:
+                load_result = True
 
 
 def get_random_resolution():
@@ -144,7 +143,7 @@ def set_screen_resolution():
         windowList = []
         win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
                              windowList)
-        cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower()]
+        cmdWindow = [i for i in windowList if 'auto bot' in i[0].lower() or 'openvpn' in i[0].lower()]
         win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
     except:
         pass
@@ -326,7 +325,7 @@ def get_params(param):
 
 def copyanything(src, dst):
     try:
-        shutil.copytree(src, dst, ignore=shutil.ignore_patterns("parent.lock", "lock", ".parentlock"))
+        shutil.copytree(src, dst, ignore=shutil.ignore_patterns("parent.lock", "lock", ".parentlock", "cache2"))
     except OSError as exc:
         if exc.errno == errno.ENOTDIR:
             shutil.copy(src, dst)
@@ -334,8 +333,9 @@ def copyanything(src, dst):
             pass
 
 
-def backup_profile(numberMachine):
-    numberMachine = str(numberMachine)
+def backup_profile():
+    numberMachine = str(random.random())
+    print(numberMachine)
     userName = getpass.getuser()
     path = 'C:/Users/' + userName + '/AppData/Local/Temp/'
     for tmp in os.listdir(path):
@@ -351,6 +351,7 @@ def backup_profile(numberMachine):
             shutil.rmtree('ressources/Profiles/' + numberMachine)
             copyanything(path, 'ressources/Profiles/' + numberMachine)
         except:
+            print('Error Copy')
             pass
     try:
         BROWSER.quit()
@@ -400,7 +401,7 @@ def main(optional):
         path_profil = get_path_profile_firefox()
         binary_ff = FirefoxBinary(r'C:/Program Files (x86)/Mozilla Firefox/firefox.exe')
 
-    for z in range(int(optional)):
+    for z in range(optional):
         connect_openvpn()  # OpenVPN
 
         # Open Firefox with default profile
@@ -431,8 +432,8 @@ def main(optional):
                   Back.LIGHTRED_EX + Fore.BLACK + Style.BRIGHT + 'FAILED!!!' + Style.RESET_ALL)
             pass
 
-        countdown(200)
-        backup_profile(z)
+        countdown(60)
+        backup_profile()
 
 ########################################################################################################################
 #                                                Main Program                                                          #
@@ -443,4 +444,14 @@ def main(optional):
 
 
 if __name__ == "__main__":
-    main(500)
+    
+    # if len(sys.argv) > 2:
+    #     debut = int(sys.argv[1])
+    #     fin = int(sys.argv[2])
+    # else:
+    #     print('Please put the First Machine: ')
+    #     debut = int(raw_input())
+    #     print('Please put the Last Machine: ')
+    #     fin = int(raw_input())
+
+    main(100)

@@ -71,9 +71,9 @@ def copyanything(src, dst):
 
 
 def restore_profile():
-    profile_number = str(random.randint(0, len(os.listdir('ressources\Profiles\\')) - 1))
+    profile_number = str(random.randint(0, len(os.listdir('ressources/Profiles/')) - 1))
     user_name = getpass.getuser()
-    path_profil = 'C:\Users\\' + user_name + '\AppData\Roaming\Mozilla\Firefox\Profiles\\'
+    path_profil = 'C:/Users/' + user_name + '/AppData/Roaming/Mozilla/Firefox/Profiles/'
     profil_name = os.listdir(path_profil)[0]
     folder = path_profil + profil_name
 
@@ -93,7 +93,7 @@ def restore_profile():
         pass
     print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Profile: ' + profile_number + Style.RESET_ALL)
     if not os.path.exists(folder):
-        copyanything('ressources\Profiles\\' + profile_number, folder)
+        copyanything('ressources/Profiles/' + os.listdir('ressources/Profiles/')[int(profile_number)], folder)
 
 
 def get_tinyurl_clip(channel):
@@ -530,7 +530,7 @@ def detect_and_click_ads_bottom(timing_ads):
             try:
                 x, y = get_recalcul_xy(330, 600)
                 pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                first_result = ui.WebDriverWait(BROWSER, 5).until(
+                first_result = ui.WebDriverWait(BROWSER, 3).until(
                     lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
                 print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
                       'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
@@ -569,12 +569,12 @@ def detect_and_click_ads_bottom(timing_ads):
             if get_info_length_youtube(BROWSER.current_url) / 60 > 10:
                 print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Wait n times to click SECOND ads' +
                       Style.RESET_ALL)
-                countdown(45)
+                countdown(random.randint(30, 45))
         except:
             pass
         if load_result is False:
             try:
-                first_result = ui.WebDriverWait(BROWSER, 35).until(lambda BROWSER:
+                first_result = ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER:
                                                                    BROWSER.find_element_by_class_name(
                                                                        'adDisplay'))
                 first_link = first_result.find_element_by_tag_name('a')
@@ -585,7 +585,7 @@ def detect_and_click_ads_bottom(timing_ads):
                 load_result = True
             except:
                 try:
-                    first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                    first_result = ui.WebDriverWait(BROWSER, 3).until(lambda BROWSER:
                                                                       BROWSER.find_element_by_id('AdSense'))
                     first_link = first_result.find_element_by_tag_name('a')
                     first_link.send_keys(Keys.CONTROL + Keys.RETURN)
@@ -597,7 +597,7 @@ def detect_and_click_ads_bottom(timing_ads):
                     print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
                 except:
                     try:
-                        first_result = ui.WebDriverWait(BROWSER, 5).until(
+                        first_result = ui.WebDriverWait(BROWSER, 3).until(
                             lambda BROWSER: BROWSER.find_element_by_class_name('adDisplay'))
                         first_link = first_result.find_element_by_tag_name('a')
                         first_link.send_keys(Keys.CONTROL + Keys.RETURN)
@@ -690,7 +690,7 @@ def random_small_sleep():
 
 def random_mouse_move():
     print('Mouse Move')
-    for i in range(random.randrange(2, 4)):
+    for i in range(random.randrange(1, 3)):
         try:
             x = random.randint(5, 1380)
             y = random.randint(110, 890)
@@ -994,13 +994,15 @@ def main(optional):
                         switch_main_window()
                         url = get_title_clip(str(file_channel))
                         result_search_youtube = search_youtube(url)
+
                         if result_search_youtube is False:
                             url = get_tinyurl_clip(str(file_channel))
                             BROWSER.get(url)
 
-                        countdown(15)
                         print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                               Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
+                              
+                        countdown(random.randint(15, 18))
                         click_button_skipads()
                         random_mouse_move()
                         if j % total_key == 0:
@@ -1127,7 +1129,7 @@ if __name__ == "__main__":
         print(Back.BLACK + Fore.LIGHTWHITE_EX + ' ' * 3 + '[ Please enter the Machine Number: ]' +
               Back.LIGHTRED_EX + Fore.LIGHTWHITE_EX)
         print(Style.RESET_ALL)
-        NUMBER_MACHINE = str(raw_input())
+        NUMBER_MACHINE = int(raw_input())
 
     for i in range(0, 100):
         if NUMBER_MACHINE <= 20:
