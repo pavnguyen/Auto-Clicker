@@ -21,7 +21,6 @@ for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-v
 [JOP] Bitcoin mining operation 2099JP
 [JOP] Zcash vs Dash
 [JOP] What is Ethereum
-[JOP] Mining Litecoin
 [JOP] How to mine Zcash
 [JOP] How to Explain Mining
 [JOP] Farm Simulator Dota 2

@@ -1132,7 +1132,7 @@ if __name__ == "__main__":
         NUMBER_MACHINE = int(raw_input())
 
     for i in range(0, 100):
-        if NUMBER_MACHINE <= 20:
+        if NUMBER_MACHINE <= 25:
             main(0)
         else:
             main(1)
