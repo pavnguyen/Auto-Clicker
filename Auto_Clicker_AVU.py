@@ -788,7 +788,10 @@ def set_zone():
             if sys.platform == 'win32':
                 subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             else:
-                subprocess.check_output("echo linux | sudo -S cp /usr/share/zoneinfo/ " + timeZoneId. + ' /etc/localtime', shell=True)
+                try:
+                    subprocess.check_output("echo linux | sudo -S cp /usr/share/zoneinfo/ " + timeZoneId. + ' /etc/localtime', shell=True)
+                except:
+                    print('Error to change TimeZone for Linux')
             return True
     except:
         return False
