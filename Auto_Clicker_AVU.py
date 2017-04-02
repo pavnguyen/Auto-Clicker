@@ -7,7 +7,11 @@ import os
 import random
 import sys
 import time
-import win32gui
+try:
+    import win32gui
+    import win32con
+except:
+    pass
 from json import load
 from platform import uname
 from time import sleep
@@ -22,7 +26,6 @@ except ImportError:
 import pafy
 import pyautogui
 import selenium.webdriver.support.ui as ui
-import win32con
 from colorama import init, Fore, Back, Style
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -137,7 +140,10 @@ def check_ping_is_ok():
     print('Check PING...')
     hostname = 'bing.com'
     try:
-        response = os.system("ping -n 1 " + hostname)
+        if sys.platform == 'win32':
+            response = os.system("ping -n 1 " + hostname)
+        else:
+            response = os.system("ping -c 1 " + hostname)
         if response == 0:
             return True
     except:
@@ -276,7 +282,7 @@ def connect_openvpn():
             if sys.platform == 'win32':
                 cmd = '"C:/Program Files/OpenVPN/bin/openvpn.exe"'
             else:
-                cmd = '/etc/openvpn/openvpn'
+                cmd = 'openvpn'
             if ADS_BOTTOM == 0:
                 USE_IP = CONFIG_IP_VIEW   
             else:
@@ -342,20 +348,21 @@ def get_info_length_youtube(url_real_youtube):
 
 
 def set_screen_resolution():
-    print('Primary screen resolution: {}x{}'.format(
-        *ScreenRes.get()
-    ))
-
-    width, height = get_random_resolution()
-
-    ScreenRes.set(width, height)
-    # ScreenRes.set() # Set defaults
     try:
-        windowList = []
-        win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
-                             windowList)
-        cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower()]
-        win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
+        if sys.platform == 'win32':
+            print('Primary screen resolution: {}x{}'.format(
+                *ScreenRes.get()
+            ))
+
+            width, height = get_random_resolution()
+
+            ScreenRes.set(width, height)
+            # ScreenRes.set() # Set defaults
+            windowList = []
+            win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
+                                windowList)
+            cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower()]
+            win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
     except:
         pass
 
@@ -778,7 +785,10 @@ def set_zone():
         zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
         print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
         if zone_to_set.strip() != '':
-            subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+            if sys.platform == 'win32':
+                subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+            else:
+                subprocess.check_output("echo linux | sudo -S cp /usr/share/zoneinfo/ " + timeZoneId. + ' /etc/localtime', shell=True)
             return True
     except:
         return False
