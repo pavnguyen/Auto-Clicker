@@ -328,7 +328,11 @@ def connect_openvpn():
             if sys.platform == 'win32':
                 subprocess.Popen(cmd)
             else:
+<<<<<<< HEAD
                 subprocess.Popen(cmd, stderr=subprocess.STDOUT, shell = True)
+=======
+                subprocess.call(cmd, stderr=subprocess.STDOUT, shell = True)
+>>>>>>> fbf66b0439659f0e6879906d228373e404d907fc
             print('Please wait to connect to OpenVPN...')
             countdown(8)
             # except:
@@ -783,6 +787,41 @@ def set_zone():
     print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Latitude] => ' + str(latitude) + Style.RESET_ALL)
     try:
         longitude = load(urlopen(link))['longitude']
+<<<<<<< HEAD
+=======
+        print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Longitude] => ' + str(longitude) + Style.RESET_ALL)
+        timestamp = str(time.time())
+
+        # Public IP & DateTime
+        ip = urlopen('http://ip.42.pl/raw').read()
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[IP] => ' + ip + Style.RESET_ALL)
+
+        # region_name = load(urlopen(link))['region_name']
+        # print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Region] => ' + region_name + Style.RESET_ALL)
+        #
+        # city = load(urlopen(link))['city']
+        # print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[City] => ' + city + Style.RESET_ALL)
+        #
+        # time_zone = load(urlopen(link))['time_zone']
+        # print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Time Zone] => ' + time_zone + Style.RESET_ALL)
+
+        # Google API service form Vu.nomos
+        link = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + str(latitude) + ',' + \
+               str(longitude) + '&timestamp=' + timestamp + '&key=AIzaSyAC2ESW2jOFDdABT6hZ4AKfL7U8jQRSOKA'
+        timeZoneId = load(urlopen(link))['timeZoneId']
+
+        zone_to_set = LIST_TIME_ZONE.get(timeZoneId)
+        print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Synchronize ' + zone_to_set + Style.RESET_ALL)
+        if zone_to_set.strip() != '':
+            if sys.platform == 'win32':
+                subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
+            else:
+                try:
+                    subprocess.check_output("echo linux | sudo -S cp /usr/share/zoneinfo/ " + timeZoneId + ' /etc/localtime', shell=True)
+                except:
+                    print('Error to change TimeZone for Linux')
+            return True
+>>>>>>> fbf66b0439659f0e6879906d228373e404d907fc
     except:
         longitude = load(urlopen(link))['location']['longitude']
     print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Longitude] => ' + str(longitude) + Style.RESET_ALL)
