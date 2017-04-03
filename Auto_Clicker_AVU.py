@@ -76,7 +76,10 @@ def copyanything(src, dst):
 def restore_profile():
     profile_number = str(random.randint(0, len(os.listdir('ressources/Profiles/')) - 1))
     user_name = getpass.getuser()
-    path_profil = 'C:/Users/' + user_name + '/AppData/Roaming/Mozilla/Firefox/Profiles/'
+    if sys.platform == 'win32':
+        path_profil = 'C:/Users/' + user_name + '/AppData/Roaming/Mozilla/Firefox/Profiles/'
+    else:
+        path_profil = '~/.mozilla/firefox/'
     profil_name = os.listdir(path_profil)[0]
     folder = path_profil + profil_name
 
@@ -277,12 +280,17 @@ def connect_openvpn():
 
                 subprocess.check_output('ipconfig /release', shell=True)
                 subprocess.check_output('ipconfig /renew', shell=True)
+            else:
+                try:
+                    subprocess.check_output('echo linux | sudo -S pkill -SIGTERM -f openvpn')
+                except:
+                    pass
 
             print('Connect OpenVPN')
             if sys.platform == 'win32':
                 cmd = '"C:/Program Files/OpenVPN/bin/openvpn.exe"'
             else:
-                cmd = 'openvpn'
+                cmd = 'echo linux | sudo -S -b openvpn'
             if ADS_BOTTOM == 0:
                 USE_IP = CONFIG_IP_VIEW   
             else:
@@ -315,12 +323,16 @@ def connect_openvpn():
                              ' --cipher aes-256-cbc --auth sha256'
 
             cmd += parameters
-            try:
+            # try:
+            print(cmd)
+            if sys.platform == 'win32':
                 subprocess.Popen(cmd)
-                print('Please wait to connect to OpenVPN...')
-                countdown(8)
-            except:
-                pass
+            else:
+                subprocess.call(cmd, stderr=subprocess.STDOUT, shell = True)
+            print('Please wait to connect to OpenVPN...')
+            countdown(8)
+            # except:
+                # pass
 
             if check_ping_is_ok() is True:
                 # if check_country_is_ok() is True:
@@ -733,7 +745,10 @@ def random_mouse_scroll():
 def get_path_profile_firefox():
     # Firefox Parameters
     user_name = getpass.getuser()
-    path_profil = 'C:/Users/' + user_name + '/AppData/Roaming/Mozilla/Firefox/Profiles/'
+    if sys.platform == 'win32':
+        path_profil = 'C:/Users/' + user_name + '/AppData/Roaming/Mozilla/Firefox/Profiles/'
+    else:
+        path_profil = '~/.mozilla/firefox/'
     profil_name = os.listdir(path_profil)[0]
     path_profil += profil_name
     return path_profil
@@ -789,7 +804,7 @@ def set_zone():
                 subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             else:
                 try:
-                    subprocess.check_output("echo linux | sudo -S cp /usr/share/zoneinfo/ " + timeZoneId. + ' /etc/localtime', shell=True)
+                    subprocess.check_output("echo linux | sudo -S cp /usr/share/zoneinfo/ " + timeZoneId + ' /etc/localtime', shell=True)
                 except:
                     print('Error to change TimeZone for Linux')
             return True
@@ -880,9 +895,12 @@ def main(optional):
               Style.RESET_ALL)
 
     # Firefox Parameters
-    if sys.platform == 'win32':
+    try:
         restore_profile()
         path_profil = get_path_profile_firefox()
+    except:
+        pass
+    if sys.platform == 'win32':
         binary_ff = FirefoxBinary(r'C:/Program Files (x86)/Mozilla Firefox/firefox.exe')
 
     if TYPE_CLICKER == 'DAILY' and ADS_BOTTOM == 1:
