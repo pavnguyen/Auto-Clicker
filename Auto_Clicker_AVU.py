@@ -328,11 +328,8 @@ def connect_openvpn():
             if sys.platform == 'win32':
                 subprocess.Popen(cmd)
             else:
-<<<<<<< HEAD
                 subprocess.Popen(cmd, stderr=subprocess.STDOUT, shell = True)
-=======
-                subprocess.call(cmd, stderr=subprocess.STDOUT, shell = True)
->>>>>>> fbf66b0439659f0e6879906d228373e404d907fc
+
             print('Please wait to connect to OpenVPN...')
             countdown(8)
             # except:
@@ -787,8 +784,7 @@ def set_zone():
     print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + '[Latitude] => ' + str(latitude) + Style.RESET_ALL)
     try:
         longitude = load(urlopen(link))['longitude']
-<<<<<<< HEAD
-=======
+
         print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Longitude] => ' + str(longitude) + Style.RESET_ALL)
         timestamp = str(time.time())
 
