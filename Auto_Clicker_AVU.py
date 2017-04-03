@@ -817,7 +817,7 @@ def set_zone():
                 except:
                     print('Error to change TimeZone for Linux')
             return True
->>>>>>> fbf66b0439659f0e6879906d228373e404d907fc
+
     except:
         longitude = load(urlopen(link))['location']['longitude']
     print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + '[Longitude] => ' + str(longitude) + Style.RESET_ALL)
