@@ -749,8 +749,11 @@ def get_path_profile_firefox():
     if sys.platform == 'win32':
         path_profil = 'C:/Users/' + user_name + '/AppData/Roaming/Mozilla/Firefox/Profiles/'
     else:
-        path_profil = '~/.mozilla/firefox/'
-    profil_name = os.listdir(path_profil)[0]
+        path_profil = '/home/linux/.mozilla/firefox/'
+
+    for elem in os.listdir(path_profil):
+        if 'default' in elem:
+            profil_name = elem
     path_profil += profil_name
     return path_profil
 
@@ -959,11 +962,12 @@ def main(optional):
 
             # Open Firefox with default profile
             if i == NUMBER_MACHINE or ADS_BOTTOM == 1 or ADS_BOTTOM == 0:
+                path_profil = get_path_profile_firefox()
+                fp = webdriver.FirefoxProfile(path_profil)
                 if sys.platform == 'win32':
-                    fp = webdriver.FirefoxProfile(path_profil)
                     BROWSER = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
                 else:
-                    BROWSER = webdriver.Firefox()
+                    BROWSER = webdriver.Firefox(firefox_profile=fp)
                 BROWSER.maximize_window()
 
             # Save the window opener
