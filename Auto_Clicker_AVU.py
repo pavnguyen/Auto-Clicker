@@ -498,6 +498,7 @@ def try_detect_aduivisit():
         try:
             x, y = get_recalcul_xy(330, 576)
             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+            sleep(1)
             pyautogui.click(x, y)
             get_position_mouse()
             print('click 4')
@@ -1204,7 +1205,7 @@ if __name__ == "__main__":
         NUMBER_MACHINE = int(raw_input())
 
     for i in range(0, 100):
-        if NUMBER_MACHINE <= 14:
+        if NUMBER_MACHINE <= 19:
             main(0)
         else:
             main(1)

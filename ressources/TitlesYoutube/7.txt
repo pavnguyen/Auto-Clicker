@@ -1,30 +1,8 @@
-for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML)}
-[JOP] Bitcoin Unlimited Presentations and Discussions
-[JOP] Introducing NEM
-[JOP] The real value of blockchains
-[JOP] Introduction to Bitcoin
-[JOP] Ethereum Consensus vs Immutability
-[JOP] Ethereum, Monero and Dash
-[JOP] Bitcoin or Blockchain - The differences
-[JOP] Bitcoin is the Real Electronic Cash
-[JOP] Bitcoin and the Banks   Five Stages of Grief
-[JOP] A Cryptocurrency Arbitrage Robot review 2099JP
-[JOP] What is Mining 2099JP
-[JOP] What is blockchain 2099JP
-[JOP] Steemit 209JP
-[JOP] How the Stolen Credit Card Market Works 2099JP
-[JOP] How Does a Bank Work 2099JP
-[JOP] Evolving layered technologies in cryptocurrency 2099JP
-[JOP] Does Ethereum compete against Bitcoin 2099JP
-[JOP] Cost control for mining hardware 2099JP
-[JOP] Blockchain Health Teaser 2099JP
-[JOP] Bitcoin mining operation 2099JP
-[JOP] Zcash vs Dash
-[JOP] What is Ethereum
-[JOP] Mining Litecoin
-[JOP] How to mine Zcash
-[JOP] How to Explain Mining
-[JOP] Farm Simulator Dota 2
-[JOP] Ethereum Tuto Mining Ether
-[JOP] Dota 2 FY Moment 101 fast
+for(i = 0; i < $$(".vm-video-title-content").length; i++){console.log ($$(".vm-video-title-content")[i].innerHTML.trim())}
+[HRR] Chính quyền Cộng Sản sách nhiễu Phật giáo Hòa Hảo
+[HRR] Một mình cân cả team
+[HRR] Đỗ Thị Minh Hạnh tường thuật việc bị An ninh canh giữ và tấn công tại nhà riêng
+[HRR] An ninh canh nhà hoạt động Đỗ Thị Minh Hạnh tối ngày 20/03/2016
+[HRR] Tuần hành phản đối Formosa 19/03/2017
+[HRR] Phó trưởng Phòng NNPTNT say rượu móc súng hù dọa dân.
 undefined
