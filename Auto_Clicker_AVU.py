@@ -290,7 +290,7 @@ def connect_openvpn():
             if sys.platform == 'win32':
                 cmd = '"C:/Program Files/OpenVPN/bin/openvpn.exe"'
             else:
-                cmd = 'echo linux | sudo -S -b openvpn'
+                cmd = 'echo linux | sudo -S openvpn'
             if ADS_BOTTOM == 0:
                 USE_IP = CONFIG_IP_VIEW   
             else:
