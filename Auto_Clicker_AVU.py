@@ -303,8 +303,8 @@ def connect_openvpn():
                              + USE_IP[value].strip() + \
                              ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
                              ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
-                             ' --auth-user-pass ressources/params_PIA/data/auth.txt ' \
-                             '--comp-lzo --verb 1 --reneg-sec 0' \
+                             ' --auth-user-pass ressources/params_PIA/data/auth.txt' \
+                             ' --comp-lzo --verb 1 --reneg-sec 0' \
                              ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
                              ' --auth-nocache' \
                              ' --ca ressources/params_PIA/data/ca.rsa.2048.crt' \
@@ -313,8 +313,8 @@ def connect_openvpn():
                 parameters = ' --tls-client --client --dev tun --link-mtu 1500' \
                              ' --remote ' + USE_IP[value].strip() + \
                              ' --proto udp --port 1197' \
-                             ' --lport 53 --persist-key --persist-tun --ca ressources/params_PIA/data/ca.crt ' \
-                             '--comp-lzo --mute 3' \
+                             ' --lport 53 --persist-key --persist-tun --ca ressources/params_PIA/data/ca.crt' \
+                             ' --comp-lzo --mute 3' \
                              ' --auth-user-pass ressources/params_PIA/data/auth.txt' \
                              ' --reneg-sec 0 --route-method exe --route-delay 2' \
                              ' --verb 3 --log c:/log.txt --status c:/stat.db 1 --auth-nocache' \
@@ -329,12 +329,8 @@ def connect_openvpn():
                 subprocess.Popen(cmd)
             else:
                 subprocess.Popen(cmd, stderr=subprocess.STDOUT, shell = True)
-
             print('Please wait to connect to OpenVPN...')
             countdown(8)
-            # except:
-                # pass
-
             if check_ping_is_ok() is True:
                 # if check_country_is_ok() is True:
                 if set_zone() is True:
@@ -814,7 +810,9 @@ def set_zone():
                 subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             else:
                 try:
-                    subprocess.check_output("echo linux | sudo -S cp /usr/share/zoneinfo/ " + timeZoneId + ' /etc/localtime', shell=True)
+                    cmd = "echo linux | sudo -S cp /usr/share/zoneinfo/ " + timeZoneId + ' /etc/localtime'
+                    print(cmd)
+                    subprocess.check_output(cmd, shell=True)
                 except:
                     print('Error to change TimeZone for Linux')
             return True
@@ -904,16 +902,12 @@ def main(optional):
               Style.RESET_ALL)
 
     # Firefox Parameters
-    try:
-        restore_profile()
-        path_profil = get_path_profile_firefox()
-    except:
-        pass
+    # try:
+    #     restore_profile()
+    # except:
+    #     pass
     if sys.platform == 'win32':
         binary_ff = FirefoxBinary(r'C:/Program Files (x86)/Mozilla Firefox/firefox.exe')
-
-    if TYPE_CLICKER == 'DAILY' and ADS_BOTTOM == 1:
-        BOUCLE_SUPER_VIP = 1
 
     for z in range(BOUCLE_SUPER_VIP):
         if (NUMBER_MACHINE > TOTAL_CHANNEL and PUREVPN != 1) or ADS_BOTTOM == 0 or PUREVPN == 0 or optional == 0:
