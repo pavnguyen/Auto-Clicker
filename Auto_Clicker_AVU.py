@@ -815,7 +815,7 @@ def set_zone():
                 try:
                     cmd = "echo linux | sudo -S cp /usr/share/zoneinfo/" + timeZoneId + ' /etc/localtime'
                     print(cmd)
-                    subprocess.check_output(cmd, shell=True)
+                    os.system(cmd)
                 except:
                     print('Error to change TimeZone for Linux')
             return True
