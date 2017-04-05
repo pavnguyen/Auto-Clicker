@@ -282,7 +282,7 @@ def connect_openvpn():
                 subprocess.check_output('ipconfig /renew', shell=True)
             else:
                 try:
-                    cmd = 'echo linux | sudo -S killall -9 openvpn'
+                    cmd = 'echo linux | sudo -S killall openvpn'
                     print(cmd)
                     os.system(cmd)                    
                 except:
@@ -310,8 +310,9 @@ def connect_openvpn():
                              ' --comp-lzo --verb 1 --reneg-sec 0' \
                              ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
                              ' --auth-nocache' \
-                             ' --ca ressources/params_PIA/data/ca.rsa.2048.crt' \
-                    # ' --block-outside-dns'
+                             ' --ca ressources/params_PIA/data/ca.rsa.2048.crt' 
+                # if sys.platform != 'win32':
+                #     parameters += ' --block-outside-dns'
             else:
                 parameters = ' --tls-client --client --dev tun --link-mtu 1500' \
                              ' --remote ' + USE_IP[value].strip() + \
@@ -813,9 +814,11 @@ def set_zone():
                 subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             else:
                 try:
-                    cmd = "echo linux | sudo -S cp /usr/share/zoneinfo/" + timeZoneId + ' /etc/localtime'
+                    cmd = "echo linux | sudo -S rm /etc/localtime"
+                    subprocess.check_output(cmd, shell = True)
+                    cmd = "echo linux | sudo -S ln -s /usr/share/zoneinfo/" + timeZoneId + ' /etc/localtime'
                     print(cmd)
-                    os.system(cmd)
+                    subprocess.check_output(cmd, shell = True)
                 except:
                     print('Error to change TimeZone for Linux')
             return True
