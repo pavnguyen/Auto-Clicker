@@ -1043,7 +1043,7 @@ def main(optional):
 
                         print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'URL VIEW: ' + str(j) + ' >> ' +
                               Style.RESET_ALL + Back.BLACK + Fore.LIGHTWHITE_EX + url + '' + Style.RESET_ALL)
-                        try_detect_aduivisit()      
+                        #try_detect_aduivisit()      
                         countdown(random.randint(15, 18))
                         click_button_skipads()
                         if j % total_key == 0:
