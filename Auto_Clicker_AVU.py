@@ -282,8 +282,11 @@ def connect_openvpn():
                 subprocess.check_output('ipconfig /renew', shell=True)
             else:
                 try:
-                    subprocess.check_output('echo linux | sudo -S killall openvpn')
+                    cmd = 'echo linux | sudo -S killall -9 openvpn'
+                    print(cmd)
+                    os.system(cmd)                    
                 except:
+                    print('CANNOT KILL openvpn')
                     pass
 
             print('Connect OpenVPN')
