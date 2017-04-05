@@ -282,7 +282,7 @@ def connect_openvpn():
                 subprocess.check_output('ipconfig /renew', shell=True)
             else:
                 try:
-                    subprocess.check_output('echo linux | sudo -S killall -9 openvpn')
+                    subprocess.check_output('echo linux | sudo -S killall openvpn')
                 except:
                     pass
 
@@ -810,7 +810,7 @@ def set_zone():
                 subprocess.check_output("tzutil /s " + '"' + zone_to_set + '" ', shell=True)
             else:
                 try:
-                    cmd = "echo linux | sudo -S cp /usr/share/zoneinfo/ " + timeZoneId + ' /etc/localtime'
+                    cmd = "echo linux | sudo -S cp /usr/share/zoneinfo/" + timeZoneId + ' /etc/localtime'
                     print(cmd)
                     subprocess.check_output(cmd, shell=True)
                 except:
