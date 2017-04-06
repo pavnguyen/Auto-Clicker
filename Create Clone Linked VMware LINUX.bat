@@ -104,3 +104,4 @@
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\LN21\21.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\LN22\22.vmx"
 "C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\LN23\23.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Virtual Machine\LN24\24.vmx"
