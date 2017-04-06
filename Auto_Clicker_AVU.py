@@ -288,6 +288,9 @@ def connect_openvpn():
                     cmd = 'echo linux | sudo -S pkill openvpn'
                     print(cmd)
                     os.system(cmd)
+                    cmd = 'echo linux | sudo -S killall -w openvpn'
+                    print(cmd)
+                    os.system(cmd)                    
                 except:
                     print('CANNOT KILL openvpn')
                     pass
