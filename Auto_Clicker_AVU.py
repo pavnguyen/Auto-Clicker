@@ -937,6 +937,7 @@ def main(optional):
                     BROWSER = webdriver.Firefox(firefox_profile=fp, firefox_binary=binary_ff)
                 else:
                     BROWSER = webdriver.Firefox(firefox_profile=fp)
+                    pyautogui.hotkey('alt', '2')
                 BROWSER.maximize_window()
 
             # Save the window opener
