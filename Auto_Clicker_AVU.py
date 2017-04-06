@@ -1167,6 +1167,7 @@ def main(optional):
 
 
 if __name__ == "__main__":
+    pyautogui.FAILSAFE = False
     COUNTER_TOURS = 0
     TOTAL_CLICKS_ADS_BOTTOM = 0
     TOTAL_CLICKS_ADS_SKIPS = 0
