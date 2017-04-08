@@ -380,7 +380,7 @@ def set_screen_resolution():
             windowList = []
             win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
                                 windowList)
-            cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower()]
+            cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower() or 'cmd' in i[0].lower() or 'ac.bat' in i[0].lower()]
             win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
     except:
         pass
@@ -1181,7 +1181,7 @@ if __name__ == "__main__":
         NUMBER_MACHINE = int(raw_input())
 
     for i in range(0, 100):
-        if NUMBER_MACHINE <= 20:
+        if NUMBER_MACHINE <= 100:
             main(0)
         else:
             main(1)
