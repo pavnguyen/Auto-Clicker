@@ -1180,7 +1180,7 @@ if __name__ == "__main__":
         print(Style.RESET_ALL)
         NUMBER_MACHINE = int(raw_input())
 
-    for i in range(0, 100):
+    while True:
         if NUMBER_MACHINE <= 100:
             main(0)
         else:
