@@ -30,11 +30,11 @@ for i in range(debut, fin + 1):
     try:
         if ossys == 'w' or ossys == "W":
             cmd = 'vmrun -gu cas -gp cas runProgramInGuest ' + '\"E:/Virtual Machine/'+ str(i) + \
-            '/' + str(i) + '.vmx\"' + ' -activeWindow -interactive -nowait ' + \
+            '/' + str(i) + '.vmx\" -activeWindow -interactive -nowait ' + \
             '\"Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat\" ' + str(i)
         else:
             cmd = 'vmrun -T ws -gu linux -gp linux runProgramInGuest ' +\
-                  '\"E:/Virtual Machine/L' + str(i) + '/' + str(i) + '.vmx -activewindow -interactive -nowait' + \
+                  '\"E:/Virtual Machine/L' + str(i) + '/' + str(i) + '.vmx\" -activewindow -interactive -nowait ' + \
                   '\"/usr/bin/sakura\" \"-x\" \"/bin/bash /home/linux/AC.sh 1\"'
         print(cmd)
 

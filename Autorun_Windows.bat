@@ -13,13 +13,3 @@ vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/12/12.vmx" -activeWi
 vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/13/13.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 13
 vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/14/14.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 14
 vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/15/15.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 15
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/16/16.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 16
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/17/17.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 17
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/18/18.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 18
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/19/19.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 19
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/20/20.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 20
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/21/21.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 21
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/22/22.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 22
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/23/23.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 23
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/24/24.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 24
-vmrun -gu cas -gp cas runProgramInGuest "E:/Virtual Machine/25/25.vmx" -activeWindow -interactive -nowait "Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat" 25
