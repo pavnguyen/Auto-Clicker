@@ -13,32 +13,44 @@ else:
     print('[L]inux/[W]indows: ')
     ossys = raw_input()
 
-a = open('Autorun_Windows.bat', 'w+')
-
 if ossys == 'w' or ossys == 'W':
-    ajout = ""
-    c = open('Create Clone Linked VMware.bat', 'w+')
+    ajout = ''
+    c = open('Create Clone Linked Windows.bat', 'w+')
     s = open('Start_Windows.bat', 'w+')
+    a = open('Autorun_Windows.bat', 'w+')
 
 if ossys == 'l' or ossys == 'L':
     ajout = 'L'
-    c = open('Create Clone Linked VMware LINUX.bat', 'w+')
+    c = open('Create Clone Linked Linux.bat', 'w+')
     s = open('Start_Linux.bat', 'w+')
+    a = open('Autorun_Linux.bat', 'w+')
 
 
 for i in range(debut, fin + 1):
     try:
-
-        cmd = 'vmrun -gu cas -gp cas runProgramInGuest ' + '\"E:/Virtual Machine/'+ str(i) + \
-        '/' + str(i) + '.vmx\"' + ' -activeWindow -interactive -nowait ' + \
-        '\"Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat\" ' + str(i)
+        if ossys == 'w' or ossys == "W":
+            cmd = 'vmrun -gu cas -gp cas runProgramInGuest ' + '\"E:/Virtual Machine/'+ str(i) + \
+            '/' + str(i) + '.vmx\"' + ' -activeWindow -interactive -nowait ' + \
+            '\"Z:/Project Python/Auto-Clicker/ressources/Batch_Files/AC.bat\" ' + str(i)
+        else:
+            cmd = 'vmrun -T ws -gu linux -gp linux runProgramInGuest ' +\
+                  '\"E:/Virtual Machine/L' + str(i) + '/' + str(i) + '.vmx -activewindow -interactive -nowait' + \
+                  '\"/usr/bin/sakura\" \"-x\" \"/bin/bash /home/linux/AC.sh 1\"'
+        print(cmd)
 
         cmd_delete = 'vmrun deleteVM ' + '\"E:/Virtual Machine/' + ajout + str(i) + '/' + str(i) + '.vmx\"'
-
-        cmd_clone = 'vmrun clone ' + '\"E:/Virtual Machine/May Ao Chuan/Windows 7 x64.vmx\" ' + \
-        '\"E:/Virtual Machine/' + ajout + str(i) + '/' + str(i) + '.vmx\" ' + 'linked -cloneName=\"' + str(i) + '\"'
+        print(cmd_delete)
+        
+        if ossys == 'w' or ossys == "W":
+            cmd_clone = 'vmrun clone ' + '\"E:/Virtual Machine/May Ao Chuan/Windows 7 x64.vmx\" ' + \
+            '\"E:/Virtual Machine/' + ajout + str(i) + '/' + str(i) + '.vmx\" ' + 'linked -cloneName=\"' + str(i) + '\"'
+        else:
+            cmd_clone = 'vmrun clone ' + '\"E:/Virtual Machine/Ubuntu/Ubuntu.vmx\" ' + \
+            '\"E:/Virtual Machine/' + ajout + str(i) + '/' + str(i) + '.vmx\" ' + 'linked -cloneName=\"' + str(i) + '\"'
+        print(cmd_clone)
 
         cmd_start = 'vmrun start ' + '\"E:/Virtual Machine/' + ajout + str(i) + '/' + str(i) + '.vmx\"'
+        print(cmd_start)
 
         a.write(cmd + '\n')
         c.write(cmd_delete + '\n' + cmd_clone + '\n')
