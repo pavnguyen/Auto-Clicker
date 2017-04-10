@@ -308,11 +308,15 @@ def connect_openvpn():
             value = random.randint(0, len(USE_IP) - 1)
             print('Random Server: ' + USE_IP[value].strip())
             if 'privateinternetaccess' in USE_IP[value].strip():
+                if random.randint(0, 1) == 1:
+                    ajout = '1'
+                else:
+                    ajout =''
                 parameters = ' --client --dev tun --proto udp --remote ' \
                              + USE_IP[value].strip() + \
                              ' --port 1198 --resolv-retry infinite --nobind --persist-key --persist-tun' \
                              ' --cipher aes-128-cbc --auth sha1 --tls-client --remote-cert-tls server' \
-                             ' --auth-user-pass ressources/params_PIA/data/auth.txt' \
+                             ' --auth-user-pass ressources/params_PIA/data/auth' + ajout + '.txt' \
                              ' --comp-lzo --verb 1 --reneg-sec 0' \
                              ' --crl-verify ressources/params_PIA/data/crl.rsa.2048.pem' \
                              ' --auth-nocache' \
@@ -325,7 +329,7 @@ def connect_openvpn():
                              ' --proto udp --port 1197' \
                              ' --lport 53 --persist-key --persist-tun --ca ressources/params_PIA/data/ca.crt' \
                              ' --comp-lzo --mute 3' \
-                             ' --auth-user-pass ressources/params_PIA/data/auth.txt' \
+                             ' --auth-user-pass ressources/params_PIA/data/auth' + ajout + '.txt' \
                              ' --reneg-sec 0 --route-method exe --route-delay 2' \
                              ' --verb 3 --log c:/log.txt --status c:/stat.db 1 --auth-nocache' \
                              ' --crl-verify ressources/params_PIA/data/crl.pem ' \
