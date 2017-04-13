@@ -1,7 +1,9 @@
 # for(i = 0; i < $$(".vm-video-title-content").length; i++){ console.log ($$(".vm-video-title-content")[i].href)}
 import sys
-
-import tinyurl
+try:
+    import tinyurl
+except:
+    import TinyURL as tinyurl
 
 if len(sys.argv) > 2:
     debut = int(sys.argv[1])

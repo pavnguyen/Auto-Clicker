@@ -240,12 +240,12 @@ def connect_openvpn_purevpn():
             print('Random Server: ' + CONFIG_IP_PURE[value].strip())
             if 'pointtoserver' in CONFIG_IP_PURE[value].strip():
                 parameters = ' --client --dev tun --remote ' + CONFIG_IP_PURE[value].strip() + ' --port 53' + \
-                             ' --proto udp --nobind --persist-key --persist-tun ' \
-                             '--tls-auth ressources/params_PureVPN/Wdc.key 1 --ca ressources/params_PureVPN/ca.crt' + \
+                             ' --proto udp --nobind --persist-key --persist-tun' \
+                             ' --tls-auth ressources/params_PureVPN/Wdc.key 1 --ca ressources/params_PureVPN/ca.crt' + \
                              ' --cipher AES-256-CBC --comp-lzo --verb 1 --mute 20 --float --route-method exe' + \
-                             ' --route-delay 2 --auth-user-pass ressources/params_PureVPN/auth.txt ' + \
-                             '--auth-retry interact' + \
-                             ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache '
+                             ' --route-delay 2 --auth-user-pass ressources/params_PureVPN/auth.txt' + \
+                             ' --auth-retry interact' + \
+                             ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache'
 
             cmd += parameters
             try:
