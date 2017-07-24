@@ -220,7 +220,7 @@ def connect_purevpn():
             if check_ping_is_ok() is True:
                 # if check_country_is_ok() is True:
                 if set_zone() is True:
-                        load_result = True
+                    load_result = True
 
 
 def connect_openvpn_purevpn():
@@ -348,7 +348,7 @@ def connect_openvpn():
             if check_ping_is_ok() is True:
                 # if check_country_is_ok() is True:
                 if set_zone() is True:
-                        load_result = True
+                    load_result = True
 
 
 def get_random_resolution():
