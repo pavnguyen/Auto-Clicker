@@ -220,7 +220,7 @@ def connect_purevpn():
             if check_ping_is_ok() is True:
                 # if check_country_is_ok() is True:
                 if set_zone() is True:
-                    load_result = True
+                        load_result = True
 
 
 def connect_openvpn_purevpn():
@@ -245,7 +245,7 @@ def connect_openvpn_purevpn():
                              ' --cipher AES-256-CBC --comp-lzo --verb 1 --mute 20 --float --route-method exe' + \
                              ' --route-delay 2 --auth-user-pass ressources/params_PureVPN/auth.txt' + \
                              ' --auth-retry interact' + \
-                             ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache'
+                             ' --explicit-exit-notify 2 --ifconfig-nowarn --auth-nocache '
 
             cmd += parameters
             try:
@@ -348,7 +348,7 @@ def connect_openvpn():
             if check_ping_is_ok() is True:
                 # if check_country_is_ok() is True:
                 if set_zone() is True:
-                    load_result = True
+                        load_result = True
 
 
 def get_random_resolution():
@@ -385,7 +385,7 @@ def set_screen_resolution():
             win32gui.EnumWindows(lambda hwnd, windowList: windowList.append((win32gui.GetWindowText(hwnd), hwnd)),
                                 windowList)
             cmdWindow = [i for i in windowList if 'auto clicker' in i[0].lower() or 'openvpn' in i[0].lower() or 'cmd' in i[0].lower() or 'ac.bat' in i[0].lower()]
-            win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1395, 0, 320, 915, 0)
+            win32gui.SetWindowPos(cmdWindow[0][1], win32con.HWND_TOPMOST, 1080, 0, 200, 787, 0)
     except:
         pass
 
@@ -403,11 +403,10 @@ def switch_tab():
     # Switch tab to the new tab, which we will assume is the next one on the right
     try:
         BROWSER.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.TAB)
-        random_mouse_move()
     except:
         try:
             print('Error: Switch tab to the new tab => Re-witch Tab')
-            BROWSER.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.TAB)
+            pyautogui.hotkey('ctrl', 'tab')
         except:
             pass
         pass
@@ -476,6 +475,7 @@ def search_youtube(url):
             print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + TITLE_YOUTUBE + Style.RESET_ALL)
             xpath_search = "//a[@title=" + "'" + TITLE_YOUTUBE + "']"
             first_link = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER: BROWSER.find_element_by_xpath(xpath_search))
+            x, y = detect_location(first_link)
             first_link.send_keys(Keys.RETURN)
             load_result = True
         except:
@@ -483,64 +483,70 @@ def search_youtube(url):
     return load_result
 
 
+def detect_location(first_result):
+    x = int(first_result.location['x'])
+    browser_navigation_panel_height = BROWSER.execute_script('return window.outerHeight - window.innerHeight;')
+    y = int(first_result.location['y']) + int(browser_navigation_panel_height)
+    print('>>> x:' + str(x) + ' y:' + str(y))
+    pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+    return x, y
+
+
 def click_button_skipads():
-    try:
-        first_result = ui.WebDriverWait(BROWSER, 3).until(
-            lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiSkipButton'))
-        x, y = get_recalcul_xy(980, 559)
-        random_sleep()
-        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-        pyautogui.click(x, y)
-        random_mouse_move()
-    except:
-        pass
+    first_result = ui.WebDriverWait(BROWSER, 3).until(
+        lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiSkipButton'))
+    print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
+        'Class \"SkipButton\" => ' +
+        Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
+        '[DETECTED]' + Style.RESET_ALL)
+    x, y = detect_location(first_result)
+    # x, y = get_recalcul_xy(690, 396)     #27/07/2017
+    random_sleep()
+    pyautogui.click(x+5, y+5)
+    random_mouse_move()
+
 
 def try_detect_aduivisit():
+    print('detect aduivisit')  
+    x, y = get_recalcul_xy(115, 456)   #18/05/17
+    pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+    first_result = ui.WebDriverWait(BROWSER, 5).until(
+        lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
+    print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
+            'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
+            Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
+            '[DETECTED]' + Style.RESET_ALL)
     try:
-        x, y = get_recalcul_xy(330, 576)
-        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-        first_result = ui.WebDriverWait(BROWSER, 5).until(
-            lambda BROWSER: BROWSER.find_element_by_class_name('videoAdUiVisitAdvertiserLinkText'))
-        print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT +
-                'Class \"videoAdUiVisitAdvertiserLinkText\" => ' +
-                Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
-                '[DETECTED]' + Style.RESET_ALL)
-        try:
-            x, y = get_recalcul_xy(330, 576)
-            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-            sleep(1)
-            pyautogui.click(x, y)
-            get_position_mouse()
-            print('click 4')
-            TOTAL_CLICKS_ADS_SKIPS += 1            
-        except:
-            # x, y = get_recalcul_xy(330, 576)
-            # pyautogui.click(x, y)
-            pass
-        switch_tab()
-        switch_main_window()
-
-        pyautogui.hotkey('alt', 'esc')
-        replay_clip()
-        click_button_skipads()
+        x, y = detect_location(first_result)
+        #x, y = get_recalcul_xy(228, 424) #26/07/17
+        #pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+        sleep(1)
+        pyautogui.click(x + 5, y + 5)
+        get_position_mouse()
+        print('click 4')
+        TOTAL_CLICKS_ADS_SKIPS += 1            
     except:
-        pass    
+        pass
+    switch_tab()
+    switch_main_window()
+
+    pyautogui.hotkey('alt', 'esc')
+    replay_clip()
+    click_button_skipads()
+   
 
 def try_detect_ivpromo():
-    x, y = get_recalcul_xy(330, 600)
+    print('detect ivpromo')
+    x, y = get_recalcul_xy(115, 434)   #18/05/17
     pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
     first_result = ui.WebDriverWait(BROWSER, 20).until(
         lambda BROWSER: BROWSER.find_element_by_class_name('iv-promo-txt'))  # ('iv-promo-contents'))
-    try:
-        first_result.click()
-        print('click 2')
-    except:
-        x, y = get_recalcul_xy(323, 556)
-        pyautogui.click(x, y)
-        print('click 3')
-        pass
+    x, y = detect_location(first_link)
+    pyautogui.click(x+5, y+5)
+
+    #     x, y = get_recalcul_xy(246, 436) #18/05/17
+ 
     TOTAL_CLICKS_ADS_SKIPS += 1
-    load_result = True
     print(
         Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'Class \"iv-promo-txt\" => ' + Style.RESET_ALL +
         Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
@@ -553,112 +559,94 @@ def try_detect_ivpromo():
     click_button_skipads()  
 
 def try_detect_addisplay():
-    first_result = ui.WebDriverWait(BROWSER, 15).until(lambda BROWSER:
-                                                        BROWSER.find_element_by_class_name(
-                                                            'adDisplay'))
-    first_link = first_result.find_element_by_tag_name('a')
-    first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
-            Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+    try:
+        print('detect Class Name addisplay')
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Test AdDisplay ???' + Style.RESET_ALL)
+        first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                                                            BROWSER.find_element_by_class_name(
+                                                                'adDisplay'))
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Co adDisplay' + Style.RESET_ALL)
+        first_link = first_result.find_element_by_tag_name('a')
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Co tag A' + Style.RESET_ALL)
+        first_link.send_keys(Keys.CONTROL + Keys.RETURN)
+
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Class \"adDisplay\" => ' + Style.RESET_ALL +
+                Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)
+
+    except:
+        print('detect Xpath addisplay')
+        xpath_search = "//*/div[contains(@class, 'adDisplay')]/a"
+        first_link = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER: BROWSER.find_element_by_xpath(xpath_search))
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Co Xpath: adDisplay' + Style.RESET_ALL)
+        first_link.send_keys(Keys.CONTROL + Keys.RETURN)
+  
     
 def try_detect_adsense():
-    first_result = ui.WebDriverWait(BROWSER, 3).until(lambda BROWSER:
-                                                        BROWSER.find_element_by_id('AdSense'))
-    first_link = first_result.find_element_by_tag_name('a')
-    first_link.send_keys(Keys.CONTROL + Keys.RETURN)
+    try:
+        print('detect ID adsense')
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Test AdSense ???' + Style.RESET_ALL)
+        first_result = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER:
+                                                            BROWSER.find_element_by_id('AdSense'))
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Co AdSense' + Style.RESET_ALL)
+        first_link = first_result.find_element_by_tag_name('a')
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Co tag A' + Style.RESET_ALL)
+        first_link.send_keys(Keys.CONTROL + Keys.RETURN)
 
-    print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
-            Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)    
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Id \"AdSense\" => ' + Style.RESET_ALL +
+                Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + '[DETECTED]' + Style.RESET_ALL)   
+ 
+    except:
+        print('detect Xpath adsense')
+        xpath_search = "//*[@id='AdSense']/div/a"
+        first_link = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER: BROWSER.find_element_by_xpath(xpath_search))
+        print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Co Xpath Adsense' + Style.RESET_ALL)
+        first_link.send_keys(Keys.CONTROL + Keys.RETURN)
+
+
 
 def detect_and_click_ads_bottom():
     global TOTAL_CLICKS_ADS_SKIPS
-    global DETECTED_ADDISPLAY
 
     load_result = False
+    control = 0
     switch_main_window()
     try:
-        # SKIP ADS
-        # try:
-        #     first_result = ui.WebDriverWait(BROWSER, 20).until(
-        #         lambda BROWSER: BROWSER.find_element_by_class_name('annotation'))
-        #     print('...Annotation checked')
-        #     try:
-        #         first_result.click()
-        #     except:
-        #         try:
-        #             x, y = get_recalcul_xy(323, 556)
-        #             pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-        #             random_small_sleep()
-        #             pyautogui.click(323, 556)
-        #             print(Back.BLACK + Fore.LIGHTBLUE_EX + Style.BRIGHT + 'annotation 2' + Style.RESET_ALL)
-        #             TOTAL_CLICKS_ADS_SKIPS += 1
-        #             load_result = True
-        #         except:
-        #             pass
-        #     switch_tab()
-        #     random_mouse_move()
-        #     switch_main_window()
-        #     pyautogui.hotkey('alt', 'esc')
-        #
-        #     replay_clip()
-        #     click_button_skipads()
-        # except:
-        try:
-            try_detect_aduivisit()
-            load_result = True
-        except:
-            pass
-
-        try:
-            try_detect_ivpromo()
-        except:
-            try_detect_aduivisit()
-            pass
-
-        # ADS BOTTOM
-        random_mouse_move()
-        x, y = get_recalcul_xy(624, 559)  # just for fun
-        pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-        DETECTED_ADDISPLAY = 1
-
-        try:
-            if get_info_length_youtube(BROWSER.current_url) / 60 > 10:
-                print(Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT + 'Wait n times to click SECOND ads' +
-                      Style.RESET_ALL)
-                countdown(random.randint(30, 45))
-        except:
-            pass
-        if load_result is False:
-            try:
-                try_detect_addisplay()
-                load_result = True
-            except:
-                try:
-                    try_detect_adsense()
-                    load_result = True
-                    DETECTED_ADDISPLAY = 0
-                    print(Fore.LIGHTRED_EX + 'Error: adDisplay => Load \"AdSense\"' + Style.RESET_ALL)
-                except:
-                    try:
-                        try_detect_addisplay()
-                        load_result = True
-                        DETECTED_ADDISPLAY = 0
-                    except:
-                        print(Fore.LIGHTRED_EX + 'Error: AdSense => Reload clip!!!' + Style.RESET_ALL)
-                        pass
-                    pass
-                    # Switch tab to the new tab, which we will assume is the next one on the right
-            if load_result is True:
-                switch_tab()
-                random_small_sleep()
-                random_mouse_scroll()
-                switch_main_window()
-                replay_clip()
-            else:
-                click_ads_right()
+        try_detect_ivpromo()
+        control += 1
     except:
-        pass
+        print('Error detect ivpromo')
+
+    try:
+        try_detect_aduivisit()
+        control += 1
+    except:
+        print('Error detect aduivisit')
+
+
+    try:
+        try_detect_adsense()
+        control += 1
+        switch_tab()
+        random_small_sleep()
+        random_mouse_scroll()
+        switch_main_window()
+        replay_clip()
+    except:
+        try:
+            try_detect_addisplay()
+            control += 1
+            switch_tab()
+            random_small_sleep()
+            random_mouse_scroll()
+            switch_main_window()
+            replay_clip()
+        except:
+            print('Error detect adsense and addisplay')
+
+    if control > 0:
+        load_result = True
+    
 
     return load_result
 
@@ -671,10 +659,16 @@ def click_ads_right():
         print(Style.RESET_ALL)
 
         try:
-            x, y = get_recalcul_xy(1230, 205)
-            pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
+            print('detect Xpath Ads right')
+            xpath_search = "//*[@id='watch7-sidebar-offer']"
+            first_link = ui.WebDriverWait(BROWSER, 5).until(lambda BROWSER: BROWSER.find_element_by_xpath(xpath_search))
+            print(Back.BLACK + Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Co Xpath: Ads Right' + Style.RESET_ALL)
+            
+            #x, y = get_recalcul_xy(1083, 200) # 18/05/17
+            detect_location(first_link)
+            pyautogui.moveTo(x+20, y+20, random.random(), pyautogui.easeOutQuad)
             pyautogui.keyDown('ctrl')
-            pyautogui.click()
+            pyautogui.click(x+20, y+20)
             pyautogui.keyUp('ctrl')
             switch_tab()
             countdown(20)
@@ -696,7 +690,7 @@ def click_ads_right():
 def replay_clip():
     try:
         print('-> Mouse move to Clip')
-        x, y = get_recalcul_xy(540, 450)
+        x, y = get_recalcul_xy(390, 335) #18/05/17
         pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
         get_position_mouse()
         sleep(0.25)
@@ -704,9 +698,9 @@ def replay_clip():
             pyautogui.click(x, y)
         except:
             pass
-        print('-> Mouse click to REPLAY')
+        print('-> Click to REPLAY')
         random_mouse_move()
-        random_mouse_move()
+
     except:
         pass
 
@@ -918,12 +912,12 @@ def main(optional):
               Style.RESET_ALL)
 
     # Firefox Parameters
-    # try:
-    #     restore_profile()
-    # except:
-    #     pass
+    #try:
+    #    restore_profile()
+    #except:
+    #    pass
     if sys.platform == 'win32':
-        binary_ff = FirefoxBinary(r'C:/Program Files (x86)/Mozilla Firefox/firefox.exe')
+        binary_ff = FirefoxBinary(r'C:/Program Files/Mozilla Firefox/firefox.exe')
 
     for z in range(BOUCLE_SUPER_VIP):
         if (NUMBER_MACHINE > TOTAL_CHANNEL and PUREVPN != 1) or ADS_BOTTOM == 0 or PUREVPN == 0 or optional == 0:
@@ -934,9 +928,9 @@ def main(optional):
         for i in range(NUMBER_MACHINE, TOTAL_CHANNEL + NUMBER_MACHINE):
             start_time = time.time()
             if ADS_BOTTOM == 1:
-                print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
+                print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 3 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                       + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
-                print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Ads SKIP included] => ' + Style.RESET_ALL
+                print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 3 + '[Ads SKIP included] => ' + Style.RESET_ALL
                       + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
 
             # Open Firefox with default profile
@@ -948,7 +942,7 @@ def main(optional):
                 else:
                     BROWSER = webdriver.Firefox(firefox_profile=fp)
                     pyautogui.hotkey('alt', '2')
-                BROWSER.maximize_window()
+                #BROWSER.maximize_window()
 
             # Save the window opener
             try:
@@ -973,9 +967,9 @@ def main(optional):
                           Back.LIGHTRED_EX + Fore.BLACK + Style.BRIGHT + 'FAILED!!!' + Style.RESET_ALL)
                     pass
 
-                print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
+                print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 3 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                       + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
-                print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Ads SKIP included] => ' + Style.RESET_ALL
+                print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 3 + '[Ads SKIP included] => ' + Style.RESET_ALL
                       + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
             #####################
             # Detect Ads Bottom #
@@ -1007,7 +1001,9 @@ def main(optional):
                         if result_search_youtube is False:
                             url = get_tinyurl_clip(str(file_channel))
                             BROWSER.get(url)
+
                         counter += 1
+                        
                         print("...Test Ads Bottom: " + str(counter))
                         found_ads_bottom = detect_and_click_ads_bottom()
                         if found_ads_bottom is True:
@@ -1016,11 +1012,11 @@ def main(optional):
                                   Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + Style.BRIGHT +
                                   '[FOUND & CLICKED]' + Style.RESET_ALL)
                             print(
-                                Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' +
+                                Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 3 + '[Click Ads Bottom] => ' +
                                 Style.RESET_ALL + Fore.LIGHTGREEN_EX + Back.BLACK +
                                 str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL)
                             print(
-                                Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Ads SKIP included] => ' +
+                                Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 3 + '[Ads SKIP included] => ' +
                                 Style.RESET_ALL + Fore.LIGHTYELLOW_EX + Back.BLACK +
                                 str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL)
                     except:
@@ -1083,26 +1079,6 @@ def main(optional):
                     except:
                         wait_time = random.randint(105, 115)
 
-                    # Try to close Ads
-                    if CLOSE_ADS_BOTTOM == 1:
-                        random_close = random.randint(0, 1)
-                        if random_close == 1:
-                            try:
-                                if DETECTED_ADDISPLAY == 0:
-                                    x, y = get_recalcul_xy(990, 503)
-                                else:
-                                    x, y = get_recalcul_xy(845, 536)
-                                print(Fore.LIGHTYELLOW_EX + Back.BLACK + 'Try to close Ads: X->' +
-                                      str(x) + ' Y->' + str(y) + Style.RESET_ALL)
-                                pyautogui.moveTo(x, y, random.random(), pyautogui.easeOutQuad)
-                                sleep(0.25)
-                                try:
-                                    pyautogui.click(x, y)
-                                except:
-                                    pass
-                            except:
-                                pass
-
             random_mouse_move()
 
             if ADS_BOTTOM == 1:
@@ -1117,9 +1093,9 @@ def main(optional):
                 print(Back.BLACK + Fore.LIGHTCYAN_EX + Style.BRIGHT + '[Duration to click ads]' + Style.RESET_ALL +
                       Back.BLACK + Fore.LIGHTWHITE_EX + ' ' +
                       str(datetime.timedelta(seconds=time.time() - start_time)) + '' + Style.RESET_ALL)
-                print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
+                print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 3 + '[Click Ads Bottom] => ' + Style.RESET_ALL
                       + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL)
-                print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Ads SKIP included] => ' + Style.RESET_ALL
+                print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 3 + '[Ads SKIP included] => ' + Style.RESET_ALL
                       + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL)
 
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
@@ -1127,7 +1103,7 @@ def main(optional):
                   Style.RESET_ALL + Back.BLACK + Fore.LIGHTYELLOW_EX + str(COUNTER_TOURS) + '' + Style.RESET_ALL)
             print(Fore.LIGHTWHITE_EX + '.' * 37 + Style.RESET_ALL)
 
-            # click_ads_right()
+            click_ads_right()
             if found_ads_bottom is True:
                 countdown(wait_time)
                 # elif ADS_BOTTOM == 0:
@@ -1152,9 +1128,9 @@ def main(optional):
             pass
 
     if ADS_BOTTOM == 1:
-        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 12 + '[Click Ads Bottom] => ' + Style.RESET_ALL
+        print(Fore.LIGHTYELLOW_EX + Back.BLACK + ' ' * 3 + '[Click Ads Bottom] => ' + Style.RESET_ALL
               + Fore.LIGHTGREEN_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_BOTTOM) + Style.RESET_ALL + '')
-        print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 12 + '[Ads SKIP included] => ' + Style.RESET_ALL
+        print(Fore.LIGHTGREEN_EX + Back.BLACK + ' ' * 3 + '[Ads SKIP included] => ' + Style.RESET_ALL
               + Fore.LIGHTYELLOW_EX + Back.BLACK + str(TOTAL_CLICKS_ADS_SKIPS) + Style.RESET_ALL + '')
 
     if TYPE_CLICKER != 'DAILY':
@@ -1186,6 +1162,6 @@ if __name__ == "__main__":
 
     while True:
         if NUMBER_MACHINE <= 100:
-            main(0)
+            main(1)
         else:
             main(1)
