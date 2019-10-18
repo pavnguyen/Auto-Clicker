@@ -64,7 +64,7 @@ python-utils==2.2.0
 python-xlib==0.19
 PyTweening==1.0.3
 pytz==2017.2
-PyYAML==3.12
+PyYAML==5.1
 ranger==1.8.1
 requests==2.18.4
 requests-file==1.4.2
