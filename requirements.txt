@@ -40,7 +40,7 @@ olefile==0.44
 packaging==16.8
 pacman-mirrors==4.2.2
 pafy==0.5.3.1
-Pillow==4.2.1
+Pillow>=7.1.0
 ply==3.10
 progressbar2==3.30.0
 pyasn1==0.3.3
